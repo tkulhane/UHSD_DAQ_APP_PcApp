@@ -1,0 +1,10 @@
+C:\Users\Tomáš\Můj disk (tkulhane@gapps.zcu.cz)\Visual_Studio\Digitizer_App\Digitizer_ver2\obj\Debug\Digitizer_ver2.csproj.AssemblyReference.cache
+C:\Users\Tomáš\Můj disk (tkulhane@gapps.zcu.cz)\Visual_Studio\Digitizer_App\Digitizer_ver2\obj\Debug\Digitizer_ver1.Form1.resources
+C:\Users\Tomáš\Můj disk (tkulhane@gapps.zcu.cz)\Visual_Studio\Digitizer_App\Digitizer_ver2\obj\Debug\Digitizer_ver1.Properties.Resources.resources
+C:\Users\Tomáš\Můj disk (tkulhane@gapps.zcu.cz)\Visual_Studio\Digitizer_App\Digitizer_ver2\obj\Debug\Digitizer_ver2.csproj.GenerateResource.cache
+C:\Users\Tomáš\Můj disk (tkulhane@gapps.zcu.cz)\Visual_Studio\Digitizer_App\Digitizer_ver2\obj\Debug\Digitizer_ver2.csproj.CoreCompileInputs.cache
+C:\Users\Tomáš\Můj disk (tkulhane@gapps.zcu.cz)\Visual_Studio\Digitizer_App\Digitizer_ver2\obj\Debug\Digitizer_ver1.exe
+C:\Users\Tomáš\Můj disk (tkulhane@gapps.zcu.cz)\Visual_Studio\Digitizer_App\Digitizer_ver2\obj\Debug\Digitizer_ver1.pdb
+C:\Users\Tomáš\Můj disk (tkulhane@gapps.zcu.cz)\Visual_Studio\Digitizer_App\Digitizer_ver2\bin\Debug\Digitizer_ver1.exe.config
+C:\Users\Tomáš\Můj disk (tkulhane@gapps.zcu.cz)\Visual_Studio\Digitizer_App\Digitizer_ver2\bin\Debug\Digitizer_ver1.exe
+C:\Users\Tomáš\Můj disk (tkulhane@gapps.zcu.cz)\Visual_Studio\Digitizer_App\Digitizer_ver2\bin\Debug\Digitizer_ver1.pdb

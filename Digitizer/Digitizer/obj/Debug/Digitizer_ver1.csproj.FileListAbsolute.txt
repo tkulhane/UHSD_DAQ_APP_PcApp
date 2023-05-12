@@ -1,0 +1,20 @@
+\\Mac\AllFiles\Volumes\GoogleDrive-116041042848792784149\Můj disk\Visual_Studio\Digitizer_App\Digitizer_ver1\bin\Debug\Digitizer_ver1.exe.config
+\\Mac\AllFiles\Volumes\GoogleDrive-116041042848792784149\Můj disk\Visual_Studio\Digitizer_App\Digitizer_ver1\bin\Debug\Digitizer_ver1.exe
+\\Mac\AllFiles\Volumes\GoogleDrive-116041042848792784149\Můj disk\Visual_Studio\Digitizer_App\Digitizer_ver1\bin\Debug\Digitizer_ver1.pdb
+\\Mac\AllFiles\Volumes\GoogleDrive-116041042848792784149\Můj disk\Visual_Studio\Digitizer_App\Digitizer_ver1\obj\Debug\Digitizer_ver1.csproj.AssemblyReference.cache
+\\Mac\AllFiles\Volumes\GoogleDrive-116041042848792784149\Můj disk\Visual_Studio\Digitizer_App\Digitizer_ver1\obj\Debug\Digitizer_ver1.Form1.resources
+\\Mac\AllFiles\Volumes\GoogleDrive-116041042848792784149\Můj disk\Visual_Studio\Digitizer_App\Digitizer_ver1\obj\Debug\Digitizer_ver1.Properties.Resources.resources
+\\Mac\AllFiles\Volumes\GoogleDrive-116041042848792784149\Můj disk\Visual_Studio\Digitizer_App\Digitizer_ver1\obj\Debug\Digitizer_ver1.csproj.GenerateResource.cache
+\\Mac\AllFiles\Volumes\GoogleDrive-116041042848792784149\Můj disk\Visual_Studio\Digitizer_App\Digitizer_ver1\obj\Debug\Digitizer_ver1.csproj.CoreCompileInputs.cache
+\\Mac\AllFiles\Volumes\GoogleDrive-116041042848792784149\Můj disk\Visual_Studio\Digitizer_App\Digitizer_ver1\obj\Debug\Digitizer_ver1.exe
+\\Mac\AllFiles\Volumes\GoogleDrive-116041042848792784149\Můj disk\Visual_Studio\Digitizer_App\Digitizer_ver1\obj\Debug\Digitizer_ver1.pdb
+C:\Users\Tomáš\Můj disk (tkulhane@gapps.zcu.cz)\Visual_Studio\Digitizer_App\Digitizer_ver1\bin\Debug\Digitizer_ver1.exe.config
+C:\Users\Tomáš\Můj disk (tkulhane@gapps.zcu.cz)\Visual_Studio\Digitizer_App\Digitizer_ver1\bin\Debug\Digitizer_ver1.exe
+C:\Users\Tomáš\Můj disk (tkulhane@gapps.zcu.cz)\Visual_Studio\Digitizer_App\Digitizer_ver1\bin\Debug\Digitizer_ver1.pdb
+C:\Users\Tomáš\Můj disk (tkulhane@gapps.zcu.cz)\Visual_Studio\Digitizer_App\Digitizer_ver1\obj\Debug\Digitizer_ver1.csproj.AssemblyReference.cache
+C:\Users\Tomáš\Můj disk (tkulhane@gapps.zcu.cz)\Visual_Studio\Digitizer_App\Digitizer_ver1\obj\Debug\Digitizer_ver1.Form1.resources
+C:\Users\Tomáš\Můj disk (tkulhane@gapps.zcu.cz)\Visual_Studio\Digitizer_App\Digitizer_ver1\obj\Debug\Digitizer_ver1.Properties.Resources.resources
+C:\Users\Tomáš\Můj disk (tkulhane@gapps.zcu.cz)\Visual_Studio\Digitizer_App\Digitizer_ver1\obj\Debug\Digitizer_ver1.csproj.GenerateResource.cache
+C:\Users\Tomáš\Můj disk (tkulhane@gapps.zcu.cz)\Visual_Studio\Digitizer_App\Digitizer_ver1\obj\Debug\Digitizer_ver1.csproj.CoreCompileInputs.cache
+C:\Users\Tomáš\Můj disk (tkulhane@gapps.zcu.cz)\Visual_Studio\Digitizer_App\Digitizer_ver1\obj\Debug\Digitizer_ver1.exe
+C:\Users\Tomáš\Můj disk (tkulhane@gapps.zcu.cz)\Visual_Studio\Digitizer_App\Digitizer_ver1\obj\Debug\Digitizer_ver1.pdb
