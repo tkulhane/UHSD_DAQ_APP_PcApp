@@ -28,7 +28,7 @@ namespace Digitizer_ver1
         BindingList<Data_Registers> list_FPGA_registers = new BindingList<Data_Registers>();
 
         BindingList<EventData> list_data = new BindingList<EventData>();
-
+        int EventNow = 0;
         
 
         public enum eCommandCode : byte
@@ -153,8 +153,8 @@ namespace Digitizer_ver1
             int sample2 = ((data[2] & 0xF0) >> 4) + (data[1] << 4);
 
 
-            EventData s1 = new EventData(1, sample1);
-            EventData s2 = new EventData(1, sample2);
+            EventData s1 = new EventData(EventNow, sample1);
+            EventData s2 = new EventData(EventNow, sample2);
 
             list_data.Add(s1);
             list_data.Add(s2);
@@ -583,15 +583,67 @@ namespace Digitizer_ver1
 
         private void button_datatest_Click(object sender, EventArgs e)
         {
-            int sample1 = 3978;
-            int sample2 = 2256;
+            //int sample1 = 3978;
+            //int sample2 = 2256;
 
-            byte data1 = (byte)(sample1 & 0xFF);
-            byte data2 = (byte)((sample1 >> 8) + ((sample2 & 0x0F) << 4)) ;
-            byte data3 = (byte)(sample2 >> 4); 
+            //byte data1 = (byte)(sample1 & 0xFF);
+            //byte data2 = (byte)((sample1 >> 8) + ((sample2 & 0x0F) << 4)) ;
+            //byte data3 = (byte)(sample2 >> 4); 
 
-            byte[] data = { 0x00, data3, data2, data1 };
-            StoreData(data);
+            //byte[] data = { 0x00, data3, data2, data1 };
+
+
+
+            String fname = String.Empty;
+
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Filter = "Soubory dat (*.txt)|*.txt|Vsechny|*.*";
+
+                if (DialogResult.OK == ofd.ShowDialog())
+                {
+
+                    fname = ofd.FileName;
+                }
+                else
+                {
+                    return;
+                }
+
+                if (String.IsNullOrEmpty(fname))
+                {
+                    return;
+                }
+
+
+                String[] lines = File.ReadAllLines(fname, Encoding.GetEncoding("Windows-1250"));
+
+                foreach (String s in lines)
+                {
+
+                    int val = Convert.ToInt32(s, 2);
+
+                    byte[] data = new byte[4];// = { 0x00, 0x00, 0x00,  };
+                    data[3] = (byte)((val >> 0) & 0xFF);
+                    data[2] = (byte)((val >> 8) & 0xFF);
+                    data[1] = (byte)((val >> 16) & 0xFF);
+                    data[0] = (byte)((val >> 24) & 0xFF);
+
+                    if(data[0] == 0xFA) 
+                    {
+                        EventNow = data[3];
+                    }
+
+                    if ((data[0] & 0x80) >> 7 == 0)
+                    {
+                        StoreData(data);
+                    }
+
+                }
+
+            }
+
+
         }
 
         private void button_Reset_Click(object sender, EventArgs e)
