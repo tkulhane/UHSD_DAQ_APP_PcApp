@@ -18,8 +18,16 @@ namespace Digitizer_ver1
         {
             InitializeComponent();
             dataGridView_data.DataSource = list_data;
+            dataGridView_events.DataSource = list_events;
 
-            
+            dataGridView_data.Columns[0].Width = 80;
+            dataGridView_data.Columns[1].Width = 80;
+
+            dataGridView_events.Columns[0].Width = 50;
+            dataGridView_events.Columns[1].Width = 50;
+            dataGridView_events.Columns[2].Width = 50;
+
+            chart_data.DataSource = list_data;
         }
 
         UART_Communication uart = new UART_Communication();
@@ -28,8 +36,11 @@ namespace Digitizer_ver1
         BindingList<Data_Registers> list_FPGA_registers = new BindingList<Data_Registers>();
 
         BindingList<EventData> list_data = new BindingList<EventData>();
-        int EventNow = 0;
-        
+        BindingList<EventInfo> list_events = new BindingList<EventInfo>();
+
+        //int EventNow = 0;
+
+        EventInfo EventNow = new EventInfo(-1,-1);
 
         public enum eCommandCode : byte
         {
@@ -149,15 +160,36 @@ namespace Digitizer_ver1
 
         private void StoreData(byte[] data) 
         {
-            int sample1 = data[3] + ((data[2] & 0x0F) << 8);
-            int sample2 = ((data[2] & 0xF0) >> 4) + (data[1] << 4);
+
+            if (data[0] == 0xFA) //Event head - actualing Number Of Event
+            {
+                EventNow = new EventInfo(data[3], list_data.Count);
+                
+            }
+
+            else if(data[0] == 0xFB) //Event tail - store event
+            {
+
+                list_events.Add(EventNow);
+            }
+
+            else if ((data[0] & 0x80) >> 7 == 0) // data frame
+            {
+
+                int sample1 = data[3] + ((data[2] & 0x0F) << 8);
+                int sample2 = ((data[2] & 0xF0) >> 4) + (data[1] << 4);
 
 
-            EventData s1 = new EventData(EventNow, sample1);
-            EventData s2 = new EventData(EventNow, sample2);
+                EventData s1 = new EventData(EventNow.p_eventNum, sample1);
+                EventData s2 = new EventData(EventNow.p_eventNum, sample2);
 
-            list_data.Add(s1);
-            list_data.Add(s2);
+                list_data.Add(s1);
+                list_data.Add(s2);
+
+                EventNow.IncreaseSize(2);
+            }
+
+
         }
 
         private void Update_MainRegisters_Table(byte data_0, byte data_1, byte data_2) 
@@ -629,15 +661,9 @@ namespace Digitizer_ver1
                     data[1] = (byte)((val >> 16) & 0xFF);
                     data[0] = (byte)((val >> 24) & 0xFF);
 
-                    if(data[0] == 0xFA) 
-                    {
-                        EventNow = data[3];
-                    }
 
-                    if ((data[0] & 0x80) >> 7 == 0)
-                    {
-                        StoreData(data);
-                    }
+                    StoreData(data);
+
 
                 }
 
@@ -842,6 +868,38 @@ namespace Digitizer_ver1
             Send_Command(eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SET_NUMBERS_OF_EVENTS_M, 0, 0);
         }
 
+        private void chart_data_Click(object sender, EventArgs e)
+        {
 
+            int selectedRows = dataGridView_events.SelectedRows.Count;
+            
+            if(selectedRows == 0) 
+            {
+                return;
+            }
+
+            chart_data.Series["Data"].Points.Clear();
+
+            for (int r = 0; r < selectedRows; r++)
+            {
+
+                int selectedIndex = dataGridView_events.SelectedRows[r].Index;
+                EventInfo SelectedEvent = list_events[selectedIndex];
+
+                int EventStartIndex = SelectedEvent.p_eventStart;
+                int EventEndIndex = EventStartIndex + SelectedEvent.p_eventSize - 1;
+
+
+
+                for (int i = EventStartIndex; i < EventEndIndex; i++)
+                {
+                    chart_data.Series["Data"].Points.AddY(list_data[i].p_sample);
+
+                }
+
+            }
+            
+            chart_data.DataBind();
+        }
     }
 }
