@@ -40,7 +40,9 @@ namespace Digitizer_ver1
 
         //int EventNow = 0;
 
-        EventInfo EventNow = new EventInfo(-1,-1);
+        EventInfo EventNow = new EventInfo(-1, -1);
+
+        int E_Inc = 0;
 
         public enum eCommandCode : byte
         {
@@ -129,14 +131,9 @@ namespace Digitizer_ver1
             byte[] data = uart.dataBuffer;
             //byte[] data = uart.AllData;
 
-            
+            StoreData(data);
 
-            if ((data[0] & 0x80) >> 7 == 0) 
-            {
-                StoreData(data);
-                return;
-            }
-            
+
             eCommandCode ID = (eCommandCode)(data[0] & 0x7F);
 
             label_Test.Text = data[0].ToString("X2") + " " + data[1].ToString("X2") + " " + data[2].ToString("X2") + " " + data[3].ToString("X2");
@@ -163,14 +160,26 @@ namespace Digitizer_ver1
 
             if (data[0] == 0xFA) //Event head - actualing Number Of Event
             {
-                EventNow = new EventInfo(data[3], list_data.Count);
-                
+                //EventNow = new EventInfo(data[3], list_data.Count);
+                EventNow = new EventInfo(E_Inc, list_data.Count);
+                label_E.Text = label_E.Text + "A";
             }
 
             else if(data[0] == 0xFB) //Event tail - store event
             {
-
+                E_Inc++;
                 list_events.Add(EventNow);
+                label_E.Text = label_E.Text + "B";
+            }
+
+            else if (data[0] == 0xFC)
+            {
+                label_E.Text = label_E.Text + "C";
+            }
+
+            else if (data[0] == 0xFD)
+            {
+                label_E.Text = label_E.Text + "D";
             }
 
             else if ((data[0] & 0x80) >> 7 == 0) // data frame
@@ -187,6 +196,7 @@ namespace Digitizer_ver1
                 list_data.Add(s2);
 
                 EventNow.IncreaseSize(2);
+                label_E.Text = label_E.Text + "F";
             }
 
 

@@ -8,3 +8,13 @@
 \\Mac\Home\Documents\_temp\Digitizer_PcApp\Digitizer\Digitizer\obj\Debug\Digitizer.csproj.CoreCompileInputs.cache
 \\Mac\Home\Documents\_temp\Digitizer_PcApp\Digitizer\Digitizer\obj\Debug\Digitizer_ver1.exe
 \\Mac\Home\Documents\_temp\Digitizer_PcApp\Digitizer\Digitizer\obj\Debug\Digitizer_ver1.pdb
+C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\Digitizer_ver1.exe.config
+C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\Digitizer_ver1.exe
+C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\Digitizer_ver1.pdb
+C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\obj\Debug\Digitizer.csproj.AssemblyReference.cache
+C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\obj\Debug\Digitizer_ver1.Form1.resources
+C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\obj\Debug\Digitizer_ver1.Properties.Resources.resources
+C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\obj\Debug\Digitizer.csproj.GenerateResource.cache
+C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\obj\Debug\Digitizer.csproj.CoreCompileInputs.cache
+C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\obj\Debug\Digitizer_ver1.exe
+C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\obj\Debug\Digitizer_ver1.pdb

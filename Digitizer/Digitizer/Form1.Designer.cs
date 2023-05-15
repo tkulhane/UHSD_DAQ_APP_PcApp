@@ -30,9 +30,9 @@ namespace Digitizer_ver1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button_Reset = new System.Windows.Forms.Button();
             this.numericUpDown_testPeriod = new System.Windows.Forms.NumericUpDown();
@@ -101,6 +101,7 @@ namespace Digitizer_ver1
             this.checkBox_TRG_Enable = new System.Windows.Forms.CheckBox();
             this.timer_info = new System.Windows.Forms.Timer(this.components);
             this.timer_AutoTest = new System.Windows.Forms.Timer(this.components);
+            this.label_E = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_testPeriod)).BeginInit();
             this.tabControl_MAIN.SuspendLayout();
@@ -136,17 +137,16 @@ namespace Digitizer_ver1
             this.panel1.Controls.Add(this.button_Scan);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(2260, 75);
+            this.panel1.Size = new System.Drawing.Size(1180, 39);
             this.panel1.TabIndex = 0;
             // 
             // button_Reset
             // 
-            this.button_Reset.Location = new System.Drawing.Point(2018, 13);
-            this.button_Reset.Margin = new System.Windows.Forms.Padding(6);
+            this.button_Reset.Location = new System.Drawing.Point(1009, 7);
             this.button_Reset.Name = "button_Reset";
-            this.button_Reset.Size = new System.Drawing.Size(134, 40);
+            this.button_Reset.Size = new System.Drawing.Size(67, 21);
             this.button_Reset.TabIndex = 8;
             this.button_Reset.Text = "RESET";
             this.button_Reset.UseVisualStyleBackColor = true;
@@ -159,8 +159,7 @@ namespace Digitizer_ver1
             0,
             0,
             0});
-            this.numericUpDown_testPeriod.Location = new System.Drawing.Point(1726, 13);
-            this.numericUpDown_testPeriod.Margin = new System.Windows.Forms.Padding(6);
+            this.numericUpDown_testPeriod.Location = new System.Drawing.Point(863, 7);
             this.numericUpDown_testPeriod.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -172,7 +171,7 @@ namespace Digitizer_ver1
             0,
             0});
             this.numericUpDown_testPeriod.Name = "numericUpDown_testPeriod";
-            this.numericUpDown_testPeriod.Size = new System.Drawing.Size(142, 31);
+            this.numericUpDown_testPeriod.Size = new System.Drawing.Size(71, 20);
             this.numericUpDown_testPeriod.TabIndex = 7;
             this.numericUpDown_testPeriod.Value = new decimal(new int[] {
             3000,
@@ -184,19 +183,17 @@ namespace Digitizer_ver1
             // label_TestResult
             // 
             this.label_TestResult.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_TestResult.Location = new System.Drawing.Point(1406, 13);
-            this.label_TestResult.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label_TestResult.Location = new System.Drawing.Point(703, 7);
             this.label_TestResult.Name = "label_TestResult";
-            this.label_TestResult.Size = new System.Drawing.Size(278, 39);
+            this.label_TestResult.Size = new System.Drawing.Size(140, 21);
             this.label_TestResult.TabIndex = 6;
             this.label_TestResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // button_ValidateTest
             // 
-            this.button_ValidateTest.Location = new System.Drawing.Point(1204, 13);
-            this.button_ValidateTest.Margin = new System.Windows.Forms.Padding(6);
+            this.button_ValidateTest.Location = new System.Drawing.Point(602, 7);
             this.button_ValidateTest.Name = "button_ValidateTest";
-            this.button_ValidateTest.Size = new System.Drawing.Size(190, 40);
+            this.button_ValidateTest.Size = new System.Drawing.Size(95, 21);
             this.button_ValidateTest.TabIndex = 5;
             this.button_ValidateTest.Text = "Validate Test";
             this.button_ValidateTest.UseVisualStyleBackColor = true;
@@ -204,10 +201,9 @@ namespace Digitizer_ver1
             // 
             // button_AutoTest
             // 
-            this.button_AutoTest.Location = new System.Drawing.Point(1042, 13);
-            this.button_AutoTest.Margin = new System.Windows.Forms.Padding(6);
+            this.button_AutoTest.Location = new System.Drawing.Point(521, 7);
             this.button_AutoTest.Name = "button_AutoTest";
-            this.button_AutoTest.Size = new System.Drawing.Size(150, 40);
+            this.button_AutoTest.Size = new System.Drawing.Size(75, 21);
             this.button_AutoTest.TabIndex = 4;
             this.button_AutoTest.Text = "Auto Test";
             this.button_AutoTest.UseVisualStyleBackColor = true;
@@ -216,20 +212,18 @@ namespace Digitizer_ver1
             // label_Test
             // 
             this.label_Test.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_Test.Location = new System.Drawing.Point(786, 13);
-            this.label_Test.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label_Test.Location = new System.Drawing.Point(393, 7);
             this.label_Test.Name = "label_Test";
-            this.label_Test.Size = new System.Drawing.Size(164, 39);
+            this.label_Test.Size = new System.Drawing.Size(83, 21);
             this.label_Test.TabIndex = 0;
             this.label_Test.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label_Test.Click += new System.EventHandler(this.label_Test_Click);
             // 
             // button_Test
             // 
-            this.button_Test.Location = new System.Drawing.Point(620, 13);
-            this.button_Test.Margin = new System.Windows.Forms.Padding(6);
+            this.button_Test.Location = new System.Drawing.Point(310, 7);
             this.button_Test.Name = "button_Test";
-            this.button_Test.Size = new System.Drawing.Size(150, 40);
+            this.button_Test.Size = new System.Drawing.Size(75, 21);
             this.button_Test.TabIndex = 3;
             this.button_Test.Text = "Test";
             this.button_Test.UseVisualStyleBackColor = true;
@@ -237,10 +231,9 @@ namespace Digitizer_ver1
             // 
             // button_OpenClose
             // 
-            this.button_OpenClose.Location = new System.Drawing.Point(392, 13);
-            this.button_OpenClose.Margin = new System.Windows.Forms.Padding(6);
+            this.button_OpenClose.Location = new System.Drawing.Point(196, 7);
             this.button_OpenClose.Name = "button_OpenClose";
-            this.button_OpenClose.Size = new System.Drawing.Size(150, 40);
+            this.button_OpenClose.Size = new System.Drawing.Size(75, 21);
             this.button_OpenClose.TabIndex = 2;
             this.button_OpenClose.Text = "Open/Close";
             this.button_OpenClose.UseVisualStyleBackColor = true;
@@ -249,18 +242,16 @@ namespace Digitizer_ver1
             // comboBox_Ports
             // 
             this.comboBox_Ports.FormattingEnabled = true;
-            this.comboBox_Ports.Location = new System.Drawing.Point(186, 13);
-            this.comboBox_Ports.Margin = new System.Windows.Forms.Padding(6);
+            this.comboBox_Ports.Location = new System.Drawing.Point(93, 7);
             this.comboBox_Ports.Name = "comboBox_Ports";
-            this.comboBox_Ports.Size = new System.Drawing.Size(190, 33);
+            this.comboBox_Ports.Size = new System.Drawing.Size(97, 21);
             this.comboBox_Ports.TabIndex = 1;
             // 
             // button_Scan
             // 
-            this.button_Scan.Location = new System.Drawing.Point(24, 13);
-            this.button_Scan.Margin = new System.Windows.Forms.Padding(6);
+            this.button_Scan.Location = new System.Drawing.Point(12, 7);
             this.button_Scan.Name = "button_Scan";
-            this.button_Scan.Size = new System.Drawing.Size(150, 40);
+            this.button_Scan.Size = new System.Drawing.Size(75, 21);
             this.button_Scan.TabIndex = 0;
             this.button_Scan.Text = "Scan";
             this.button_Scan.UseVisualStyleBackColor = true;
@@ -273,24 +264,25 @@ namespace Digitizer_ver1
             this.tabControl_MAIN.Controls.Add(this.tabPage2);
             this.tabControl_MAIN.Controls.Add(this.tabPage1);
             this.tabControl_MAIN.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl_MAIN.Location = new System.Drawing.Point(0, 75);
-            this.tabControl_MAIN.Margin = new System.Windows.Forms.Padding(4);
+            this.tabControl_MAIN.Location = new System.Drawing.Point(0, 39);
+            this.tabControl_MAIN.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabControl_MAIN.Name = "tabControl_MAIN";
             this.tabControl_MAIN.SelectedIndex = 0;
-            this.tabControl_MAIN.Size = new System.Drawing.Size(2260, 1096);
+            this.tabControl_MAIN.Size = new System.Drawing.Size(1180, 565);
             this.tabControl_MAIN.TabIndex = 1;
             // 
             // Measurement
             // 
+            this.Measurement.Controls.Add(this.label_E);
             this.Measurement.Controls.Add(this.dataGridView_events);
             this.Measurement.Controls.Add(this.chart_data);
             this.Measurement.Controls.Add(this.button_datatest);
             this.Measurement.Controls.Add(this.dataGridView_data);
-            this.Measurement.Location = new System.Drawing.Point(8, 39);
-            this.Measurement.Margin = new System.Windows.Forms.Padding(4);
+            this.Measurement.Location = new System.Drawing.Point(4, 22);
+            this.Measurement.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Measurement.Name = "Measurement";
-            this.Measurement.Padding = new System.Windows.Forms.Padding(4);
-            this.Measurement.Size = new System.Drawing.Size(2244, 1049);
+            this.Measurement.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Measurement.Size = new System.Drawing.Size(1172, 539);
             this.Measurement.TabIndex = 1;
             this.Measurement.Text = "Measurement";
             this.Measurement.UseVisualStyleBackColor = true;
@@ -299,39 +291,41 @@ namespace Digitizer_ver1
             // 
             this.dataGridView_events.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_events.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dataGridView_events.Location = new System.Drawing.Point(1180, 4);
-            this.dataGridView_events.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView_events.Location = new System.Drawing.Point(640, 2);
+            this.dataGridView_events.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView_events.Name = "dataGridView_events";
             this.dataGridView_events.RowHeadersWidth = 82;
             this.dataGridView_events.RowTemplate.Height = 33;
-            this.dataGridView_events.Size = new System.Drawing.Size(530, 1041);
+            this.dataGridView_events.Size = new System.Drawing.Size(265, 535);
             this.dataGridView_events.TabIndex = 4;
             // 
             // chart_data
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart_data.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart_data.Legends.Add(legend1);
-            this.chart_data.Location = new System.Drawing.Point(29, 300);
+            this.chart_data.BorderlineColor = System.Drawing.Color.Black;
+            this.chart_data.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
+            chartArea5.Name = "ChartArea1";
+            this.chart_data.ChartAreas.Add(chartArea5);
+            legend5.Name = "Legend1";
+            this.chart_data.Legends.Add(legend5);
+            this.chart_data.Location = new System.Drawing.Point(24, 141);
+            this.chart_data.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.chart_data.Name = "chart_data";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.IsVisibleInLegend = false;
-            series1.Legend = "Legend1";
-            series1.Name = "Data";
-            this.chart_data.Series.Add(series1);
-            this.chart_data.Size = new System.Drawing.Size(1107, 715);
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series5.IsVisibleInLegend = false;
+            series5.Legend = "Legend1";
+            series5.Name = "Data";
+            this.chart_data.Series.Add(series5);
+            this.chart_data.Size = new System.Drawing.Size(581, 376);
             this.chart_data.TabIndex = 3;
             this.chart_data.Text = "chart_data";
             this.chart_data.Click += new System.EventHandler(this.chart_data_Click);
             // 
             // button_datatest
             // 
-            this.button_datatest.Location = new System.Drawing.Point(48, 63);
-            this.button_datatest.Margin = new System.Windows.Forms.Padding(6);
+            this.button_datatest.Location = new System.Drawing.Point(24, 33);
             this.button_datatest.Name = "button_datatest";
-            this.button_datatest.Size = new System.Drawing.Size(150, 40);
+            this.button_datatest.Size = new System.Drawing.Size(75, 21);
             this.button_datatest.TabIndex = 2;
             this.button_datatest.Text = "ADD";
             this.button_datatest.UseVisualStyleBackColor = true;
@@ -341,23 +335,23 @@ namespace Digitizer_ver1
             // 
             this.dataGridView_data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_data.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dataGridView_data.Location = new System.Drawing.Point(1710, 4);
-            this.dataGridView_data.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView_data.Location = new System.Drawing.Point(905, 2);
+            this.dataGridView_data.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView_data.Name = "dataGridView_data";
             this.dataGridView_data.RowHeadersWidth = 82;
             this.dataGridView_data.RowTemplate.Height = 33;
-            this.dataGridView_data.Size = new System.Drawing.Size(530, 1041);
+            this.dataGridView_data.Size = new System.Drawing.Size(265, 535);
             this.dataGridView_data.TabIndex = 1;
             // 
             // ADC_Registers
             // 
             this.ADC_Registers.Controls.Add(this.panel2);
             this.ADC_Registers.Controls.Add(this.dataGridView_ADCregisters);
-            this.ADC_Registers.Location = new System.Drawing.Point(8, 39);
-            this.ADC_Registers.Margin = new System.Windows.Forms.Padding(4);
+            this.ADC_Registers.Location = new System.Drawing.Point(4, 22);
+            this.ADC_Registers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ADC_Registers.Name = "ADC_Registers";
-            this.ADC_Registers.Padding = new System.Windows.Forms.Padding(4);
-            this.ADC_Registers.Size = new System.Drawing.Size(2244, 1049);
+            this.ADC_Registers.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ADC_Registers.Size = new System.Drawing.Size(1172, 539);
             this.ADC_Registers.TabIndex = 2;
             this.ADC_Registers.Text = "ADC Registers";
             this.ADC_Registers.UseVisualStyleBackColor = true;
@@ -369,18 +363,18 @@ namespace Digitizer_ver1
             this.panel2.Controls.Add(this.button_SaveToFile);
             this.panel2.Controls.Add(this.button_LoadFromFile);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(4, 4);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4);
+            this.panel2.Location = new System.Drawing.Point(2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(436, 1041);
+            this.panel2.Size = new System.Drawing.Size(218, 535);
             this.panel2.TabIndex = 1;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(52, 567);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox1.Location = new System.Drawing.Point(26, 295);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 31);
+            this.textBox1.Size = new System.Drawing.Size(52, 20);
             this.textBox1.TabIndex = 4;
             // 
             // groupBox1
@@ -393,11 +387,11 @@ namespace Digitizer_ver1
             this.groupBox1.Controls.Add(this.checkBox_bit_4);
             this.groupBox1.Controls.Add(this.checkBox_bit_3);
             this.groupBox1.Controls.Add(this.checkBox_bit_2);
-            this.groupBox1.Location = new System.Drawing.Point(52, 633);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Location = new System.Drawing.Point(26, 329);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(156, 362);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(78, 188);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Bit Setting";
@@ -405,10 +399,10 @@ namespace Digitizer_ver1
             // checkBox_bit_0
             // 
             this.checkBox_bit_0.AutoSize = true;
-            this.checkBox_bit_0.Location = new System.Drawing.Point(24, 310);
-            this.checkBox_bit_0.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox_bit_0.Location = new System.Drawing.Point(12, 161);
+            this.checkBox_bit_0.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox_bit_0.Name = "checkBox_bit_0";
-            this.checkBox_bit_0.Size = new System.Drawing.Size(56, 29);
+            this.checkBox_bit_0.Size = new System.Drawing.Size(32, 17);
             this.checkBox_bit_0.TabIndex = 9;
             this.checkBox_bit_0.Text = "0";
             this.checkBox_bit_0.UseVisualStyleBackColor = true;
@@ -416,10 +410,10 @@ namespace Digitizer_ver1
             // checkBox_bit_1
             // 
             this.checkBox_bit_1.AutoSize = true;
-            this.checkBox_bit_1.Location = new System.Drawing.Point(24, 273);
-            this.checkBox_bit_1.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox_bit_1.Location = new System.Drawing.Point(12, 142);
+            this.checkBox_bit_1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox_bit_1.Name = "checkBox_bit_1";
-            this.checkBox_bit_1.Size = new System.Drawing.Size(56, 29);
+            this.checkBox_bit_1.Size = new System.Drawing.Size(32, 17);
             this.checkBox_bit_1.TabIndex = 8;
             this.checkBox_bit_1.Text = "1";
             this.checkBox_bit_1.UseVisualStyleBackColor = true;
@@ -427,10 +421,10 @@ namespace Digitizer_ver1
             // checkBox_bit_7
             // 
             this.checkBox_bit_7.AutoSize = true;
-            this.checkBox_bit_7.Location = new System.Drawing.Point(24, 63);
-            this.checkBox_bit_7.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox_bit_7.Location = new System.Drawing.Point(12, 33);
+            this.checkBox_bit_7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox_bit_7.Name = "checkBox_bit_7";
-            this.checkBox_bit_7.Size = new System.Drawing.Size(56, 29);
+            this.checkBox_bit_7.Size = new System.Drawing.Size(32, 17);
             this.checkBox_bit_7.TabIndex = 7;
             this.checkBox_bit_7.Text = "7";
             this.checkBox_bit_7.UseVisualStyleBackColor = true;
@@ -438,10 +432,10 @@ namespace Digitizer_ver1
             // checkBox_bit_6
             // 
             this.checkBox_bit_6.AutoSize = true;
-            this.checkBox_bit_6.Location = new System.Drawing.Point(24, 98);
-            this.checkBox_bit_6.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox_bit_6.Location = new System.Drawing.Point(12, 51);
+            this.checkBox_bit_6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox_bit_6.Name = "checkBox_bit_6";
-            this.checkBox_bit_6.Size = new System.Drawing.Size(56, 29);
+            this.checkBox_bit_6.Size = new System.Drawing.Size(32, 17);
             this.checkBox_bit_6.TabIndex = 6;
             this.checkBox_bit_6.Text = "6";
             this.checkBox_bit_6.UseVisualStyleBackColor = true;
@@ -449,10 +443,10 @@ namespace Digitizer_ver1
             // checkBox_bit_5
             // 
             this.checkBox_bit_5.AutoSize = true;
-            this.checkBox_bit_5.Location = new System.Drawing.Point(24, 135);
-            this.checkBox_bit_5.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox_bit_5.Location = new System.Drawing.Point(12, 70);
+            this.checkBox_bit_5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox_bit_5.Name = "checkBox_bit_5";
-            this.checkBox_bit_5.Size = new System.Drawing.Size(56, 29);
+            this.checkBox_bit_5.Size = new System.Drawing.Size(32, 17);
             this.checkBox_bit_5.TabIndex = 5;
             this.checkBox_bit_5.Text = "5";
             this.checkBox_bit_5.UseVisualStyleBackColor = true;
@@ -460,10 +454,10 @@ namespace Digitizer_ver1
             // checkBox_bit_4
             // 
             this.checkBox_bit_4.AutoSize = true;
-            this.checkBox_bit_4.Location = new System.Drawing.Point(24, 169);
-            this.checkBox_bit_4.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox_bit_4.Location = new System.Drawing.Point(12, 88);
+            this.checkBox_bit_4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox_bit_4.Name = "checkBox_bit_4";
-            this.checkBox_bit_4.Size = new System.Drawing.Size(56, 29);
+            this.checkBox_bit_4.Size = new System.Drawing.Size(32, 17);
             this.checkBox_bit_4.TabIndex = 4;
             this.checkBox_bit_4.Text = "4";
             this.checkBox_bit_4.UseVisualStyleBackColor = true;
@@ -471,10 +465,10 @@ namespace Digitizer_ver1
             // checkBox_bit_3
             // 
             this.checkBox_bit_3.AutoSize = true;
-            this.checkBox_bit_3.Location = new System.Drawing.Point(24, 204);
-            this.checkBox_bit_3.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox_bit_3.Location = new System.Drawing.Point(12, 106);
+            this.checkBox_bit_3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox_bit_3.Name = "checkBox_bit_3";
-            this.checkBox_bit_3.Size = new System.Drawing.Size(56, 29);
+            this.checkBox_bit_3.Size = new System.Drawing.Size(32, 17);
             this.checkBox_bit_3.TabIndex = 3;
             this.checkBox_bit_3.Text = "3";
             this.checkBox_bit_3.UseVisualStyleBackColor = true;
@@ -482,20 +476,20 @@ namespace Digitizer_ver1
             // checkBox_bit_2
             // 
             this.checkBox_bit_2.AutoSize = true;
-            this.checkBox_bit_2.Location = new System.Drawing.Point(24, 238);
-            this.checkBox_bit_2.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox_bit_2.Location = new System.Drawing.Point(12, 124);
+            this.checkBox_bit_2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox_bit_2.Name = "checkBox_bit_2";
-            this.checkBox_bit_2.Size = new System.Drawing.Size(56, 29);
+            this.checkBox_bit_2.Size = new System.Drawing.Size(32, 17);
             this.checkBox_bit_2.TabIndex = 2;
             this.checkBox_bit_2.Text = "2";
             this.checkBox_bit_2.UseVisualStyleBackColor = true;
             // 
             // button_SaveToFile
             // 
-            this.button_SaveToFile.Location = new System.Drawing.Point(260, 31);
-            this.button_SaveToFile.Margin = new System.Windows.Forms.Padding(4);
+            this.button_SaveToFile.Location = new System.Drawing.Point(130, 16);
+            this.button_SaveToFile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button_SaveToFile.Name = "button_SaveToFile";
-            this.button_SaveToFile.Size = new System.Drawing.Size(148, 71);
+            this.button_SaveToFile.Size = new System.Drawing.Size(74, 37);
             this.button_SaveToFile.TabIndex = 1;
             this.button_SaveToFile.Text = "Save to File";
             this.button_SaveToFile.UseVisualStyleBackColor = true;
@@ -503,10 +497,10 @@ namespace Digitizer_ver1
             // 
             // button_LoadFromFile
             // 
-            this.button_LoadFromFile.Location = new System.Drawing.Point(26, 31);
-            this.button_LoadFromFile.Margin = new System.Windows.Forms.Padding(4);
+            this.button_LoadFromFile.Location = new System.Drawing.Point(13, 16);
+            this.button_LoadFromFile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button_LoadFromFile.Name = "button_LoadFromFile";
-            this.button_LoadFromFile.Size = new System.Drawing.Size(148, 71);
+            this.button_LoadFromFile.Size = new System.Drawing.Size(74, 37);
             this.button_LoadFromFile.TabIndex = 0;
             this.button_LoadFromFile.Text = "Load from File";
             this.button_LoadFromFile.UseVisualStyleBackColor = true;
@@ -516,12 +510,12 @@ namespace Digitizer_ver1
             // 
             this.dataGridView_ADCregisters.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_ADCregisters.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dataGridView_ADCregisters.Location = new System.Drawing.Point(532, 4);
-            this.dataGridView_ADCregisters.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView_ADCregisters.Location = new System.Drawing.Point(316, 2);
+            this.dataGridView_ADCregisters.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView_ADCregisters.Name = "dataGridView_ADCregisters";
             this.dataGridView_ADCregisters.RowHeadersWidth = 82;
             this.dataGridView_ADCregisters.RowTemplate.Height = 33;
-            this.dataGridView_ADCregisters.Size = new System.Drawing.Size(1708, 1041);
+            this.dataGridView_ADCregisters.Size = new System.Drawing.Size(854, 535);
             this.dataGridView_ADCregisters.TabIndex = 0;
             this.dataGridView_ADCregisters.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_ADCregisters_CellContentClick);
             // 
@@ -529,11 +523,11 @@ namespace Digitizer_ver1
             // 
             this.tabPage2.Controls.Add(this.panel3);
             this.tabPage2.Controls.Add(this.dataGridView_FPGAregisters);
-            this.tabPage2.Location = new System.Drawing.Point(8, 39);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(2244, 1049);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Size = new System.Drawing.Size(1172, 539);
             this.tabPage2.TabIndex = 4;
             this.tabPage2.Text = "Registers";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -545,18 +539,18 @@ namespace Digitizer_ver1
             this.panel3.Controls.Add(this.button_SaveToFile_FPGAregisters);
             this.panel3.Controls.Add(this.button_LoadFromFile_FPGAregisters);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(4, 4);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4);
+            this.panel3.Location = new System.Drawing.Point(2, 2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(436, 1041);
+            this.panel3.Size = new System.Drawing.Size(218, 535);
             this.panel3.TabIndex = 1;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(52, 567);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox2.Location = new System.Drawing.Point(26, 295);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 31);
+            this.textBox2.Size = new System.Drawing.Size(52, 20);
             this.textBox2.TabIndex = 4;
             // 
             // groupBox2
@@ -569,11 +563,11 @@ namespace Digitizer_ver1
             this.groupBox2.Controls.Add(this.checkBox6);
             this.groupBox2.Controls.Add(this.checkBox7);
             this.groupBox2.Controls.Add(this.checkBox8);
-            this.groupBox2.Location = new System.Drawing.Point(52, 633);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Location = new System.Drawing.Point(26, 329);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(156, 362);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Size = new System.Drawing.Size(78, 188);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Bit Setting";
@@ -581,10 +575,10 @@ namespace Digitizer_ver1
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(24, 310);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox1.Location = new System.Drawing.Point(12, 161);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(56, 29);
+            this.checkBox1.Size = new System.Drawing.Size(32, 17);
             this.checkBox1.TabIndex = 9;
             this.checkBox1.Text = "0";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -592,10 +586,10 @@ namespace Digitizer_ver1
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(24, 273);
-            this.checkBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox2.Location = new System.Drawing.Point(12, 142);
+            this.checkBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(56, 29);
+            this.checkBox2.Size = new System.Drawing.Size(32, 17);
             this.checkBox2.TabIndex = 8;
             this.checkBox2.Text = "1";
             this.checkBox2.UseVisualStyleBackColor = true;
@@ -603,10 +597,10 @@ namespace Digitizer_ver1
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(24, 63);
-            this.checkBox3.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox3.Location = new System.Drawing.Point(12, 33);
+            this.checkBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(56, 29);
+            this.checkBox3.Size = new System.Drawing.Size(32, 17);
             this.checkBox3.TabIndex = 7;
             this.checkBox3.Text = "7";
             this.checkBox3.UseVisualStyleBackColor = true;
@@ -614,10 +608,10 @@ namespace Digitizer_ver1
             // checkBox4
             // 
             this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(24, 98);
-            this.checkBox4.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox4.Location = new System.Drawing.Point(12, 51);
+            this.checkBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(56, 29);
+            this.checkBox4.Size = new System.Drawing.Size(32, 17);
             this.checkBox4.TabIndex = 6;
             this.checkBox4.Text = "6";
             this.checkBox4.UseVisualStyleBackColor = true;
@@ -625,10 +619,10 @@ namespace Digitizer_ver1
             // checkBox5
             // 
             this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(24, 135);
-            this.checkBox5.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox5.Location = new System.Drawing.Point(12, 70);
+            this.checkBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(56, 29);
+            this.checkBox5.Size = new System.Drawing.Size(32, 17);
             this.checkBox5.TabIndex = 5;
             this.checkBox5.Text = "5";
             this.checkBox5.UseVisualStyleBackColor = true;
@@ -636,10 +630,10 @@ namespace Digitizer_ver1
             // checkBox6
             // 
             this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(24, 169);
-            this.checkBox6.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox6.Location = new System.Drawing.Point(12, 88);
+            this.checkBox6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(56, 29);
+            this.checkBox6.Size = new System.Drawing.Size(32, 17);
             this.checkBox6.TabIndex = 4;
             this.checkBox6.Text = "4";
             this.checkBox6.UseVisualStyleBackColor = true;
@@ -647,10 +641,10 @@ namespace Digitizer_ver1
             // checkBox7
             // 
             this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(24, 204);
-            this.checkBox7.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox7.Location = new System.Drawing.Point(12, 106);
+            this.checkBox7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(56, 29);
+            this.checkBox7.Size = new System.Drawing.Size(32, 17);
             this.checkBox7.TabIndex = 3;
             this.checkBox7.Text = "3";
             this.checkBox7.UseVisualStyleBackColor = true;
@@ -658,20 +652,20 @@ namespace Digitizer_ver1
             // checkBox8
             // 
             this.checkBox8.AutoSize = true;
-            this.checkBox8.Location = new System.Drawing.Point(24, 238);
-            this.checkBox8.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox8.Location = new System.Drawing.Point(12, 124);
+            this.checkBox8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(56, 29);
+            this.checkBox8.Size = new System.Drawing.Size(32, 17);
             this.checkBox8.TabIndex = 2;
             this.checkBox8.Text = "2";
             this.checkBox8.UseVisualStyleBackColor = true;
             // 
             // button_SaveToFile_FPGAregisters
             // 
-            this.button_SaveToFile_FPGAregisters.Location = new System.Drawing.Point(260, 31);
-            this.button_SaveToFile_FPGAregisters.Margin = new System.Windows.Forms.Padding(4);
+            this.button_SaveToFile_FPGAregisters.Location = new System.Drawing.Point(130, 16);
+            this.button_SaveToFile_FPGAregisters.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button_SaveToFile_FPGAregisters.Name = "button_SaveToFile_FPGAregisters";
-            this.button_SaveToFile_FPGAregisters.Size = new System.Drawing.Size(148, 71);
+            this.button_SaveToFile_FPGAregisters.Size = new System.Drawing.Size(74, 37);
             this.button_SaveToFile_FPGAregisters.TabIndex = 1;
             this.button_SaveToFile_FPGAregisters.Text = "Save to File";
             this.button_SaveToFile_FPGAregisters.UseVisualStyleBackColor = true;
@@ -679,10 +673,10 @@ namespace Digitizer_ver1
             // 
             // button_LoadFromFile_FPGAregisters
             // 
-            this.button_LoadFromFile_FPGAregisters.Location = new System.Drawing.Point(26, 31);
-            this.button_LoadFromFile_FPGAregisters.Margin = new System.Windows.Forms.Padding(4);
+            this.button_LoadFromFile_FPGAregisters.Location = new System.Drawing.Point(13, 16);
+            this.button_LoadFromFile_FPGAregisters.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button_LoadFromFile_FPGAregisters.Name = "button_LoadFromFile_FPGAregisters";
-            this.button_LoadFromFile_FPGAregisters.Size = new System.Drawing.Size(148, 71);
+            this.button_LoadFromFile_FPGAregisters.Size = new System.Drawing.Size(74, 37);
             this.button_LoadFromFile_FPGAregisters.TabIndex = 0;
             this.button_LoadFromFile_FPGAregisters.Text = "Load from File";
             this.button_LoadFromFile_FPGAregisters.UseVisualStyleBackColor = true;
@@ -692,12 +686,12 @@ namespace Digitizer_ver1
             // 
             this.dataGridView_FPGAregisters.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_FPGAregisters.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dataGridView_FPGAregisters.Location = new System.Drawing.Point(532, 4);
-            this.dataGridView_FPGAregisters.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView_FPGAregisters.Location = new System.Drawing.Point(316, 2);
+            this.dataGridView_FPGAregisters.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView_FPGAregisters.Name = "dataGridView_FPGAregisters";
             this.dataGridView_FPGAregisters.RowHeadersWidth = 82;
             this.dataGridView_FPGAregisters.RowTemplate.Height = 33;
-            this.dataGridView_FPGAregisters.Size = new System.Drawing.Size(1708, 1041);
+            this.dataGridView_FPGAregisters.Size = new System.Drawing.Size(854, 535);
             this.dataGridView_FPGAregisters.TabIndex = 0;
             this.dataGridView_FPGAregisters.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_ADCregisters_CellContentClick);
             // 
@@ -721,11 +715,10 @@ namespace Digitizer_ver1
             this.tabPage1.Controls.Add(this.numericUpDown_Threshold);
             this.tabPage1.Controls.Add(this.checkBox_TRG_TestGen_Enable);
             this.tabPage1.Controls.Add(this.checkBox_TRG_Enable);
-            this.tabPage1.Location = new System.Drawing.Point(8, 39);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(6);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage1.Size = new System.Drawing.Size(2244, 1049);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Size = new System.Drawing.Size(1172, 539);
             this.tabPage1.TabIndex = 5;
             this.tabPage1.Text = "Trigger";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -733,34 +726,31 @@ namespace Digitizer_ver1
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(956, 258);
-            this.label6.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label6.Location = new System.Drawing.Point(478, 134);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(130, 25);
+            this.label6.Size = new System.Drawing.Size(63, 13);
             this.label6.TabIndex = 17;
             this.label6.Text = "(0 in infinite)";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(482, 258);
-            this.label5.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label5.Location = new System.Drawing.Point(241, 134);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(290, 25);
+            this.label5.Size = new System.Drawing.Size(144, 13);
             this.label5.TabIndex = 16;
             this.label5.Text = "Set Finite Number Of Events:";
             // 
             // numericUpDown_set_num_of_events
             // 
-            this.numericUpDown_set_num_of_events.Location = new System.Drawing.Point(778, 254);
-            this.numericUpDown_set_num_of_events.Margin = new System.Windows.Forms.Padding(6);
+            this.numericUpDown_set_num_of_events.Location = new System.Drawing.Point(389, 132);
             this.numericUpDown_set_num_of_events.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
             this.numericUpDown_set_num_of_events.Name = "numericUpDown_set_num_of_events";
-            this.numericUpDown_set_num_of_events.Size = new System.Drawing.Size(166, 31);
+            this.numericUpDown_set_num_of_events.Size = new System.Drawing.Size(83, 20);
             this.numericUpDown_set_num_of_events.TabIndex = 15;
             this.numericUpDown_set_num_of_events.ValueChanged += new System.EventHandler(this.numericUpDown_set_num_of_events_ValueChanged);
             // 
@@ -768,10 +758,9 @@ namespace Digitizer_ver1
             // 
             this.label_dbg2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label_dbg2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_dbg2.Location = new System.Drawing.Point(1398, 254);
-            this.label_dbg2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label_dbg2.Location = new System.Drawing.Point(699, 132);
             this.label_dbg2.Name = "label_dbg2";
-            this.label_dbg2.Size = new System.Drawing.Size(126, 42);
+            this.label_dbg2.Size = new System.Drawing.Size(64, 23);
             this.label_dbg2.TabIndex = 14;
             this.label_dbg2.Text = "0";
             this.label_dbg2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -780,20 +769,18 @@ namespace Digitizer_ver1
             // 
             this.label_dbg1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label_dbg1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_dbg1.Location = new System.Drawing.Point(1398, 190);
-            this.label_dbg1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label_dbg1.Location = new System.Drawing.Point(699, 99);
             this.label_dbg1.Name = "label_dbg1";
-            this.label_dbg1.Size = new System.Drawing.Size(126, 42);
+            this.label_dbg1.Size = new System.Drawing.Size(64, 23);
             this.label_dbg1.TabIndex = 13;
             this.label_dbg1.Text = "0";
             this.label_dbg1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // button_Read_Setting
             // 
-            this.button_Read_Setting.Location = new System.Drawing.Point(78, 208);
-            this.button_Read_Setting.Margin = new System.Windows.Forms.Padding(6);
+            this.button_Read_Setting.Location = new System.Drawing.Point(39, 108);
             this.button_Read_Setting.Name = "button_Read_Setting";
-            this.button_Read_Setting.Size = new System.Drawing.Size(234, 44);
+            this.button_Read_Setting.Size = new System.Drawing.Size(117, 23);
             this.button_Read_Setting.TabIndex = 12;
             this.button_Read_Setting.Text = "Read Setting";
             this.button_Read_Setting.UseVisualStyleBackColor = true;
@@ -801,10 +788,9 @@ namespace Digitizer_ver1
             // 
             // button_Clear_Counters
             // 
-            this.button_Clear_Counters.Location = new System.Drawing.Point(366, 590);
-            this.button_Clear_Counters.Margin = new System.Windows.Forms.Padding(6);
+            this.button_Clear_Counters.Location = new System.Drawing.Point(183, 307);
             this.button_Clear_Counters.Name = "button_Clear_Counters";
-            this.button_Clear_Counters.Size = new System.Drawing.Size(234, 44);
+            this.button_Clear_Counters.Size = new System.Drawing.Size(117, 23);
             this.button_Clear_Counters.TabIndex = 11;
             this.button_Clear_Counters.Text = "Clear Counters";
             this.button_Clear_Counters.UseVisualStyleBackColor = true;
@@ -812,10 +798,9 @@ namespace Digitizer_ver1
             // 
             // button_TRG_Read_Conters
             // 
-            this.button_TRG_Read_Conters.Location = new System.Drawing.Point(120, 590);
-            this.button_TRG_Read_Conters.Margin = new System.Windows.Forms.Padding(6);
+            this.button_TRG_Read_Conters.Location = new System.Drawing.Point(60, 307);
             this.button_TRG_Read_Conters.Name = "button_TRG_Read_Conters";
-            this.button_TRG_Read_Conters.Size = new System.Drawing.Size(234, 44);
+            this.button_TRG_Read_Conters.Size = new System.Drawing.Size(117, 23);
             this.button_TRG_Read_Conters.TabIndex = 10;
             this.button_TRG_Read_Conters.Text = "Read Counters";
             this.button_TRG_Read_Conters.UseVisualStyleBackColor = true;
@@ -825,10 +810,9 @@ namespace Digitizer_ver1
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(108, 492);
-            this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label3.Location = new System.Drawing.Point(54, 256);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(213, 29);
+            this.label3.Size = new System.Drawing.Size(107, 15);
             this.label3.TabIndex = 9;
             this.label3.Text = "Processed Events:";
             // 
@@ -836,10 +820,9 @@ namespace Digitizer_ver1
             // 
             this.label_Processed_Events.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label_Processed_Events.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_Processed_Events.Location = new System.Drawing.Point(334, 487);
-            this.label_Processed_Events.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label_Processed_Events.Location = new System.Drawing.Point(167, 253);
             this.label_Processed_Events.Name = "label_Processed_Events";
-            this.label_Processed_Events.Size = new System.Drawing.Size(268, 42);
+            this.label_Processed_Events.Size = new System.Drawing.Size(135, 23);
             this.label_Processed_Events.TabIndex = 8;
             this.label_Processed_Events.Text = "0";
             this.label_Processed_Events.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -848,10 +831,9 @@ namespace Digitizer_ver1
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label4.Location = new System.Drawing.Point(122, 412);
-            this.label4.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label4.Location = new System.Drawing.Point(61, 214);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(195, 29);
+            this.label4.Size = new System.Drawing.Size(100, 15);
             this.label4.TabIndex = 7;
             this.label4.Text = "Incoming Events:";
             // 
@@ -859,10 +841,9 @@ namespace Digitizer_ver1
             // 
             this.label_Incoming_Events.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label_Incoming_Events.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_Incoming_Events.Location = new System.Drawing.Point(334, 406);
-            this.label_Incoming_Events.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label_Incoming_Events.Location = new System.Drawing.Point(167, 211);
             this.label_Incoming_Events.Name = "label_Incoming_Events";
-            this.label_Incoming_Events.Size = new System.Drawing.Size(268, 42);
+            this.label_Incoming_Events.Size = new System.Drawing.Size(135, 23);
             this.label_Incoming_Events.TabIndex = 6;
             this.label_Incoming_Events.Text = "0";
             this.label_Incoming_Events.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -870,17 +851,15 @@ namespace Digitizer_ver1
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(562, 140);
-            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label2.Location = new System.Drawing.Point(281, 73);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(210, 25);
+            this.label2.Size = new System.Drawing.Size(104, 13);
             this.label2.TabIndex = 5;
             this.label2.Text = "Number Of Samples:";
             // 
             // numericUpDown_Num_Of_Samples
             // 
-            this.numericUpDown_Num_Of_Samples.Location = new System.Drawing.Point(778, 137);
-            this.numericUpDown_Num_Of_Samples.Margin = new System.Windows.Forms.Padding(6);
+            this.numericUpDown_Num_Of_Samples.Location = new System.Drawing.Point(389, 71);
             this.numericUpDown_Num_Of_Samples.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -892,7 +871,7 @@ namespace Digitizer_ver1
             0,
             0});
             this.numericUpDown_Num_Of_Samples.Name = "numericUpDown_Num_Of_Samples";
-            this.numericUpDown_Num_Of_Samples.Size = new System.Drawing.Size(166, 31);
+            this.numericUpDown_Num_Of_Samples.Size = new System.Drawing.Size(83, 20);
             this.numericUpDown_Num_Of_Samples.TabIndex = 4;
             this.numericUpDown_Num_Of_Samples.Value = new decimal(new int[] {
             16,
@@ -904,34 +883,31 @@ namespace Digitizer_ver1
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(656, 94);
-            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label1.Location = new System.Drawing.Point(328, 49);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(114, 25);
+            this.label1.Size = new System.Drawing.Size(57, 13);
             this.label1.TabIndex = 3;
             this.label1.Text = "Threshold:";
             // 
             // numericUpDown_Threshold
             // 
-            this.numericUpDown_Threshold.Location = new System.Drawing.Point(778, 88);
-            this.numericUpDown_Threshold.Margin = new System.Windows.Forms.Padding(6);
+            this.numericUpDown_Threshold.Location = new System.Drawing.Point(389, 46);
             this.numericUpDown_Threshold.Maximum = new decimal(new int[] {
             4095,
             0,
             0,
             0});
             this.numericUpDown_Threshold.Name = "numericUpDown_Threshold";
-            this.numericUpDown_Threshold.Size = new System.Drawing.Size(166, 31);
+            this.numericUpDown_Threshold.Size = new System.Drawing.Size(83, 20);
             this.numericUpDown_Threshold.TabIndex = 2;
             this.numericUpDown_Threshold.ValueChanged += new System.EventHandler(this.numericUpDown_Threshold_ValueChanged);
             // 
             // checkBox_TRG_TestGen_Enable
             // 
             this.checkBox_TRG_TestGen_Enable.AutoSize = true;
-            this.checkBox_TRG_TestGen_Enable.Location = new System.Drawing.Point(78, 138);
-            this.checkBox_TRG_TestGen_Enable.Margin = new System.Windows.Forms.Padding(6);
+            this.checkBox_TRG_TestGen_Enable.Location = new System.Drawing.Point(39, 72);
             this.checkBox_TRG_TestGen_Enable.Name = "checkBox_TRG_TestGen_Enable";
-            this.checkBox_TRG_TestGen_Enable.Size = new System.Drawing.Size(261, 29);
+            this.checkBox_TRG_TestGen_Enable.Size = new System.Drawing.Size(133, 17);
             this.checkBox_TRG_TestGen_Enable.TabIndex = 1;
             this.checkBox_TRG_TestGen_Enable.Text = "Test Generator Enable";
             this.checkBox_TRG_TestGen_Enable.UseVisualStyleBackColor = true;
@@ -940,10 +916,9 @@ namespace Digitizer_ver1
             // checkBox_TRG_Enable
             // 
             this.checkBox_TRG_Enable.AutoSize = true;
-            this.checkBox_TRG_Enable.Location = new System.Drawing.Point(78, 94);
-            this.checkBox_TRG_Enable.Margin = new System.Windows.Forms.Padding(6);
+            this.checkBox_TRG_Enable.Location = new System.Drawing.Point(39, 49);
             this.checkBox_TRG_Enable.Name = "checkBox_TRG_Enable";
-            this.checkBox_TRG_Enable.Size = new System.Drawing.Size(185, 29);
+            this.checkBox_TRG_Enable.Size = new System.Drawing.Size(95, 17);
             this.checkBox_TRG_Enable.TabIndex = 0;
             this.checkBox_TRG_Enable.Text = "Trigger Enable";
             this.checkBox_TRG_Enable.UseVisualStyleBackColor = true;
@@ -959,14 +934,24 @@ namespace Digitizer_ver1
             this.timer_AutoTest.Interval = 4000;
             this.timer_AutoTest.Tick += new System.EventHandler(this.timer_AutoTest_Tick);
             // 
+            // label_E
+            // 
+            this.label_E.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_E.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_E.Location = new System.Drawing.Point(24, 57);
+            this.label_E.Name = "label_E";
+            this.label_E.Size = new System.Drawing.Size(581, 82);
+            this.label_E.TabIndex = 5;
+            this.label_E.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2260, 1171);
+            this.ClientSize = new System.Drawing.Size(1180, 604);
             this.Controls.Add(this.tabControl_MAIN);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.panel1.ResumeLayout(false);
@@ -1067,6 +1052,7 @@ namespace Digitizer_ver1
         private System.Windows.Forms.Button button_Reset;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_data;
         private System.Windows.Forms.DataGridView dataGridView_events;
+        public System.Windows.Forms.Label label_E;
     }
 }
 
