@@ -30,9 +30,9 @@ namespace Digitizer_ver1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button_Reset = new System.Windows.Forms.Button();
             this.numericUpDown_testPeriod = new System.Windows.Forms.NumericUpDown();
@@ -47,8 +47,6 @@ namespace Digitizer_ver1
             this.tabControl_MAIN = new System.Windows.Forms.TabControl();
             this.Measurement = new System.Windows.Forms.TabPage();
             this.dataGridView_events = new System.Windows.Forms.DataGridView();
-            this.chart_data = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.button_datatest = new System.Windows.Forms.Button();
             this.dataGridView_data = new System.Windows.Forms.DataGridView();
             this.ADC_Registers = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -101,13 +99,16 @@ namespace Digitizer_ver1
             this.checkBox_TRG_Enable = new System.Windows.Forms.CheckBox();
             this.timer_info = new System.Windows.Forms.Timer(this.components);
             this.timer_AutoTest = new System.Windows.Forms.Timer(this.components);
+            this.panel4 = new System.Windows.Forms.Panel();
             this.label_E = new System.Windows.Forms.Label();
+            this.button_datatest = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.chart_data = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_testPeriod)).BeginInit();
             this.tabControl_MAIN.SuspendLayout();
             this.Measurement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_events)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart_data)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_data)).BeginInit();
             this.ADC_Registers.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -121,6 +122,9 @@ namespace Digitizer_ver1
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_set_num_of_events)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Num_Of_Samples)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Threshold)).BeginInit();
+            this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart_data)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -139,7 +143,7 @@ namespace Digitizer_ver1
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1180, 39);
+            this.panel1.Size = new System.Drawing.Size(1184, 39);
             this.panel1.TabIndex = 0;
             // 
             // button_Reset
@@ -268,21 +272,20 @@ namespace Digitizer_ver1
             this.tabControl_MAIN.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabControl_MAIN.Name = "tabControl_MAIN";
             this.tabControl_MAIN.SelectedIndex = 0;
-            this.tabControl_MAIN.Size = new System.Drawing.Size(1180, 565);
+            this.tabControl_MAIN.Size = new System.Drawing.Size(1184, 572);
             this.tabControl_MAIN.TabIndex = 1;
             // 
             // Measurement
             // 
-            this.Measurement.Controls.Add(this.label_E);
+            this.Measurement.Controls.Add(this.panel5);
+            this.Measurement.Controls.Add(this.panel4);
             this.Measurement.Controls.Add(this.dataGridView_events);
-            this.Measurement.Controls.Add(this.chart_data);
-            this.Measurement.Controls.Add(this.button_datatest);
             this.Measurement.Controls.Add(this.dataGridView_data);
             this.Measurement.Location = new System.Drawing.Point(4, 22);
             this.Measurement.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Measurement.Name = "Measurement";
             this.Measurement.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Measurement.Size = new System.Drawing.Size(1172, 539);
+            this.Measurement.Size = new System.Drawing.Size(1176, 546);
             this.Measurement.TabIndex = 1;
             this.Measurement.Text = "Measurement";
             this.Measurement.UseVisualStyleBackColor = true;
@@ -291,56 +294,24 @@ namespace Digitizer_ver1
             // 
             this.dataGridView_events.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_events.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dataGridView_events.Location = new System.Drawing.Point(640, 2);
+            this.dataGridView_events.Location = new System.Drawing.Point(644, 2);
             this.dataGridView_events.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView_events.Name = "dataGridView_events";
             this.dataGridView_events.RowHeadersWidth = 82;
             this.dataGridView_events.RowTemplate.Height = 33;
-            this.dataGridView_events.Size = new System.Drawing.Size(265, 535);
+            this.dataGridView_events.Size = new System.Drawing.Size(265, 542);
             this.dataGridView_events.TabIndex = 4;
-            // 
-            // chart_data
-            // 
-            this.chart_data.BorderlineColor = System.Drawing.Color.Black;
-            this.chart_data.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea5.Name = "ChartArea1";
-            this.chart_data.ChartAreas.Add(chartArea5);
-            legend5.Name = "Legend1";
-            this.chart_data.Legends.Add(legend5);
-            this.chart_data.Location = new System.Drawing.Point(24, 141);
-            this.chart_data.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.chart_data.Name = "chart_data";
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series5.IsVisibleInLegend = false;
-            series5.Legend = "Legend1";
-            series5.Name = "Data";
-            this.chart_data.Series.Add(series5);
-            this.chart_data.Size = new System.Drawing.Size(581, 376);
-            this.chart_data.TabIndex = 3;
-            this.chart_data.Text = "chart_data";
-            this.chart_data.Click += new System.EventHandler(this.chart_data_Click);
-            // 
-            // button_datatest
-            // 
-            this.button_datatest.Location = new System.Drawing.Point(24, 33);
-            this.button_datatest.Name = "button_datatest";
-            this.button_datatest.Size = new System.Drawing.Size(75, 21);
-            this.button_datatest.TabIndex = 2;
-            this.button_datatest.Text = "ADD";
-            this.button_datatest.UseVisualStyleBackColor = true;
-            this.button_datatest.Click += new System.EventHandler(this.button_datatest_Click);
             // 
             // dataGridView_data
             // 
             this.dataGridView_data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_data.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dataGridView_data.Location = new System.Drawing.Point(905, 2);
+            this.dataGridView_data.Location = new System.Drawing.Point(909, 2);
             this.dataGridView_data.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView_data.Name = "dataGridView_data";
             this.dataGridView_data.RowHeadersWidth = 82;
             this.dataGridView_data.RowTemplate.Height = 33;
-            this.dataGridView_data.Size = new System.Drawing.Size(265, 535);
+            this.dataGridView_data.Size = new System.Drawing.Size(265, 542);
             this.dataGridView_data.TabIndex = 1;
             // 
             // ADC_Registers
@@ -351,7 +322,7 @@ namespace Digitizer_ver1
             this.ADC_Registers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ADC_Registers.Name = "ADC_Registers";
             this.ADC_Registers.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.ADC_Registers.Size = new System.Drawing.Size(1172, 539);
+            this.ADC_Registers.Size = new System.Drawing.Size(1176, 546);
             this.ADC_Registers.TabIndex = 2;
             this.ADC_Registers.Text = "ADC Registers";
             this.ADC_Registers.UseVisualStyleBackColor = true;
@@ -366,7 +337,7 @@ namespace Digitizer_ver1
             this.panel2.Location = new System.Drawing.Point(2, 2);
             this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(218, 535);
+            this.panel2.Size = new System.Drawing.Size(218, 542);
             this.panel2.TabIndex = 1;
             // 
             // textBox1
@@ -510,12 +481,12 @@ namespace Digitizer_ver1
             // 
             this.dataGridView_ADCregisters.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_ADCregisters.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dataGridView_ADCregisters.Location = new System.Drawing.Point(316, 2);
+            this.dataGridView_ADCregisters.Location = new System.Drawing.Point(320, 2);
             this.dataGridView_ADCregisters.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView_ADCregisters.Name = "dataGridView_ADCregisters";
             this.dataGridView_ADCregisters.RowHeadersWidth = 82;
             this.dataGridView_ADCregisters.RowTemplate.Height = 33;
-            this.dataGridView_ADCregisters.Size = new System.Drawing.Size(854, 535);
+            this.dataGridView_ADCregisters.Size = new System.Drawing.Size(854, 542);
             this.dataGridView_ADCregisters.TabIndex = 0;
             this.dataGridView_ADCregisters.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_ADCregisters_CellContentClick);
             // 
@@ -527,7 +498,7 @@ namespace Digitizer_ver1
             this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.tabPage2.Size = new System.Drawing.Size(1172, 539);
+            this.tabPage2.Size = new System.Drawing.Size(1176, 546);
             this.tabPage2.TabIndex = 4;
             this.tabPage2.Text = "Registers";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -542,7 +513,7 @@ namespace Digitizer_ver1
             this.panel3.Location = new System.Drawing.Point(2, 2);
             this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(218, 535);
+            this.panel3.Size = new System.Drawing.Size(218, 542);
             this.panel3.TabIndex = 1;
             // 
             // textBox2
@@ -686,12 +657,12 @@ namespace Digitizer_ver1
             // 
             this.dataGridView_FPGAregisters.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_FPGAregisters.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dataGridView_FPGAregisters.Location = new System.Drawing.Point(316, 2);
+            this.dataGridView_FPGAregisters.Location = new System.Drawing.Point(320, 2);
             this.dataGridView_FPGAregisters.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView_FPGAregisters.Name = "dataGridView_FPGAregisters";
             this.dataGridView_FPGAregisters.RowHeadersWidth = 82;
             this.dataGridView_FPGAregisters.RowTemplate.Height = 33;
-            this.dataGridView_FPGAregisters.Size = new System.Drawing.Size(854, 535);
+            this.dataGridView_FPGAregisters.Size = new System.Drawing.Size(854, 542);
             this.dataGridView_FPGAregisters.TabIndex = 0;
             this.dataGridView_FPGAregisters.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_ADCregisters_CellContentClick);
             // 
@@ -718,7 +689,7 @@ namespace Digitizer_ver1
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPage1.Size = new System.Drawing.Size(1172, 539);
+            this.tabPage1.Size = new System.Drawing.Size(1176, 546);
             this.tabPage1.TabIndex = 5;
             this.tabPage1.Text = "Trigger";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -934,24 +905,79 @@ namespace Digitizer_ver1
             this.timer_AutoTest.Interval = 4000;
             this.timer_AutoTest.Tick += new System.EventHandler(this.timer_AutoTest_Tick);
             // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.label_E);
+            this.panel4.Controls.Add(this.button_datatest);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(2, 2);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(642, 128);
+            this.panel4.TabIndex = 5;
+            // 
             // label_E
             // 
             this.label_E.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label_E.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_E.Location = new System.Drawing.Point(24, 57);
+            this.label_E.Location = new System.Drawing.Point(22, 34);
             this.label_E.Name = "label_E";
-            this.label_E.Size = new System.Drawing.Size(581, 82);
-            this.label_E.TabIndex = 5;
+            this.label_E.Size = new System.Drawing.Size(243, 82);
+            this.label_E.TabIndex = 13;
             this.label_E.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button_datatest
+            // 
+            this.button_datatest.Location = new System.Drawing.Point(22, 10);
+            this.button_datatest.Name = "button_datatest";
+            this.button_datatest.Size = new System.Drawing.Size(75, 21);
+            this.button_datatest.TabIndex = 12;
+            this.button_datatest.Text = "ADD";
+            this.button_datatest.UseVisualStyleBackColor = true;
+            this.button_datatest.Click += new System.EventHandler(this.button_datatest_Click);
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.chart_data);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(2, 130);
+            this.panel5.Name = "panel5";
+            this.panel5.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.panel5.Size = new System.Drawing.Size(642, 414);
+            this.panel5.TabIndex = 6;
+            // 
+            // chart_data
+            // 
+            this.chart_data.BorderlineColor = System.Drawing.Color.Black;
+            this.chart_data.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
+            chartArea1.Name = "ChartArea1";
+            this.chart_data.ChartAreas.Add(chartArea1);
+            this.chart_data.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.Name = "Legend1";
+            this.chart_data.Legends.Add(legend1);
+            this.chart_data.Location = new System.Drawing.Point(0, 0);
+            this.chart_data.Margin = new System.Windows.Forms.Padding(2);
+            this.chart_data.Name = "chart_data";
+            series1.BorderWidth = 2;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.IsVisibleInLegend = false;
+            series1.Legend = "Legend1";
+            series1.Name = "Data";
+            this.chart_data.Series.Add(series1);
+            this.chart_data.Size = new System.Drawing.Size(637, 414);
+            this.chart_data.TabIndex = 4;
+            this.chart_data.Text = "chart_data";
+            this.chart_data.Click += new System.EventHandler(this.chart_data_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1180, 604);
+            this.ClientSize = new System.Drawing.Size(1184, 611);
             this.Controls.Add(this.tabControl_MAIN);
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MinimumSize = new System.Drawing.Size(1200, 650);
             this.Name = "Form1";
             this.Text = "Form1";
             this.panel1.ResumeLayout(false);
@@ -959,7 +985,6 @@ namespace Digitizer_ver1
             this.tabControl_MAIN.ResumeLayout(false);
             this.Measurement.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_events)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart_data)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_data)).EndInit();
             this.ADC_Registers.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -978,6 +1003,9 @@ namespace Digitizer_ver1
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_set_num_of_events)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Num_Of_Samples)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Threshold)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chart_data)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1029,7 +1057,6 @@ namespace Digitizer_ver1
         public System.Windows.Forms.Label label_TestResult;
         private System.Windows.Forms.NumericUpDown numericUpDown_testPeriod;
         private System.Windows.Forms.DataGridView dataGridView_data;
-        private System.Windows.Forms.Button button_datatest;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Button button_Clear_Counters;
         private System.Windows.Forms.Button button_TRG_Read_Conters;
@@ -1050,9 +1077,12 @@ namespace Digitizer_ver1
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.NumericUpDown numericUpDown_set_num_of_events;
         private System.Windows.Forms.Button button_Reset;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart_data;
         private System.Windows.Forms.DataGridView dataGridView_events;
+        private System.Windows.Forms.Panel panel4;
         public System.Windows.Forms.Label label_E;
+        private System.Windows.Forms.Button button_datatest;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart_data;
     }
 }
 

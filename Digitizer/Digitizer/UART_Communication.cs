@@ -30,6 +30,7 @@ namespace Digitizer_ver1
         {
             serialport.PortName = name;
             serialport.BaudRate = 115200;
+            
 
             try
             {
@@ -85,7 +86,7 @@ namespace Digitizer_ver1
             }
 
             read_timer.Tick += new System.EventHandler(Read_UART);
-            read_timer.Interval = 20;
+            read_timer.Interval = 5;
             read_timer.Enabled = true;
             
 

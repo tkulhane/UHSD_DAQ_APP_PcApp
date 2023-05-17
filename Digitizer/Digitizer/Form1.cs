@@ -79,6 +79,25 @@ namespace Digitizer_ver1
 
         }
 
+        private void comm_log(byte[] data)
+        {
+            //using (StreamWriter writer = new StreamWriter("comm_log.txt"))
+            using (StreamWriter writer =  File.AppendText("comm_log.txt"))
+            {
+                string s = String.Empty; 
+
+                for(int i = 0; i < 4; i++) 
+                {
+                    s += data[i].ToString("X2") + " ";
+                }
+
+
+
+                writer.WriteLine(s);
+            }
+        }
+
+
         private void Send_Command(eCommandCode CMD, byte[] data) 
         {
             byte id = (byte)(0x80 | (byte)CMD);
@@ -131,6 +150,9 @@ namespace Digitizer_ver1
             byte[] data = uart.dataBuffer;
             //byte[] data = uart.AllData;
 
+            //communication log
+            comm_log(data);
+
             StoreData(data);
 
 
@@ -160,16 +182,17 @@ namespace Digitizer_ver1
 
             if (data[0] == 0xFA) //Event head - actualing Number Of Event
             {
-                //EventNow = new EventInfo(data[3], list_data.Count);
-                EventNow = new EventInfo(E_Inc, list_data.Count);
+                EventNow = new EventInfo(data[3], list_data.Count);
+                //EventNow = new EventInfo(E_Inc, list_data.Count);
                 label_E.Text = label_E.Text + "A";
             }
 
             else if(data[0] == 0xFB) //Event tail - store event
             {
-                E_Inc++;
+                //E_Inc++;
                 list_events.Add(EventNow);
                 label_E.Text = label_E.Text + "B";
+                //dataGridView_events.Rows[dataGridView_events.Rows.Count - 1].Selected = true;
             }
 
             else if (data[0] == 0xFC)
@@ -888,7 +911,8 @@ namespace Digitizer_ver1
                 return;
             }
 
-            chart_data.Series["Data"].Points.Clear();
+            //chart_data.Series["Data"].Points.Clear();
+            chart_data.Series.Clear();
 
             for (int r = 0; r < selectedRows; r++)
             {
@@ -899,17 +923,26 @@ namespace Digitizer_ver1
                 int EventStartIndex = SelectedEvent.p_eventStart;
                 int EventEndIndex = EventStartIndex + SelectedEvent.p_eventSize - 1;
 
+                chart_data.Series.Add(r.ToString());
+                chart_data.Series[r.ToString()].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+                chart_data.Series[r.ToString()].LegendText = SelectedEvent.p_eventNum.ToString();
+                chart_data.Series[r.ToString()].BorderWidth = 3;
 
 
                 for (int i = EventStartIndex; i < EventEndIndex; i++)
                 {
-                    chart_data.Series["Data"].Points.AddY(list_data[i].p_sample);
+                    chart_data.Series[r.ToString()].Points.AddY(list_data[i].p_sample);
 
                 }
 
             }
             
             chart_data.DataBind();
+        }
+
+        private void label_E_Click(object sender, EventArgs e)
+        {
+            label_E.Text = String.Empty;
         }
     }
 }
