@@ -151,7 +151,7 @@ namespace Digitizer_ver1
             //byte[] data = uart.AllData;
 
             //communication log
-            comm_log(data);
+            //comm_log(data);
 
             StoreData(data);
 
