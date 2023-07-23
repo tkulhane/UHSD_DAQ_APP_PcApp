@@ -35,10 +35,6 @@ namespace Digitizer_ver1
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button_Reset = new System.Windows.Forms.Button();
-            this.numericUpDown_testPeriod = new System.Windows.Forms.NumericUpDown();
-            this.label_TestResult = new System.Windows.Forms.Label();
-            this.button_ValidateTest = new System.Windows.Forms.Button();
-            this.button_AutoTest = new System.Windows.Forms.Button();
             this.label_Test = new System.Windows.Forms.Label();
             this.button_Test = new System.Windows.Forms.Button();
             this.button_OpenClose = new System.Windows.Forms.Button();
@@ -46,6 +42,11 @@ namespace Digitizer_ver1
             this.button_Scan = new System.Windows.Forms.Button();
             this.tabControl_MAIN = new System.Windows.Forms.TabControl();
             this.Measurement = new System.Windows.Forms.TabPage();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.chart_data = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label_E = new System.Windows.Forms.Label();
+            this.button_datatest = new System.Windows.Forms.Button();
             this.dataGridView_events = new System.Windows.Forms.DataGridView();
             this.dataGridView_data = new System.Windows.Forms.DataGridView();
             this.ADC_Registers = new System.Windows.Forms.TabPage();
@@ -99,15 +100,12 @@ namespace Digitizer_ver1
             this.checkBox_TRG_Enable = new System.Windows.Forms.CheckBox();
             this.timer_info = new System.Windows.Forms.Timer(this.components);
             this.timer_AutoTest = new System.Windows.Forms.Timer(this.components);
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.label_E = new System.Windows.Forms.Label();
-            this.button_datatest = new System.Windows.Forms.Button();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.chart_data = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_testPeriod)).BeginInit();
             this.tabControl_MAIN.SuspendLayout();
             this.Measurement.SuspendLayout();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart_data)).BeginInit();
+            this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_events)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_data)).BeginInit();
             this.ADC_Registers.SuspendLayout();
@@ -122,18 +120,11 @@ namespace Digitizer_ver1
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_set_num_of_events)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Num_Of_Samples)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Threshold)).BeginInit();
-            this.panel4.SuspendLayout();
-            this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart_data)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.button_Reset);
-            this.panel1.Controls.Add(this.numericUpDown_testPeriod);
-            this.panel1.Controls.Add(this.label_TestResult);
-            this.panel1.Controls.Add(this.button_ValidateTest);
-            this.panel1.Controls.Add(this.button_AutoTest);
             this.panel1.Controls.Add(this.label_Test);
             this.panel1.Controls.Add(this.button_Test);
             this.panel1.Controls.Add(this.button_OpenClose);
@@ -141,7 +132,7 @@ namespace Digitizer_ver1
             this.panel1.Controls.Add(this.button_Scan);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1184, 39);
             this.panel1.TabIndex = 0;
@@ -155,63 +146,6 @@ namespace Digitizer_ver1
             this.button_Reset.Text = "RESET";
             this.button_Reset.UseVisualStyleBackColor = true;
             this.button_Reset.Click += new System.EventHandler(this.button_Reset_Click);
-            // 
-            // numericUpDown_testPeriod
-            // 
-            this.numericUpDown_testPeriod.Increment = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.numericUpDown_testPeriod.Location = new System.Drawing.Point(863, 7);
-            this.numericUpDown_testPeriod.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.numericUpDown_testPeriod.Minimum = new decimal(new int[] {
-            3000,
-            0,
-            0,
-            0});
-            this.numericUpDown_testPeriod.Name = "numericUpDown_testPeriod";
-            this.numericUpDown_testPeriod.Size = new System.Drawing.Size(71, 20);
-            this.numericUpDown_testPeriod.TabIndex = 7;
-            this.numericUpDown_testPeriod.Value = new decimal(new int[] {
-            3000,
-            0,
-            0,
-            0});
-            this.numericUpDown_testPeriod.ValueChanged += new System.EventHandler(this.numericUpDown_testPeriod_ValueChanged);
-            // 
-            // label_TestResult
-            // 
-            this.label_TestResult.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_TestResult.Location = new System.Drawing.Point(703, 7);
-            this.label_TestResult.Name = "label_TestResult";
-            this.label_TestResult.Size = new System.Drawing.Size(140, 21);
-            this.label_TestResult.TabIndex = 6;
-            this.label_TestResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // button_ValidateTest
-            // 
-            this.button_ValidateTest.Location = new System.Drawing.Point(602, 7);
-            this.button_ValidateTest.Name = "button_ValidateTest";
-            this.button_ValidateTest.Size = new System.Drawing.Size(95, 21);
-            this.button_ValidateTest.TabIndex = 5;
-            this.button_ValidateTest.Text = "Validate Test";
-            this.button_ValidateTest.UseVisualStyleBackColor = true;
-            this.button_ValidateTest.Click += new System.EventHandler(this.button_ValidateTest_Click);
-            // 
-            // button_AutoTest
-            // 
-            this.button_AutoTest.Location = new System.Drawing.Point(521, 7);
-            this.button_AutoTest.Name = "button_AutoTest";
-            this.button_AutoTest.Size = new System.Drawing.Size(75, 21);
-            this.button_AutoTest.TabIndex = 4;
-            this.button_AutoTest.Text = "Auto Test";
-            this.button_AutoTest.UseVisualStyleBackColor = true;
-            this.button_AutoTest.Click += new System.EventHandler(this.button_AutoTest_Click);
             // 
             // label_Test
             // 
@@ -269,7 +203,7 @@ namespace Digitizer_ver1
             this.tabControl_MAIN.Controls.Add(this.tabPage1);
             this.tabControl_MAIN.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl_MAIN.Location = new System.Drawing.Point(0, 39);
-            this.tabControl_MAIN.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabControl_MAIN.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl_MAIN.Name = "tabControl_MAIN";
             this.tabControl_MAIN.SelectedIndex = 0;
             this.tabControl_MAIN.Size = new System.Drawing.Size(1184, 572);
@@ -282,20 +216,83 @@ namespace Digitizer_ver1
             this.Measurement.Controls.Add(this.dataGridView_events);
             this.Measurement.Controls.Add(this.dataGridView_data);
             this.Measurement.Location = new System.Drawing.Point(4, 22);
-            this.Measurement.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Measurement.Margin = new System.Windows.Forms.Padding(2);
             this.Measurement.Name = "Measurement";
-            this.Measurement.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Measurement.Padding = new System.Windows.Forms.Padding(2);
             this.Measurement.Size = new System.Drawing.Size(1176, 546);
             this.Measurement.TabIndex = 1;
             this.Measurement.Text = "Measurement";
             this.Measurement.UseVisualStyleBackColor = true;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.chart_data);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(2, 130);
+            this.panel5.Name = "panel5";
+            this.panel5.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.panel5.Size = new System.Drawing.Size(642, 414);
+            this.panel5.TabIndex = 6;
+            // 
+            // chart_data
+            // 
+            this.chart_data.BorderlineColor = System.Drawing.Color.Black;
+            this.chart_data.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
+            chartArea1.Name = "ChartArea1";
+            this.chart_data.ChartAreas.Add(chartArea1);
+            this.chart_data.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.Name = "Legend1";
+            this.chart_data.Legends.Add(legend1);
+            this.chart_data.Location = new System.Drawing.Point(0, 0);
+            this.chart_data.Margin = new System.Windows.Forms.Padding(2);
+            this.chart_data.Name = "chart_data";
+            series1.BorderWidth = 2;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.IsVisibleInLegend = false;
+            series1.Legend = "Legend1";
+            series1.Name = "Data";
+            this.chart_data.Series.Add(series1);
+            this.chart_data.Size = new System.Drawing.Size(637, 414);
+            this.chart_data.TabIndex = 4;
+            this.chart_data.Text = "chart_data";
+            this.chart_data.Click += new System.EventHandler(this.chart_data_Click);
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.label_E);
+            this.panel4.Controls.Add(this.button_datatest);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(2, 2);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(642, 128);
+            this.panel4.TabIndex = 5;
+            // 
+            // label_E
+            // 
+            this.label_E.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_E.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_E.Location = new System.Drawing.Point(22, 34);
+            this.label_E.Name = "label_E";
+            this.label_E.Size = new System.Drawing.Size(243, 82);
+            this.label_E.TabIndex = 13;
+            this.label_E.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button_datatest
+            // 
+            this.button_datatest.Location = new System.Drawing.Point(22, 10);
+            this.button_datatest.Name = "button_datatest";
+            this.button_datatest.Size = new System.Drawing.Size(75, 21);
+            this.button_datatest.TabIndex = 12;
+            this.button_datatest.Text = "ADD";
+            this.button_datatest.UseVisualStyleBackColor = true;
             // 
             // dataGridView_events
             // 
             this.dataGridView_events.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_events.Dock = System.Windows.Forms.DockStyle.Right;
             this.dataGridView_events.Location = new System.Drawing.Point(644, 2);
-            this.dataGridView_events.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView_events.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView_events.Name = "dataGridView_events";
             this.dataGridView_events.RowHeadersWidth = 82;
             this.dataGridView_events.RowTemplate.Height = 33;
@@ -307,7 +304,7 @@ namespace Digitizer_ver1
             this.dataGridView_data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_data.Dock = System.Windows.Forms.DockStyle.Right;
             this.dataGridView_data.Location = new System.Drawing.Point(909, 2);
-            this.dataGridView_data.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView_data.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView_data.Name = "dataGridView_data";
             this.dataGridView_data.RowHeadersWidth = 82;
             this.dataGridView_data.RowTemplate.Height = 33;
@@ -319,9 +316,9 @@ namespace Digitizer_ver1
             this.ADC_Registers.Controls.Add(this.panel2);
             this.ADC_Registers.Controls.Add(this.dataGridView_ADCregisters);
             this.ADC_Registers.Location = new System.Drawing.Point(4, 22);
-            this.ADC_Registers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ADC_Registers.Margin = new System.Windows.Forms.Padding(2);
             this.ADC_Registers.Name = "ADC_Registers";
-            this.ADC_Registers.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ADC_Registers.Padding = new System.Windows.Forms.Padding(2);
             this.ADC_Registers.Size = new System.Drawing.Size(1176, 546);
             this.ADC_Registers.TabIndex = 2;
             this.ADC_Registers.Text = "ADC Registers";
@@ -335,7 +332,7 @@ namespace Digitizer_ver1
             this.panel2.Controls.Add(this.button_LoadFromFile);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(2, 2);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(218, 542);
             this.panel2.TabIndex = 1;
@@ -343,7 +340,7 @@ namespace Digitizer_ver1
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(26, 295);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(52, 20);
             this.textBox1.TabIndex = 4;
@@ -359,9 +356,9 @@ namespace Digitizer_ver1
             this.groupBox1.Controls.Add(this.checkBox_bit_3);
             this.groupBox1.Controls.Add(this.checkBox_bit_2);
             this.groupBox1.Location = new System.Drawing.Point(26, 329);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(78, 188);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
@@ -371,7 +368,7 @@ namespace Digitizer_ver1
             // 
             this.checkBox_bit_0.AutoSize = true;
             this.checkBox_bit_0.Location = new System.Drawing.Point(12, 161);
-            this.checkBox_bit_0.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox_bit_0.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox_bit_0.Name = "checkBox_bit_0";
             this.checkBox_bit_0.Size = new System.Drawing.Size(32, 17);
             this.checkBox_bit_0.TabIndex = 9;
@@ -382,7 +379,7 @@ namespace Digitizer_ver1
             // 
             this.checkBox_bit_1.AutoSize = true;
             this.checkBox_bit_1.Location = new System.Drawing.Point(12, 142);
-            this.checkBox_bit_1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox_bit_1.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox_bit_1.Name = "checkBox_bit_1";
             this.checkBox_bit_1.Size = new System.Drawing.Size(32, 17);
             this.checkBox_bit_1.TabIndex = 8;
@@ -393,7 +390,7 @@ namespace Digitizer_ver1
             // 
             this.checkBox_bit_7.AutoSize = true;
             this.checkBox_bit_7.Location = new System.Drawing.Point(12, 33);
-            this.checkBox_bit_7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox_bit_7.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox_bit_7.Name = "checkBox_bit_7";
             this.checkBox_bit_7.Size = new System.Drawing.Size(32, 17);
             this.checkBox_bit_7.TabIndex = 7;
@@ -404,7 +401,7 @@ namespace Digitizer_ver1
             // 
             this.checkBox_bit_6.AutoSize = true;
             this.checkBox_bit_6.Location = new System.Drawing.Point(12, 51);
-            this.checkBox_bit_6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox_bit_6.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox_bit_6.Name = "checkBox_bit_6";
             this.checkBox_bit_6.Size = new System.Drawing.Size(32, 17);
             this.checkBox_bit_6.TabIndex = 6;
@@ -415,7 +412,7 @@ namespace Digitizer_ver1
             // 
             this.checkBox_bit_5.AutoSize = true;
             this.checkBox_bit_5.Location = new System.Drawing.Point(12, 70);
-            this.checkBox_bit_5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox_bit_5.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox_bit_5.Name = "checkBox_bit_5";
             this.checkBox_bit_5.Size = new System.Drawing.Size(32, 17);
             this.checkBox_bit_5.TabIndex = 5;
@@ -426,7 +423,7 @@ namespace Digitizer_ver1
             // 
             this.checkBox_bit_4.AutoSize = true;
             this.checkBox_bit_4.Location = new System.Drawing.Point(12, 88);
-            this.checkBox_bit_4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox_bit_4.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox_bit_4.Name = "checkBox_bit_4";
             this.checkBox_bit_4.Size = new System.Drawing.Size(32, 17);
             this.checkBox_bit_4.TabIndex = 4;
@@ -437,7 +434,7 @@ namespace Digitizer_ver1
             // 
             this.checkBox_bit_3.AutoSize = true;
             this.checkBox_bit_3.Location = new System.Drawing.Point(12, 106);
-            this.checkBox_bit_3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox_bit_3.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox_bit_3.Name = "checkBox_bit_3";
             this.checkBox_bit_3.Size = new System.Drawing.Size(32, 17);
             this.checkBox_bit_3.TabIndex = 3;
@@ -448,7 +445,7 @@ namespace Digitizer_ver1
             // 
             this.checkBox_bit_2.AutoSize = true;
             this.checkBox_bit_2.Location = new System.Drawing.Point(12, 124);
-            this.checkBox_bit_2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox_bit_2.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox_bit_2.Name = "checkBox_bit_2";
             this.checkBox_bit_2.Size = new System.Drawing.Size(32, 17);
             this.checkBox_bit_2.TabIndex = 2;
@@ -458,7 +455,7 @@ namespace Digitizer_ver1
             // button_SaveToFile
             // 
             this.button_SaveToFile.Location = new System.Drawing.Point(130, 16);
-            this.button_SaveToFile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_SaveToFile.Margin = new System.Windows.Forms.Padding(2);
             this.button_SaveToFile.Name = "button_SaveToFile";
             this.button_SaveToFile.Size = new System.Drawing.Size(74, 37);
             this.button_SaveToFile.TabIndex = 1;
@@ -469,7 +466,7 @@ namespace Digitizer_ver1
             // button_LoadFromFile
             // 
             this.button_LoadFromFile.Location = new System.Drawing.Point(13, 16);
-            this.button_LoadFromFile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_LoadFromFile.Margin = new System.Windows.Forms.Padding(2);
             this.button_LoadFromFile.Name = "button_LoadFromFile";
             this.button_LoadFromFile.Size = new System.Drawing.Size(74, 37);
             this.button_LoadFromFile.TabIndex = 0;
@@ -482,7 +479,7 @@ namespace Digitizer_ver1
             this.dataGridView_ADCregisters.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_ADCregisters.Dock = System.Windows.Forms.DockStyle.Right;
             this.dataGridView_ADCregisters.Location = new System.Drawing.Point(320, 2);
-            this.dataGridView_ADCregisters.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView_ADCregisters.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView_ADCregisters.Name = "dataGridView_ADCregisters";
             this.dataGridView_ADCregisters.RowHeadersWidth = 82;
             this.dataGridView_ADCregisters.RowTemplate.Height = 33;
@@ -495,9 +492,9 @@ namespace Digitizer_ver1
             this.tabPage2.Controls.Add(this.panel3);
             this.tabPage2.Controls.Add(this.dataGridView_FPGAregisters);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage2.Size = new System.Drawing.Size(1176, 546);
             this.tabPage2.TabIndex = 4;
             this.tabPage2.Text = "Registers";
@@ -511,7 +508,7 @@ namespace Digitizer_ver1
             this.panel3.Controls.Add(this.button_LoadFromFile_FPGAregisters);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(2, 2);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(218, 542);
             this.panel3.TabIndex = 1;
@@ -519,7 +516,7 @@ namespace Digitizer_ver1
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(26, 295);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(52, 20);
             this.textBox2.TabIndex = 4;
@@ -535,9 +532,9 @@ namespace Digitizer_ver1
             this.groupBox2.Controls.Add(this.checkBox7);
             this.groupBox2.Controls.Add(this.checkBox8);
             this.groupBox2.Location = new System.Drawing.Point(26, 329);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(78, 188);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
@@ -547,7 +544,7 @@ namespace Digitizer_ver1
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(12, 161);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(32, 17);
             this.checkBox1.TabIndex = 9;
@@ -558,7 +555,7 @@ namespace Digitizer_ver1
             // 
             this.checkBox2.AutoSize = true;
             this.checkBox2.Location = new System.Drawing.Point(12, 142);
-            this.checkBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox2.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(32, 17);
             this.checkBox2.TabIndex = 8;
@@ -569,7 +566,7 @@ namespace Digitizer_ver1
             // 
             this.checkBox3.AutoSize = true;
             this.checkBox3.Location = new System.Drawing.Point(12, 33);
-            this.checkBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox3.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(32, 17);
             this.checkBox3.TabIndex = 7;
@@ -580,7 +577,7 @@ namespace Digitizer_ver1
             // 
             this.checkBox4.AutoSize = true;
             this.checkBox4.Location = new System.Drawing.Point(12, 51);
-            this.checkBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox4.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(32, 17);
             this.checkBox4.TabIndex = 6;
@@ -591,7 +588,7 @@ namespace Digitizer_ver1
             // 
             this.checkBox5.AutoSize = true;
             this.checkBox5.Location = new System.Drawing.Point(12, 70);
-            this.checkBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox5.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox5.Name = "checkBox5";
             this.checkBox5.Size = new System.Drawing.Size(32, 17);
             this.checkBox5.TabIndex = 5;
@@ -602,7 +599,7 @@ namespace Digitizer_ver1
             // 
             this.checkBox6.AutoSize = true;
             this.checkBox6.Location = new System.Drawing.Point(12, 88);
-            this.checkBox6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox6.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox6.Name = "checkBox6";
             this.checkBox6.Size = new System.Drawing.Size(32, 17);
             this.checkBox6.TabIndex = 4;
@@ -613,7 +610,7 @@ namespace Digitizer_ver1
             // 
             this.checkBox7.AutoSize = true;
             this.checkBox7.Location = new System.Drawing.Point(12, 106);
-            this.checkBox7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox7.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox7.Name = "checkBox7";
             this.checkBox7.Size = new System.Drawing.Size(32, 17);
             this.checkBox7.TabIndex = 3;
@@ -624,7 +621,7 @@ namespace Digitizer_ver1
             // 
             this.checkBox8.AutoSize = true;
             this.checkBox8.Location = new System.Drawing.Point(12, 124);
-            this.checkBox8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox8.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox8.Name = "checkBox8";
             this.checkBox8.Size = new System.Drawing.Size(32, 17);
             this.checkBox8.TabIndex = 2;
@@ -634,7 +631,7 @@ namespace Digitizer_ver1
             // button_SaveToFile_FPGAregisters
             // 
             this.button_SaveToFile_FPGAregisters.Location = new System.Drawing.Point(130, 16);
-            this.button_SaveToFile_FPGAregisters.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_SaveToFile_FPGAregisters.Margin = new System.Windows.Forms.Padding(2);
             this.button_SaveToFile_FPGAregisters.Name = "button_SaveToFile_FPGAregisters";
             this.button_SaveToFile_FPGAregisters.Size = new System.Drawing.Size(74, 37);
             this.button_SaveToFile_FPGAregisters.TabIndex = 1;
@@ -645,7 +642,7 @@ namespace Digitizer_ver1
             // button_LoadFromFile_FPGAregisters
             // 
             this.button_LoadFromFile_FPGAregisters.Location = new System.Drawing.Point(13, 16);
-            this.button_LoadFromFile_FPGAregisters.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_LoadFromFile_FPGAregisters.Margin = new System.Windows.Forms.Padding(2);
             this.button_LoadFromFile_FPGAregisters.Name = "button_LoadFromFile_FPGAregisters";
             this.button_LoadFromFile_FPGAregisters.Size = new System.Drawing.Size(74, 37);
             this.button_LoadFromFile_FPGAregisters.TabIndex = 0;
@@ -658,7 +655,7 @@ namespace Digitizer_ver1
             this.dataGridView_FPGAregisters.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_FPGAregisters.Dock = System.Windows.Forms.DockStyle.Right;
             this.dataGridView_FPGAregisters.Location = new System.Drawing.Point(320, 2);
-            this.dataGridView_FPGAregisters.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView_FPGAregisters.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView_FPGAregisters.Name = "dataGridView_FPGAregisters";
             this.dataGridView_FPGAregisters.RowHeadersWidth = 82;
             this.dataGridView_FPGAregisters.RowTemplate.Height = 33;
@@ -688,7 +685,7 @@ namespace Digitizer_ver1
             this.tabPage1.Controls.Add(this.checkBox_TRG_Enable);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1176, 546);
             this.tabPage1.TabIndex = 5;
             this.tabPage1.Text = "Trigger";
@@ -903,71 +900,6 @@ namespace Digitizer_ver1
             // timer_AutoTest
             // 
             this.timer_AutoTest.Interval = 4000;
-            this.timer_AutoTest.Tick += new System.EventHandler(this.timer_AutoTest_Tick);
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.label_E);
-            this.panel4.Controls.Add(this.button_datatest);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(2, 2);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(642, 128);
-            this.panel4.TabIndex = 5;
-            // 
-            // label_E
-            // 
-            this.label_E.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_E.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_E.Location = new System.Drawing.Point(22, 34);
-            this.label_E.Name = "label_E";
-            this.label_E.Size = new System.Drawing.Size(243, 82);
-            this.label_E.TabIndex = 13;
-            this.label_E.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // button_datatest
-            // 
-            this.button_datatest.Location = new System.Drawing.Point(22, 10);
-            this.button_datatest.Name = "button_datatest";
-            this.button_datatest.Size = new System.Drawing.Size(75, 21);
-            this.button_datatest.TabIndex = 12;
-            this.button_datatest.Text = "ADD";
-            this.button_datatest.UseVisualStyleBackColor = true;
-            this.button_datatest.Click += new System.EventHandler(this.button_datatest_Click);
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.chart_data);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(2, 130);
-            this.panel5.Name = "panel5";
-            this.panel5.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
-            this.panel5.Size = new System.Drawing.Size(642, 414);
-            this.panel5.TabIndex = 6;
-            // 
-            // chart_data
-            // 
-            this.chart_data.BorderlineColor = System.Drawing.Color.Black;
-            this.chart_data.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea1.Name = "ChartArea1";
-            this.chart_data.ChartAreas.Add(chartArea1);
-            this.chart_data.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chart_data.Legends.Add(legend1);
-            this.chart_data.Location = new System.Drawing.Point(0, 0);
-            this.chart_data.Margin = new System.Windows.Forms.Padding(2);
-            this.chart_data.Name = "chart_data";
-            series1.BorderWidth = 2;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.IsVisibleInLegend = false;
-            series1.Legend = "Legend1";
-            series1.Name = "Data";
-            this.chart_data.Series.Add(series1);
-            this.chart_data.Size = new System.Drawing.Size(637, 414);
-            this.chart_data.TabIndex = 4;
-            this.chart_data.Text = "chart_data";
-            this.chart_data.Click += new System.EventHandler(this.chart_data_Click);
             // 
             // Form1
             // 
@@ -976,14 +908,16 @@ namespace Digitizer_ver1
             this.ClientSize = new System.Drawing.Size(1184, 611);
             this.Controls.Add(this.tabControl_MAIN);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(1200, 650);
             this.Name = "Form1";
             this.Text = "Form1";
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_testPeriod)).EndInit();
             this.tabControl_MAIN.ResumeLayout(false);
             this.Measurement.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chart_data)).EndInit();
+            this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_events)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_data)).EndInit();
             this.ADC_Registers.ResumeLayout(false);
@@ -1003,9 +937,6 @@ namespace Digitizer_ver1
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_set_num_of_events)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Num_Of_Samples)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Threshold)).EndInit();
-            this.panel4.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart_data)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1051,11 +982,7 @@ namespace Digitizer_ver1
         private System.Windows.Forms.Button button_LoadFromFile_FPGAregisters;
         private System.Windows.Forms.DataGridView dataGridView_FPGAregisters;
         private System.Windows.Forms.Timer timer_info;
-        private System.Windows.Forms.Button button_AutoTest;
         private System.Windows.Forms.Timer timer_AutoTest;
-        private System.Windows.Forms.Button button_ValidateTest;
-        public System.Windows.Forms.Label label_TestResult;
-        private System.Windows.Forms.NumericUpDown numericUpDown_testPeriod;
         private System.Windows.Forms.DataGridView dataGridView_data;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Button button_Clear_Counters;

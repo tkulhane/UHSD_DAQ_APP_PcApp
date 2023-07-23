@@ -28,12 +28,21 @@ namespace Digitizer_ver1
             dataGridView_events.Columns[2].Width = 50;
 
             chart_data.DataSource = list_data;
+
+
+
+            Registers_ADC.DataGrid_RegistersSetting = dataGridView_ADCregisters;
+            Registers_ADC.SendFunction = Send_Command_int;
+
+            Registers_FpgaTest.DataGrid_RegistersSetting = dataGridView_FPGAregisters;
+            Registers_FpgaTest.SendFunction = Send_Command_int;
         }
 
         UART_Communication uart = new UART_Communication();
 
-        BindingList<Data_Registers> list_ADC_registers = new BindingList<Data_Registers>();
-        BindingList<Data_Registers> list_FPGA_registers = new BindingList<Data_Registers>();
+        Registers_Setting Registers_ADC = new Registers_Setting(Registers_Setting.eAddressValueSize.Address16_Value8, (int)eCommandCode.CMD_CONST_GET_AdcRegisters, (int)eCommandCode.CMD_CONST_SET_AdcRegisters);
+        Registers_Setting Registers_FpgaTest = new Registers_Setting(Registers_Setting.eAddressValueSize.Address16_Value8, (int)eCommandCode.CMD_CONST_GET_MainRegisters, (int)eCommandCode.CMD_CONST_SET_MainRegisters);
+        
 
         BindingList<EventData> list_data = new BindingList<EventData>();
         BindingList<EventInfo> list_events = new BindingList<EventInfo>();
@@ -42,7 +51,6 @@ namespace Digitizer_ver1
 
         EventInfo EventNow = new EventInfo(-1, -1);
 
-        int E_Inc = 0;
 
         public enum eCommandCode : byte
         {
@@ -131,6 +139,13 @@ namespace Digitizer_ver1
             uart.SendCommand(id, (byte)((i_address>>8) & 0x00FF), (byte)(i_address & 0x00FF) , i_value);
         }
 
+        private void Send_Command_int(int CMD, int address, int value)
+        {
+            byte id = (byte)(0x80 | (byte)CMD);
+
+            uart.SendCommand(id, (byte)((address >> 8) & 0x00FF), (byte)(address & 0x00FF), (byte)value);
+        }
+
         private void timer_info_Tick(object sender, EventArgs e)
         {
             if (uart.IsOpen())
@@ -163,11 +178,13 @@ namespace Digitizer_ver1
             switch (ID) 
             {
                 case eCommandCode.CMD_CONST_GET_MainRegisters:
-                    Update_MainRegisters_Table(data[1], data[2], data[3]);
+                    //Update_MainRegisters_Table(data[1], data[2], data[3]);
+                    Registers_FpgaTest.UpdateRegisters(data[1], data[2], data[3]);
                     break;
 
                 case eCommandCode.CMD_CONST_GET_AdcRegisters:
-                    Update_ADCRegisters_Table(data[1], data[2], data[3]);
+                    //Update_ADCRegisters_Table(data[1], data[2], data[3]);
+                    Registers_ADC.UpdateRegisters(data[1], data[2], data[3]);
                     break;
 
                 case eCommandCode.CMD_CONST_GET_TriggerRegisters:
@@ -224,43 +241,9 @@ namespace Digitizer_ver1
 
 
         }
-
-        private void Update_MainRegisters_Table(byte data_0, byte data_1, byte data_2) 
-        {
-            int s_address = (data_0 << 8) + data_1;
-
-            string address = s_address.ToString("X");
+        
 
 
-            for(int i = 0; i < list_FPGA_registers.Count; i++) 
-            {
-                if (address.Equals(list_FPGA_registers[i].p_address)) 
-                {
-                    list_FPGA_registers[i].p_value = data_2.ToString("X");
-                    dataGridView_FPGAregisters.UpdateCellValue(2, i);
-                }
-            }            
-
-        }
-
-        private void Update_ADCRegisters_Table(byte data_0, byte data_1, byte data_2)
-        {
-            int s_address = (data_0 << 8) + data_1;
-
-            string address = s_address.ToString("X");
-
-
-            for (int i = 0; i < list_ADC_registers.Count; i++)
-            {
-                if (address.Equals(list_ADC_registers[i].p_address))
-                {
-                    list_ADC_registers[i].p_value = data_2.ToString("X");
-                    dataGridView_ADCregisters.UpdateCellValue(2, i);
-                }
-            }
-
-
-        }
 
         private void label_Test_Click(object sender, EventArgs e)
         {
@@ -317,10 +300,7 @@ namespace Digitizer_ver1
 
         private void button_Test_Click(object sender, EventArgs e)
         {
-
             Send_Command(eCommandCode.CMD_CONST_Loopback, 0xA1, 0xB2, 0xC3);
-
-            //Send_Command(eCommandCode.CMD_CONST_GET_System_Controler, 0x01, 0, 0);
         }
 
         private void button_LoadFromFile_Click(object sender, EventArgs e)
@@ -328,19 +308,14 @@ namespace Digitizer_ver1
             
             int selected = tabControl_MAIN.SelectedIndex;
 
-            var list_temp = list_ADC_registers;
-            var dataGridView_temp = dataGridView_ADCregisters;
-
             switch (selected)
             {
                 case 1:
-                    list_temp = list_ADC_registers;
-                    dataGridView_temp = dataGridView_ADCregisters;
+                    Registers_ADC.OpenRegistersFile();
                     break;
 
                 case 2:
-                    list_temp = list_FPGA_registers;
-                    dataGridView_temp = dataGridView_FPGAregisters;
+                    Registers_FpgaTest.OpenRegistersFile();        
                     break;
 
                 default:
@@ -348,133 +323,30 @@ namespace Digitizer_ver1
                     //break;
             }
 
-
-            String fname = String.Empty;
-
-            using (OpenFileDialog ofd = new OpenFileDialog())
-            {
-                ofd.Filter = "Soubory dat (*.csv)|*.csv|Vsechny|*.*";
-
-                if (DialogResult.OK == ofd.ShowDialog())
-                {
-                    
-                    fname = ofd.FileName;
-                }
-                else
-                {
-                    return;
-                }
-
-                if (String.IsNullOrEmpty(fname)) 
-                {
-                    return;
-                }
-
-                list_temp.Clear();
-
-                String[] lines = File.ReadAllLines(fname, Encoding.GetEncoding("Windows-1250"));
-
-                foreach(String s in lines) 
-                {
-                    Data_Registers data = new Data_Registers(s);
-                    list_temp.Add(data);
-                }
-
-
-
-                dataGridView_temp.DataSource = list_temp;
-
-                if (dataGridView_temp.Columns.Count >= 5)
-                {
-                    return;
-                }
-
-
-                DataGridViewButtonColumn btn_read = new DataGridViewButtonColumn();
-                DataGridViewButtonColumn btn_write = new DataGridViewButtonColumn();
-
-                btn_read.HeaderText = "Write";
-                btn_read.Text = "Write";
-                btn_read.Name = "button_ADCregisterWrite";
-                btn_read.UseColumnTextForButtonValue = true;
-
-                btn_write.HeaderText = "Read";
-                btn_write.Text = "Read";
-                btn_write.Name = "button_ADCregisterRead";
-                btn_write.UseColumnTextForButtonValue = true;
-
-                dataGridView_temp.Columns.Add(btn_write);
-                dataGridView_temp.Columns.Add(btn_read);
-
-                //dataGridView_temp.Columns[0].DefaultCellStyle.Format = "X";
-
-                //list_ADC_registers = list_temp;
-                //dataGridView_ADCregisters = dataGridView_temp;
-
-            }
+   
         }
+        
 
         private void button_SaveToFile_Click(object sender, EventArgs e)
         {
 
             int selected = tabControl_MAIN.SelectedIndex;
 
-            var list_temp = list_ADC_registers;
 
             switch (selected)
             {
                 case 1:
-                    list_temp = list_ADC_registers;
+                    Registers_ADC.SaveRegistersFile();
                     break;
 
                 case 2:
-                    list_temp = list_FPGA_registers;
+                    Registers_FpgaTest.SaveRegistersFile();
                     break;
 
                 default:
                     return;
                     //break;
             }
-
-
-
-            String fname = String.Empty;
-
-            using (SaveFileDialog ofd = new SaveFileDialog())
-            {
-                ofd.Filter = "Soubory dat (*.csv)|*.csv|Vsechny|*.*";
-
-                if (DialogResult.OK == ofd.ShowDialog())
-                {
-
-                    fname = ofd.FileName;
-                }
-                else
-                {
-                    return;
-                }
-
-                if (String.IsNullOrEmpty(fname))
-                {
-                    return;
-                }
-            }
-
-            if (String.IsNullOrEmpty(fname))
-            {
-                return;
-            }
-
-            FileStream fs = File.OpenWrite(fname);
-
-            foreach (Data_Registers data in list_temp) 
-            {
-                byte[] line = Encoding.ASCII.GetBytes(data.FormatToCSV());
-
-                fs.Write(line, 0, line.Length);
-            }
-
-            fs.Close();
 
         }
 
@@ -482,23 +354,15 @@ namespace Digitizer_ver1
         {
             
             int selected = tabControl_MAIN.SelectedIndex;
-            var list_temp = list_ADC_registers;
-            
-            eCommandCode ID_SET = 0;
-            eCommandCode ID_GET = 0;
 
             switch (selected)
             {
                 case 1:
-                    list_temp = list_ADC_registers;
-                    ID_SET = eCommandCode.CMD_CONST_SET_AdcRegisters;
-                    ID_GET = eCommandCode.CMD_CONST_GET_AdcRegisters;
+                    Registers_ADC.DataGridView_CellContentClick(sender, e);
                     break;
 
                 case 2:
-                    list_temp = list_FPGA_registers;
-                    ID_SET = eCommandCode.CMD_CONST_SET_MainRegisters;
-                    ID_GET = eCommandCode.CMD_CONST_GET_MainRegisters;
+                    Registers_FpgaTest.DataGridView_CellContentClick(sender, e);
                     break;
 
                 default:
@@ -506,204 +370,12 @@ namespace Digitizer_ver1
             }
 
 
-
-            if (e.ColumnIndex == 3) 
-            {
-
-                string address = list_temp[e.RowIndex].p_address;
-                string value = list_temp[e.RowIndex].p_value;
-
-                //MessageBox.Show("Read:  " + address);
-                Send_Command(ID_GET, address, "1");
-            }
-            else if (e.ColumnIndex == 4)
-            {
-
-                string address = list_temp[e.RowIndex].p_address;
-                string value = list_temp[e.RowIndex].p_value;
-
-                //MessageBox.Show("Write:  " + address + " " + value);
-                Send_Command(ID_SET, address, value);
-            }
         }
 
-        private void button_AutoTest_Click(object sender, EventArgs e)
-        {
-           
-
-            if (timer_AutoTest.Enabled) 
-            {
-                button_AutoTest.BackColor = Color.Red;
-                timer_AutoTest.Enabled = false;
-            }
-                
-            else 
-            {
-                button_AutoTest.BackColor = Color.Green;
-                Test_OneRun();
-                timer_AutoTest.Enabled = true;
-            }
-                
-        }
-
-        private void button_ValidateTest_Click(object sender, EventArgs e)
-        {
-            if(data_for_valid == null) 
-            {
-                return;
-            }
-            Test_Validate();
-        }
-
-        private void timer_AutoTest_Tick(object sender, EventArgs e)
-        {
-            Test_Validate();
-            Test_OneRun();
+       
 
 
-        }
-
-
-        byte[] data_for_valid;
-
-
-        private void Test_OneRun() 
-        {
-
-            string address;
-
-            BindingList<Data_Registers> temp_reg = new BindingList<Data_Registers>();
-            eCommandCode ID_SET = eCommandCode.CMD_CONST_SET_MainRegisters;
-            eCommandCode ID_GET = eCommandCode.CMD_CONST_GET_MainRegisters;
-
-            Random rnd = new Random();
-
-            byte[] temp_data = new byte[list_FPGA_registers.Count];
-            data_for_valid = temp_data;
-
-            for (int i = 0; i < list_FPGA_registers.Count; i++)
-            {
-                address = list_FPGA_registers[i].p_address;
-                byte data = (byte)rnd.Next(255);
-
-                temp_data[i] = data;
-                Send_Command(ID_SET, address, data.ToString("X"));
-
-            }
-
-            for (int i = 0; i < list_FPGA_registers.Count; i++)
-            {
-                address = list_FPGA_registers[i].p_address;
-
-                Send_Command(ID_GET, address, "00");
-
-            }
-
-
-
-        }
-
-
-        int tests_fail = 0;
-        int tests_ok = 0;
-
-        private void Test_Validate() 
-        {
-            string value;
-            bool fault = false;
-
-            for (int i = 0; i < list_FPGA_registers.Count; i++)
-            {
-                value = list_FPGA_registers[i].p_value;
-
-                if (value.Equals(data_for_valid[i].ToString("X")))
-                {
-
-                }
-                else
-                {
-                    fault = true;
-                }
-
-            }
-
-            if (fault)
-            {
-                tests_fail++;
-            }
-            else
-            {
-                tests_ok++;
-            }
-
-            label_TestResult.Text = "OK=" + tests_ok.ToString() + "   FAULT=" + tests_fail.ToString();
-        }
-
-        private void numericUpDown_testPeriod_ValueChanged(object sender, EventArgs e)
-        {
-            timer_AutoTest.Interval = (int)numericUpDown_testPeriod.Value;
-        }
-
-
-
-        private void button_datatest_Click(object sender, EventArgs e)
-        {
-            //int sample1 = 3978;
-            //int sample2 = 2256;
-
-            //byte data1 = (byte)(sample1 & 0xFF);
-            //byte data2 = (byte)((sample1 >> 8) + ((sample2 & 0x0F) << 4)) ;
-            //byte data3 = (byte)(sample2 >> 4); 
-
-            //byte[] data = { 0x00, data3, data2, data1 };
-
-
-
-            String fname = String.Empty;
-
-            using (OpenFileDialog ofd = new OpenFileDialog())
-            {
-                ofd.Filter = "Soubory dat (*.txt)|*.txt|Vsechny|*.*";
-
-                if (DialogResult.OK == ofd.ShowDialog())
-                {
-
-                    fname = ofd.FileName;
-                }
-                else
-                {
-                    return;
-                }
-
-                if (String.IsNullOrEmpty(fname))
-                {
-                    return;
-                }
-
-
-                String[] lines = File.ReadAllLines(fname, Encoding.GetEncoding("Windows-1250"));
-
-                foreach (String s in lines)
-                {
-
-                    int val = Convert.ToInt32(s, 2);
-
-                    byte[] data = new byte[4];// = { 0x00, 0x00, 0x00,  };
-                    data[3] = (byte)((val >> 0) & 0xFF);
-                    data[2] = (byte)((val >> 8) & 0xFF);
-                    data[1] = (byte)((val >> 16) & 0xFF);
-                    data[0] = (byte)((val >> 24) & 0xFF);
-
-
-                    StoreData(data);
-
-
-                }
-
-            }
-
-
-        }
+        
 
         private void button_Reset_Click(object sender, EventArgs e)
         {
@@ -940,9 +612,6 @@ namespace Digitizer_ver1
             chart_data.DataBind();
         }
 
-        private void label_E_Click(object sender, EventArgs e)
-        {
-            label_E.Text = String.Empty;
-        }
+
     }
 }
