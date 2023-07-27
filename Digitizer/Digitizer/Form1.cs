@@ -39,6 +39,31 @@ namespace Digitizer_ver1
             communication.ExecuteCommand = ExecuteCommand;
             communication.ExecuteData = ExecuteData;
 
+            //Acquisition_Control
+            
+            AcqControl.SendCommand = communication.SendCommand;
+
+            AcqControl.radioButton_AcqInfinite = radioButton_AcqInfinite;
+            AcqControl.radioButton_AcqNumEvents = radioButton_AcqNumEvents;
+            AcqControl.radioButton_AcqTime = radioButton_AcqTime;
+
+            AcqControl.numericUpDown_NumOfEvents = numericUpDown_NumOfEvents;
+            AcqControl.numericUpDown_Time = numericUpDown_Time;
+            AcqControl.numericUpDown_NumOfSamples = numericUpDown_NumOfSamples;
+            AcqControl.numericUpDown_AcqThreshold = numericUpDown_AcqThreshold;
+            AcqControl.numericUpDown_AcqRepeats = numericUpDown_AcqRepeats;
+
+            AcqControl.label_CounterIncomingEvents = label_CounterIncomingEvents;
+            AcqControl.label_CounterProcessedEvents = label_CounterProcessedEvents;
+            AcqControl.label_CounterInRunEvents = label_CounterInRunEvents;
+
+            AcqControl.label_AcqState = label_AcqState;
+            AcqControl.checkBox_TestGeneratorEnable = checkBox_TestGeneratorEnable;
+            AcqControl.button_AcqStartStop = button_AcqStartStop;
+
+            AcqControl.StartStopButtonState(false);
+
+
             //data grids setting for registers class
             Registers_ADC.DataGrid_RegistersSetting = dataGridView_ADCReg;
             Registers_HMC.DataGrid_RegistersSetting = dataGridView_HMCReg;
@@ -56,6 +81,7 @@ namespace Digitizer_ver1
         }
 
         Communication communication = new Communication();
+        Acquisition_Control AcqControl = new Acquisition_Control();
 
         Registers_Setting Registers_ADC = new Registers_Setting(Registers_Setting.eAddressValueSize.Address16_Value8, Communication.eCommandCode.CMD_CONST_GET_AdcRegisters, Communication.eCommandCode.CMD_CONST_SET_AdcRegisters);
         Registers_Setting Registers_HMC = new Registers_Setting(Registers_Setting.eAddressValueSize.Address16_Value8, Communication.eCommandCode.CMD_CONST_GET_HmcRegisters, Communication.eCommandCode.CMD_CONST_SET_HmcRegisters);
@@ -76,16 +102,24 @@ namespace Digitizer_ver1
 
             CMD_TRG_ENABLE = 0x00,
             CMD_TRG_THRESHOLD = 0x01,
+
             CMD_TRG_SAMPLE_PER_EVENT_L = 0x02,
             CMD_TRG_SAMPLE_PER_EVENT_M = 0x03,
-            CMD_TRG_COUNTER_EVENT_INCOMING_L = 0x04,
-            CMD_TRG_COUNTER_EVENT_INCOMING_M = 0x05,
-            CMD_TRG_COUNTER_EVENT_PROCESSED_L = 0x06,
-            CMD_TRG_COUNTER_EVENT_PROCESSED_M = 0x07,
-            CMD_TRG_SET_NUMBERS_OF_EVENTS_L = 0x08,
-            CMD_TRG_SET_NUMBERS_OF_EVENTS_M = 0x09,
-            CMD_TRG_TEST_GENERATOR_ENABLE = 0x10,
-            CMD_TRG_COUNTERS_RESET = 0x20
+            
+            CMD_TRG_SET_NUMBERS_OF_EVENTS_L = 0x04,
+            CMD_TRG_SET_NUMBERS_OF_EVENTS_M = 0x05,
+            CMD_TRG_SET_TIME_FOR_RUN_L = 0x06,
+            CMD_TRG_SET_TIME_FOR_RUN_M = 0x07,
+
+            CMD_TRG_COUNTER_EVENT_INCOMING_L = 0x10,
+            CMD_TRG_COUNTER_EVENT_INCOMING_M = 0x11,
+            CMD_TRG_COUNTER_EVENT_PROCESSED_L = 0x12,
+            CMD_TRG_COUNTER_EVENT_PROCESSED_M = 0x13,
+            CMD_TRG_COUNTER_EVENT_INRUN_L = 0x14,
+            CMD_TRG_COUNTER_EVENT_INRUN_M = 0x15,
+
+            CMD_TRG_TEST_GENERATOR_ENABLE = 0x30,
+            CMD_TRG_COUNTERS_RESET = 0x40
 
         }
 
@@ -156,7 +190,7 @@ namespace Digitizer_ver1
                     break;
 
                 case Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters:
-                    Update_TriggerSetting_Table(data[0], data[1], data[2]);
+                    AcqControl.UpdateFromCommunication(data[0], data[1], data[2]);
                     break;
 
             }
@@ -342,196 +376,11 @@ namespace Digitizer_ver1
             communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_System_Controler, 0x55, 0xAB, 0xCD);
         }
 
-        //Trigger
-
-        private void Update_TriggerSetting_Table(byte data_0, byte data_1, byte data_2) 
-        {
-
-            UInt32 temp = 0;
-            UInt16 val = 0;
-
-            switch (data_0)
-            {
-                //enable
-                case (byte)eCommandCode_Trigger.CMD_TRG_ENABLE:
-                    if((data_2 & 0x01) == 0x01)
-                    {
-                        checkBox_TRG_Enable.Checked = true;
-                    }
-                    else 
-                    {
-                        checkBox_TRG_Enable.Checked = false;
-                    }
-                    break;
-
-                //threshold
-                case (byte)eCommandCode_Trigger.CMD_TRG_THRESHOLD:
-                    numericUpDown_Threshold.Value = (data_1 << 8) | data_2;
-                    break;
-
-                //Sample per event L
-                case (byte)eCommandCode_Trigger.CMD_TRG_SAMPLE_PER_EVENT_L:
-                    temp = (UInt32)numericUpDown_Num_Of_Samples.Value;
-                    val = (UInt16)((data_1 << 8) | data_2);
-                    temp = (temp & 0xFFFF0000) | ((UInt32)val << 0);
-                    numericUpDown_Num_Of_Samples.Value = temp;
-                    break;
-
-                //Sample per event M
-                case (byte)eCommandCode_Trigger.CMD_TRG_SAMPLE_PER_EVENT_M:
-                    temp = (UInt32)numericUpDown_Num_Of_Samples.Value;
-                    val = (UInt16)((data_1 << 8) | data_2);
-                    temp = (temp & 0x0000FFFF) | ((UInt32)val << 16);
-                    numericUpDown_Num_Of_Samples.Value = temp;
-                    break;
-
-                //Counter incoming L
-                case (byte)eCommandCode_Trigger.CMD_TRG_COUNTER_EVENT_INCOMING_L:
-                    temp = UInt32.Parse(label_Incoming_Events.Text);
-                    val = (UInt16)((data_1 << 8) | data_2);
-                    temp = (temp & 0xFFFF0000) | ((UInt32)val << 0);
-                    label_Incoming_Events.Text = temp.ToString();
-                    break;
-
-                //Counter incoming M
-                case (byte)eCommandCode_Trigger.CMD_TRG_COUNTER_EVENT_INCOMING_M:
-                    temp = UInt32.Parse(label_Incoming_Events.Text);
-                    val = (UInt16)((data_1 << 8) | data_2);
-                    temp = (temp & 0x0000FFFF) | ((UInt32)val << 16);
-                    label_Incoming_Events.Text = temp.ToString();
-                    break;
-
-                //Counter processed L
-                case (byte)eCommandCode_Trigger.CMD_TRG_COUNTER_EVENT_PROCESSED_L:
-                    temp = UInt32.Parse(label_Processed_Events.Text);
-                    val = (UInt16)((data_1 << 8) | data_2);
-                    temp = (temp & 0xFFFF0000) | ((UInt32)val << 0);
-                    label_Processed_Events.Text = temp.ToString();
-                    break;
-
-                //Counter processed M
-                case (byte)eCommandCode_Trigger.CMD_TRG_COUNTER_EVENT_PROCESSED_M:
-                    temp = UInt32.Parse(label_Processed_Events.Text);
-                    val = (UInt16)((data_1 << 8) | data_2);
-                    temp = (temp & 0x0000FFFF) | ((UInt32)val << 16);
-                    label_Processed_Events.Text = temp.ToString();
-                    break;
-
-                //set num of events L
-                case (byte)eCommandCode_Trigger.CMD_TRG_SET_NUMBERS_OF_EVENTS_L:
-                    temp = (UInt32)numericUpDown_set_num_of_events.Value;
-                    val = (UInt16)((data_1 << 8) | data_2);
-                    temp = (temp & 0xFFFF0000) | ((UInt32)val << 0);
-                    numericUpDown_set_num_of_events.Value = temp;
-                    break;
-
-                //set num of events M
-                case (byte)eCommandCode_Trigger.CMD_TRG_SET_NUMBERS_OF_EVENTS_M:
-                    temp = (UInt32)numericUpDown_set_num_of_events.Value;
-                    val = (UInt16)((data_1 << 8) | data_2);
-                    temp = (temp & 0x0000FFFF) | ((UInt32)val << 16);
-                    numericUpDown_set_num_of_events.Value = temp;
-                    break;
+       
 
 
 
-                //test generator enable
-                case (byte)eCommandCode_Trigger.CMD_TRG_TEST_GENERATOR_ENABLE:
-                    if ((data_2 & 0x01) == 0x01)
-                    {
-                        checkBox_TRG_TestGen_Enable.Checked = true;
-                    }
-                    else
-                    {
-                        checkBox_TRG_TestGen_Enable.Checked = false;
-                    }
-                    break;
-
-
-            }
-        }
-
-        private void checkBox_TRG_Enable_CheckedChanged(object sender, EventArgs e)
-        {
-            if(checkBox_TRG_Enable.Checked)
-            {
-                communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_ENABLE, 0x00, 0x01);
-            }
-            else
-            {
-                communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_ENABLE, 0x00, 0x00);
-            }
-
-        }
-
-        private void checkBox_TRG_TestGen_Enable_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBox_TRG_TestGen_Enable.Checked)
-            {
-                communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_TEST_GENERATOR_ENABLE, 0x00, 0x01);
-            }
-            else
-            {
-                communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_TEST_GENERATOR_ENABLE, 0x00, 0x00);
-            }
-        }
-
-        private void numericUpDown_Threshold_ValueChanged(object sender, EventArgs e)
-        {
-            UInt16 val = (UInt16)numericUpDown_Threshold.Value;
-            byte b0 = (byte)((val >> 0) & 0xFF); 
-            byte b1 = (byte)((val >> 8) & 0xFF);
-
-            communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_THRESHOLD, b1, b0);
-        }
-
-        private void numericUpDown_Num_Of_Samples_ValueChanged(object sender, EventArgs e)
-        {
-            UInt32 val = (UInt32)numericUpDown_Num_Of_Samples.Value;
-            byte b0 = (byte)((val >> 0) & 0xFF);
-            byte b1 = (byte)((val >> 8) & 0xFF);
-            byte b2 = (byte)((val >> 16) & 0xFF);
-            byte b3 = (byte)((val >> 24) & 0xFF);
-
-            communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SAMPLE_PER_EVENT_L, b1, b0);
-            communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SAMPLE_PER_EVENT_M, b3, b2);
-        }
-
-        private void numericUpDown_set_num_of_events_ValueChanged(object sender, EventArgs e)
-        {
-            UInt32 val = (UInt32)numericUpDown_set_num_of_events.Value;
-            byte b0 = (byte)((val >> 0) & 0xFF);
-            byte b1 = (byte)((val >> 8) & 0xFF);
-            byte b2 = (byte)((val >> 16) & 0xFF);
-            byte b3 = (byte)((val >> 24) & 0xFF);
-
-            communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SET_NUMBERS_OF_EVENTS_L, b1, b0);
-            communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SET_NUMBERS_OF_EVENTS_M, b3, b2);
-        }
-
-        private void button_TRG_Read_Conters_Click(object sender, EventArgs e)
-        {
-            communication.SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_COUNTER_EVENT_INCOMING_L, 0, 0);
-            communication.SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_COUNTER_EVENT_INCOMING_M, 0, 0);
-            communication.SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_COUNTER_EVENT_PROCESSED_L, 0, 0);
-            communication.SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_COUNTER_EVENT_PROCESSED_M, 0, 0);
-        }
-
-        private void button_Clear_Counters_Click(object sender, EventArgs e)
-        {
-            communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_COUNTERS_RESET, 0, 0);
-        }
-
-        private void button_Read_Setting_Click(object sender, EventArgs e)
-        {
-            communication.SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_ENABLE, 0, 0);
-            communication.SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_TEST_GENERATOR_ENABLE, 0, 0);
-            communication.SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_THRESHOLD, 0, 0);
-            communication.SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SAMPLE_PER_EVENT_L, 0, 0);
-            communication.SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SAMPLE_PER_EVENT_M, 0, 0);
-            communication.SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SET_NUMBERS_OF_EVENTS_L, 0, 0);
-            communication.SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SET_NUMBERS_OF_EVENTS_M, 0, 0);
-        }
+       
 
         private void chart_data_Click(object sender, EventArgs e)
         {
@@ -572,6 +421,10 @@ namespace Digitizer_ver1
             chart_data.DataBind();
         }
 
+
+        //-------------------------------------------------------------------------------------------------------------------
+        //Communication Form Control
+        //-------------------------------------------------------------------------------------------------------------------
         private void radioButton_Communication_CheckedChanged(object sender, EventArgs e)
         {
            
@@ -587,34 +440,48 @@ namespace Digitizer_ver1
             communication.OpenClose();
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
 
+        //-------------------------------------------------------------------------------------------------------------------
+        //Acquisition Form Control
+        //-------------------------------------------------------------------------------------------------------------------
+        private void button_AcqStartStop_Click(object sender, EventArgs e)
+        {
+            AcqControl.StartStop();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void numericUpDown_NumOfEvents_ValueChanged(object sender, EventArgs e)
         {
-
+            AcqControl.SetNumberOfEvents();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void numericUpDown_Time_ValueChanged(object sender, EventArgs e)
         {
-
+            AcqControl.SetRunTime();
         }
 
-        private void button_datatest_Click(object sender, EventArgs e)
+        private void numericUpDown_NumOfSamples_ValueChanged(object sender, EventArgs e)
         {
-
+            AcqControl.SetNumberOfSamples();
         }
 
-        private void checkBox9_CheckedChanged(object sender, EventArgs e)
+        private void numericUpDown_AcqThreshold_ValueChanged(object sender, EventArgs e)
         {
-
+            AcqControl.SetThreshold();
         }
 
-        private void label18_Click(object sender, EventArgs e)
+        private void radioButton_Acq_CheckedChanged(object sender, EventArgs e)
         {
+            AcqControl.AcqRunSetting();
+        }
 
+        private void button_ReadAcqState_Click(object sender, EventArgs e)
+        {
+            AcqControl.ReadSetting();
+        }
+
+        private void checkBox_TestGeneratorEnable_CheckedChanged(object sender, EventArgs e)
+        {
+            AcqControl.TestGeneratorEnable();
         }
     }
 }

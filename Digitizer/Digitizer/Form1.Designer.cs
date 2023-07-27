@@ -30,10 +30,11 @@ namespace Digitizer_ver1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label_AcqState = new System.Windows.Forms.Label();
             this.button_Reset = new System.Windows.Forms.Button();
             this.label_Test = new System.Windows.Forms.Label();
             this.button_Test = new System.Windows.Forms.Button();
@@ -63,33 +64,53 @@ namespace Digitizer_ver1
             this.checkBox8 = new System.Windows.Forms.CheckBox();
             this.button_SaveToFile_FPGAregisters = new System.Windows.Forms.Button();
             this.button_LoadFromFile_FPGAregisters = new System.Windows.Forms.Button();
-            this.Trigger = new System.Windows.Forms.TabPage();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.numericUpDown_set_num_of_events = new System.Windows.Forms.NumericUpDown();
-            this.label_dbg2 = new System.Windows.Forms.Label();
-            this.label_dbg1 = new System.Windows.Forms.Label();
-            this.button_Read_Setting = new System.Windows.Forms.Button();
-            this.button_Clear_Counters = new System.Windows.Forms.Button();
-            this.button_TRG_Read_Conters = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label_Processed_Events = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label_Incoming_Events = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.numericUpDown_Num_Of_Samples = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
-            this.numericUpDown_Threshold = new System.Windows.Forms.NumericUpDown();
-            this.checkBox_TRG_TestGen_Enable = new System.Windows.Forms.CheckBox();
-            this.checkBox_TRG_Enable = new System.Windows.Forms.CheckBox();
             this.MeasurementData = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
             this.chart_data = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.label_E = new System.Windows.Forms.Label();
             this.dataGridView_events = new System.Windows.Forms.DataGridView();
             this.dataGridView_data = new System.Windows.Forms.DataGridView();
             this.tabControl_MAIN = new System.Windows.Forms.TabControl();
+            this.Measurement_Setting = new System.Windows.Forms.TabPage();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.checkBox_TestGeneratorEnable = new System.Windows.Forms.CheckBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.button_OpenDataFile = new System.Windows.Forms.Button();
+            this.label15 = new System.Windows.Forms.Label();
+            this.textBox_DataFilePath = new System.Windows.Forms.TextBox();
+            this.checkBox_SaveToFile = new System.Windows.Forms.CheckBox();
+            this.checkBox_SaveToRam = new System.Windows.Forms.CheckBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.button_CountersClearAll = new System.Windows.Forms.Button();
+            this.button_CountersClearInRun = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label_CounterInRunEvents = new System.Windows.Forms.Label();
+            this.button_CountersClearProcessed = new System.Windows.Forms.Button();
+            this.button_CountersClearIncoming = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label_CounterProcessedEvents = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label_CounterIncomingEvents = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.numericUpDown_AcqThreshold = new System.Windows.Forms.NumericUpDown();
+            this.label16 = new System.Windows.Forms.Label();
+            this.button_AcqStartStop = new System.Windows.Forms.Button();
+            this.numericUpDown_NumOfSamples = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_AcqRepeats = new System.Windows.Forms.NumericUpDown();
+            this.checkBox_Repeats = new System.Windows.Forms.CheckBox();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.numericUpDown_NumOfEvents = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_Time = new System.Windows.Forms.NumericUpDown();
+            this.radioButton_AcqTime = new System.Windows.Forms.RadioButton();
+            this.radioButton_AcqNumEvents = new System.Windows.Forms.RadioButton();
+            this.radioButton_AcqInfinite = new System.Windows.Forms.RadioButton();
             this.Setting = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button_OpenCloseCommunication = new System.Windows.Forms.Button();
@@ -98,45 +119,7 @@ namespace Digitizer_ver1
             this.radioButton_PCIe = new System.Windows.Forms.RadioButton();
             this.radioButton_USB = new System.Windows.Forms.RadioButton();
             this.radioButton_UART = new System.Windows.Forms.RadioButton();
-            this.Measurement_Setting = new System.Windows.Forms.TabPage();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.checkBox9 = new System.Windows.Forms.CheckBox();
-            this.checkBox10 = new System.Windows.Forms.CheckBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
-            this.checkBox11 = new System.Windows.Forms.CheckBox();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.checkBox13 = new System.Windows.Forms.CheckBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
+            this.button_ReadAcqState = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.Registers.SuspendLayout();
             this.tabControl_RegistersSetting.SuspendLayout();
@@ -152,10 +135,6 @@ namespace Digitizer_ver1
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TestReg)).BeginInit();
             this.panel3.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.Trigger.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_set_num_of_events)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Num_Of_Samples)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Threshold)).BeginInit();
             this.MeasurementData.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart_data)).BeginInit();
@@ -163,22 +142,23 @@ namespace Digitizer_ver1
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_events)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_data)).BeginInit();
             this.tabControl_MAIN.SuspendLayout();
+            this.Measurement_Setting.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_AcqThreshold)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_NumOfSamples)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_AcqRepeats)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_NumOfEvents)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Time)).BeginInit();
             this.Setting.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.Measurement_Setting.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
-            this.groupBox6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label_AcqState);
             this.panel1.Controls.Add(this.button_Reset);
             this.panel1.Controls.Add(this.label_Test);
             this.panel1.Controls.Add(this.button_Test);
@@ -188,6 +168,15 @@ namespace Digitizer_ver1
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1184, 39);
             this.panel1.TabIndex = 0;
+            // 
+            // label_AcqState
+            // 
+            this.label_AcqState.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_AcqState.Location = new System.Drawing.Point(51, 7);
+            this.label_AcqState.Name = "label_AcqState";
+            this.label_AcqState.Size = new System.Drawing.Size(100, 24);
+            this.label_AcqState.TabIndex = 9;
+            this.label_AcqState.Text = "........";
             // 
             // button_Reset
             // 
@@ -503,235 +492,6 @@ namespace Digitizer_ver1
             this.button_LoadFromFile_FPGAregisters.UseVisualStyleBackColor = true;
             this.button_LoadFromFile_FPGAregisters.Click += new System.EventHandler(this.button_LoadFromFile_Click);
             // 
-            // Trigger
-            // 
-            this.Trigger.Controls.Add(this.label6);
-            this.Trigger.Controls.Add(this.label5);
-            this.Trigger.Controls.Add(this.numericUpDown_set_num_of_events);
-            this.Trigger.Controls.Add(this.label_dbg2);
-            this.Trigger.Controls.Add(this.label_dbg1);
-            this.Trigger.Controls.Add(this.button_Read_Setting);
-            this.Trigger.Controls.Add(this.button_Clear_Counters);
-            this.Trigger.Controls.Add(this.button_TRG_Read_Conters);
-            this.Trigger.Controls.Add(this.label3);
-            this.Trigger.Controls.Add(this.label_Processed_Events);
-            this.Trigger.Controls.Add(this.label4);
-            this.Trigger.Controls.Add(this.label_Incoming_Events);
-            this.Trigger.Controls.Add(this.label2);
-            this.Trigger.Controls.Add(this.numericUpDown_Num_Of_Samples);
-            this.Trigger.Controls.Add(this.label1);
-            this.Trigger.Controls.Add(this.numericUpDown_Threshold);
-            this.Trigger.Controls.Add(this.checkBox_TRG_TestGen_Enable);
-            this.Trigger.Controls.Add(this.checkBox_TRG_Enable);
-            this.Trigger.Location = new System.Drawing.Point(4, 22);
-            this.Trigger.Name = "Trigger";
-            this.Trigger.Padding = new System.Windows.Forms.Padding(3);
-            this.Trigger.Size = new System.Drawing.Size(1176, 546);
-            this.Trigger.TabIndex = 5;
-            this.Trigger.Text = "Trigger";
-            this.Trigger.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(478, 134);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(63, 13);
-            this.label6.TabIndex = 17;
-            this.label6.Text = "(0 in infinite)";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(241, 134);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(144, 13);
-            this.label5.TabIndex = 16;
-            this.label5.Text = "Set Finite Number Of Events:";
-            // 
-            // numericUpDown_set_num_of_events
-            // 
-            this.numericUpDown_set_num_of_events.Location = new System.Drawing.Point(389, 132);
-            this.numericUpDown_set_num_of_events.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.numericUpDown_set_num_of_events.Name = "numericUpDown_set_num_of_events";
-            this.numericUpDown_set_num_of_events.Size = new System.Drawing.Size(83, 20);
-            this.numericUpDown_set_num_of_events.TabIndex = 15;
-            this.numericUpDown_set_num_of_events.ValueChanged += new System.EventHandler(this.numericUpDown_set_num_of_events_ValueChanged);
-            // 
-            // label_dbg2
-            // 
-            this.label_dbg2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_dbg2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_dbg2.Location = new System.Drawing.Point(699, 132);
-            this.label_dbg2.Name = "label_dbg2";
-            this.label_dbg2.Size = new System.Drawing.Size(64, 23);
-            this.label_dbg2.TabIndex = 14;
-            this.label_dbg2.Text = "0";
-            this.label_dbg2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label_dbg1
-            // 
-            this.label_dbg1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_dbg1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_dbg1.Location = new System.Drawing.Point(699, 99);
-            this.label_dbg1.Name = "label_dbg1";
-            this.label_dbg1.Size = new System.Drawing.Size(64, 23);
-            this.label_dbg1.TabIndex = 13;
-            this.label_dbg1.Text = "0";
-            this.label_dbg1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // button_Read_Setting
-            // 
-            this.button_Read_Setting.Location = new System.Drawing.Point(39, 108);
-            this.button_Read_Setting.Name = "button_Read_Setting";
-            this.button_Read_Setting.Size = new System.Drawing.Size(117, 23);
-            this.button_Read_Setting.TabIndex = 12;
-            this.button_Read_Setting.Text = "Read Setting";
-            this.button_Read_Setting.UseVisualStyleBackColor = true;
-            this.button_Read_Setting.Click += new System.EventHandler(this.button_Read_Setting_Click);
-            // 
-            // button_Clear_Counters
-            // 
-            this.button_Clear_Counters.Location = new System.Drawing.Point(183, 307);
-            this.button_Clear_Counters.Name = "button_Clear_Counters";
-            this.button_Clear_Counters.Size = new System.Drawing.Size(117, 23);
-            this.button_Clear_Counters.TabIndex = 11;
-            this.button_Clear_Counters.Text = "Clear Counters";
-            this.button_Clear_Counters.UseVisualStyleBackColor = true;
-            this.button_Clear_Counters.Click += new System.EventHandler(this.button_Clear_Counters_Click);
-            // 
-            // button_TRG_Read_Conters
-            // 
-            this.button_TRG_Read_Conters.Location = new System.Drawing.Point(60, 307);
-            this.button_TRG_Read_Conters.Name = "button_TRG_Read_Conters";
-            this.button_TRG_Read_Conters.Size = new System.Drawing.Size(117, 23);
-            this.button_TRG_Read_Conters.TabIndex = 10;
-            this.button_TRG_Read_Conters.Text = "Read Counters";
-            this.button_TRG_Read_Conters.UseVisualStyleBackColor = true;
-            this.button_TRG_Read_Conters.Click += new System.EventHandler(this.button_TRG_Read_Conters_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(54, 256);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(107, 15);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Processed Events:";
-            // 
-            // label_Processed_Events
-            // 
-            this.label_Processed_Events.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_Processed_Events.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_Processed_Events.Location = new System.Drawing.Point(167, 253);
-            this.label_Processed_Events.Name = "label_Processed_Events";
-            this.label_Processed_Events.Size = new System.Drawing.Size(135, 23);
-            this.label_Processed_Events.TabIndex = 8;
-            this.label_Processed_Events.Text = "0";
-            this.label_Processed_Events.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label4.Location = new System.Drawing.Point(61, 214);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(100, 15);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Incoming Events:";
-            // 
-            // label_Incoming_Events
-            // 
-            this.label_Incoming_Events.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_Incoming_Events.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_Incoming_Events.Location = new System.Drawing.Point(167, 211);
-            this.label_Incoming_Events.Name = "label_Incoming_Events";
-            this.label_Incoming_Events.Size = new System.Drawing.Size(135, 23);
-            this.label_Incoming_Events.TabIndex = 6;
-            this.label_Incoming_Events.Text = "0";
-            this.label_Incoming_Events.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(281, 73);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(104, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Number Of Samples:";
-            // 
-            // numericUpDown_Num_Of_Samples
-            // 
-            this.numericUpDown_Num_Of_Samples.Location = new System.Drawing.Point(389, 71);
-            this.numericUpDown_Num_Of_Samples.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.numericUpDown_Num_Of_Samples.Minimum = new decimal(new int[] {
-            16,
-            0,
-            0,
-            0});
-            this.numericUpDown_Num_Of_Samples.Name = "numericUpDown_Num_Of_Samples";
-            this.numericUpDown_Num_Of_Samples.Size = new System.Drawing.Size(83, 20);
-            this.numericUpDown_Num_Of_Samples.TabIndex = 4;
-            this.numericUpDown_Num_Of_Samples.Value = new decimal(new int[] {
-            16,
-            0,
-            0,
-            0});
-            this.numericUpDown_Num_Of_Samples.ValueChanged += new System.EventHandler(this.numericUpDown_Num_Of_Samples_ValueChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(328, 49);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Threshold:";
-            // 
-            // numericUpDown_Threshold
-            // 
-            this.numericUpDown_Threshold.Location = new System.Drawing.Point(389, 46);
-            this.numericUpDown_Threshold.Maximum = new decimal(new int[] {
-            4095,
-            0,
-            0,
-            0});
-            this.numericUpDown_Threshold.Name = "numericUpDown_Threshold";
-            this.numericUpDown_Threshold.Size = new System.Drawing.Size(83, 20);
-            this.numericUpDown_Threshold.TabIndex = 2;
-            this.numericUpDown_Threshold.ValueChanged += new System.EventHandler(this.numericUpDown_Threshold_ValueChanged);
-            // 
-            // checkBox_TRG_TestGen_Enable
-            // 
-            this.checkBox_TRG_TestGen_Enable.AutoSize = true;
-            this.checkBox_TRG_TestGen_Enable.Location = new System.Drawing.Point(39, 72);
-            this.checkBox_TRG_TestGen_Enable.Name = "checkBox_TRG_TestGen_Enable";
-            this.checkBox_TRG_TestGen_Enable.Size = new System.Drawing.Size(133, 17);
-            this.checkBox_TRG_TestGen_Enable.TabIndex = 1;
-            this.checkBox_TRG_TestGen_Enable.Text = "Test Generator Enable";
-            this.checkBox_TRG_TestGen_Enable.UseVisualStyleBackColor = true;
-            this.checkBox_TRG_TestGen_Enable.CheckedChanged += new System.EventHandler(this.checkBox_TRG_TestGen_Enable_CheckedChanged);
-            // 
-            // checkBox_TRG_Enable
-            // 
-            this.checkBox_TRG_Enable.AutoSize = true;
-            this.checkBox_TRG_Enable.Location = new System.Drawing.Point(39, 49);
-            this.checkBox_TRG_Enable.Name = "checkBox_TRG_Enable";
-            this.checkBox_TRG_Enable.Size = new System.Drawing.Size(95, 17);
-            this.checkBox_TRG_Enable.TabIndex = 0;
-            this.checkBox_TRG_Enable.Text = "Trigger Enable";
-            this.checkBox_TRG_Enable.UseVisualStyleBackColor = true;
-            this.checkBox_TRG_Enable.CheckedChanged += new System.EventHandler(this.checkBox_TRG_Enable_CheckedChanged);
-            // 
             // MeasurementData
             // 
             this.MeasurementData.Controls.Add(this.panel5);
@@ -761,21 +521,21 @@ namespace Digitizer_ver1
             // 
             this.chart_data.BorderlineColor = System.Drawing.Color.Black;
             this.chart_data.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea6.Name = "ChartArea1";
-            this.chart_data.ChartAreas.Add(chartArea6);
+            chartArea3.Name = "ChartArea1";
+            this.chart_data.ChartAreas.Add(chartArea3);
             this.chart_data.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend6.Name = "Legend1";
-            this.chart_data.Legends.Add(legend6);
+            legend3.Name = "Legend1";
+            this.chart_data.Legends.Add(legend3);
             this.chart_data.Location = new System.Drawing.Point(0, 0);
             this.chart_data.Margin = new System.Windows.Forms.Padding(2);
             this.chart_data.Name = "chart_data";
-            series6.BorderWidth = 2;
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series6.IsVisibleInLegend = false;
-            series6.Legend = "Legend1";
-            series6.Name = "Data";
-            this.chart_data.Series.Add(series6);
+            series3.BorderWidth = 2;
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.IsVisibleInLegend = false;
+            series3.Legend = "Legend1";
+            series3.Name = "Data";
+            this.chart_data.Series.Add(series3);
             this.chart_data.Size = new System.Drawing.Size(637, 414);
             this.chart_data.TabIndex = 4;
             this.chart_data.Text = "chart_data";
@@ -791,6 +551,24 @@ namespace Digitizer_ver1
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(642, 128);
             this.panel4.TabIndex = 5;
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(468, 60);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(135, 30);
+            this.button8.TabIndex = 15;
+            this.button8.Text = "Clear";
+            this.button8.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(468, 21);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(135, 30);
+            this.button7.TabIndex = 14;
+            this.button7.Text = "Open Data File";
+            this.button7.UseVisualStyleBackColor = true;
             // 
             // label_E
             // 
@@ -830,7 +608,6 @@ namespace Digitizer_ver1
             // 
             this.tabControl_MAIN.Controls.Add(this.Measurement_Setting);
             this.tabControl_MAIN.Controls.Add(this.MeasurementData);
-            this.tabControl_MAIN.Controls.Add(this.Trigger);
             this.tabControl_MAIN.Controls.Add(this.Registers);
             this.tabControl_MAIN.Controls.Add(this.Setting);
             this.tabControl_MAIN.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -840,6 +617,428 @@ namespace Digitizer_ver1
             this.tabControl_MAIN.SelectedIndex = 0;
             this.tabControl_MAIN.Size = new System.Drawing.Size(1184, 572);
             this.tabControl_MAIN.TabIndex = 1;
+            // 
+            // Measurement_Setting
+            // 
+            this.Measurement_Setting.Controls.Add(this.button_ReadAcqState);
+            this.Measurement_Setting.Controls.Add(this.groupBox6);
+            this.Measurement_Setting.Controls.Add(this.groupBox5);
+            this.Measurement_Setting.Controls.Add(this.groupBox4);
+            this.Measurement_Setting.Controls.Add(this.groupBox3);
+            this.Measurement_Setting.Location = new System.Drawing.Point(4, 22);
+            this.Measurement_Setting.Name = "Measurement_Setting";
+            this.Measurement_Setting.Size = new System.Drawing.Size(1176, 546);
+            this.Measurement_Setting.TabIndex = 7;
+            this.Measurement_Setting.Text = "Measurement Settings";
+            this.Measurement_Setting.UseVisualStyleBackColor = true;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.checkBox_TestGeneratorEnable);
+            this.groupBox6.Location = new System.Drawing.Point(512, 251);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(368, 158);
+            this.groupBox6.TabIndex = 4;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Others";
+            // 
+            // checkBox_TestGeneratorEnable
+            // 
+            this.checkBox_TestGeneratorEnable.AutoSize = true;
+            this.checkBox_TestGeneratorEnable.Location = new System.Drawing.Point(35, 32);
+            this.checkBox_TestGeneratorEnable.Name = "checkBox_TestGeneratorEnable";
+            this.checkBox_TestGeneratorEnable.Size = new System.Drawing.Size(133, 17);
+            this.checkBox_TestGeneratorEnable.TabIndex = 0;
+            this.checkBox_TestGeneratorEnable.Text = "Test Generator Enable";
+            this.checkBox_TestGeneratorEnable.UseVisualStyleBackColor = true;
+            this.checkBox_TestGeneratorEnable.CheckedChanged += new System.EventHandler(this.checkBox_TestGeneratorEnable_CheckedChanged);
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.button_OpenDataFile);
+            this.groupBox5.Controls.Add(this.label15);
+            this.groupBox5.Controls.Add(this.textBox_DataFilePath);
+            this.groupBox5.Controls.Add(this.checkBox_SaveToFile);
+            this.groupBox5.Controls.Add(this.checkBox_SaveToRam);
+            this.groupBox5.Location = new System.Drawing.Point(47, 362);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(368, 158);
+            this.groupBox5.TabIndex = 3;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Store Data";
+            // 
+            // button_OpenDataFile
+            // 
+            this.button_OpenDataFile.Location = new System.Drawing.Point(268, 106);
+            this.button_OpenDataFile.Name = "button_OpenDataFile";
+            this.button_OpenDataFile.Size = new System.Drawing.Size(75, 30);
+            this.button_OpenDataFile.TabIndex = 4;
+            this.button_OpenDataFile.Text = "File";
+            this.button_OpenDataFile.UseVisualStyleBackColor = true;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(27, 96);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(50, 13);
+            this.label15.TabIndex = 3;
+            this.label15.Text = "File path:";
+            // 
+            // textBox_DataFilePath
+            // 
+            this.textBox_DataFilePath.Location = new System.Drawing.Point(23, 112);
+            this.textBox_DataFilePath.Name = "textBox_DataFilePath";
+            this.textBox_DataFilePath.Size = new System.Drawing.Size(229, 20);
+            this.textBox_DataFilePath.TabIndex = 2;
+            // 
+            // checkBox_SaveToFile
+            // 
+            this.checkBox_SaveToFile.AutoSize = true;
+            this.checkBox_SaveToFile.Location = new System.Drawing.Point(35, 58);
+            this.checkBox_SaveToFile.Name = "checkBox_SaveToFile";
+            this.checkBox_SaveToFile.Size = new System.Drawing.Size(82, 17);
+            this.checkBox_SaveToFile.TabIndex = 1;
+            this.checkBox_SaveToFile.Text = "Save to File";
+            this.checkBox_SaveToFile.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_SaveToRam
+            // 
+            this.checkBox_SaveToRam.AutoSize = true;
+            this.checkBox_SaveToRam.Location = new System.Drawing.Point(35, 32);
+            this.checkBox_SaveToRam.Name = "checkBox_SaveToRam";
+            this.checkBox_SaveToRam.Size = new System.Drawing.Size(90, 17);
+            this.checkBox_SaveToRam.TabIndex = 0;
+            this.checkBox_SaveToRam.Text = "Save to RAM";
+            this.checkBox_SaveToRam.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.button_CountersClearAll);
+            this.groupBox4.Controls.Add(this.button_CountersClearInRun);
+            this.groupBox4.Controls.Add(this.label13);
+            this.groupBox4.Controls.Add(this.label_CounterInRunEvents);
+            this.groupBox4.Controls.Add(this.button_CountersClearProcessed);
+            this.groupBox4.Controls.Add(this.button_CountersClearIncoming);
+            this.groupBox4.Controls.Add(this.label9);
+            this.groupBox4.Controls.Add(this.label_CounterProcessedEvents);
+            this.groupBox4.Controls.Add(this.label11);
+            this.groupBox4.Controls.Add(this.label_CounterIncomingEvents);
+            this.groupBox4.Location = new System.Drawing.Point(512, 18);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(368, 189);
+            this.groupBox4.TabIndex = 2;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Event Counters";
+            // 
+            // button_CountersClearAll
+            // 
+            this.button_CountersClearAll.Location = new System.Drawing.Point(18, 150);
+            this.button_CountersClearAll.Name = "button_CountersClearAll";
+            this.button_CountersClearAll.Size = new System.Drawing.Size(326, 23);
+            this.button_CountersClearAll.TabIndex = 19;
+            this.button_CountersClearAll.Text = "Clear All Counters";
+            this.button_CountersClearAll.UseVisualStyleBackColor = true;
+            // 
+            // button_CountersClearInRun
+            // 
+            this.button_CountersClearInRun.Location = new System.Drawing.Point(303, 107);
+            this.button_CountersClearInRun.Name = "button_CountersClearInRun";
+            this.button_CountersClearInRun.Size = new System.Drawing.Size(57, 23);
+            this.button_CountersClearInRun.TabIndex = 18;
+            this.button_CountersClearInRun.Text = "Clear";
+            this.button_CountersClearInRun.UseVisualStyleBackColor = true;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label13.Location = new System.Drawing.Point(6, 110);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(146, 15);
+            this.label13.TabIndex = 17;
+            this.label13.Text = "Processed Events in Run:";
+            // 
+            // label_CounterInRunEvents
+            // 
+            this.label_CounterInRunEvents.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_CounterInRunEvents.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_CounterInRunEvents.Location = new System.Drawing.Point(158, 107);
+            this.label_CounterInRunEvents.Name = "label_CounterInRunEvents";
+            this.label_CounterInRunEvents.Size = new System.Drawing.Size(135, 23);
+            this.label_CounterInRunEvents.TabIndex = 16;
+            this.label_CounterInRunEvents.Text = "0";
+            this.label_CounterInRunEvents.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button_CountersClearProcessed
+            // 
+            this.button_CountersClearProcessed.Location = new System.Drawing.Point(303, 66);
+            this.button_CountersClearProcessed.Name = "button_CountersClearProcessed";
+            this.button_CountersClearProcessed.Size = new System.Drawing.Size(57, 23);
+            this.button_CountersClearProcessed.TabIndex = 15;
+            this.button_CountersClearProcessed.Text = "Clear";
+            this.button_CountersClearProcessed.UseVisualStyleBackColor = true;
+            // 
+            // button_CountersClearIncoming
+            // 
+            this.button_CountersClearIncoming.Location = new System.Drawing.Point(303, 25);
+            this.button_CountersClearIncoming.Name = "button_CountersClearIncoming";
+            this.button_CountersClearIncoming.Size = new System.Drawing.Size(57, 23);
+            this.button_CountersClearIncoming.TabIndex = 14;
+            this.button_CountersClearIncoming.Text = "Clear";
+            this.button_CountersClearIncoming.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label9.Location = new System.Drawing.Point(29, 69);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(123, 15);
+            this.label9.TabIndex = 13;
+            this.label9.Text = "Processed Events All:";
+            // 
+            // label_CounterProcessedEvents
+            // 
+            this.label_CounterProcessedEvents.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_CounterProcessedEvents.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_CounterProcessedEvents.Location = new System.Drawing.Point(158, 66);
+            this.label_CounterProcessedEvents.Name = "label_CounterProcessedEvents";
+            this.label_CounterProcessedEvents.Size = new System.Drawing.Size(135, 23);
+            this.label_CounterProcessedEvents.TabIndex = 12;
+            this.label_CounterProcessedEvents.Text = "0";
+            this.label_CounterProcessedEvents.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label11.Location = new System.Drawing.Point(36, 28);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(116, 15);
+            this.label11.TabIndex = 11;
+            this.label11.Text = "All Incoming Events:";
+            // 
+            // label_CounterIncomingEvents
+            // 
+            this.label_CounterIncomingEvents.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_CounterIncomingEvents.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_CounterIncomingEvents.Location = new System.Drawing.Point(158, 25);
+            this.label_CounterIncomingEvents.Name = "label_CounterIncomingEvents";
+            this.label_CounterIncomingEvents.Size = new System.Drawing.Size(135, 23);
+            this.label_CounterIncomingEvents.TabIndex = 10;
+            this.label_CounterIncomingEvents.Text = "0";
+            this.label_CounterIncomingEvents.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label18);
+            this.groupBox3.Controls.Add(this.label17);
+            this.groupBox3.Controls.Add(this.numericUpDown_AcqThreshold);
+            this.groupBox3.Controls.Add(this.label16);
+            this.groupBox3.Controls.Add(this.button_AcqStartStop);
+            this.groupBox3.Controls.Add(this.numericUpDown_NumOfSamples);
+            this.groupBox3.Controls.Add(this.numericUpDown_AcqRepeats);
+            this.groupBox3.Controls.Add(this.checkBox_Repeats);
+            this.groupBox3.Controls.Add(this.radioButton4);
+            this.groupBox3.Controls.Add(this.label8);
+            this.groupBox3.Controls.Add(this.label7);
+            this.groupBox3.Controls.Add(this.numericUpDown_NumOfEvents);
+            this.groupBox3.Controls.Add(this.numericUpDown_Time);
+            this.groupBox3.Controls.Add(this.radioButton_AcqTime);
+            this.groupBox3.Controls.Add(this.radioButton_AcqNumEvents);
+            this.groupBox3.Controls.Add(this.radioButton_AcqInfinite);
+            this.groupBox3.Location = new System.Drawing.Point(47, 18);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(368, 317);
+            this.groupBox3.TabIndex = 1;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "ACQ";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label18.Location = new System.Drawing.Point(95, 279);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(65, 15);
+            this.label18.TabIndex = 17;
+            this.label18.Text = "Threshold:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label17.Location = new System.Drawing.Point(40, 248);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(120, 15);
+            this.label17.TabIndex = 16;
+            this.label17.Text = "Number of Samples:";
+            // 
+            // numericUpDown_AcqThreshold
+            // 
+            this.numericUpDown_AcqThreshold.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.numericUpDown_AcqThreshold.Location = new System.Drawing.Point(176, 277);
+            this.numericUpDown_AcqThreshold.Maximum = new decimal(new int[] {
+            1023,
+            0,
+            0,
+            0});
+            this.numericUpDown_AcqThreshold.Name = "numericUpDown_AcqThreshold";
+            this.numericUpDown_AcqThreshold.Size = new System.Drawing.Size(120, 22);
+            this.numericUpDown_AcqThreshold.TabIndex = 15;
+            this.numericUpDown_AcqThreshold.ValueChanged += new System.EventHandler(this.numericUpDown_AcqThreshold_ValueChanged);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label16.Location = new System.Drawing.Point(302, 248);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(54, 15);
+            this.label16.TabIndex = 14;
+            this.label16.Text = "samples";
+            // 
+            // button_AcqStartStop
+            // 
+            this.button_AcqStartStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button_AcqStartStop.Location = new System.Drawing.Point(17, 27);
+            this.button_AcqStartStop.Name = "button_AcqStartStop";
+            this.button_AcqStartStop.Size = new System.Drawing.Size(326, 35);
+            this.button_AcqStartStop.TabIndex = 5;
+            this.button_AcqStartStop.Text = "Start";
+            this.button_AcqStartStop.UseVisualStyleBackColor = true;
+            this.button_AcqStartStop.Click += new System.EventHandler(this.button_AcqStartStop_Click);
+            // 
+            // numericUpDown_NumOfSamples
+            // 
+            this.numericUpDown_NumOfSamples.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.numericUpDown_NumOfSamples.Location = new System.Drawing.Point(176, 244);
+            this.numericUpDown_NumOfSamples.Maximum = new decimal(new int[] {
+            1410065408,
+            2,
+            0,
+            0});
+            this.numericUpDown_NumOfSamples.Name = "numericUpDown_NumOfSamples";
+            this.numericUpDown_NumOfSamples.Size = new System.Drawing.Size(120, 22);
+            this.numericUpDown_NumOfSamples.TabIndex = 13;
+            this.numericUpDown_NumOfSamples.ValueChanged += new System.EventHandler(this.numericUpDown_NumOfSamples_ValueChanged);
+            // 
+            // numericUpDown_AcqRepeats
+            // 
+            this.numericUpDown_AcqRepeats.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.numericUpDown_AcqRepeats.Location = new System.Drawing.Point(176, 184);
+            this.numericUpDown_AcqRepeats.Name = "numericUpDown_AcqRepeats";
+            this.numericUpDown_AcqRepeats.Size = new System.Drawing.Size(71, 22);
+            this.numericUpDown_AcqRepeats.TabIndex = 12;
+            // 
+            // checkBox_Repeats
+            // 
+            this.checkBox_Repeats.AutoSize = true;
+            this.checkBox_Repeats.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.checkBox_Repeats.Location = new System.Drawing.Point(98, 186);
+            this.checkBox_Repeats.Name = "checkBox_Repeats";
+            this.checkBox_Repeats.Size = new System.Drawing.Size(72, 19);
+            this.checkBox_Repeats.TabIndex = 11;
+            this.checkBox_Repeats.Text = "Repeats";
+            this.checkBox_Repeats.UseVisualStyleBackColor = true;
+            // 
+            // radioButton4
+            // 
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.radioButton4.Location = new System.Drawing.Point(176, 86);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(124, 20);
+            this.radioButton4.TabIndex = 10;
+            this.radioButton4.TabStop = true;
+            this.radioButton4.Text = "Events per Time";
+            this.radioButton4.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label8.Location = new System.Drawing.Point(302, 126);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(42, 15);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "events";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label7.Location = new System.Drawing.Point(302, 151);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(26, 15);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "sec";
+            // 
+            // numericUpDown_NumOfEvents
+            // 
+            this.numericUpDown_NumOfEvents.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.numericUpDown_NumOfEvents.Location = new System.Drawing.Point(176, 119);
+            this.numericUpDown_NumOfEvents.Maximum = new decimal(new int[] {
+            1215752192,
+            23,
+            0,
+            0});
+            this.numericUpDown_NumOfEvents.Name = "numericUpDown_NumOfEvents";
+            this.numericUpDown_NumOfEvents.Size = new System.Drawing.Size(120, 22);
+            this.numericUpDown_NumOfEvents.TabIndex = 7;
+            this.numericUpDown_NumOfEvents.ValueChanged += new System.EventHandler(this.numericUpDown_NumOfEvents_ValueChanged);
+            // 
+            // numericUpDown_Time
+            // 
+            this.numericUpDown_Time.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.numericUpDown_Time.Location = new System.Drawing.Point(176, 147);
+            this.numericUpDown_Time.Maximum = new decimal(new int[] {
+            1215752192,
+            23,
+            0,
+            0});
+            this.numericUpDown_Time.Name = "numericUpDown_Time";
+            this.numericUpDown_Time.Size = new System.Drawing.Size(120, 22);
+            this.numericUpDown_Time.TabIndex = 6;
+            this.numericUpDown_Time.ValueChanged += new System.EventHandler(this.numericUpDown_Time_ValueChanged);
+            // 
+            // radioButton_AcqTime
+            // 
+            this.radioButton_AcqTime.AutoSize = true;
+            this.radioButton_AcqTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.radioButton_AcqTime.Location = new System.Drawing.Point(18, 147);
+            this.radioButton_AcqTime.Name = "radioButton_AcqTime";
+            this.radioButton_AcqTime.Size = new System.Drawing.Size(142, 20);
+            this.radioButton_AcqTime.TabIndex = 2;
+            this.radioButton_AcqTime.TabStop = true;
+            this.radioButton_AcqTime.Text = "Measurement Time";
+            this.radioButton_AcqTime.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_AcqNumEvents
+            // 
+            this.radioButton_AcqNumEvents.AutoSize = true;
+            this.radioButton_AcqNumEvents.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.radioButton_AcqNumEvents.Location = new System.Drawing.Point(18, 119);
+            this.radioButton_AcqNumEvents.Name = "radioButton_AcqNumEvents";
+            this.radioButton_AcqNumEvents.Size = new System.Drawing.Size(132, 20);
+            this.radioButton_AcqNumEvents.TabIndex = 1;
+            this.radioButton_AcqNumEvents.TabStop = true;
+            this.radioButton_AcqNumEvents.Text = "Number of Events";
+            this.radioButton_AcqNumEvents.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_AcqInfinite
+            // 
+            this.radioButton_AcqInfinite.AutoSize = true;
+            this.radioButton_AcqInfinite.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.radioButton_AcqInfinite.Location = new System.Drawing.Point(18, 86);
+            this.radioButton_AcqInfinite.Name = "radioButton_AcqInfinite";
+            this.radioButton_AcqInfinite.Size = new System.Drawing.Size(63, 20);
+            this.radioButton_AcqInfinite.TabIndex = 0;
+            this.radioButton_AcqInfinite.TabStop = true;
+            this.radioButton_AcqInfinite.Text = "Infinite";
+            this.radioButton_AcqInfinite.UseVisualStyleBackColor = true;
+            this.radioButton_AcqInfinite.CheckedChanged += new System.EventHandler(this.radioButton_Acq_CheckedChanged);
             // 
             // Setting
             // 
@@ -928,422 +1127,15 @@ namespace Digitizer_ver1
             this.radioButton_UART.UseVisualStyleBackColor = true;
             this.radioButton_UART.CheckedChanged += new System.EventHandler(this.radioButton_Communication_CheckedChanged);
             // 
-            // Measurement_Setting
-            // 
-            this.Measurement_Setting.Controls.Add(this.groupBox6);
-            this.Measurement_Setting.Controls.Add(this.groupBox5);
-            this.Measurement_Setting.Controls.Add(this.groupBox4);
-            this.Measurement_Setting.Controls.Add(this.groupBox3);
-            this.Measurement_Setting.Location = new System.Drawing.Point(4, 22);
-            this.Measurement_Setting.Name = "Measurement_Setting";
-            this.Measurement_Setting.Size = new System.Drawing.Size(1176, 546);
-            this.Measurement_Setting.TabIndex = 7;
-            this.Measurement_Setting.Text = "Measurement Settings";
-            this.Measurement_Setting.UseVisualStyleBackColor = true;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.label18);
-            this.groupBox3.Controls.Add(this.label17);
-            this.groupBox3.Controls.Add(this.numericUpDown5);
-            this.groupBox3.Controls.Add(this.label16);
-            this.groupBox3.Controls.Add(this.button1);
-            this.groupBox3.Controls.Add(this.numericUpDown4);
-            this.groupBox3.Controls.Add(this.numericUpDown3);
-            this.groupBox3.Controls.Add(this.checkBox11);
-            this.groupBox3.Controls.Add(this.radioButton4);
-            this.groupBox3.Controls.Add(this.label8);
-            this.groupBox3.Controls.Add(this.label7);
-            this.groupBox3.Controls.Add(this.numericUpDown2);
-            this.groupBox3.Controls.Add(this.numericUpDown1);
-            this.groupBox3.Controls.Add(this.radioButton1);
-            this.groupBox3.Controls.Add(this.radioButton2);
-            this.groupBox3.Controls.Add(this.radioButton3);
-            this.groupBox3.Location = new System.Drawing.Point(47, 18);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(368, 317);
-            this.groupBox3.TabIndex = 1;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "ACQ";
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button1.Location = new System.Drawing.Point(17, 27);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(326, 35);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Start";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.radioButton1.Location = new System.Drawing.Point(18, 147);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(142, 20);
-            this.radioButton1.TabIndex = 2;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Measurement Time";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.radioButton2.Location = new System.Drawing.Point(18, 119);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(132, 20);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Number of Events";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // radioButton3
-            // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.radioButton3.Location = new System.Drawing.Point(18, 86);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(63, 20);
-            this.radioButton3.TabIndex = 0;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Infinite";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.numericUpDown1.Location = new System.Drawing.Point(176, 147);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 22);
-            this.numericUpDown1.TabIndex = 6;
-            // 
-            // numericUpDown2
-            // 
-            this.numericUpDown2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.numericUpDown2.Location = new System.Drawing.Point(176, 119);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(120, 22);
-            this.numericUpDown2.TabIndex = 7;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label7.Location = new System.Drawing.Point(302, 151);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(26, 15);
-            this.label7.TabIndex = 8;
-            this.label7.Text = "sec";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label8.Location = new System.Drawing.Point(302, 126);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(42, 15);
-            this.label8.TabIndex = 9;
-            this.label8.Text = "events";
-            // 
-            // radioButton4
-            // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.radioButton4.Location = new System.Drawing.Point(176, 86);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(124, 20);
-            this.radioButton4.TabIndex = 10;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Events per Time";
-            this.radioButton4.UseVisualStyleBackColor = true;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.button5);
-            this.groupBox4.Controls.Add(this.button4);
-            this.groupBox4.Controls.Add(this.label13);
-            this.groupBox4.Controls.Add(this.label14);
-            this.groupBox4.Controls.Add(this.button3);
-            this.groupBox4.Controls.Add(this.button2);
-            this.groupBox4.Controls.Add(this.label9);
-            this.groupBox4.Controls.Add(this.label10);
-            this.groupBox4.Controls.Add(this.label11);
-            this.groupBox4.Controls.Add(this.label12);
-            this.groupBox4.Location = new System.Drawing.Point(512, 18);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(368, 189);
-            this.groupBox4.TabIndex = 2;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Event Counters";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label9.Location = new System.Drawing.Point(29, 69);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(123, 15);
-            this.label9.TabIndex = 13;
-            this.label9.Text = "Processed Events All:";
-            // 
-            // label10
-            // 
-            this.label10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label10.Location = new System.Drawing.Point(158, 66);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(135, 23);
-            this.label10.TabIndex = 12;
-            this.label10.Text = "0";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label11.Location = new System.Drawing.Point(36, 28);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(116, 15);
-            this.label11.TabIndex = 11;
-            this.label11.Text = "All Incoming Events:";
-            // 
-            // label12
-            // 
-            this.label12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label12.Location = new System.Drawing.Point(158, 25);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(135, 23);
-            this.label12.TabIndex = 10;
-            this.label12.Text = "0";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(303, 25);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(57, 23);
-            this.button2.TabIndex = 14;
-            this.button2.Text = "Clear";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(303, 66);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(57, 23);
-            this.button3.TabIndex = 15;
-            this.button3.Text = "Clear";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(303, 107);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(57, 23);
-            this.button4.TabIndex = 18;
-            this.button4.Text = "Clear";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label13.Location = new System.Drawing.Point(6, 110);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(146, 15);
-            this.label13.TabIndex = 17;
-            this.label13.Text = "Processed Events in Run:";
-            // 
-            // label14
-            // 
-            this.label14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label14.Location = new System.Drawing.Point(158, 107);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(135, 23);
-            this.label14.TabIndex = 16;
-            this.label14.Text = "0";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(18, 150);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(326, 23);
-            this.button5.TabIndex = 19;
-            this.button5.Text = "Clear All Counters";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.button6);
-            this.groupBox5.Controls.Add(this.label15);
-            this.groupBox5.Controls.Add(this.textBox1);
-            this.groupBox5.Controls.Add(this.checkBox10);
-            this.groupBox5.Controls.Add(this.checkBox9);
-            this.groupBox5.Location = new System.Drawing.Point(47, 362);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(368, 158);
-            this.groupBox5.TabIndex = 3;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Store Data";
-            // 
-            // checkBox9
-            // 
-            this.checkBox9.AutoSize = true;
-            this.checkBox9.Location = new System.Drawing.Point(35, 32);
-            this.checkBox9.Name = "checkBox9";
-            this.checkBox9.Size = new System.Drawing.Size(90, 17);
-            this.checkBox9.TabIndex = 0;
-            this.checkBox9.Text = "Save to RAM";
-            this.checkBox9.UseVisualStyleBackColor = true;
-            this.checkBox9.CheckedChanged += new System.EventHandler(this.checkBox9_CheckedChanged);
-            // 
-            // checkBox10
-            // 
-            this.checkBox10.AutoSize = true;
-            this.checkBox10.Location = new System.Drawing.Point(35, 58);
-            this.checkBox10.Name = "checkBox10";
-            this.checkBox10.Size = new System.Drawing.Size(82, 17);
-            this.checkBox10.TabIndex = 1;
-            this.checkBox10.Text = "Save to File";
-            this.checkBox10.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(23, 112);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(229, 20);
-            this.textBox1.TabIndex = 2;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(27, 96);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(50, 13);
-            this.label15.TabIndex = 3;
-            this.label15.Text = "File path:";
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(268, 106);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 30);
-            this.button6.TabIndex = 4;
-            this.button6.Text = "File";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // checkBox11
-            // 
-            this.checkBox11.AutoSize = true;
-            this.checkBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.checkBox11.Location = new System.Drawing.Point(98, 186);
-            this.checkBox11.Name = "checkBox11";
-            this.checkBox11.Size = new System.Drawing.Size(72, 19);
-            this.checkBox11.TabIndex = 11;
-            this.checkBox11.Text = "Repeats";
-            this.checkBox11.UseVisualStyleBackColor = true;
-            // 
-            // numericUpDown3
-            // 
-            this.numericUpDown3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.numericUpDown3.Location = new System.Drawing.Point(176, 184);
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(71, 22);
-            this.numericUpDown3.TabIndex = 12;
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(468, 21);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(135, 30);
-            this.button7.TabIndex = 14;
-            this.button7.Text = "Open Data File";
-            this.button7.UseVisualStyleBackColor = true;
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(468, 60);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(135, 30);
-            this.button8.TabIndex = 15;
-            this.button8.Text = "Clear";
-            this.button8.UseVisualStyleBackColor = true;
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.checkBox13);
-            this.groupBox6.Location = new System.Drawing.Point(512, 251);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(368, 158);
-            this.groupBox6.TabIndex = 4;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Others";
-            // 
-            // checkBox13
-            // 
-            this.checkBox13.AutoSize = true;
-            this.checkBox13.Location = new System.Drawing.Point(35, 32);
-            this.checkBox13.Name = "checkBox13";
-            this.checkBox13.Size = new System.Drawing.Size(133, 17);
-            this.checkBox13.TabIndex = 0;
-            this.checkBox13.Text = "Test Generator Enable";
-            this.checkBox13.UseVisualStyleBackColor = true;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label16.Location = new System.Drawing.Point(302, 248);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(54, 15);
-            this.label16.TabIndex = 14;
-            this.label16.Text = "samples";
-            // 
-            // numericUpDown4
-            // 
-            this.numericUpDown4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.numericUpDown4.Location = new System.Drawing.Point(176, 244);
-            this.numericUpDown4.Name = "numericUpDown4";
-            this.numericUpDown4.Size = new System.Drawing.Size(120, 22);
-            this.numericUpDown4.TabIndex = 13;
-            // 
-            // numericUpDown5
-            // 
-            this.numericUpDown5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.numericUpDown5.Location = new System.Drawing.Point(176, 277);
-            this.numericUpDown5.Name = "numericUpDown5";
-            this.numericUpDown5.Size = new System.Drawing.Size(120, 22);
-            this.numericUpDown5.TabIndex = 15;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label17.Location = new System.Drawing.Point(40, 248);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(120, 15);
-            this.label17.TabIndex = 16;
-            this.label17.Text = "Number of Samples:";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label18.Location = new System.Drawing.Point(95, 279);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(65, 15);
-            this.label18.TabIndex = 17;
-            this.label18.Text = "Threshold:";
-            this.label18.Click += new System.EventHandler(this.label18_Click);
+            // button_ReadAcqState
+            // 
+            this.button_ReadAcqState.Location = new System.Drawing.Point(497, 441);
+            this.button_ReadAcqState.Name = "button_ReadAcqState";
+            this.button_ReadAcqState.Size = new System.Drawing.Size(75, 30);
+            this.button_ReadAcqState.TabIndex = 5;
+            this.button_ReadAcqState.Text = "Read";
+            this.button_ReadAcqState.UseVisualStyleBackColor = true;
+            this.button_ReadAcqState.Click += new System.EventHandler(this.button_ReadAcqState_Click);
             // 
             // Form1
             // 
@@ -1373,11 +1165,6 @@ namespace Digitizer_ver1
             this.panel3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.Trigger.ResumeLayout(false);
-            this.Trigger.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_set_num_of_events)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Num_Of_Samples)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Threshold)).EndInit();
             this.MeasurementData.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart_data)).EndInit();
@@ -1385,23 +1172,23 @@ namespace Digitizer_ver1
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_events)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_data)).EndInit();
             this.tabControl_MAIN.ResumeLayout(false);
+            this.Measurement_Setting.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_AcqThreshold)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_NumOfSamples)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_AcqRepeats)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_NumOfEvents)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Time)).EndInit();
             this.Setting.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.Measurement_Setting.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1436,25 +1223,6 @@ namespace Digitizer_ver1
         private System.Windows.Forms.CheckBox checkBox8;
         private System.Windows.Forms.Button button_SaveToFile_FPGAregisters;
         private System.Windows.Forms.Button button_LoadFromFile_FPGAregisters;
-        private System.Windows.Forms.TabPage Trigger;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.NumericUpDown numericUpDown_set_num_of_events;
-        private System.Windows.Forms.Label label_dbg2;
-        private System.Windows.Forms.Label label_dbg1;
-        private System.Windows.Forms.Button button_Read_Setting;
-        private System.Windows.Forms.Button button_Clear_Counters;
-        private System.Windows.Forms.Button button_TRG_Read_Conters;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label_Processed_Events;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label_Incoming_Events;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown numericUpDown_Num_Of_Samples;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown numericUpDown_Threshold;
-        private System.Windows.Forms.CheckBox checkBox_TRG_TestGen_Enable;
-        private System.Windows.Forms.CheckBox checkBox_TRG_Enable;
         private System.Windows.Forms.TabPage MeasurementData;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_data;
@@ -1478,40 +1246,42 @@ namespace Digitizer_ver1
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.NumericUpDown numericUpDown_NumOfEvents;
+        private System.Windows.Forms.NumericUpDown numericUpDown_Time;
+        private System.Windows.Forms.Button button_AcqStartStop;
+        private System.Windows.Forms.RadioButton radioButton_AcqTime;
+        private System.Windows.Forms.RadioButton radioButton_AcqNumEvents;
+        private System.Windows.Forms.RadioButton radioButton_AcqInfinite;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button_CountersClearAll;
+        private System.Windows.Forms.Button button_CountersClearInRun;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label_CounterInRunEvents;
+        private System.Windows.Forms.Button button_CountersClearProcessed;
+        private System.Windows.Forms.Button button_CountersClearIncoming;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label_CounterProcessedEvents;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label_CounterIncomingEvents;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.CheckBox checkBox9;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.CheckBox checkBox_SaveToRam;
+        private System.Windows.Forms.Button button_OpenDataFile;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.CheckBox checkBox10;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
-        private System.Windows.Forms.CheckBox checkBox11;
+        private System.Windows.Forms.TextBox textBox_DataFilePath;
+        private System.Windows.Forms.CheckBox checkBox_SaveToFile;
+        private System.Windows.Forms.NumericUpDown numericUpDown_AcqRepeats;
+        private System.Windows.Forms.CheckBox checkBox_Repeats;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.CheckBox checkBox13;
+        private System.Windows.Forms.CheckBox checkBox_TestGeneratorEnable;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.NumericUpDown numericUpDown5;
+        private System.Windows.Forms.NumericUpDown numericUpDown_AcqThreshold;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.NumericUpDown numericUpDown4;
+        private System.Windows.Forms.NumericUpDown numericUpDown_NumOfSamples;
+        private System.Windows.Forms.Label label_AcqState;
+        private System.Windows.Forms.Button button_ReadAcqState;
     }
 }
 

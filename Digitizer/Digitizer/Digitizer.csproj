@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Acquisition_Control.cs" />
     <Compile Include="Communication.cs" />
     <Compile Include="Data_Registers.cs" />
     <Compile Include="EventData.cs" />
