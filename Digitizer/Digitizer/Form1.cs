@@ -29,20 +29,39 @@ namespace Digitizer_ver1
 
             chart_data.DataSource = list_data;
 
+            //setting form elements for communication class
+            communication.comboBox_Ports = comboBox_Communication;
+            communication.radioButton_UART = radioButton_UART;
+            communication.radioButton_USB = radioButton_USB;
+            communication.radioButton_PCIe = radioButton_PCIe;
+            communication.button_Scan = button_ScanCommunication;
+            communication.button_OpenClose = button_OpenCloseCommunication;
+            communication.ExecuteCommand = ExecuteCommand;
+            communication.ExecuteData = ExecuteData;
 
+            //data grids setting for registers class
+            Registers_ADC.DataGrid_RegistersSetting = dataGridView_ADCReg;
+            Registers_HMC.DataGrid_RegistersSetting = dataGridView_HMCReg;
+            Registers_LMX1.DataGrid_RegistersSetting = dataGridView_LMX1Reg;
+            Registers_LMX2.DataGrid_RegistersSetting = dataGridView_LMX2Reg;
+            Registers_FpgaTest.DataGrid_RegistersSetting = dataGridView_TestReg;
 
-            Registers_ADC.DataGrid_RegistersSetting = dataGridView_ADCregisters;
-            Registers_ADC.SendFunction = Send_Command_int;
+            //command send for registers class
+            Registers_ADC.SendFunction = communication.SendCommand;
+            Registers_HMC.SendFunction = communication.SendCommand;
+            Registers_LMX1.SendFunction = communication.SendCommand;
+            Registers_LMX2.SendFunction = communication.SendCommand;
+            Registers_FpgaTest.SendFunction = communication.SendCommand;
 
-            Registers_FpgaTest.DataGrid_RegistersSetting = dataGridView_FPGAregisters;
-            Registers_FpgaTest.SendFunction = Send_Command_int;
         }
 
-        UART_Communication uart = new UART_Communication();
+        Communication communication = new Communication();
 
-        Registers_Setting Registers_ADC = new Registers_Setting(Registers_Setting.eAddressValueSize.Address16_Value8, (int)eCommandCode.CMD_CONST_GET_AdcRegisters, (int)eCommandCode.CMD_CONST_SET_AdcRegisters);
-        Registers_Setting Registers_FpgaTest = new Registers_Setting(Registers_Setting.eAddressValueSize.Address16_Value8, (int)eCommandCode.CMD_CONST_GET_MainRegisters, (int)eCommandCode.CMD_CONST_SET_MainRegisters);
-        
+        Registers_Setting Registers_ADC = new Registers_Setting(Registers_Setting.eAddressValueSize.Address16_Value8, Communication.eCommandCode.CMD_CONST_GET_AdcRegisters, Communication.eCommandCode.CMD_CONST_SET_AdcRegisters);
+        Registers_Setting Registers_HMC = new Registers_Setting(Registers_Setting.eAddressValueSize.Address16_Value8, Communication.eCommandCode.CMD_CONST_GET_HmcRegisters, Communication.eCommandCode.CMD_CONST_SET_HmcRegisters);
+        Registers_Setting Registers_LMX1 = new Registers_Setting(Registers_Setting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Lmx1Registers, Communication.eCommandCode.CMD_CONST_SET_Lmx1Registers);
+        Registers_Setting Registers_LMX2 = new Registers_Setting(Registers_Setting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Lmx2Registers, Communication.eCommandCode.CMD_CONST_SET_Lmx2Registers);
+        Registers_Setting Registers_FpgaTest = new Registers_Setting(Registers_Setting.eAddressValueSize.Address8_Value8, Communication.eCommandCode.CMD_CONST_GET_TestRegisters, Communication.eCommandCode.CMD_CONST_SET_TestRegisters);
 
         BindingList<EventData> list_data = new BindingList<EventData>();
         BindingList<EventInfo> list_events = new BindingList<EventInfo>();
@@ -51,23 +70,6 @@ namespace Digitizer_ver1
 
         EventInfo EventNow = new EventInfo(-1, -1);
 
-
-        public enum eCommandCode : byte
-        {
-
-             CMD_CONST_Loopback = 0x01,
-             CMD_CONST_SET_System_Controler = 0x03,
-             CMD_CONST_GET_System_Controler = 0x04,
-             CMD_CONST_SET_MainRegisters = 0x11,
-             CMD_CONST_GET_MainRegisters = 0x12,
-             CMD_CONST_SET_InfoRegisters = 0x23,
-             CMD_CONST_GET_InfoRegisters = 0x24,
-             CMD_CONST_SET_AdcRegisters = 0x25,
-             CMD_CONST_GET_AdcRegisters = 0x26,
-             CMD_CONST_SET_TriggerRegisters = 0x31,
-             CMD_CONST_GET_TriggerRegisters = 0x32
-
-        }
 
         public enum eCommandCode_Trigger : byte
         {
@@ -106,96 +108,63 @@ namespace Digitizer_ver1
         }
 
 
-        private void Send_Command(eCommandCode CMD, byte[] data) 
-        {
-            byte id = (byte)(0x80 | (byte)CMD);
-
-            uart.SendCommand(id, data[0], data[1], data[2]);
-        }
-
-        private void Send_Command(eCommandCode CMD, byte data_0, byte data_1, byte data_2)
-        {
-            byte id = (byte)(0x80 | (byte)CMD);
-
-            uart.SendCommand(id, data_0, data_1, data_2);
-        }
-
-        private void Send_Command(eCommandCode CMD, string address, string value)
-        {
-            byte id = (byte)(0x80 | (byte)CMD);
-
-            int i_address = 0;
-            if( !int.TryParse(address,System.Globalization.NumberStyles.HexNumber ,null,out i_address)) 
-            {
-                return;
-            }
-
-            byte i_value = 0;
-            if (!byte.TryParse(value, System.Globalization.NumberStyles.HexNumber, null, out i_value))
-            {
-                return;
-            }
-
-            uart.SendCommand(id, (byte)((i_address>>8) & 0x00FF), (byte)(i_address & 0x00FF) , i_value);
-        }
-
-        private void Send_Command_int(int CMD, int address, int value)
-        {
-            byte id = (byte)(0x80 | (byte)CMD);
-
-            uart.SendCommand(id, (byte)((address >> 8) & 0x00FF), (byte)(address & 0x00FF), (byte)value);
-        }
-
+        
         private void timer_info_Tick(object sender, EventArgs e)
         {
-            if (uart.IsOpen())
-            {
-                button_OpenClose.BackColor = Color.Green;
-                comboBox_Ports.Enabled = false;
-            }
-            else
-            {
-                button_OpenClose.BackColor = SystemColors.Control;
-                comboBox_Ports.Enabled = true;
-            }
+            //if (uart.IsOpen())
+            //{
+             //   button_OpenClose.BackColor = Color.Green;
+              //  comboBox_Ports.Enabled = false;
+            //}
+            //else
+            //{
+             //   button_OpenClose.BackColor = SystemColors.Control;
+              //  comboBox_Ports.Enabled = true;
+            //}
         }
 
         private void ExecuteCommand() 
         {
-            byte[] data = uart.dataBuffer;
-            //byte[] data = uart.AllData;
+            Communication.eCommandCode ID = communication.CommandID;
+            byte[] data = communication.CommandData;
 
-            //communication log
-            //comm_log(data);
+            int int_ID = (int)ID;
 
-            StoreData(data);
-
-
-            eCommandCode ID = (eCommandCode)(data[0] & 0x7F);
-
-            label_Test.Text = data[0].ToString("X2") + " " + data[1].ToString("X2") + " " + data[2].ToString("X2") + " " + data[3].ToString("X2");
+            label_Test.Text = int_ID.ToString("X2") + " " + data[0].ToString("X2") + " " + data[1].ToString("X2") + " " + data[2].ToString("X2");
 
             switch (ID) 
             {
-                case eCommandCode.CMD_CONST_GET_MainRegisters:
-                    //Update_MainRegisters_Table(data[1], data[2], data[3]);
-                    Registers_FpgaTest.UpdateRegisters(data[1], data[2], data[3]);
+                
+                case Communication.eCommandCode.CMD_CONST_GET_AdcRegisters:
+                    Registers_ADC.UpdateRegisters(data[0], data[1], data[2]);
                     break;
 
-                case eCommandCode.CMD_CONST_GET_AdcRegisters:
-                    //Update_ADCRegisters_Table(data[1], data[2], data[3]);
-                    Registers_ADC.UpdateRegisters(data[1], data[2], data[3]);
+                case Communication.eCommandCode.CMD_CONST_GET_HmcRegisters:
+                    Registers_HMC.UpdateRegisters(data[0], data[1], data[2]);
                     break;
 
-                case eCommandCode.CMD_CONST_GET_TriggerRegisters:
-                    Update_TriggerSetting_Table(data[1], data[2], data[3]);
+                case Communication.eCommandCode.CMD_CONST_GET_Lmx1Registers:
+                    Registers_LMX1.UpdateRegisters(data[0], data[1], data[2]);
+                    break;
+
+                case Communication.eCommandCode.CMD_CONST_GET_Lmx2Registers:
+                    Registers_LMX2.UpdateRegisters(data[0], data[1], data[2]);
+                    break;
+
+                case Communication.eCommandCode.CMD_CONST_GET_TestRegisters:
+                    Registers_FpgaTest.UpdateRegisters(data[0], data[1], data[2]);
+                    break;
+
+                case Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters:
+                    Update_TriggerSetting_Table(data[0], data[1], data[2]);
                     break;
 
             }
         }
 
-        private void StoreData(byte[] data) 
+        private void ExecuteData() 
         {
+            byte[] data = communication.ReceivedData;
 
             if (data[0] == 0xFA) //Event head - actualing Number Of Event
             {
@@ -250,72 +219,38 @@ namespace Digitizer_ver1
             label_Test.Text = " ";
         }
 
-        private void button_Scan_Click(object sender, EventArgs e)
-        {
-            
-            comboBox_Ports.Items.Clear();
 
-            foreach (String s in uart.PortScan())
-            {
-                comboBox_Ports.Items.Add(s);
-            }
-
-            if (comboBox_Ports.Items.Count > 0)
-            {
-                comboBox_Ports.SelectedIndex = 0;
-            }
-
-        }
-
-        private void button_OpenClose_Click(object sender, EventArgs e)
-        {
-            if (uart.IsOpen())
-            {
-                uart.StopRead();
-                uart.ClosePort();
-            }
-            else
-            {
-                if (comboBox_Ports.SelectedIndex < 0)
-                {
-                    MessageBox.Show("Nevybran port", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    string port = comboBox_Ports.SelectedItem as String;
-
-                    try
-                    {
-                        uart.OpenPort(port);
-                        uart.BeginRead(ExecuteCommand);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-
-        }
 
         private void button_Test_Click(object sender, EventArgs e)
         {
-            Send_Command(eCommandCode.CMD_CONST_Loopback, 0xA1, 0xB2, 0xC3);
+            communication.SendCommand(Communication.eCommandCode.CMD_CONST_Loopback, 0xA1, 0xB2, 0xC3);
         }
 
         private void button_LoadFromFile_Click(object sender, EventArgs e)
         {
             
-            int selected = tabControl_MAIN.SelectedIndex;
+            int selected = tabControl_RegistersSetting.SelectedIndex;
 
             switch (selected)
             {
-                case 1:
+                case 0:
                     Registers_ADC.OpenRegistersFile();
                     break;
 
+                case 1:
+                    Registers_HMC.OpenRegistersFile();        
+                    break;
+
                 case 2:
-                    Registers_FpgaTest.OpenRegistersFile();        
+                    Registers_LMX1.OpenRegistersFile();
+                    break;
+
+                case 3:
+                    Registers_LMX2.OpenRegistersFile();
+                    break;
+
+                case 4:
+                    Registers_FpgaTest.OpenRegistersFile();
                     break;
 
                 default:
@@ -330,16 +265,27 @@ namespace Digitizer_ver1
         private void button_SaveToFile_Click(object sender, EventArgs e)
         {
 
-            int selected = tabControl_MAIN.SelectedIndex;
-
+            int selected = tabControl_RegistersSetting.SelectedIndex;
 
             switch (selected)
             {
-                case 1:
+                case 0:
                     Registers_ADC.SaveRegistersFile();
                     break;
 
+                case 1:
+                    Registers_HMC.SaveRegistersFile();
+                    break;
+
                 case 2:
+                    Registers_LMX1.SaveRegistersFile();
+                    break;
+
+                case 3:
+                    Registers_LMX2.SaveRegistersFile();
+                    break;
+
+                case 4:
                     Registers_FpgaTest.SaveRegistersFile();
                     break;
 
@@ -350,18 +296,32 @@ namespace Digitizer_ver1
 
         }
 
-        private void dataGridView_ADCregisters_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView_AllRegistersGrids_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             
-            int selected = tabControl_MAIN.SelectedIndex;
+            int selected = tabControl_RegistersSetting.SelectedIndex;
 
             switch (selected)
             {
+
+
+                case 0:
+                    Registers_ADC.DataGridView_CellContentClick(sender,e);
+                    break;
+
                 case 1:
-                    Registers_ADC.DataGridView_CellContentClick(sender, e);
+                    Registers_HMC.DataGridView_CellContentClick(sender, e);
                     break;
 
                 case 2:
+                    Registers_LMX1.DataGridView_CellContentClick(sender, e);
+                    break;
+
+                case 3:
+                    Registers_LMX2.DataGridView_CellContentClick(sender, e);
+                    break;
+
+                case 4:
                     Registers_FpgaTest.DataGridView_CellContentClick(sender, e);
                     break;
 
@@ -379,7 +339,7 @@ namespace Digitizer_ver1
 
         private void button_Reset_Click(object sender, EventArgs e)
         {
-            Send_Command(eCommandCode.CMD_CONST_SET_System_Controler, 0x55, 0xAB, 0xCD);
+            communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_System_Controler, 0x55, 0xAB, 0xCD);
         }
 
         //Trigger
@@ -495,11 +455,11 @@ namespace Digitizer_ver1
         {
             if(checkBox_TRG_Enable.Checked)
             {
-                Send_Command(eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_ENABLE, 0x00, 0x01);
+                communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_ENABLE, 0x00, 0x01);
             }
             else
             {
-                Send_Command(eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_ENABLE, 0x00, 0x00);
+                communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_ENABLE, 0x00, 0x00);
             }
 
         }
@@ -508,11 +468,11 @@ namespace Digitizer_ver1
         {
             if (checkBox_TRG_TestGen_Enable.Checked)
             {
-                Send_Command(eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_TEST_GENERATOR_ENABLE, 0x00, 0x01);
+                communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_TEST_GENERATOR_ENABLE, 0x00, 0x01);
             }
             else
             {
-                Send_Command(eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_TEST_GENERATOR_ENABLE, 0x00, 0x00);
+                communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_TEST_GENERATOR_ENABLE, 0x00, 0x00);
             }
         }
 
@@ -522,7 +482,7 @@ namespace Digitizer_ver1
             byte b0 = (byte)((val >> 0) & 0xFF); 
             byte b1 = (byte)((val >> 8) & 0xFF);
 
-            Send_Command(eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_THRESHOLD, b1, b0);
+            communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_THRESHOLD, b1, b0);
         }
 
         private void numericUpDown_Num_Of_Samples_ValueChanged(object sender, EventArgs e)
@@ -533,8 +493,8 @@ namespace Digitizer_ver1
             byte b2 = (byte)((val >> 16) & 0xFF);
             byte b3 = (byte)((val >> 24) & 0xFF);
 
-            Send_Command(eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SAMPLE_PER_EVENT_L, b1, b0);
-            Send_Command(eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SAMPLE_PER_EVENT_M, b3, b2);
+            communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SAMPLE_PER_EVENT_L, b1, b0);
+            communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SAMPLE_PER_EVENT_M, b3, b2);
         }
 
         private void numericUpDown_set_num_of_events_ValueChanged(object sender, EventArgs e)
@@ -545,32 +505,32 @@ namespace Digitizer_ver1
             byte b2 = (byte)((val >> 16) & 0xFF);
             byte b3 = (byte)((val >> 24) & 0xFF);
 
-            Send_Command(eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SET_NUMBERS_OF_EVENTS_L, b1, b0);
-            Send_Command(eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SET_NUMBERS_OF_EVENTS_M, b3, b2);
+            communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SET_NUMBERS_OF_EVENTS_L, b1, b0);
+            communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SET_NUMBERS_OF_EVENTS_M, b3, b2);
         }
 
         private void button_TRG_Read_Conters_Click(object sender, EventArgs e)
         {
-            Send_Command(eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_COUNTER_EVENT_INCOMING_L, 0, 0);
-            Send_Command(eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_COUNTER_EVENT_INCOMING_M, 0, 0);
-            Send_Command(eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_COUNTER_EVENT_PROCESSED_L, 0, 0);
-            Send_Command(eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_COUNTER_EVENT_PROCESSED_M, 0, 0);
+            communication.SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_COUNTER_EVENT_INCOMING_L, 0, 0);
+            communication.SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_COUNTER_EVENT_INCOMING_M, 0, 0);
+            communication.SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_COUNTER_EVENT_PROCESSED_L, 0, 0);
+            communication.SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_COUNTER_EVENT_PROCESSED_M, 0, 0);
         }
 
         private void button_Clear_Counters_Click(object sender, EventArgs e)
         {
-            Send_Command(eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_COUNTERS_RESET, 0, 0);
+            communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_COUNTERS_RESET, 0, 0);
         }
 
         private void button_Read_Setting_Click(object sender, EventArgs e)
         {
-            Send_Command(eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_ENABLE, 0, 0);
-            Send_Command(eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_TEST_GENERATOR_ENABLE, 0, 0);
-            Send_Command(eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_THRESHOLD, 0, 0);
-            Send_Command(eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SAMPLE_PER_EVENT_L, 0, 0);
-            Send_Command(eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SAMPLE_PER_EVENT_M, 0, 0);
-            Send_Command(eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SET_NUMBERS_OF_EVENTS_L, 0, 0);
-            Send_Command(eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SET_NUMBERS_OF_EVENTS_M, 0, 0);
+            communication.SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_ENABLE, 0, 0);
+            communication.SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_TEST_GENERATOR_ENABLE, 0, 0);
+            communication.SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_THRESHOLD, 0, 0);
+            communication.SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SAMPLE_PER_EVENT_L, 0, 0);
+            communication.SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SAMPLE_PER_EVENT_M, 0, 0);
+            communication.SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SET_NUMBERS_OF_EVENTS_L, 0, 0);
+            communication.SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SET_NUMBERS_OF_EVENTS_M, 0, 0);
         }
 
         private void chart_data_Click(object sender, EventArgs e)
@@ -612,6 +572,49 @@ namespace Digitizer_ver1
             chart_data.DataBind();
         }
 
+        private void radioButton_Communication_CheckedChanged(object sender, EventArgs e)
+        {
+           
+        }
 
+        private void button_ScanCommunication_Click(object sender, EventArgs e)
+        {
+            communication.Scan();
+        }
+
+        private void button_OpenCloseCommunication_Click(object sender, EventArgs e)
+        {
+            communication.OpenClose();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_datatest_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox9_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label18_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

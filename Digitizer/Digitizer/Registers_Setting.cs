@@ -24,14 +24,14 @@ namespace Digitizer_ver1
 
         public DataGridView DataGrid_RegistersSetting;
 
-        public delegate void efunction(int CMD_ID, int address, int value);
+        public delegate void efunction(Communication.eCommandCode CMD_ID, byte data_0, byte data_1, byte data_2);
         public efunction SendFunction;
 
-        eAddressValueSize Registers_AddressValueSize;
-        private int Registers_ID_GET;
-        private int Registers_ID_SET;
+        private eAddressValueSize Registers_AddressValueSize;
+        private Communication.eCommandCode Registers_ID_GET;
+        private Communication.eCommandCode Registers_ID_SET;
 
-        public Registers_Setting(DataGridView Registers_GridView, efunction SendForFunction, eAddressValueSize Sizes , int ID_GET, int ID_SET)
+        public Registers_Setting(DataGridView Registers_GridView, efunction SendForFunction, eAddressValueSize Sizes , Communication.eCommandCode ID_GET, Communication.eCommandCode ID_SET)
         {
             DataGrid_RegistersSetting = Registers_GridView;
             SendFunction = SendForFunction;
@@ -41,7 +41,7 @@ namespace Digitizer_ver1
         }
 
 
-        public Registers_Setting(eAddressValueSize Sizes, int ID_GET, int ID_SET)
+        public Registers_Setting(eAddressValueSize Sizes, Communication.eCommandCode ID_GET, Communication.eCommandCode ID_SET)
         {
             
             Registers_AddressValueSize = Sizes;
@@ -78,7 +78,12 @@ namespace Digitizer_ver1
 
                 foreach (String s in lines)
                 {
-                    Registers_SettingData data = new Registers_SettingData(s);
+                    Registers_SettingData data = new Registers_SettingData(s, Registers_AddressValueSize);
+                    if(data.dataOk == false)
+                    {
+                        MessageBox.Show("Wrong value when parsing config file.", "Wrong Value", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    }
                     List_RegistersSetting.Add(data);
                 }
 
@@ -109,9 +114,7 @@ namespace Digitizer_ver1
                 DataGrid_RegistersSetting.Columns.Add(btn_read);
 
                 DataGrid_RegistersSetting.Columns[0].DefaultCellStyle.Format = "X";
-                DataGrid_RegistersSetting.Columns[3].DefaultCellStyle.Format = "X";
-
-                
+                //DataGrid_RegistersSetting.Columns[3].DefaultCellStyle.Format = "X";
 
 
             }
@@ -162,31 +165,63 @@ namespace Digitizer_ver1
 
         public void DataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            Registers_SettingData data = List_RegistersSetting[e.RowIndex];
 
-            int address = List_RegistersSetting[e.RowIndex].p_address;
-            string strValue = List_RegistersSetting[e.RowIndex].p_value;
-            int value = 0;
+            int address = data.p_address;
+            int value = data.ParseValue(Registers_AddressValueSize);
+            Registers_SettingData.eReadWrite readWrite = data._ReadWrite;
 
-            if (!int.TryParse(strValue, NumberStyles.HexNumber, null, out value)) 
+            if (value < 0) return;
+
+            if (e.ColumnIndex == 4) //read
             {
-                MessageBox.Show("Wrong value when parsing cell text. \nText: " + strValue, "Wrong Value", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return; 
+                if(readWrite == Registers_SettingData.eReadWrite.read_write || readWrite == Registers_SettingData.eReadWrite.read) 
+                {
+                    Send(Registers_ID_GET, address, value);
+                }
+                else 
+                {
+                    MessageBox.Show("Unable to read.", "Unable to read", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
+            }
+            else if (e.ColumnIndex == 5) //write
+            {
+                if (readWrite == Registers_SettingData.eReadWrite.read_write || readWrite == Registers_SettingData.eReadWrite.write)
+                {
+                    Send(Registers_ID_SET, address, value);
+                }
+                else
+                {
+                    MessageBox.Show("Unable to write.", "Unable to write", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void Send(Communication.eCommandCode CMD, int address, int value) 
+        {
+            byte[] data = new byte[3];
+            
+            if(Registers_AddressValueSize == eAddressValueSize.Address8_Value8) 
+            {
+                data[0] = 0;
+                data[1] = (byte)address;
+                data[2] = (byte)value;
+            }
+            else if (Registers_AddressValueSize == eAddressValueSize.Address16_Value8) 
+            {
+                data[0] = (byte) ((address >> 8) & 0x00FF);
+                data[1] = (byte)  (address & 0x00FF);
+                data[2] = (byte)   value;
+            }
+            else if (Registers_AddressValueSize == eAddressValueSize.Address8_Value16)
+            {
+                data[0] = (byte) address;
+                data[1] = (byte) ((value >> 8) & 0x00FF);
+                data[2] = (byte) (value & 0x00FF);
             }
 
-            if (e.ColumnIndex == 4)
-            {
-
-                //MessageBox.Show("Read:  " + address);
-                SendFunction(Registers_ID_GET, address, value);
-                //Send_Command(ID_GET, address, "1");
-            }
-            else if (e.ColumnIndex == 5)
-            {
-
-                //MessageBox.Show("Write:  " + address + " " + value);
-                SendFunction(Registers_ID_SET, address, value);
-                //Send_Command(ID_SET, address, value);
-            }
+            SendFunction(CMD, data[0], data[1], data[2]);
         }
 
         public void UpdateRegisters(int address, int value) 
