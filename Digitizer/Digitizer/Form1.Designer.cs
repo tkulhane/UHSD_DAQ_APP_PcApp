@@ -30,9 +30,9 @@ namespace Digitizer_ver1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend10 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label_AcqState = new System.Windows.Forms.Label();
             this.button_Reset = new System.Windows.Forms.Button();
@@ -75,6 +75,7 @@ namespace Digitizer_ver1
             this.dataGridView_data = new System.Windows.Forms.DataGridView();
             this.tabControl_MAIN = new System.Windows.Forms.TabControl();
             this.Measurement_Setting = new System.Windows.Forms.TabPage();
+            this.button_ReadAcqState = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.checkBox_TestGeneratorEnable = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -119,7 +120,6 @@ namespace Digitizer_ver1
             this.radioButton_PCIe = new System.Windows.Forms.RadioButton();
             this.radioButton_USB = new System.Windows.Forms.RadioButton();
             this.radioButton_UART = new System.Windows.Forms.RadioButton();
-            this.button_ReadAcqState = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
@@ -525,21 +525,21 @@ namespace Digitizer_ver1
             // 
             this.chart_data.BorderlineColor = System.Drawing.Color.Black;
             this.chart_data.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea10.Name = "ChartArea1";
-            this.chart_data.ChartAreas.Add(chartArea10);
+            chartArea1.Name = "ChartArea1";
+            this.chart_data.ChartAreas.Add(chartArea1);
             this.chart_data.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend10.Name = "Legend1";
-            this.chart_data.Legends.Add(legend10);
+            legend1.Name = "Legend1";
+            this.chart_data.Legends.Add(legend1);
             this.chart_data.Location = new System.Drawing.Point(0, 0);
             this.chart_data.Margin = new System.Windows.Forms.Padding(2);
             this.chart_data.Name = "chart_data";
-            series10.BorderWidth = 2;
-            series10.ChartArea = "ChartArea1";
-            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series10.IsVisibleInLegend = false;
-            series10.Legend = "Legend1";
-            series10.Name = "Data";
-            this.chart_data.Series.Add(series10);
+            series1.BorderWidth = 2;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.IsVisibleInLegend = false;
+            series1.Legend = "Legend1";
+            series1.Name = "Data";
+            this.chart_data.Series.Add(series1);
             this.chart_data.Size = new System.Drawing.Size(637, 414);
             this.chart_data.TabIndex = 4;
             this.chart_data.Text = "chart_data";
@@ -636,6 +636,16 @@ namespace Digitizer_ver1
             this.Measurement_Setting.TabIndex = 7;
             this.Measurement_Setting.Text = "Measurement Settings";
             this.Measurement_Setting.UseVisualStyleBackColor = true;
+            // 
+            // button_ReadAcqState
+            // 
+            this.button_ReadAcqState.Location = new System.Drawing.Point(497, 441);
+            this.button_ReadAcqState.Name = "button_ReadAcqState";
+            this.button_ReadAcqState.Size = new System.Drawing.Size(75, 30);
+            this.button_ReadAcqState.TabIndex = 5;
+            this.button_ReadAcqState.Text = "Read";
+            this.button_ReadAcqState.UseVisualStyleBackColor = true;
+            this.button_ReadAcqState.Click += new System.EventHandler(this.button_ReadAcqState_Click);
             // 
             // groupBox6
             // 
@@ -1134,16 +1144,6 @@ namespace Digitizer_ver1
             this.radioButton_UART.UseVisualStyleBackColor = true;
             this.radioButton_UART.CheckedChanged += new System.EventHandler(this.radioButton_Communication_CheckedChanged);
             // 
-            // button_ReadAcqState
-            // 
-            this.button_ReadAcqState.Location = new System.Drawing.Point(497, 441);
-            this.button_ReadAcqState.Name = "button_ReadAcqState";
-            this.button_ReadAcqState.Size = new System.Drawing.Size(75, 30);
-            this.button_ReadAcqState.TabIndex = 5;
-            this.button_ReadAcqState.Text = "Read";
-            this.button_ReadAcqState.UseVisualStyleBackColor = true;
-            this.button_ReadAcqState.Click += new System.EventHandler(this.button_ReadAcqState_Click);
-            // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.panel2);
@@ -1172,6 +1172,7 @@ namespace Digitizer_ver1
             this.MinimumSize = new System.Drawing.Size(1200, 650);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.panel1.ResumeLayout(false);
             this.Registers.ResumeLayout(false);
             this.tabControl_RegistersSetting.ResumeLayout(false);

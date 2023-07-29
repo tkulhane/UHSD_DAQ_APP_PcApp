@@ -78,13 +78,24 @@ namespace Digitizer_ver1
             Registers_LMX2.SendFunction = communication.SendCommand;
             Registers_FpgaTest.SendFunction = communication.SendCommand;
 
+            //System Setting
+            sysSetting.communication = communication;
 
-            communication.OpenAutomatic(Communication.eCommunicationType.uart, "COM43");
+
+            sysSetting.SettingLoad();
 
         }
 
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            sysSetting.SettingSave();
+        }
+
+
+
         Communication communication = new Communication();
         Acquisition_Control AcqControl = new Acquisition_Control();
+        SystemSetting sysSetting = new SystemSetting();
 
         Registers_Setting Registers_ADC = new Registers_Setting(Registers_Setting.eAddressValueSize.Address16_Value8, Communication.eCommandCode.CMD_CONST_GET_AdcRegisters, Communication.eCommandCode.CMD_CONST_SET_AdcRegisters);
         Registers_Setting Registers_HMC = new Registers_Setting(Registers_Setting.eAddressValueSize.Address16_Value8, Communication.eCommandCode.CMD_CONST_GET_HmcRegisters, Communication.eCommandCode.CMD_CONST_SET_HmcRegisters);
@@ -100,31 +111,7 @@ namespace Digitizer_ver1
         EventInfo EventNow = new EventInfo(-1, -1);
 
 
-        public enum eCommandCode_Trigger : byte
-        {
-
-            CMD_TRG_ENABLE = 0x00,
-            CMD_TRG_THRESHOLD = 0x01,
-
-            CMD_TRG_SAMPLE_PER_EVENT_L = 0x02,
-            CMD_TRG_SAMPLE_PER_EVENT_M = 0x03,
-            
-            CMD_TRG_SET_NUMBERS_OF_EVENTS_L = 0x04,
-            CMD_TRG_SET_NUMBERS_OF_EVENTS_M = 0x05,
-            CMD_TRG_SET_TIME_FOR_RUN_L = 0x06,
-            CMD_TRG_SET_TIME_FOR_RUN_M = 0x07,
-
-            CMD_TRG_COUNTER_EVENT_INCOMING_L = 0x10,
-            CMD_TRG_COUNTER_EVENT_INCOMING_M = 0x11,
-            CMD_TRG_COUNTER_EVENT_PROCESSED_L = 0x12,
-            CMD_TRG_COUNTER_EVENT_PROCESSED_M = 0x13,
-            CMD_TRG_COUNTER_EVENT_INRUN_L = 0x14,
-            CMD_TRG_COUNTER_EVENT_INRUN_M = 0x15,
-
-            CMD_TRG_TEST_GENERATOR_ENABLE = 0x30,
-            CMD_TRG_COUNTERS_RESET = 0x40
-
-        }
+        
 
         private void comm_log(byte[] data)
         {
@@ -148,16 +135,6 @@ namespace Digitizer_ver1
         
         private void timer_info_Tick(object sender, EventArgs e)
         {
-            //if (uart.IsOpen())
-            //{
-            //   button_OpenClose.BackColor = Color.Green;
-            //  comboBox_Ports.Enabled = false;
-            //}
-            //else
-            //{
-            //   button_OpenClose.BackColor = SystemColors.Control;
-            //  comboBox_Ports.Enabled = true;
-            //}
             AcqControl.ReadSetting();
         }
 
@@ -431,7 +408,7 @@ namespace Digitizer_ver1
         //-------------------------------------------------------------------------------------------------------------------
         private void radioButton_Communication_CheckedChanged(object sender, EventArgs e)
         {
-           
+            communication.Scan();
         }
 
         private void button_ScanCommunication_Click(object sender, EventArgs e)
@@ -488,5 +465,7 @@ namespace Digitizer_ver1
         {
             AcqControl.TestGeneratorEnable();
         }
+
+
     }
 }

@@ -17,22 +17,25 @@ namespace Digitizer_ver1
 
         public void SettingLoad()
         {
-            //using (StreamReader reader = new StreamReader(SettingFileName, Encoding.UTF8)) 
-            //{
+            using (StreamReader reader = new StreamReader(SettingFileName, Encoding.UTF8)) 
+            {
+                communication.OpenBySettingString(reader.ReadLine());
 
-            //}
+            }
 
-            string[] lines = File.ReadAllLines(SettingFileName, Encoding.UTF8);
+            //string[] lines = File.ReadAllLines(SettingFileName, Encoding.UTF8);
 
         }
 
 
         public void SettingSave()
         {
-            using (StreamWriter writetext = new StreamWriter(SettingFileName))
+            System.IO.File.WriteAllText(SettingFileName, string.Empty);
+
+            using (StreamWriter writer = new StreamWriter(SettingFileName))
             {
-                
-                writetext.WriteLine("writing in text file");
+
+                writer.WriteLine(communication.GetSettingString());
             }
 
         }

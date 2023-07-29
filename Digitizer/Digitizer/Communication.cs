@@ -99,9 +99,11 @@ namespace Digitizer_ver1
 
             if (SelectedType == eCommunicationType.non) return;
 
+            comboBox_Ports.SelectedIndex = -1;
             comboBox_Ports.Items.Clear();
+            
 
-            if(SelectedType == eCommunicationType.uart) 
+            if (SelectedType == eCommunicationType.uart) 
             {
                 foreach (String s in uart.PortScan())
                 {
