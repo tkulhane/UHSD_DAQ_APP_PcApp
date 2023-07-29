@@ -61,7 +61,7 @@ namespace Digitizer_ver1
             AcqControl.checkBox_TestGeneratorEnable = checkBox_TestGeneratorEnable;
             AcqControl.button_AcqStartStop = button_AcqStartStop;
 
-            AcqControl.StartStopButtonState(false);
+            AcqControl.UpdateAcqState(false);
 
 
             //data grids setting for registers class
@@ -77,6 +77,9 @@ namespace Digitizer_ver1
             Registers_LMX1.SendFunction = communication.SendCommand;
             Registers_LMX2.SendFunction = communication.SendCommand;
             Registers_FpgaTest.SendFunction = communication.SendCommand;
+
+
+            communication.OpenAutomatic(Communication.eCommunicationType.uart, "COM43");
 
         }
 
@@ -147,14 +150,15 @@ namespace Digitizer_ver1
         {
             //if (uart.IsOpen())
             //{
-             //   button_OpenClose.BackColor = Color.Green;
-              //  comboBox_Ports.Enabled = false;
+            //   button_OpenClose.BackColor = Color.Green;
+            //  comboBox_Ports.Enabled = false;
             //}
             //else
             //{
-             //   button_OpenClose.BackColor = SystemColors.Control;
-              //  comboBox_Ports.Enabled = true;
+            //   button_OpenClose.BackColor = SystemColors.Control;
+            //  comboBox_Ports.Enabled = true;
             //}
+            AcqControl.ReadSetting();
         }
 
         private void ExecuteCommand() 
@@ -447,6 +451,7 @@ namespace Digitizer_ver1
         private void button_AcqStartStop_Click(object sender, EventArgs e)
         {
             AcqControl.StartStop();
+            
         }
 
         private void numericUpDown_NumOfEvents_ValueChanged(object sender, EventArgs e)

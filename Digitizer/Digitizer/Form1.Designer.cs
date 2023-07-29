@@ -30,9 +30,9 @@ namespace Digitizer_ver1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend10 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label_AcqState = new System.Windows.Forms.Label();
             this.button_Reset = new System.Windows.Forms.Button();
@@ -120,6 +120,8 @@ namespace Digitizer_ver1
             this.radioButton_USB = new System.Windows.Forms.RadioButton();
             this.radioButton_UART = new System.Windows.Forms.RadioButton();
             this.button_ReadAcqState = new System.Windows.Forms.Button();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.Registers.SuspendLayout();
             this.tabControl_RegistersSetting.SuspendLayout();
@@ -154,6 +156,7 @@ namespace Digitizer_ver1
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Time)).BeginInit();
             this.Setting.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -211,6 +214,7 @@ namespace Digitizer_ver1
             // timer_info
             // 
             this.timer_info.Enabled = true;
+            this.timer_info.Interval = 200;
             this.timer_info.Tick += new System.EventHandler(this.timer_info_Tick);
             // 
             // Registers
@@ -521,21 +525,21 @@ namespace Digitizer_ver1
             // 
             this.chart_data.BorderlineColor = System.Drawing.Color.Black;
             this.chart_data.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea3.Name = "ChartArea1";
-            this.chart_data.ChartAreas.Add(chartArea3);
+            chartArea10.Name = "ChartArea1";
+            this.chart_data.ChartAreas.Add(chartArea10);
             this.chart_data.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend3.Name = "Legend1";
-            this.chart_data.Legends.Add(legend3);
+            legend10.Name = "Legend1";
+            this.chart_data.Legends.Add(legend10);
             this.chart_data.Location = new System.Drawing.Point(0, 0);
             this.chart_data.Margin = new System.Windows.Forms.Padding(2);
             this.chart_data.Name = "chart_data";
-            series3.BorderWidth = 2;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.IsVisibleInLegend = false;
-            series3.Legend = "Legend1";
-            series3.Name = "Data";
-            this.chart_data.Series.Add(series3);
+            series10.BorderWidth = 2;
+            series10.ChartArea = "ChartArea1";
+            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series10.IsVisibleInLegend = false;
+            series10.Legend = "Legend1";
+            series10.Name = "Data";
+            this.chart_data.Series.Add(series10);
             this.chart_data.Size = new System.Drawing.Size(637, 414);
             this.chart_data.TabIndex = 4;
             this.chart_data.Text = "chart_data";
@@ -610,6 +614,7 @@ namespace Digitizer_ver1
             this.tabControl_MAIN.Controls.Add(this.MeasurementData);
             this.tabControl_MAIN.Controls.Add(this.Registers);
             this.tabControl_MAIN.Controls.Add(this.Setting);
+            this.tabControl_MAIN.Controls.Add(this.tabPage1);
             this.tabControl_MAIN.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl_MAIN.Location = new System.Drawing.Point(0, 39);
             this.tabControl_MAIN.Margin = new System.Windows.Forms.Padding(2);
@@ -1014,6 +1019,7 @@ namespace Digitizer_ver1
             this.radioButton_AcqTime.TabStop = true;
             this.radioButton_AcqTime.Text = "Measurement Time";
             this.radioButton_AcqTime.UseVisualStyleBackColor = true;
+            this.radioButton_AcqTime.CheckedChanged += new System.EventHandler(this.radioButton_Acq_CheckedChanged);
             // 
             // radioButton_AcqNumEvents
             // 
@@ -1026,6 +1032,7 @@ namespace Digitizer_ver1
             this.radioButton_AcqNumEvents.TabStop = true;
             this.radioButton_AcqNumEvents.Text = "Number of Events";
             this.radioButton_AcqNumEvents.UseVisualStyleBackColor = true;
+            this.radioButton_AcqNumEvents.CheckedChanged += new System.EventHandler(this.radioButton_Acq_CheckedChanged);
             // 
             // radioButton_AcqInfinite
             // 
@@ -1137,6 +1144,23 @@ namespace Digitizer_ver1
             this.button_ReadAcqState.UseVisualStyleBackColor = true;
             this.button_ReadAcqState.Click += new System.EventHandler(this.button_ReadAcqState_Click);
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.panel2);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Size = new System.Drawing.Size(1176, 546);
+            this.tabPage1.TabIndex = 8;
+            this.tabPage1.Text = "Configuration";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // panel2
+            // 
+            this.panel2.Location = new System.Drawing.Point(56, 60);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(200, 100);
+            this.panel2.TabIndex = 0;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1189,6 +1213,7 @@ namespace Digitizer_ver1
             this.Setting.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1282,6 +1307,8 @@ namespace Digitizer_ver1
         private System.Windows.Forms.NumericUpDown numericUpDown_NumOfSamples;
         private System.Windows.Forms.Label label_AcqState;
         private System.Windows.Forms.Button button_ReadAcqState;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.Panel panel2;
     }
 }
 

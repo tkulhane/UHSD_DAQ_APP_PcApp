@@ -66,9 +66,9 @@ namespace Digitizer_ver1
         //} 
 
 
-        public void StartStopButtonState(bool AcqState) 
+        public void UpdateAcqState(bool State) 
         {
-            if (AcqState) 
+            if (State) 
             {
                 button_AcqStartStop.BackColor = System.Drawing.Color.Red;
                 button_AcqStartStop.Text = "STOP";
@@ -90,31 +90,63 @@ namespace Digitizer_ver1
 
         public void StartStop() 
         {
-            AcqState = !AcqState; 
-
-            if (AcqState) 
+            //AcqState = !AcqState; 
+            
+            if (AcqState == false) 
             {
                 SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_ENABLE, 0x00, 0x01);
+                UpdateAcqState(true);
             }
             else 
             {
                 SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_ENABLE, 0x00, 0x00);
+                UpdateAcqState(false);
             }
+
+            //UpdateAcqState(AcqState);
+            SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_ENABLE, 0, 0);
         }
 
         public void AcqRunSetting() 
         {
             if (radioButton_AcqInfinite.Checked) 
             {
+                numericUpDown_NumOfEvents.Enabled = false;
+                numericUpDown_Time.Enabled = false;
 
+                numericUpDown_NumOfEvents.Value = 0;
+                numericUpDown_Time.Value = 0;
+
+                numericUpDown_AcqRepeats.Enabled = false;
+                numericUpDown_AcqRepeats.Value = 0;
+                
+
+                SetNumberOfEvents();
+                SetRunTime();
             }
             else if(radioButton_AcqNumEvents.Checked)
             {
+                numericUpDown_NumOfEvents.Enabled = true;
+                numericUpDown_Time.Enabled = false;
 
+                numericUpDown_Time.Value = 0;
+
+                numericUpDown_AcqRepeats.Enabled = true;
+
+                SetNumberOfEvents();
+                SetRunTime();
             }
             else if (radioButton_AcqTime.Checked) 
             {
+                numericUpDown_NumOfEvents.Enabled = false;
+                numericUpDown_Time.Enabled = true;
 
+                numericUpDown_Time.Value = 0;
+
+                numericUpDown_AcqRepeats.Enabled = true;
+
+                SetNumberOfEvents();
+                SetRunTime();
             }
         }
 
@@ -175,19 +207,41 @@ namespace Digitizer_ver1
                 }
         }
 
+        int Read_Setting_step = 0;
         public void ReadSetting()
         {
-            SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_COUNTER_EVENT_INCOMING_L, 0, 0);
-            SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_COUNTER_EVENT_INCOMING_M, 0, 0);
-            SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_COUNTER_EVENT_PROCESSED_L, 0, 0);
-            SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_COUNTER_EVENT_PROCESSED_M, 0, 0);
-            SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_ENABLE, 0, 0);
-            SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_TEST_GENERATOR_ENABLE, 0, 0);
-            SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_THRESHOLD, 0, 0);
-            SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SAMPLE_PER_EVENT_L, 0, 0);
-            SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SAMPLE_PER_EVENT_M, 0, 0);
-            SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SET_NUMBERS_OF_EVENTS_L, 0, 0);
-            SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SET_NUMBERS_OF_EVENTS_M, 0, 0);
+            //if(AcqState)
+                SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_ENABLE, 0, 0);
+
+            switch(Read_Setting_step)
+            {
+                case 0:
+                    SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_COUNTER_EVENT_INCOMING_L, 0, 0);
+                    SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_COUNTER_EVENT_INCOMING_M, 0, 0);
+                    break;
+                case 1:
+                    SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_COUNTER_EVENT_PROCESSED_L, 0, 0);
+                    SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_COUNTER_EVENT_PROCESSED_M, 0, 0);
+                    break;
+                case 2:
+                    SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_TEST_GENERATOR_ENABLE, 0, 0);
+                    break;
+                case 3:
+                    SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_THRESHOLD, 0, 0);
+                    break;
+                case 4:
+                    SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SAMPLE_PER_EVENT_L, 0, 0);
+                    SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SAMPLE_PER_EVENT_M, 0, 0);
+                    break;
+                case 5:
+                    SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SET_NUMBERS_OF_EVENTS_L, 0, 0);
+                    SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SET_NUMBERS_OF_EVENTS_M, 0, 0);
+                    break;
+            }
+
+            Read_Setting_step++;
+            if (Read_Setting_step > 5) Read_Setting_step = 0;
+
         } 
 
         public void UpdateFromCommunication(byte data_0, byte data_1, byte data_2)
@@ -202,11 +256,11 @@ namespace Digitizer_ver1
                 case (byte)eCommandCode_Trigger.CMD_TRG_ENABLE:
                     if ((data_2 & 0x01) == 0x01)
                     {
-                        StartStopButtonState(true);
+                        UpdateAcqState(true);
                     }
                     else
                     {
-                        StartStopButtonState(false);
+                        UpdateAcqState(false);
                     }
                     break;
 

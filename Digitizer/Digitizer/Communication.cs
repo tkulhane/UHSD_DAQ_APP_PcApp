@@ -259,7 +259,142 @@ namespace Digitizer_ver1
             radioButton_PCIe.Enabled = state;
             button_Scan.Enabled = state;
             //button_OpenClose.Enabled = state;
-    }
+        }
+
+
+        public bool OpenAutomatic(eCommunicationType type, string name) 
+        {
+            radioButton_UART.Checked = false;
+            radioButton_USB.Checked = false;
+            radioButton_PCIe.Checked = false;
+            
+            if(type == eCommunicationType.uart) 
+            {
+                radioButton_UART.Checked = true;
+            }
+            else if (type == eCommunicationType.usb)
+            {
+                radioButton_USB.Checked = true;
+            }
+            else if (type == eCommunicationType.pcie)
+            {
+                radioButton_PCIe.Checked = true;
+            }
+
+
+            Scan();
+
+            int Selected = -1;
+            int count = comboBox_Ports.Items.Count;
+            for (int i = 0; (i <= (count - 1)); i++)
+            {
+                comboBox_Ports.SelectedIndex = i;
+                string port = comboBox_Ports.SelectedItem as String;
+
+                if (name.Equals(port))
+                {
+                    Selected = i;
+                }
+
+            }
+
+            if(Selected > 0) 
+            {
+                comboBox_Ports.SelectedIndex = Selected;
+                OpenClose();
+                return true;
+            }
+
+            comboBox_Ports.SelectedIndex = Selected = -1;
+
+            return false;
+        
+        }
+
+
+        static char[] caSplit = new char[] { ';' };
+        public bool OpenBySettingString(string s)
+        {
+            string[] s_parts = s.Split(caSplit);
+
+
+            radioButton_UART.Checked = false;
+            radioButton_USB.Checked = false;
+            radioButton_PCIe.Checked = false;
+
+            if (s_parts[0].Equals("uart"))
+            {
+                radioButton_UART.Checked = true;
+            }
+            else if (s_parts[0].Equals("usb"))
+            {
+                radioButton_USB.Checked = true;
+            }
+            else if (s_parts[0].Equals("pcie"))
+            {
+                radioButton_PCIe.Checked = true;
+            }
+            else 
+            {
+                return false;
+            }
+
+
+            Scan();
+
+            int Selected = -1;
+            int count = comboBox_Ports.Items.Count;
+            for (int i = 0; (i <= (count - 1)); i++)
+            {
+                comboBox_Ports.SelectedIndex = i;
+                string port = comboBox_Ports.SelectedItem as String;
+
+                if (s_parts[1].Equals(port))
+                {
+                    Selected = i;
+                }
+
+            }
+
+            if (Selected > 0)
+            {
+                comboBox_Ports.SelectedIndex = Selected;
+                OpenClose();
+                return true;
+            }
+
+            comboBox_Ports.SelectedIndex = Selected = -1;
+
+            return false;
+
+        }
+
+        public string GetSettingString() 
+        {
+            string s;
+
+            eCommunicationType type = OpenedType;
+            string port = comboBox_Ports.SelectedItem as String;
+
+            if(type == eCommunicationType.uart) 
+            {
+                s = "uart" + caSplit[0] + port;
+            }
+            else if (type == eCommunicationType.usb)
+            {
+                s = "usb" + caSplit[0] + port;
+            }
+            else if (type == eCommunicationType.pcie)
+            {
+                s = "pcie" + caSplit[0] + port;
+            }
+            else 
+            {
+                s = "non" + caSplit[0] + port;
+            }
+
+            return s;
+        }
 
 
 
