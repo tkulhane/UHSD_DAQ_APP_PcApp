@@ -49,7 +49,7 @@ namespace Digitizer_ver1
             Registers_ID_SET = ID_SET;
         }
 
-        public void OpenRegistersFile()
+        public string OpenRegistersFile()
         {
 
             String fname = String.Empty;
@@ -64,12 +64,12 @@ namespace Digitizer_ver1
                 }
                 else
                 {
-                    return;
+                    return fname;
                 }
 
                 if (String.IsNullOrEmpty(fname))
                 {
-                    return;
+                    return fname;
                 }
 
                 List_RegistersSetting.Clear();
@@ -93,7 +93,7 @@ namespace Digitizer_ver1
 
                 if (DataGrid_RegistersSetting.Columns.Count >= 5)
                 {
-                    return;
+                    return fname;
                 }
 
 
@@ -116,7 +116,7 @@ namespace Digitizer_ver1
                 DataGrid_RegistersSetting.Columns[0].DefaultCellStyle.Format = "X";
                 //DataGrid_RegistersSetting.Columns[3].DefaultCellStyle.Format = "X";
 
-
+                return fname;
             }
         }
 

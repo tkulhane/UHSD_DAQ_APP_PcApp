@@ -122,6 +122,7 @@ namespace Digitizer_ver1
             this.radioButton_UART = new System.Windows.Forms.RadioButton();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.dataGridView_RegistersFiles = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.Registers.SuspendLayout();
             this.tabControl_RegistersSetting.SuspendLayout();
@@ -157,6 +158,7 @@ namespace Digitizer_ver1
             this.Setting.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_RegistersFiles)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -1146,6 +1148,7 @@ namespace Digitizer_ver1
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.dataGridView_RegistersFiles);
             this.tabPage1.Controls.Add(this.panel2);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -1160,6 +1163,15 @@ namespace Digitizer_ver1
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(200, 100);
             this.panel2.TabIndex = 0;
+            // 
+            // dataGridView_RegistersFiles
+            // 
+            this.dataGridView_RegistersFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_RegistersFiles.Dock = System.Windows.Forms.DockStyle.Right;
+            this.dataGridView_RegistersFiles.Location = new System.Drawing.Point(488, 0);
+            this.dataGridView_RegistersFiles.Name = "dataGridView_RegistersFiles";
+            this.dataGridView_RegistersFiles.Size = new System.Drawing.Size(688, 546);
+            this.dataGridView_RegistersFiles.TabIndex = 1;
             // 
             // Form1
             // 
@@ -1215,6 +1227,7 @@ namespace Digitizer_ver1
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_RegistersFiles)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1310,6 +1323,7 @@ namespace Digitizer_ver1
         private System.Windows.Forms.Button button_ReadAcqState;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.DataGridView dataGridView_RegistersFiles;
     }
 }
 

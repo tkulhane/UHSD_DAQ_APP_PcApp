@@ -63,6 +63,7 @@
     <Compile Include="Registers_Setting.cs" />
     <Compile Include="Registers_SettingData.cs" />
     <Compile Include="SystemSetting.cs" />
+    <Compile Include="SystemSetting_RegistersFileData.cs" />
     <Compile Include="UART_Communication.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

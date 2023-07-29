@@ -80,7 +80,12 @@ namespace Digitizer_ver1
 
             //System Setting
             sysSetting.communication = communication;
-
+            sysSetting.dataGridView_RegistersFiles = dataGridView_RegistersFiles;
+            sysSetting.CreateRegistersInList(Registers_ADC);
+            sysSetting.CreateRegistersInList(Registers_HMC);
+            sysSetting.CreateRegistersInList(Registers_LMX1);
+            sysSetting.CreateRegistersInList(Registers_LMX2);
+            sysSetting.CreateRegistersInList(Registers_FpgaTest);
 
             sysSetting.SettingLoad();
 
@@ -245,27 +250,33 @@ namespace Digitizer_ver1
         {
             
             int selected = tabControl_RegistersSetting.SelectedIndex;
+            string FileName;
 
             switch (selected)
             {
                 case 0:
-                    Registers_ADC.OpenRegistersFile();
+                    FileName = Registers_ADC.OpenRegistersFile();
+                    sysSetting.AddFileRegistersInList(Registers_ADC, FileName);
                     break;
 
                 case 1:
-                    Registers_HMC.OpenRegistersFile();        
+                    FileName = Registers_HMC.OpenRegistersFile();
+                    sysSetting.AddFileRegistersInList(Registers_HMC, FileName);
                     break;
 
                 case 2:
-                    Registers_LMX1.OpenRegistersFile();
+                    FileName = Registers_LMX1.OpenRegistersFile();
+                    sysSetting.AddFileRegistersInList(Registers_LMX1, FileName);
                     break;
 
                 case 3:
-                    Registers_LMX2.OpenRegistersFile();
+                    FileName = Registers_LMX2.OpenRegistersFile();
+                    sysSetting.AddFileRegistersInList(Registers_LMX2, FileName);
                     break;
 
                 case 4:
-                    Registers_FpgaTest.OpenRegistersFile();
+                    FileName = Registers_FpgaTest.OpenRegistersFile();
+                    sysSetting.AddFileRegistersInList(Registers_FpgaTest, FileName);
                     break;
 
                 default:
