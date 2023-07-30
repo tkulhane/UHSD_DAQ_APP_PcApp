@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -399,6 +400,23 @@ namespace Digitizer_ver1
         }
 
 
+        private void comm_log(byte[] data)
+        {
+            //using (StreamWriter writer = new StreamWriter("comm_log.txt"))
+            using (StreamWriter writer = File.AppendText("comm_log.txt"))
+            {
+                string s = String.Empty;
+
+                for (int i = 0; i < 4; i++)
+                {
+                    s += data[i].ToString("X2") + " ";
+                }
+
+
+
+                writer.WriteLine(s);
+            }
+        }
 
 
     }

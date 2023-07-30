@@ -30,9 +30,9 @@ namespace Digitizer_ver1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label_AcqState = new System.Windows.Forms.Label();
             this.button_Reset = new System.Windows.Forms.Button();
@@ -52,6 +52,9 @@ namespace Digitizer_ver1
             this.tabPage_TestReg = new System.Windows.Forms.TabPage();
             this.dataGridView_TestReg = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button_RegWriteAll = new System.Windows.Forms.Button();
+            this.button_RegReadAll = new System.Windows.Forms.Button();
+            this.button_RegSaveToFile = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -62,8 +65,8 @@ namespace Digitizer_ver1
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.checkBox7 = new System.Windows.Forms.CheckBox();
             this.checkBox8 = new System.Windows.Forms.CheckBox();
-            this.button_SaveToFile_FPGAregisters = new System.Windows.Forms.Button();
-            this.button_LoadFromFile_FPGAregisters = new System.Windows.Forms.Button();
+            this.button_RegSaveAs = new System.Windows.Forms.Button();
+            this.button_RegLoadFromFile = new System.Windows.Forms.Button();
             this.MeasurementData = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
             this.chart_data = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -112,7 +115,16 @@ namespace Digitizer_ver1
             this.radioButton_AcqTime = new System.Windows.Forms.RadioButton();
             this.radioButton_AcqNumEvents = new System.Windows.Forms.RadioButton();
             this.radioButton_AcqInfinite = new System.Windows.Forms.RadioButton();
+            this.Configuration = new System.Windows.Forms.TabPage();
+            this.button_ConfigRun = new System.Windows.Forms.Button();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.button_ConfigFileLoadFromFile = new System.Windows.Forms.Button();
+            this.button_ConfigFileSaveToFile = new System.Windows.Forms.Button();
+            this.button_ConfigFileSaveAs = new System.Windows.Forms.Button();
+            this.dataGridView_ConfigFile = new System.Windows.Forms.DataGridView();
             this.Setting = new System.Windows.Forms.TabPage();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.dataGridView_RegistersFiles = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button_OpenCloseCommunication = new System.Windows.Forms.Button();
             this.button_ScanCommunication = new System.Windows.Forms.Button();
@@ -120,9 +132,6 @@ namespace Digitizer_ver1
             this.radioButton_PCIe = new System.Windows.Forms.RadioButton();
             this.radioButton_USB = new System.Windows.Forms.RadioButton();
             this.radioButton_UART = new System.Windows.Forms.RadioButton();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.dataGridView_RegistersFiles = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.Registers.SuspendLayout();
             this.tabControl_RegistersSetting.SuspendLayout();
@@ -155,10 +164,13 @@ namespace Digitizer_ver1
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_AcqRepeats)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_NumOfEvents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Time)).BeginInit();
+            this.Configuration.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ConfigFile)).BeginInit();
             this.Setting.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_RegistersFiles)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -177,11 +189,13 @@ namespace Digitizer_ver1
             // label_AcqState
             // 
             this.label_AcqState.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_AcqState.Location = new System.Drawing.Point(51, 7);
+            this.label_AcqState.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_AcqState.Location = new System.Drawing.Point(40, 7);
             this.label_AcqState.Name = "label_AcqState";
-            this.label_AcqState.Size = new System.Drawing.Size(100, 24);
+            this.label_AcqState.Size = new System.Drawing.Size(123, 24);
             this.label_AcqState.TabIndex = 9;
             this.label_AcqState.Text = "........";
+            this.label_AcqState.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // button_Reset
             // 
@@ -215,7 +229,6 @@ namespace Digitizer_ver1
             // 
             // timer_info
             // 
-            this.timer_info.Enabled = true;
             this.timer_info.Interval = 200;
             this.timer_info.Tick += new System.EventHandler(this.timer_info_Tick);
             // 
@@ -350,16 +363,52 @@ namespace Digitizer_ver1
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.button_RegWriteAll);
+            this.panel3.Controls.Add(this.button_RegReadAll);
+            this.panel3.Controls.Add(this.button_RegSaveToFile);
             this.panel3.Controls.Add(this.textBox2);
             this.panel3.Controls.Add(this.groupBox2);
-            this.panel3.Controls.Add(this.button_SaveToFile_FPGAregisters);
-            this.panel3.Controls.Add(this.button_LoadFromFile_FPGAregisters);
+            this.panel3.Controls.Add(this.button_RegSaveAs);
+            this.panel3.Controls.Add(this.button_RegLoadFromFile);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(2, 2);
             this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(220, 542);
             this.panel3.TabIndex = 1;
+            // 
+            // button_RegWriteAll
+            // 
+            this.button_RegWriteAll.Location = new System.Drawing.Point(132, 57);
+            this.button_RegWriteAll.Margin = new System.Windows.Forms.Padding(2);
+            this.button_RegWriteAll.Name = "button_RegWriteAll";
+            this.button_RegWriteAll.Size = new System.Drawing.Size(74, 37);
+            this.button_RegWriteAll.TabIndex = 7;
+            this.button_RegWriteAll.Text = "Write All";
+            this.button_RegWriteAll.UseVisualStyleBackColor = true;
+            this.button_RegWriteAll.Click += new System.EventHandler(this.button_RegWriteAll_Click);
+            // 
+            // button_RegReadAll
+            // 
+            this.button_RegReadAll.Location = new System.Drawing.Point(132, 16);
+            this.button_RegReadAll.Margin = new System.Windows.Forms.Padding(2);
+            this.button_RegReadAll.Name = "button_RegReadAll";
+            this.button_RegReadAll.Size = new System.Drawing.Size(74, 37);
+            this.button_RegReadAll.TabIndex = 6;
+            this.button_RegReadAll.Text = "Read All";
+            this.button_RegReadAll.UseVisualStyleBackColor = true;
+            this.button_RegReadAll.Click += new System.EventHandler(this.button_RegReadAll_Click);
+            // 
+            // button_RegSaveToFile
+            // 
+            this.button_RegSaveToFile.Location = new System.Drawing.Point(13, 57);
+            this.button_RegSaveToFile.Margin = new System.Windows.Forms.Padding(2);
+            this.button_RegSaveToFile.Name = "button_RegSaveToFile";
+            this.button_RegSaveToFile.Size = new System.Drawing.Size(74, 37);
+            this.button_RegSaveToFile.TabIndex = 5;
+            this.button_RegSaveToFile.Text = "Save to File";
+            this.button_RegSaveToFile.UseVisualStyleBackColor = true;
+            this.button_RegSaveToFile.Click += new System.EventHandler(this.button_SaveToFile_Click);
             // 
             // textBox2
             // 
@@ -476,27 +525,27 @@ namespace Digitizer_ver1
             this.checkBox8.Text = "2";
             this.checkBox8.UseVisualStyleBackColor = true;
             // 
-            // button_SaveToFile_FPGAregisters
+            // button_RegSaveAs
             // 
-            this.button_SaveToFile_FPGAregisters.Location = new System.Drawing.Point(130, 16);
-            this.button_SaveToFile_FPGAregisters.Margin = new System.Windows.Forms.Padding(2);
-            this.button_SaveToFile_FPGAregisters.Name = "button_SaveToFile_FPGAregisters";
-            this.button_SaveToFile_FPGAregisters.Size = new System.Drawing.Size(74, 37);
-            this.button_SaveToFile_FPGAregisters.TabIndex = 1;
-            this.button_SaveToFile_FPGAregisters.Text = "Save to File";
-            this.button_SaveToFile_FPGAregisters.UseVisualStyleBackColor = true;
-            this.button_SaveToFile_FPGAregisters.Click += new System.EventHandler(this.button_SaveToFile_Click);
+            this.button_RegSaveAs.Location = new System.Drawing.Point(13, 98);
+            this.button_RegSaveAs.Margin = new System.Windows.Forms.Padding(2);
+            this.button_RegSaveAs.Name = "button_RegSaveAs";
+            this.button_RegSaveAs.Size = new System.Drawing.Size(74, 37);
+            this.button_RegSaveAs.TabIndex = 1;
+            this.button_RegSaveAs.Text = "Save As";
+            this.button_RegSaveAs.UseVisualStyleBackColor = true;
+            this.button_RegSaveAs.Click += new System.EventHandler(this.button_SaveAs_Click);
             // 
-            // button_LoadFromFile_FPGAregisters
+            // button_RegLoadFromFile
             // 
-            this.button_LoadFromFile_FPGAregisters.Location = new System.Drawing.Point(13, 16);
-            this.button_LoadFromFile_FPGAregisters.Margin = new System.Windows.Forms.Padding(2);
-            this.button_LoadFromFile_FPGAregisters.Name = "button_LoadFromFile_FPGAregisters";
-            this.button_LoadFromFile_FPGAregisters.Size = new System.Drawing.Size(74, 37);
-            this.button_LoadFromFile_FPGAregisters.TabIndex = 0;
-            this.button_LoadFromFile_FPGAregisters.Text = "Load from File";
-            this.button_LoadFromFile_FPGAregisters.UseVisualStyleBackColor = true;
-            this.button_LoadFromFile_FPGAregisters.Click += new System.EventHandler(this.button_LoadFromFile_Click);
+            this.button_RegLoadFromFile.Location = new System.Drawing.Point(13, 16);
+            this.button_RegLoadFromFile.Margin = new System.Windows.Forms.Padding(2);
+            this.button_RegLoadFromFile.Name = "button_RegLoadFromFile";
+            this.button_RegLoadFromFile.Size = new System.Drawing.Size(74, 37);
+            this.button_RegLoadFromFile.TabIndex = 0;
+            this.button_RegLoadFromFile.Text = "Load from File";
+            this.button_RegLoadFromFile.UseVisualStyleBackColor = true;
+            this.button_RegLoadFromFile.Click += new System.EventHandler(this.button_LoadFromFile_Click);
             // 
             // MeasurementData
             // 
@@ -527,21 +576,21 @@ namespace Digitizer_ver1
             // 
             this.chart_data.BorderlineColor = System.Drawing.Color.Black;
             this.chart_data.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea1.Name = "ChartArea1";
-            this.chart_data.ChartAreas.Add(chartArea1);
+            chartArea8.Name = "ChartArea1";
+            this.chart_data.ChartAreas.Add(chartArea8);
             this.chart_data.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chart_data.Legends.Add(legend1);
+            legend8.Name = "Legend1";
+            this.chart_data.Legends.Add(legend8);
             this.chart_data.Location = new System.Drawing.Point(0, 0);
             this.chart_data.Margin = new System.Windows.Forms.Padding(2);
             this.chart_data.Name = "chart_data";
-            series1.BorderWidth = 2;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.IsVisibleInLegend = false;
-            series1.Legend = "Legend1";
-            series1.Name = "Data";
-            this.chart_data.Series.Add(series1);
+            series8.BorderWidth = 2;
+            series8.ChartArea = "ChartArea1";
+            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series8.IsVisibleInLegend = false;
+            series8.Legend = "Legend1";
+            series8.Name = "Data";
+            this.chart_data.Series.Add(series8);
             this.chart_data.Size = new System.Drawing.Size(637, 414);
             this.chart_data.TabIndex = 4;
             this.chart_data.Text = "chart_data";
@@ -615,8 +664,8 @@ namespace Digitizer_ver1
             this.tabControl_MAIN.Controls.Add(this.Measurement_Setting);
             this.tabControl_MAIN.Controls.Add(this.MeasurementData);
             this.tabControl_MAIN.Controls.Add(this.Registers);
+            this.tabControl_MAIN.Controls.Add(this.Configuration);
             this.tabControl_MAIN.Controls.Add(this.Setting);
-            this.tabControl_MAIN.Controls.Add(this.tabPage1);
             this.tabControl_MAIN.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl_MAIN.Location = new System.Drawing.Point(0, 39);
             this.tabControl_MAIN.Margin = new System.Windows.Forms.Padding(2);
@@ -1059,8 +1108,86 @@ namespace Digitizer_ver1
             this.radioButton_AcqInfinite.UseVisualStyleBackColor = true;
             this.radioButton_AcqInfinite.CheckedChanged += new System.EventHandler(this.radioButton_Acq_CheckedChanged);
             // 
+            // Configuration
+            // 
+            this.Configuration.Controls.Add(this.button_ConfigRun);
+            this.Configuration.Controls.Add(this.groupBox7);
+            this.Configuration.Controls.Add(this.dataGridView_ConfigFile);
+            this.Configuration.Location = new System.Drawing.Point(4, 22);
+            this.Configuration.Name = "Configuration";
+            this.Configuration.Size = new System.Drawing.Size(1176, 546);
+            this.Configuration.TabIndex = 8;
+            this.Configuration.Text = "Configuration";
+            this.Configuration.UseVisualStyleBackColor = true;
+            // 
+            // button_ConfigRun
+            // 
+            this.button_ConfigRun.Location = new System.Drawing.Point(219, 94);
+            this.button_ConfigRun.Margin = new System.Windows.Forms.Padding(2);
+            this.button_ConfigRun.Name = "button_ConfigRun";
+            this.button_ConfigRun.Size = new System.Drawing.Size(74, 37);
+            this.button_ConfigRun.TabIndex = 13;
+            this.button_ConfigRun.Text = "Config Run";
+            this.button_ConfigRun.UseVisualStyleBackColor = true;
+            this.button_ConfigRun.Click += new System.EventHandler(this.button_ConfigRun_Click);
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.button_ConfigFileLoadFromFile);
+            this.groupBox7.Controls.Add(this.button_ConfigFileSaveToFile);
+            this.groupBox7.Controls.Add(this.button_ConfigFileSaveAs);
+            this.groupBox7.Location = new System.Drawing.Point(62, 57);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(127, 178);
+            this.groupBox7.TabIndex = 12;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Configuration File";
+            // 
+            // button_ConfigFileLoadFromFile
+            // 
+            this.button_ConfigFileLoadFromFile.Location = new System.Drawing.Point(26, 37);
+            this.button_ConfigFileLoadFromFile.Margin = new System.Windows.Forms.Padding(2);
+            this.button_ConfigFileLoadFromFile.Name = "button_ConfigFileLoadFromFile";
+            this.button_ConfigFileLoadFromFile.Size = new System.Drawing.Size(74, 37);
+            this.button_ConfigFileLoadFromFile.TabIndex = 9;
+            this.button_ConfigFileLoadFromFile.Text = "Load from File";
+            this.button_ConfigFileLoadFromFile.UseVisualStyleBackColor = true;
+            this.button_ConfigFileLoadFromFile.Click += new System.EventHandler(this.button_ConfigFileLoadFromFile_Click);
+            // 
+            // button_ConfigFileSaveToFile
+            // 
+            this.button_ConfigFileSaveToFile.Location = new System.Drawing.Point(26, 78);
+            this.button_ConfigFileSaveToFile.Margin = new System.Windows.Forms.Padding(2);
+            this.button_ConfigFileSaveToFile.Name = "button_ConfigFileSaveToFile";
+            this.button_ConfigFileSaveToFile.Size = new System.Drawing.Size(74, 37);
+            this.button_ConfigFileSaveToFile.TabIndex = 11;
+            this.button_ConfigFileSaveToFile.Text = "Save to File";
+            this.button_ConfigFileSaveToFile.UseVisualStyleBackColor = true;
+            this.button_ConfigFileSaveToFile.Click += new System.EventHandler(this.button_ConfigFileSaveToFile_Click);
+            // 
+            // button_ConfigFileSaveAs
+            // 
+            this.button_ConfigFileSaveAs.Location = new System.Drawing.Point(26, 119);
+            this.button_ConfigFileSaveAs.Margin = new System.Windows.Forms.Padding(2);
+            this.button_ConfigFileSaveAs.Name = "button_ConfigFileSaveAs";
+            this.button_ConfigFileSaveAs.Size = new System.Drawing.Size(74, 37);
+            this.button_ConfigFileSaveAs.TabIndex = 10;
+            this.button_ConfigFileSaveAs.Text = "Save As";
+            this.button_ConfigFileSaveAs.UseVisualStyleBackColor = true;
+            this.button_ConfigFileSaveAs.Click += new System.EventHandler(this.button_ConfigFileSaveAs_Click);
+            // 
+            // dataGridView_ConfigFile
+            // 
+            this.dataGridView_ConfigFile.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_ConfigFile.Dock = System.Windows.Forms.DockStyle.Right;
+            this.dataGridView_ConfigFile.Location = new System.Drawing.Point(489, 0);
+            this.dataGridView_ConfigFile.Name = "dataGridView_ConfigFile";
+            this.dataGridView_ConfigFile.Size = new System.Drawing.Size(687, 546);
+            this.dataGridView_ConfigFile.TabIndex = 2;
+            // 
             // Setting
             // 
+            this.Setting.Controls.Add(this.groupBox8);
             this.Setting.Controls.Add(this.groupBox1);
             this.Setting.Location = new System.Drawing.Point(4, 22);
             this.Setting.Name = "Setting";
@@ -1068,6 +1195,25 @@ namespace Digitizer_ver1
             this.Setting.TabIndex = 6;
             this.Setting.Text = "System Setting";
             this.Setting.UseVisualStyleBackColor = true;
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.dataGridView_RegistersFiles);
+            this.groupBox8.Location = new System.Drawing.Point(775, 24);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(372, 495);
+            this.groupBox8.TabIndex = 3;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Registers Configuration Files";
+            // 
+            // dataGridView_RegistersFiles
+            // 
+            this.dataGridView_RegistersFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_RegistersFiles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView_RegistersFiles.Location = new System.Drawing.Point(3, 16);
+            this.dataGridView_RegistersFiles.Name = "dataGridView_RegistersFiles";
+            this.dataGridView_RegistersFiles.Size = new System.Drawing.Size(366, 476);
+            this.dataGridView_RegistersFiles.TabIndex = 3;
             // 
             // groupBox1
             // 
@@ -1146,33 +1292,6 @@ namespace Digitizer_ver1
             this.radioButton_UART.UseVisualStyleBackColor = true;
             this.radioButton_UART.CheckedChanged += new System.EventHandler(this.radioButton_Communication_CheckedChanged);
             // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.dataGridView_RegistersFiles);
-            this.tabPage1.Controls.Add(this.panel2);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(1176, 546);
-            this.tabPage1.TabIndex = 8;
-            this.tabPage1.Text = "Configuration";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // panel2
-            // 
-            this.panel2.Location = new System.Drawing.Point(56, 60);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 100);
-            this.panel2.TabIndex = 0;
-            // 
-            // dataGridView_RegistersFiles
-            // 
-            this.dataGridView_RegistersFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_RegistersFiles.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dataGridView_RegistersFiles.Location = new System.Drawing.Point(488, 0);
-            this.dataGridView_RegistersFiles.Name = "dataGridView_RegistersFiles";
-            this.dataGridView_RegistersFiles.Size = new System.Drawing.Size(688, 546);
-            this.dataGridView_RegistersFiles.TabIndex = 1;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1223,11 +1342,14 @@ namespace Digitizer_ver1
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_AcqRepeats)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_NumOfEvents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Time)).EndInit();
+            this.Configuration.ResumeLayout(false);
+            this.groupBox7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ConfigFile)).EndInit();
             this.Setting.ResumeLayout(false);
+            this.groupBox8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_RegistersFiles)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_RegistersFiles)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1260,8 +1382,8 @@ namespace Digitizer_ver1
         private System.Windows.Forms.CheckBox checkBox6;
         private System.Windows.Forms.CheckBox checkBox7;
         private System.Windows.Forms.CheckBox checkBox8;
-        private System.Windows.Forms.Button button_SaveToFile_FPGAregisters;
-        private System.Windows.Forms.Button button_LoadFromFile_FPGAregisters;
+        private System.Windows.Forms.Button button_RegSaveAs;
+        private System.Windows.Forms.Button button_RegLoadFromFile;
         private System.Windows.Forms.TabPage MeasurementData;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_data;
@@ -1321,8 +1443,17 @@ namespace Digitizer_ver1
         private System.Windows.Forms.NumericUpDown numericUpDown_NumOfSamples;
         private System.Windows.Forms.Label label_AcqState;
         private System.Windows.Forms.Button button_ReadAcqState;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TabPage Configuration;
+        private System.Windows.Forms.Button button_RegSaveToFile;
+        private System.Windows.Forms.Button button_RegWriteAll;
+        private System.Windows.Forms.Button button_RegReadAll;
+        private System.Windows.Forms.DataGridView dataGridView_ConfigFile;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Button button_ConfigFileLoadFromFile;
+        private System.Windows.Forms.Button button_ConfigFileSaveToFile;
+        private System.Windows.Forms.Button button_ConfigFileSaveAs;
+        private System.Windows.Forms.Button button_ConfigRun;
+        private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.DataGridView dataGridView_RegistersFiles;
     }
 }

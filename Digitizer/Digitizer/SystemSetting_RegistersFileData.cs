@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,14 +12,27 @@ namespace Digitizer_ver1
         Registers_Setting _registerSetting;
         public Registers_Setting p_registerSetting { get { return _registerSetting; } set { _registerSetting = value; } }
 
+        
+
+        string _registerSettingDescription;
+        [DisplayName("Registers")]
+        public string p_registerSettingDescription { get { return _registerSettingDescription; } set { _registerSettingDescription = value; } }
+
         string _registerSettingFile;
+        [DisplayName("File Path")]
         public string p_registerSettingFile { get { return _registerSettingFile; } set { _registerSettingFile = value; } }
 
 
-        public SystemSetting_RegistersFileData(Registers_Setting registerSetting) 
+        public SystemSetting_RegistersFileData(Registers_Setting registerSetting, string description) 
         {
             _registerSetting = registerSetting;
+            _registerSettingDescription = description;
             _registerSettingFile = String.Empty;
+        }
+
+        public string DataString() 
+        {
+            return _registerSettingDescription + ";" + _registerSettingFile;
         }
 
     }

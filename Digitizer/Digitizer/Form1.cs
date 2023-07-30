@@ -17,8 +17,10 @@ namespace Digitizer_ver1
         public Form1()
         {
             InitializeComponent();
+            
             dataGridView_data.DataSource = list_data;
             dataGridView_events.DataSource = list_events;
+
 
             dataGridView_data.Columns[0].Width = 80;
             dataGridView_data.Columns[1].Width = 80;
@@ -40,23 +42,18 @@ namespace Digitizer_ver1
             communication.ExecuteData = ExecuteData;
 
             //Acquisition_Control
-            
             AcqControl.SendCommand = communication.SendCommand;
-
             AcqControl.radioButton_AcqInfinite = radioButton_AcqInfinite;
             AcqControl.radioButton_AcqNumEvents = radioButton_AcqNumEvents;
             AcqControl.radioButton_AcqTime = radioButton_AcqTime;
-
             AcqControl.numericUpDown_NumOfEvents = numericUpDown_NumOfEvents;
             AcqControl.numericUpDown_Time = numericUpDown_Time;
             AcqControl.numericUpDown_NumOfSamples = numericUpDown_NumOfSamples;
             AcqControl.numericUpDown_AcqThreshold = numericUpDown_AcqThreshold;
             AcqControl.numericUpDown_AcqRepeats = numericUpDown_AcqRepeats;
-
             AcqControl.label_CounterIncomingEvents = label_CounterIncomingEvents;
             AcqControl.label_CounterProcessedEvents = label_CounterProcessedEvents;
             AcqControl.label_CounterInRunEvents = label_CounterInRunEvents;
-
             AcqControl.label_AcqState = label_AcqState;
             AcqControl.checkBox_TestGeneratorEnable = checkBox_TestGeneratorEnable;
             AcqControl.button_AcqStartStop = button_AcqStartStop;
@@ -87,8 +84,14 @@ namespace Digitizer_ver1
             sysSetting.CreateRegistersInList(Registers_LMX2);
             sysSetting.CreateRegistersInList(Registers_FpgaTest);
 
+            //system setting load
             sysSetting.SettingLoad();
 
+            //configuration file sequence
+            ConfigSequence.dataGridView_ConfigFile = dataGridView_ConfigFile;
+            ConfigSequence.List_ReigistersFile = sysSetting.List_ReigistersFile;
+
+            //sysSetting.SettingLoad();
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -97,16 +100,18 @@ namespace Digitizer_ver1
         }
 
 
-
         Communication communication = new Communication();
         Acquisition_Control AcqControl = new Acquisition_Control();
         SystemSetting sysSetting = new SystemSetting();
 
-        Registers_Setting Registers_ADC = new Registers_Setting(Registers_Setting.eAddressValueSize.Address16_Value8, Communication.eCommandCode.CMD_CONST_GET_AdcRegisters, Communication.eCommandCode.CMD_CONST_SET_AdcRegisters);
-        Registers_Setting Registers_HMC = new Registers_Setting(Registers_Setting.eAddressValueSize.Address16_Value8, Communication.eCommandCode.CMD_CONST_GET_HmcRegisters, Communication.eCommandCode.CMD_CONST_SET_HmcRegisters);
-        Registers_Setting Registers_LMX1 = new Registers_Setting(Registers_Setting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Lmx1Registers, Communication.eCommandCode.CMD_CONST_SET_Lmx1Registers);
-        Registers_Setting Registers_LMX2 = new Registers_Setting(Registers_Setting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Lmx2Registers, Communication.eCommandCode.CMD_CONST_SET_Lmx2Registers);
-        Registers_Setting Registers_FpgaTest = new Registers_Setting(Registers_Setting.eAddressValueSize.Address8_Value8, Communication.eCommandCode.CMD_CONST_GET_TestRegisters, Communication.eCommandCode.CMD_CONST_SET_TestRegisters);
+        Registers_Setting Registers_ADC = new Registers_Setting("ADC",Registers_Setting.eAddressValueSize.Address16_Value8, Communication.eCommandCode.CMD_CONST_GET_AdcRegisters, Communication.eCommandCode.CMD_CONST_SET_AdcRegisters);
+        Registers_Setting Registers_HMC = new Registers_Setting("HMC",Registers_Setting.eAddressValueSize.Address16_Value8, Communication.eCommandCode.CMD_CONST_GET_HmcRegisters, Communication.eCommandCode.CMD_CONST_SET_HmcRegisters);
+        Registers_Setting Registers_LMX1 = new Registers_Setting("LMX1",Registers_Setting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Lmx1Registers, Communication.eCommandCode.CMD_CONST_SET_Lmx1Registers);
+        Registers_Setting Registers_LMX2 = new Registers_Setting("LMX2",Registers_Setting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Lmx2Registers, Communication.eCommandCode.CMD_CONST_SET_Lmx2Registers);
+        Registers_Setting Registers_FpgaTest = new Registers_Setting("FpgaTest",Registers_Setting.eAddressValueSize.Address8_Value8, Communication.eCommandCode.CMD_CONST_GET_TestRegisters, Communication.eCommandCode.CMD_CONST_SET_TestRegisters);
+
+        ConfigurationFileSequencer ConfigSequence = new ConfigurationFileSequencer();
+
 
         BindingList<EventData> list_data = new BindingList<EventData>();
         BindingList<EventInfo> list_events = new BindingList<EventInfo>();
@@ -118,23 +123,7 @@ namespace Digitizer_ver1
 
         
 
-        private void comm_log(byte[] data)
-        {
-            //using (StreamWriter writer = new StreamWriter("comm_log.txt"))
-            using (StreamWriter writer =  File.AppendText("comm_log.txt"))
-            {
-                string s = String.Empty; 
 
-                for(int i = 0; i < 4; i++) 
-                {
-                    s += data[i].ToString("X2") + " ";
-                }
-
-
-
-                writer.WriteLine(s);
-            }
-        }
 
 
         
@@ -230,8 +219,11 @@ namespace Digitizer_ver1
 
 
         }
-        
 
+        private void button_Reset_Click(object sender, EventArgs e)
+        {
+            communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_System_Controler, 0x55, 0xAB, 0xCD);
+        }
 
 
         private void label_Test_Click(object sender, EventArgs e)
@@ -246,6 +238,11 @@ namespace Digitizer_ver1
             communication.SendCommand(Communication.eCommandCode.CMD_CONST_Loopback, 0xA1, 0xB2, 0xC3);
         }
 
+
+
+        //-------------------------------------------------------------------------------------------------------------------
+        //Registers Tables
+        //-------------------------------------------------------------------------------------------------------------------
         private void button_LoadFromFile_Click(object sender, EventArgs e)
         {
             
@@ -289,6 +286,40 @@ namespace Digitizer_ver1
         
 
         private void button_SaveToFile_Click(object sender, EventArgs e)
+        {
+
+            int selected = tabControl_RegistersSetting.SelectedIndex;
+
+            switch (selected)
+            {
+                case 0:
+                    Registers_ADC.SaveRegistersFileAsString(sysSetting.GetFileStringForRegisters(Registers_ADC));
+                    break;
+
+                case 1:
+                    Registers_HMC.SaveRegistersFileAsString(sysSetting.GetFileStringForRegisters(Registers_HMC));
+                    break;
+
+                case 2:
+                    Registers_LMX1.SaveRegistersFileAsString(sysSetting.GetFileStringForRegisters(Registers_LMX1));
+                    break;
+
+                case 3:
+                    Registers_LMX2.SaveRegistersFileAsString(sysSetting.GetFileStringForRegisters(Registers_LMX2));
+                    break;
+
+                case 4:
+                    Registers_FpgaTest.SaveRegistersFileAsString(sysSetting.GetFileStringForRegisters(Registers_FpgaTest));
+                    break;
+
+                default:
+                    return;
+                    //break;
+            }
+
+        }
+
+        private void button_SaveAs_Click(object sender, EventArgs e)
         {
 
             int selected = tabControl_RegistersSetting.SelectedIndex;
@@ -358,22 +389,74 @@ namespace Digitizer_ver1
 
         }
 
-       
-
-
-        
-
-        private void button_Reset_Click(object sender, EventArgs e)
+        private void button_RegReadAll_Click(object sender, EventArgs e)
         {
-            communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_System_Controler, 0x55, 0xAB, 0xCD);
+            int selected = tabControl_RegistersSetting.SelectedIndex;
+
+            switch (selected)
+            {
+
+                case 0:
+                    Registers_ADC.ReadAll();
+                    break;
+
+                case 1:
+                    Registers_HMC.ReadAll();
+                    break;
+
+                case 2:
+                    Registers_LMX1.ReadAll();
+                    break;
+
+                case 3:
+                    Registers_LMX2.ReadAll();
+                    break;
+
+                case 4:
+                    Registers_FpgaTest.ReadAll();
+                    break;
+
+                default:
+                    return;
+            }
         }
 
-       
+        private void button_RegWriteAll_Click(object sender, EventArgs e)
+        {
+            int selected = tabControl_RegistersSetting.SelectedIndex;
+
+            switch (selected)
+            {
+
+                case 0:
+                    Registers_ADC.WriteAll();
+                    break;
+
+                case 1:
+                    Registers_HMC.WriteAll();
+                    break;
+
+                case 2:
+                    Registers_LMX1.WriteAll();
+                    break;
+
+                case 3:
+                    Registers_LMX2.WriteAll();
+                    break;
+
+                case 4:
+                    Registers_FpgaTest.WriteAll();
+                    break;
+
+                default:
+                    return;
+            }
+        }
 
 
-
-       
-
+        //-------------------------------------------------------------------------------------------------------------------
+        //Data Chart
+        //-------------------------------------------------------------------------------------------------------------------
         private void chart_data_Click(object sender, EventArgs e)
         {
 
@@ -439,7 +522,6 @@ namespace Digitizer_ver1
         private void button_AcqStartStop_Click(object sender, EventArgs e)
         {
             AcqControl.StartStop();
-            
         }
 
         private void numericUpDown_NumOfEvents_ValueChanged(object sender, EventArgs e)
@@ -478,5 +560,29 @@ namespace Digitizer_ver1
         }
 
 
+        //-------------------------------------------------------------------------------------------------------------------
+        //Configutation Sequence File
+        //-------------------------------------------------------------------------------------------------------------------
+        private void button_ConfigFileLoadFromFile_Click(object sender, EventArgs e)
+        {
+            ConfigSequence.OpenRegistersFile();
+        }
+
+        private void button_ConfigFileSaveToFile_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_ConfigFileSaveAs_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_ConfigRun_Click(object sender, EventArgs e)
+        {
+            ConfigSequence.ConfigSequenceGo();
+        }
+
+        
     }
 }

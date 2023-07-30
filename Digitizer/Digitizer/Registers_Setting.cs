@@ -31,6 +31,10 @@ namespace Digitizer_ver1
         private Communication.eCommandCode Registers_ID_GET;
         private Communication.eCommandCode Registers_ID_SET;
 
+        string _description;
+        [DisplayName("Description")]
+        public String p_description { get { return _description; } }
+
         public Registers_Setting(DataGridView Registers_GridView, efunction SendForFunction, eAddressValueSize Sizes , Communication.eCommandCode ID_GET, Communication.eCommandCode ID_SET)
         {
             DataGrid_RegistersSetting = Registers_GridView;
@@ -41,12 +45,69 @@ namespace Digitizer_ver1
         }
 
 
-        public Registers_Setting(eAddressValueSize Sizes, Communication.eCommandCode ID_GET, Communication.eCommandCode ID_SET)
+        public Registers_Setting(string description,eAddressValueSize Sizes, Communication.eCommandCode ID_GET, Communication.eCommandCode ID_SET)
         {
-            
+            _description = description;
             Registers_AddressValueSize = Sizes;
             Registers_ID_GET = ID_GET;
             Registers_ID_SET = ID_SET;
+        }
+
+        //-------------------------------------------------------------------------------------------------------------------
+        //File operation
+        //-------------------------------------------------------------------------------------------------------------------
+        public string OpenRegistersFileAsString(string fname)
+        {
+
+
+            List_RegistersSetting.Clear();
+
+            String[] lines = File.ReadAllLines(fname, Encoding.GetEncoding("Windows-1250"));
+
+            foreach (String s in lines)
+            {
+                Registers_SettingData data = new Registers_SettingData(s, Registers_AddressValueSize);
+                if (data.dataOk == false)
+                {
+                    MessageBox.Show("Wrong value when parsing config file.", "Wrong Value", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                }
+                List_RegistersSetting.Add(data);
+            }
+
+
+
+            DataGrid_RegistersSetting.DataSource = List_RegistersSetting;
+
+            if (DataGrid_RegistersSetting.Columns.Count >= 5)
+            {
+                return fname;
+            }
+
+
+            DataGridViewButtonColumn btn_read = new DataGridViewButtonColumn();
+            DataGridViewButtonColumn btn_write = new DataGridViewButtonColumn();
+
+            btn_read.HeaderText = "Write";
+            btn_read.Text = "Write";
+            btn_read.Name = "button_ADCregisterWrite";
+            btn_read.UseColumnTextForButtonValue = true;
+
+            btn_write.HeaderText = "Read";
+            btn_write.Text = "Read";
+            btn_write.Name = "button_ADCregisterRead";
+            btn_write.UseColumnTextForButtonValue = true;
+
+            DataGrid_RegistersSetting.Columns.Add(btn_write);
+            DataGrid_RegistersSetting.Columns.Add(btn_read);
+
+            DataGrid_RegistersSetting.Columns[0].DefaultCellStyle.Format = "X";
+            //DataGrid_RegistersSetting.Columns[3].DefaultCellStyle.Format = "X";
+
+            DataGrid_RegistersSetting.Update();
+
+            return fname;
+
         }
 
         public string OpenRegistersFile()
@@ -72,6 +133,7 @@ namespace Digitizer_ver1
                     return fname;
                 }
 
+            }
                 List_RegistersSetting.Clear();
 
                 String[] lines = File.ReadAllLines(fname, Encoding.GetEncoding("Windows-1250"));
@@ -117,7 +179,7 @@ namespace Digitizer_ver1
                 //DataGrid_RegistersSetting.Columns[3].DefaultCellStyle.Format = "X";
 
                 return fname;
-            }
+            
         }
 
         public void SaveRegistersFile()
@@ -163,6 +225,30 @@ namespace Digitizer_ver1
 
         }
 
+        public void SaveRegistersFileAsString(string fname)
+        {
+
+            if (String.IsNullOrEmpty(fname))
+            {
+                return;
+            }
+
+            FileStream fs = File.OpenWrite(fname);
+
+            foreach (Registers_SettingData data in List_RegistersSetting)
+            {
+                byte[] line = Encoding.ASCII.GetBytes(data.FormatToCSV());
+
+                fs.Write(line, 0, line.Length);
+            }
+
+            fs.Close();
+
+        }
+
+        //-------------------------------------------------------------------------------------------------------------------
+        //Read Write function
+        //-------------------------------------------------------------------------------------------------------------------
         public void DataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             Registers_SettingData data = List_RegistersSetting[e.RowIndex];
@@ -173,9 +259,14 @@ namespace Digitizer_ver1
 
             if (value < 0) return;
 
-            if (e.ColumnIndex == 4) //read
+            //MessageBox.Show(e.ColumnIndex.ToString());
+
+            
+            //ToDo zjistit proc to nekdy vrací pri kliknuti 0 a 1 (ma to vracet 4 a 5), dela to po nacteni z nastaveni setting
+            if (e.ColumnIndex == 4 || e.ColumnIndex == 0) //read
             {
-                if(readWrite == Registers_SettingData.eReadWrite.read_write || readWrite == Registers_SettingData.eReadWrite.read) 
+                
+                if (readWrite == Registers_SettingData.eReadWrite.read_write || readWrite == Registers_SettingData.eReadWrite.read) 
                 {
                     Send(Registers_ID_GET, address, value);
                 }
@@ -185,7 +276,7 @@ namespace Digitizer_ver1
                 }
                 
             }
-            else if (e.ColumnIndex == 5) //write
+            else if (e.ColumnIndex == 5 || e.ColumnIndex == 1) //write
             {
                 if (readWrite == Registers_SettingData.eReadWrite.read_write || readWrite == Registers_SettingData.eReadWrite.write)
                 {
@@ -198,8 +289,72 @@ namespace Digitizer_ver1
             }
         }
 
+        public void ReadAll() 
+        {
+            foreach(Registers_SettingData data in List_RegistersSetting) 
+            {
+                int address = data.p_address;
+                
+                Registers_SettingData.eReadWrite readWrite = data._ReadWrite;
+
+                if (readWrite == Registers_SettingData.eReadWrite.read_write || readWrite == Registers_SettingData.eReadWrite.read)
+                {
+                    Send(Registers_ID_GET, address, 0);
+                }
+
+            }
+        }
+
+        public void WriteAll() 
+        {
+            foreach (Registers_SettingData data in List_RegistersSetting)
+            {
+                int address = data.p_address;
+                int value = data.ParseValue(Registers_AddressValueSize);
+                Registers_SettingData.eReadWrite readWrite = data._ReadWrite;
+
+                if (value < 0) continue;
+
+                if (readWrite == Registers_SettingData.eReadWrite.read_write || readWrite == Registers_SettingData.eReadWrite.read)
+                {
+                    Send(Registers_ID_GET, address, value);
+                }
+
+            }
+        }
+
+        //-------------------------------------------------------------------------------------------------------------------
+        //Send function
+        //-------------------------------------------------------------------------------------------------------------------
+        public void SendRegister(int address) 
+        {
+            for (int i = 0; i < List_RegistersSetting.Count; i++)
+            {
+                Registers_SettingData data = List_RegistersSetting[i];
+
+                if (address == data.p_address) 
+                {
+                    Registers_SettingData.eReadWrite readWrite = data._ReadWrite;
+
+                    int value = data.ParseValue(Registers_AddressValueSize);
+
+                    if (readWrite == Registers_SettingData.eReadWrite.read_write || readWrite == Registers_SettingData.eReadWrite.write)
+                    {
+                        Send(Registers_ID_SET, address, value);
+                    }
+                }
+            }
+        }
+
+        public void SendRegister(int address, int value)
+        {
+            Send(Registers_ID_SET, address, value);
+        }
+
         private void Send(Communication.eCommandCode CMD, int address, int value) 
         {
+            
+            
             byte[] data = new byte[3];
             
             if(Registers_AddressValueSize == eAddressValueSize.Address8_Value8) 
@@ -224,6 +379,9 @@ namespace Digitizer_ver1
             SendFunction(CMD, data[0], data[1], data[2]);
         }
 
+        //-------------------------------------------------------------------------------------------------------------------
+        //Update registers
+        //-------------------------------------------------------------------------------------------------------------------
         public void UpdateRegisters(int address, int value) 
         {
             for (int i = 0; i < List_RegistersSetting.Count; i++)

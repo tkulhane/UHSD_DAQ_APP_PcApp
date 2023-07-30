@@ -194,9 +194,23 @@ namespace Digitizer_ver1
             return temp_ReadWrite;
         }
 
+
+        public string ReadWriteToString(eReadWrite ReadWrite)
+        {
+            string StrReadWrite;
+
+            if (ReadWrite == eReadWrite.read) StrReadWrite = "R";
+            else if (ReadWrite == eReadWrite.read_write) StrReadWrite = "R/W";
+            else if (ReadWrite == eReadWrite.write) StrReadWrite = "W";
+            else StrReadWrite = "-";
+
+            return StrReadWrite;
+        }
+
         public string FormatToCSV()
         {
-            return String.Format("{0:X};{1};{2};{3:X}\n", _address, _description, _ReadWrite, _value);
+            
+            return String.Format("{0:X};{1};{2};{3:X}\n", _address, _description, ReadWriteToString(_ReadWrite), _value);
         }
 
         public override string ToString()
