@@ -113,7 +113,14 @@ namespace Digitizer_ver1
         static char[] caSplit = new char[] { ';' };
         private void UpdateRowRegistersFile(int row, string s)
         {
+            if (String.IsNullOrEmpty(s) || !s.Contains(";"))
+            {
+                return;
+            }
+
             string[] s_parts = s.Split(caSplit);
+
+            if (s_parts.Length < 2) return;
 
             List_ReigistersFile[row].p_registerSettingFile = s_parts[1];
             dataGridView_RegistersFiles.Update();

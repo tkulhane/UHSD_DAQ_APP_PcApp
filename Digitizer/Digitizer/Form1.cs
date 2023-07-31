@@ -91,13 +91,21 @@ namespace Digitizer_ver1
             ConfigSequence.dataGridView_ConfigFile = dataGridView_ConfigFile;
             ConfigSequence.List_ReigistersFile = sysSetting.List_ReigistersFile;
 
-            //sysSetting.SettingLoad();
+
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             sysSetting.SettingSave();
         }
+
+
+        private void button_LoadSetting_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
 
 
         Communication communication = new Communication();
@@ -582,7 +590,5 @@ namespace Digitizer_ver1
         {
             ConfigSequence.ConfigSequenceGo();
         }
-
-        
     }
 }

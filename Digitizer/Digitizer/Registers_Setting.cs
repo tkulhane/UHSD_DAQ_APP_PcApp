@@ -60,9 +60,19 @@ namespace Digitizer_ver1
         {
 
 
+            if (String.IsNullOrEmpty(fname)) return fname;
+
             List_RegistersSetting.Clear();
 
-            String[] lines = File.ReadAllLines(fname, Encoding.GetEncoding("Windows-1250"));
+            String[] lines;
+            try 
+            {
+                 lines = File.ReadAllLines(fname, Encoding.GetEncoding("Windows-1250"));
+            }
+            catch 
+            {
+                return fname;
+            }
 
             foreach (String s in lines)
             {
@@ -78,6 +88,7 @@ namespace Digitizer_ver1
 
 
             DataGrid_RegistersSetting.DataSource = List_RegistersSetting;
+            DataGrid_RegistersSetting.Show();
 
             if (DataGrid_RegistersSetting.Columns.Count >= 5)
             {
@@ -88,18 +99,21 @@ namespace Digitizer_ver1
             DataGridViewButtonColumn btn_read = new DataGridViewButtonColumn();
             DataGridViewButtonColumn btn_write = new DataGridViewButtonColumn();
 
-            btn_read.HeaderText = "Write";
-            btn_read.Text = "Write";
-            btn_read.Name = "button_ADCregisterWrite";
-            btn_read.UseColumnTextForButtonValue = true;
-
-            btn_write.HeaderText = "Read";
-            btn_write.Text = "Read";
-            btn_write.Name = "button_ADCregisterRead";
+            
+            btn_write.HeaderText = "Write";
+            btn_write.Text = "Write";
+            btn_write.Name = "button_ADCregisterWrite";
             btn_write.UseColumnTextForButtonValue = true;
 
-            DataGrid_RegistersSetting.Columns.Add(btn_write);
+            
+            btn_read.HeaderText = "Read";
+            btn_read.Text = "Read";
+            btn_read.Name = "button_ADCregisterRead";
+            btn_read.UseColumnTextForButtonValue = true;
+
+            
             DataGrid_RegistersSetting.Columns.Add(btn_read);
+            DataGrid_RegistersSetting.Columns.Add(btn_write);
 
             DataGrid_RegistersSetting.Columns[0].DefaultCellStyle.Format = "X";
             //DataGrid_RegistersSetting.Columns[3].DefaultCellStyle.Format = "X";
@@ -259,11 +273,16 @@ namespace Digitizer_ver1
 
             if (value < 0) return;
 
-            //MessageBox.Show(e.ColumnIndex.ToString());
+
+
+            int index_write = DataGrid_RegistersSetting.Columns["button_ADCregisterWrite"].Index;
+            int index_read = DataGrid_RegistersSetting.Columns["button_ADCregisterRead"].Index;
 
             
+
             //ToDo zjistit proc to nekdy vrací pri kliknuti 0 a 1 (ma to vracet 4 a 5), dela to po nacteni z nastaveni setting
-            if (e.ColumnIndex == 4 || e.ColumnIndex == 0) //read
+            if (e.ColumnIndex == index_read) //read
+            //if (e.ColumnIndex == 4 || e.ColumnIndex == 0) //read
             {
                 
                 if (readWrite == Registers_SettingData.eReadWrite.read_write || readWrite == Registers_SettingData.eReadWrite.read) 
@@ -276,7 +295,8 @@ namespace Digitizer_ver1
                 }
                 
             }
-            else if (e.ColumnIndex == 5 || e.ColumnIndex == 1) //write
+            else if (e.ColumnIndex == index_write)
+            //else if (e.ColumnIndex == 5 || e.ColumnIndex == 1) //write
             {
                 if (readWrite == Registers_SettingData.eReadWrite.read_write || readWrite == Registers_SettingData.eReadWrite.write)
                 {
@@ -317,7 +337,7 @@ namespace Digitizer_ver1
 
                 if (readWrite == Registers_SettingData.eReadWrite.read_write || readWrite == Registers_SettingData.eReadWrite.read)
                 {
-                    Send(Registers_ID_GET, address, value);
+                    Send(Registers_ID_SET, address, value);
                 }
 
             }
@@ -396,14 +416,42 @@ namespace Digitizer_ver1
 
         public void UpdateRegisters(byte data_0, byte data_1, byte data_2)
         {
-            int address = (data_0 << 8) + data_1;
+            //MessageBox.Show("Update");
+
+            int address = -1;
+            int value = -1;
+
+            if (Registers_AddressValueSize == eAddressValueSize.Address8_Value8)
+            {
+                address = data_1;
+                value = data_2;
+            }
+            else if (Registers_AddressValueSize == eAddressValueSize.Address16_Value8)
+            {
+                address = (data_0 << 8) + data_1;
+                value = data_2;
+            }
+            else if (Registers_AddressValueSize == eAddressValueSize.Address8_Value16)
+            {
+                address = data_0;
+                value = (data_1 << 8) + data_2;
+            }
+
+            if (address < 0 || value < 0) return;
+
+            int value_cell = DataGrid_RegistersSetting.Columns["p_value"].Index;
 
             for (int i = 0; i < List_RegistersSetting.Count; i++)
             {
+                
+
                 if (address.Equals(List_RegistersSetting[i].p_address))
                 {
+                   
                     List_RegistersSetting[i].p_value = data_2.ToString("X");
-                    DataGrid_RegistersSetting.UpdateCellValue(3, i);
+                    DataGrid_RegistersSetting.UpdateCellValue(value_cell, i);
+
+                    //DataGrid_RegistersSetting.
                 }
             }
 

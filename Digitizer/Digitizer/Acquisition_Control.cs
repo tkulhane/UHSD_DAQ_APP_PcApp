@@ -126,6 +126,7 @@ namespace Digitizer_ver1
             }
             else if(radioButton_AcqNumEvents.Checked)
             {
+
                 numericUpDown_NumOfEvents.Enabled = true;
                 numericUpDown_Time.Enabled = false;
 

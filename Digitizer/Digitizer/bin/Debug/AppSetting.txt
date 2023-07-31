@@ -1,4 +1,4 @@
-uart;COM1
+uart;COM12
 ADC;C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\ConfigFiles\ADC_reg.csv
 HMC;C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\ConfigFiles\HMC_reg.csv
 LMX1;C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\ConfigFiles\LMX1_reg.csv
