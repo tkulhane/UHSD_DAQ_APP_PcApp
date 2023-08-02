@@ -30,9 +30,9 @@ namespace Digitizer_ver1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label_AcqState = new System.Windows.Forms.Label();
             this.button_Reset = new System.Windows.Forms.Button();
@@ -132,6 +132,9 @@ namespace Digitizer_ver1
             this.radioButton_UART = new System.Windows.Forms.RadioButton();
             this.label_Test = new System.Windows.Forms.Label();
             this.button_Test = new System.Windows.Forms.Button();
+            this.button_led0on = new System.Windows.Forms.Button();
+            this.button_led0off = new System.Windows.Forms.Button();
+            this.button_led0tgl = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tabRegisters.SuspendLayout();
             this.tabControl_RegistersSetting.SuspendLayout();
@@ -555,21 +558,21 @@ namespace Digitizer_ver1
             // 
             this.chart_data.BorderlineColor = System.Drawing.Color.Black;
             this.chart_data.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea4.Name = "ChartArea1";
-            this.chart_data.ChartAreas.Add(chartArea4);
+            chartArea2.Name = "ChartArea1";
+            this.chart_data.ChartAreas.Add(chartArea2);
             this.chart_data.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend4.Name = "Legend1";
-            this.chart_data.Legends.Add(legend4);
+            legend2.Name = "Legend1";
+            this.chart_data.Legends.Add(legend2);
             this.chart_data.Location = new System.Drawing.Point(0, 0);
             this.chart_data.Margin = new System.Windows.Forms.Padding(2);
             this.chart_data.Name = "chart_data";
-            series4.BorderWidth = 2;
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series4.IsVisibleInLegend = false;
-            series4.Legend = "Legend1";
-            series4.Name = "Data";
-            this.chart_data.Series.Add(series4);
+            series2.BorderWidth = 2;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.IsVisibleInLegend = false;
+            series2.Legend = "Legend1";
+            series2.Name = "Data";
+            this.chart_data.Series.Add(series2);
             this.chart_data.Size = new System.Drawing.Size(637, 414);
             this.chart_data.TabIndex = 4;
             this.chart_data.Text = "chart_data";
@@ -1166,6 +1169,9 @@ namespace Digitizer_ver1
             // 
             // Setting
             // 
+            this.Setting.Controls.Add(this.button_led0tgl);
+            this.Setting.Controls.Add(this.button_led0off);
+            this.Setting.Controls.Add(this.button_led0on);
             this.Setting.Controls.Add(this.label_Test);
             this.Setting.Controls.Add(this.button_Test);
             this.Setting.Controls.Add(this.groupBox8);
@@ -1292,6 +1298,36 @@ namespace Digitizer_ver1
             this.button_Test.Text = "Test";
             this.button_Test.UseVisualStyleBackColor = true;
             this.button_Test.Click += new System.EventHandler(this.button_Test_Click);
+            // 
+            // button_led0on
+            // 
+            this.button_led0on.Location = new System.Drawing.Point(350, 59);
+            this.button_led0on.Name = "button_led0on";
+            this.button_led0on.Size = new System.Drawing.Size(75, 21);
+            this.button_led0on.TabIndex = 6;
+            this.button_led0on.Text = "led on";
+            this.button_led0on.UseVisualStyleBackColor = true;
+            this.button_led0on.Click += new System.EventHandler(this.button_led0);
+            // 
+            // button_led0off
+            // 
+            this.button_led0off.Location = new System.Drawing.Point(431, 59);
+            this.button_led0off.Name = "button_led0off";
+            this.button_led0off.Size = new System.Drawing.Size(75, 21);
+            this.button_led0off.TabIndex = 7;
+            this.button_led0off.Text = "led off";
+            this.button_led0off.UseVisualStyleBackColor = true;
+            this.button_led0off.Click += new System.EventHandler(this.button_led0);
+            // 
+            // button_led0tgl
+            // 
+            this.button_led0tgl.Location = new System.Drawing.Point(528, 59);
+            this.button_led0tgl.Name = "button_led0tgl";
+            this.button_led0tgl.Size = new System.Drawing.Size(75, 21);
+            this.button_led0tgl.TabIndex = 8;
+            this.button_led0tgl.Text = "led toogle";
+            this.button_led0tgl.UseVisualStyleBackColor = true;
+            this.button_led0tgl.Click += new System.EventHandler(this.button_led0);
             // 
             // Form1
             // 
@@ -1456,6 +1492,9 @@ namespace Digitizer_ver1
         private System.Windows.Forms.DataGridView dataGridView_RegistersFiles;
         public System.Windows.Forms.Label label_Test;
         private System.Windows.Forms.Button button_Test;
+        private System.Windows.Forms.Button button_led0off;
+        private System.Windows.Forms.Button button_led0on;
+        private System.Windows.Forms.Button button_led0tgl;
     }
 }
 

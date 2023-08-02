@@ -36,6 +36,9 @@ namespace Digitizer_ver1
             CMD_CONST_SET_TriggerRegisters = 0x31,
             CMD_CONST_GET_TriggerRegisters = 0x32,
 
+            CMD_CONST_SET_GPIO = 0x33,
+            CMD_CONST_GET_GPIO = 0x34,
+
 
 
             CMD_CONST_EVENT_HEAD = 0x7A,

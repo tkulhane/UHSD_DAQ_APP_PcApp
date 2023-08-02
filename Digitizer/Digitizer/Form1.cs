@@ -590,5 +590,26 @@ namespace Digitizer_ver1
         {
             ConfigSequence.ConfigSequenceGo();
         }
+
+        private void button_led0(object sender, EventArgs e)
+        {
+            Button clickedButton = sender as Button;
+
+            if (clickedButton == null) return;
+
+            if(clickedButton.Name == "button_led0on") 
+            {
+                communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_GPIO, 0x13, 0x00, 0x01);
+            }
+            else if (clickedButton.Name == "button_led0off")
+            {
+                communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_GPIO, 0x14, 0x00, 0x01);
+            }
+            else if (clickedButton.Name == "button_led0tgl")
+            {
+                communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_GPIO, 0x12, 0x00, 0x01);
+            }
+
+        }
     }
 }
