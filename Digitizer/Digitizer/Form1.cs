@@ -17,7 +17,7 @@ namespace Digitizer_ver1
         public Form1()
         {
             InitializeComponent();
-            
+
             dataGridView_data.DataSource = list_data;
             dataGridView_events.DataSource = list_events;
 
@@ -112,11 +112,11 @@ namespace Digitizer_ver1
         Acquisition_Control AcqControl = new Acquisition_Control();
         SystemSetting sysSetting = new SystemSetting();
 
-        Registers_Setting Registers_ADC = new Registers_Setting("ADC",Registers_Setting.eAddressValueSize.Address16_Value8, Communication.eCommandCode.CMD_CONST_GET_AdcRegisters, Communication.eCommandCode.CMD_CONST_SET_AdcRegisters);
-        Registers_Setting Registers_HMC = new Registers_Setting("HMC",Registers_Setting.eAddressValueSize.Address16_Value8, Communication.eCommandCode.CMD_CONST_GET_HmcRegisters, Communication.eCommandCode.CMD_CONST_SET_HmcRegisters);
-        Registers_Setting Registers_LMX1 = new Registers_Setting("LMX1",Registers_Setting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Lmx1Registers, Communication.eCommandCode.CMD_CONST_SET_Lmx1Registers);
-        Registers_Setting Registers_LMX2 = new Registers_Setting("LMX2",Registers_Setting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Lmx2Registers, Communication.eCommandCode.CMD_CONST_SET_Lmx2Registers);
-        Registers_Setting Registers_FpgaTest = new Registers_Setting("FpgaTest",Registers_Setting.eAddressValueSize.Address8_Value8, Communication.eCommandCode.CMD_CONST_GET_TestRegisters, Communication.eCommandCode.CMD_CONST_SET_TestRegisters);
+        Registers_Setting Registers_ADC = new Registers_Setting("ADC", Registers_Setting.eAddressValueSize.Address16_Value8, Communication.eCommandCode.CMD_CONST_GET_AdcRegisters, Communication.eCommandCode.CMD_CONST_SET_AdcRegisters);
+        Registers_Setting Registers_HMC = new Registers_Setting("HMC", Registers_Setting.eAddressValueSize.Address16_Value8, Communication.eCommandCode.CMD_CONST_GET_HmcRegisters, Communication.eCommandCode.CMD_CONST_SET_HmcRegisters);
+        Registers_Setting Registers_LMX1 = new Registers_Setting("LMX1", Registers_Setting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Lmx1Registers, Communication.eCommandCode.CMD_CONST_SET_Lmx1Registers);
+        Registers_Setting Registers_LMX2 = new Registers_Setting("LMX2", Registers_Setting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Lmx2Registers, Communication.eCommandCode.CMD_CONST_SET_Lmx2Registers);
+        Registers_Setting Registers_FpgaTest = new Registers_Setting("FpgaTest", Registers_Setting.eAddressValueSize.Address8_Value8, Communication.eCommandCode.CMD_CONST_GET_TestRegisters, Communication.eCommandCode.CMD_CONST_SET_TestRegisters);
 
         ConfigurationFileSequencer ConfigSequence = new ConfigurationFileSequencer();
 
@@ -129,18 +129,18 @@ namespace Digitizer_ver1
         EventInfo EventNow = new EventInfo(-1, -1);
 
 
-        
 
 
 
 
-        
+
+
         private void timer_info_Tick(object sender, EventArgs e)
         {
             AcqControl.ReadSetting();
         }
 
-        private void ExecuteCommand() 
+        private void ExecuteCommand()
         {
             Communication.eCommandCode ID = communication.CommandID;
             byte[] data = communication.CommandData;
@@ -149,9 +149,11 @@ namespace Digitizer_ver1
 
             label_Test.Text = int_ID.ToString("X2") + " " + data[0].ToString("X2") + " " + data[1].ToString("X2") + " " + data[2].ToString("X2");
 
-            switch (ID) 
+            Updade_label_xRead((byte)ID, data[0], data[1], data[2]);
+
+            switch (ID)
             {
-                
+
                 case Communication.eCommandCode.CMD_CONST_GET_AdcRegisters:
                     Registers_ADC.UpdateRegisters(data[0], data[1], data[2]);
                     break;
@@ -176,10 +178,14 @@ namespace Digitizer_ver1
                     AcqControl.UpdateFromCommunication(data[0], data[1], data[2]);
                     break;
 
+                case Communication.eCommandCode.CMD_CONST_GET_GPIO:
+                    label_ReadGpioUpdate(data[0], data[1], data[2]);
+                    break;
+
             }
         }
 
-        private void ExecuteData() 
+        private void ExecuteData()
         {
             byte[] data = communication.ReceivedData;
 
@@ -190,7 +196,7 @@ namespace Digitizer_ver1
                 label_E.Text = label_E.Text + "A";
             }
 
-            else if(data[0] == 0xFB) //Event tail - store event
+            else if (data[0] == 0xFB) //Event tail - store event
             {
                 //E_Inc++;
                 list_events.Add(EventNow);
@@ -253,7 +259,7 @@ namespace Digitizer_ver1
         //-------------------------------------------------------------------------------------------------------------------
         private void button_LoadFromFile_Click(object sender, EventArgs e)
         {
-            
+
             int selected = tabControl_RegistersSetting.SelectedIndex;
             string FileName;
 
@@ -289,9 +295,9 @@ namespace Digitizer_ver1
                     //break;
             }
 
-   
+
         }
-        
+
 
         private void button_SaveToFile_Click(object sender, EventArgs e)
         {
@@ -363,7 +369,7 @@ namespace Digitizer_ver1
 
         private void dataGridView_AllRegistersGrids_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
             int selected = tabControl_RegistersSetting.SelectedIndex;
 
             switch (selected)
@@ -371,7 +377,7 @@ namespace Digitizer_ver1
 
 
                 case 0:
-                    Registers_ADC.DataGridView_CellContentClick(sender,e);
+                    Registers_ADC.DataGridView_CellContentClick(sender, e);
                     break;
 
                 case 1:
@@ -469,8 +475,8 @@ namespace Digitizer_ver1
         {
 
             int selectedRows = dataGridView_events.SelectedRows.Count;
-            
-            if(selectedRows == 0) 
+
+            if (selectedRows == 0)
             {
                 return;
             }
@@ -500,7 +506,7 @@ namespace Digitizer_ver1
                 }
 
             }
-            
+
             chart_data.DataBind();
         }
 
@@ -588,16 +594,26 @@ namespace Digitizer_ver1
 
         private void button_ConfigRun_Click(object sender, EventArgs e)
         {
-            ConfigSequence.ConfigSequenceGo();
+            ConfigSequence.ConfigSequenceStart();
         }
 
+        private void button_ConfigStop_Click(object sender, EventArgs e)
+        {
+            ConfigSequence.ConfigSequenceStop();
+        }
+
+
+
+        //-------------------------------------------------------------------------------------------------------------------
+        //gpio
+        //-------------------------------------------------------------------------------------------------------------------
         private void button_led0(object sender, EventArgs e)
         {
             Button clickedButton = sender as Button;
 
             if (clickedButton == null) return;
 
-            if(clickedButton.Name == "button_led0on") 
+            if (clickedButton.Name == "button_led0on")
             {
                 communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_GPIO, 0x13, 0x00, 0x01);
             }
@@ -610,6 +626,98 @@ namespace Digitizer_ver1
                 communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_GPIO, 0x12, 0x00, 0x01);
             }
 
+        }
+
+        private void button_InputsRead_Click(object sender, EventArgs e)
+        {
+            communication.SendCommand(Communication.eCommandCode.CMD_CONST_GET_GPIO, 0x21, 0x00, 0x00);
+            communication.SendCommand(Communication.eCommandCode.CMD_CONST_GET_GPIO, 0x22, 0x00, 0x00);
+            communication.SendCommand(Communication.eCommandCode.CMD_CONST_GET_GPIO, 0x23, 0x00, 0x00);
+            communication.SendCommand(Communication.eCommandCode.CMD_CONST_GET_GPIO, 0x24, 0x00, 0x00);
+            communication.SendCommand(Communication.eCommandCode.CMD_CONST_GET_GPIO, 0x25, 0x00, 0x00);
+        }
+
+        private void button_ClearRF_Click(object sender, EventArgs e)
+        {
+            communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_GPIO, 0xA1, 0xFF, 0xFF);
+            communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_GPIO, 0xA2, 0xFF, 0xFF);
+        }
+
+        private void button_ClearRFCounters_Click(object sender, EventArgs e)
+        {
+            communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_GPIO, 0xA3, 0xFF, 0xFF);
+            communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_GPIO, 0xA4, 0xFF, 0xFF);
+        }
+
+        private void label_ReadGpioUpdate(byte data_0, byte data_1, byte data_2)
+        {
+            int value = data_2 + (data_1 << 8);
+
+            if (data_0 == 0x21)
+            {
+                label_InputsRead.Text = value.ToString("X");
+            }
+            else if (data_0 == 0x22)
+            {
+                label_InputsRising.Text = value.ToString("X");
+            }
+            else if (data_0 == 0x23)
+            {
+                label_InputsFalling.Text = value.ToString("X");
+            }
+            else if (data_0 == 0x24)
+            {
+                label_InputsRisingCounter.Text = value.ToString("X");
+            }
+            else if (data_0 == 0x25)
+            {
+                label_InputsFallingCounter.Text = value.ToString("X");
+            }
+
+        }
+
+        private void button_MaskRFCounters_Click(object sender, EventArgs e)
+        {
+            int value = 0;
+
+            if (!int.TryParse(textBox_MaskRFCounters.Text, NumberStyles.HexNumber, null, out value)) return;
+
+            communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_GPIO, 0xAA, (byte)((value >> 8) & 0x00FF), (byte)(value & 0x00FF));
+        }
+
+
+
+        byte xSendedCMD;
+        //-------------------------------------------------------------------------------------------------------------------
+        //xSend
+        //-------------------------------------------------------------------------------------------------------------------
+        private void button_xSend_Click(object sender, EventArgs e)
+        {
+            byte b3 = 0;
+            byte b2 = 0;
+            byte b1 = 0;
+            byte b0 = 0;
+
+            if (!byte.TryParse(textBox_xSendByte3.Text, NumberStyles.HexNumber, null, out b3)) return;
+            if (!byte.TryParse(textBox_xSendByte2.Text, NumberStyles.HexNumber, null, out b2)) return;
+            if (!byte.TryParse(textBox_xSendByte1.Text, NumberStyles.HexNumber, null, out b1)) return;
+            if (!byte.TryParse(textBox_xSendByte0.Text, NumberStyles.HexNumber, null, out b0)) return;
+
+            xSendedCMD = b3;
+
+            communication.SendCommand((Communication.eCommandCode)b3, b2, b1, b0);
+        }
+
+        private void Updade_label_xRead(byte ID, byte b2, byte b1, byte b0) 
+        {
+            if (ID != xSendedCMD) return;
+            
+            label_xRead.Text = ID.ToString("X2") + " " + b2.ToString("X2") + " " + b1.ToString("X2") + " " + b0.ToString("X2");
+        }
+
+        private void label_xRead_Click(object sender, EventArgs e)
+        {
+            label_xRead.Text = String.Empty;
         }
     }
 }

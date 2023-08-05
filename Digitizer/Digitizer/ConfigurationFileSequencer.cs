@@ -178,28 +178,46 @@ namespace Digitizer_ver1
             ConfigSequenceGo();
         }
 
+        public void ConfigSequenceStart() 
+        {
+            if(List_ConfigSequence.Count == 0) 
+            {
+                return;
+            }
+            
+            for (int i = 0; i < dataGridView_ConfigFile.RowCount; i++)
+            {
+                dataGridView_ConfigFile.Rows[i].DefaultCellStyle.BackColor = System.Drawing.Color.White;
+            }
+
+            StepSequence = 0;
+            SequenceDone = false;
+            ConfigSequenceGo();
+        }
+
+        public void ConfigSequenceStop()
+        {
+            SequenceDone = true;
+        }
+
         public void ConfigSequenceGo() 
         {
-            if(StepSequence == 0)
-            {
-                for(int i = 0; i < List_ConfigSequence.Count; i++) 
-                {
-                    dataGridView_ConfigFile.Rows[StepSequence].DefaultCellStyle.BackColor = System.Drawing.Color.White;
-                }
-            }   
+            if (SequenceDone) return;
             
-            SequenceDone = false;
+            //SequenceDone = false;
 
             ConfigurationFileSequencer_Data SequenceData = List_ConfigSequence[StepSequence];
-            DecodeSequenceLine(SequenceData);
+            bool decodeOk = DecodeSequenceLine(SequenceData);
 
+            if(decodeOk)
+                dataGridView_ConfigFile.Rows[StepSequence].DefaultCellStyle.BackColor = System.Drawing.Color.Green;
+            else
+                dataGridView_ConfigFile.Rows[StepSequence].DefaultCellStyle.BackColor = System.Drawing.Color.Red;
 
-            dataGridView_ConfigFile.Rows[StepSequence].DefaultCellStyle.BackColor = System.Drawing.Color.Green;
-
-            if(StepSequence >= List_ConfigSequence.Count-1) 
+            if (StepSequence >= List_ConfigSequence.Count-1) 
             {
                 SequenceDone = true;
-                StepSequence = 0;
+                //StepSequence = 0;
             }
             else 
             {
@@ -268,6 +286,10 @@ namespace Digitizer_ver1
                 if (!int.TryParse(SequenceData.p_Value1, out temp)) return false;
                 if (temp < 0) return false;
                 Delay_SequenceLine = temp;
+            }
+            else 
+            {
+                return false;
             }
 
             return true;

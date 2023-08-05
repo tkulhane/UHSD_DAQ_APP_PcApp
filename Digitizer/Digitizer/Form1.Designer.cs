@@ -30,9 +30,9 @@ namespace Digitizer_ver1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label_AcqState = new System.Windows.Forms.Label();
             this.button_Reset = new System.Windows.Forms.Button();
@@ -135,6 +135,23 @@ namespace Digitizer_ver1
             this.button_led0on = new System.Windows.Forms.Button();
             this.button_led0off = new System.Windows.Forms.Button();
             this.button_led0tgl = new System.Windows.Forms.Button();
+            this.button_ConfigStop = new System.Windows.Forms.Button();
+            this.label_InputsRead = new System.Windows.Forms.Label();
+            this.button_InputsRead = new System.Windows.Forms.Button();
+            this.label_InputsRising = new System.Windows.Forms.Label();
+            this.label_InputsFalling = new System.Windows.Forms.Label();
+            this.button_ClearRF = new System.Windows.Forms.Button();
+            this.label_InputsFallingCounter = new System.Windows.Forms.Label();
+            this.label_InputsRisingCounter = new System.Windows.Forms.Label();
+            this.button_ClearRFCounters = new System.Windows.Forms.Button();
+            this.textBox_MaskRFCounters = new System.Windows.Forms.TextBox();
+            this.button_MaskRFCounters = new System.Windows.Forms.Button();
+            this.textBox_xSendByte3 = new System.Windows.Forms.TextBox();
+            this.textBox_xSendByte2 = new System.Windows.Forms.TextBox();
+            this.textBox_xSendByte1 = new System.Windows.Forms.TextBox();
+            this.textBox_xSendByte0 = new System.Windows.Forms.TextBox();
+            this.button_xSend = new System.Windows.Forms.Button();
+            this.label_xRead = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tabRegisters.SuspendLayout();
             this.tabControl_RegistersSetting.SuspendLayout();
@@ -558,21 +575,21 @@ namespace Digitizer_ver1
             // 
             this.chart_data.BorderlineColor = System.Drawing.Color.Black;
             this.chart_data.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea2.Name = "ChartArea1";
-            this.chart_data.ChartAreas.Add(chartArea2);
+            chartArea3.Name = "ChartArea1";
+            this.chart_data.ChartAreas.Add(chartArea3);
             this.chart_data.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Name = "Legend1";
-            this.chart_data.Legends.Add(legend2);
+            legend3.Name = "Legend1";
+            this.chart_data.Legends.Add(legend3);
             this.chart_data.Location = new System.Drawing.Point(0, 0);
             this.chart_data.Margin = new System.Windows.Forms.Padding(2);
             this.chart_data.Name = "chart_data";
-            series2.BorderWidth = 2;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.IsVisibleInLegend = false;
-            series2.Legend = "Legend1";
-            series2.Name = "Data";
-            this.chart_data.Series.Add(series2);
+            series3.BorderWidth = 2;
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.IsVisibleInLegend = false;
+            series3.Legend = "Legend1";
+            series3.Name = "Data";
+            this.chart_data.Series.Add(series3);
             this.chart_data.Size = new System.Drawing.Size(637, 414);
             this.chart_data.TabIndex = 4;
             this.chart_data.Text = "chart_data";
@@ -1092,6 +1109,7 @@ namespace Digitizer_ver1
             // 
             // Configuration
             // 
+            this.Configuration.Controls.Add(this.button_ConfigStop);
             this.Configuration.Controls.Add(this.button_ConfigRun);
             this.Configuration.Controls.Add(this.groupBox7);
             this.Configuration.Controls.Add(this.dataGridView_ConfigFile);
@@ -1169,6 +1187,22 @@ namespace Digitizer_ver1
             // 
             // Setting
             // 
+            this.Setting.Controls.Add(this.label_xRead);
+            this.Setting.Controls.Add(this.button_xSend);
+            this.Setting.Controls.Add(this.textBox_xSendByte0);
+            this.Setting.Controls.Add(this.textBox_xSendByte1);
+            this.Setting.Controls.Add(this.textBox_xSendByte2);
+            this.Setting.Controls.Add(this.textBox_xSendByte3);
+            this.Setting.Controls.Add(this.button_MaskRFCounters);
+            this.Setting.Controls.Add(this.textBox_MaskRFCounters);
+            this.Setting.Controls.Add(this.button_ClearRFCounters);
+            this.Setting.Controls.Add(this.label_InputsFallingCounter);
+            this.Setting.Controls.Add(this.label_InputsRisingCounter);
+            this.Setting.Controls.Add(this.button_ClearRF);
+            this.Setting.Controls.Add(this.label_InputsFalling);
+            this.Setting.Controls.Add(this.label_InputsRising);
+            this.Setting.Controls.Add(this.button_InputsRead);
+            this.Setting.Controls.Add(this.label_InputsRead);
             this.Setting.Controls.Add(this.button_led0tgl);
             this.Setting.Controls.Add(this.button_led0off);
             this.Setting.Controls.Add(this.button_led0on);
@@ -1329,6 +1363,159 @@ namespace Digitizer_ver1
             this.button_led0tgl.UseVisualStyleBackColor = true;
             this.button_led0tgl.Click += new System.EventHandler(this.button_led0);
             // 
+            // button_ConfigStop
+            // 
+            this.button_ConfigStop.Location = new System.Drawing.Point(219, 135);
+            this.button_ConfigStop.Margin = new System.Windows.Forms.Padding(2);
+            this.button_ConfigStop.Name = "button_ConfigStop";
+            this.button_ConfigStop.Size = new System.Drawing.Size(74, 37);
+            this.button_ConfigStop.TabIndex = 14;
+            this.button_ConfigStop.Text = "Config Stop";
+            this.button_ConfigStop.UseVisualStyleBackColor = true;
+            this.button_ConfigStop.Click += new System.EventHandler(this.button_ConfigStop_Click);
+            // 
+            // label_InputsRead
+            // 
+            this.label_InputsRead.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_InputsRead.Location = new System.Drawing.Point(528, 117);
+            this.label_InputsRead.Name = "label_InputsRead";
+            this.label_InputsRead.Size = new System.Drawing.Size(83, 21);
+            this.label_InputsRead.TabIndex = 9;
+            this.label_InputsRead.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button_InputsRead
+            // 
+            this.button_InputsRead.Location = new System.Drawing.Point(431, 117);
+            this.button_InputsRead.Name = "button_InputsRead";
+            this.button_InputsRead.Size = new System.Drawing.Size(75, 21);
+            this.button_InputsRead.TabIndex = 10;
+            this.button_InputsRead.Text = "Inputs Read";
+            this.button_InputsRead.UseVisualStyleBackColor = true;
+            this.button_InputsRead.Click += new System.EventHandler(this.button_InputsRead_Click);
+            // 
+            // label_InputsRising
+            // 
+            this.label_InputsRising.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_InputsRising.Location = new System.Drawing.Point(528, 140);
+            this.label_InputsRising.Name = "label_InputsRising";
+            this.label_InputsRising.Size = new System.Drawing.Size(83, 21);
+            this.label_InputsRising.TabIndex = 11;
+            this.label_InputsRising.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_InputsFalling
+            // 
+            this.label_InputsFalling.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_InputsFalling.Location = new System.Drawing.Point(528, 161);
+            this.label_InputsFalling.Name = "label_InputsFalling";
+            this.label_InputsFalling.Size = new System.Drawing.Size(83, 21);
+            this.label_InputsFalling.TabIndex = 12;
+            this.label_InputsFalling.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button_ClearRF
+            // 
+            this.button_ClearRF.Location = new System.Drawing.Point(431, 161);
+            this.button_ClearRF.Name = "button_ClearRF";
+            this.button_ClearRF.Size = new System.Drawing.Size(75, 21);
+            this.button_ClearRF.TabIndex = 13;
+            this.button_ClearRF.Text = "Clear";
+            this.button_ClearRF.UseVisualStyleBackColor = true;
+            this.button_ClearRF.Click += new System.EventHandler(this.button_ClearRF_Click);
+            // 
+            // label_InputsFallingCounter
+            // 
+            this.label_InputsFallingCounter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_InputsFallingCounter.Location = new System.Drawing.Point(528, 258);
+            this.label_InputsFallingCounter.Name = "label_InputsFallingCounter";
+            this.label_InputsFallingCounter.Size = new System.Drawing.Size(83, 21);
+            this.label_InputsFallingCounter.TabIndex = 15;
+            this.label_InputsFallingCounter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_InputsRisingCounter
+            // 
+            this.label_InputsRisingCounter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_InputsRisingCounter.Location = new System.Drawing.Point(528, 237);
+            this.label_InputsRisingCounter.Name = "label_InputsRisingCounter";
+            this.label_InputsRisingCounter.Size = new System.Drawing.Size(83, 21);
+            this.label_InputsRisingCounter.TabIndex = 14;
+            this.label_InputsRisingCounter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button_ClearRFCounters
+            // 
+            this.button_ClearRFCounters.Location = new System.Drawing.Point(431, 258);
+            this.button_ClearRFCounters.Name = "button_ClearRFCounters";
+            this.button_ClearRFCounters.Size = new System.Drawing.Size(75, 21);
+            this.button_ClearRFCounters.TabIndex = 16;
+            this.button_ClearRFCounters.Text = "Clear";
+            this.button_ClearRFCounters.UseVisualStyleBackColor = true;
+            this.button_ClearRFCounters.Click += new System.EventHandler(this.button_ClearRFCounters_Click);
+            // 
+            // textBox_MaskRFCounters
+            // 
+            this.textBox_MaskRFCounters.Location = new System.Drawing.Point(528, 214);
+            this.textBox_MaskRFCounters.Name = "textBox_MaskRFCounters";
+            this.textBox_MaskRFCounters.Size = new System.Drawing.Size(83, 20);
+            this.textBox_MaskRFCounters.TabIndex = 17;
+            // 
+            // button_MaskRFCounters
+            // 
+            this.button_MaskRFCounters.Location = new System.Drawing.Point(431, 213);
+            this.button_MaskRFCounters.Name = "button_MaskRFCounters";
+            this.button_MaskRFCounters.Size = new System.Drawing.Size(75, 21);
+            this.button_MaskRFCounters.TabIndex = 18;
+            this.button_MaskRFCounters.Text = "Mask";
+            this.button_MaskRFCounters.UseVisualStyleBackColor = true;
+            this.button_MaskRFCounters.Click += new System.EventHandler(this.button_MaskRFCounters_Click);
+            // 
+            // textBox_xSendByte3
+            // 
+            this.textBox_xSendByte3.Location = new System.Drawing.Point(56, 409);
+            this.textBox_xSendByte3.Name = "textBox_xSendByte3";
+            this.textBox_xSendByte3.Size = new System.Drawing.Size(44, 20);
+            this.textBox_xSendByte3.TabIndex = 19;
+            // 
+            // textBox_xSendByte2
+            // 
+            this.textBox_xSendByte2.Location = new System.Drawing.Point(106, 409);
+            this.textBox_xSendByte2.Name = "textBox_xSendByte2";
+            this.textBox_xSendByte2.Size = new System.Drawing.Size(44, 20);
+            this.textBox_xSendByte2.TabIndex = 20;
+            // 
+            // textBox_xSendByte1
+            // 
+            this.textBox_xSendByte1.Location = new System.Drawing.Point(156, 409);
+            this.textBox_xSendByte1.Name = "textBox_xSendByte1";
+            this.textBox_xSendByte1.Size = new System.Drawing.Size(44, 20);
+            this.textBox_xSendByte1.TabIndex = 21;
+            // 
+            // textBox_xSendByte0
+            // 
+            this.textBox_xSendByte0.Location = new System.Drawing.Point(206, 409);
+            this.textBox_xSendByte0.Name = "textBox_xSendByte0";
+            this.textBox_xSendByte0.Size = new System.Drawing.Size(44, 20);
+            this.textBox_xSendByte0.TabIndex = 22;
+            // 
+            // button_xSend
+            // 
+            this.button_xSend.Location = new System.Drawing.Point(256, 409);
+            this.button_xSend.Name = "button_xSend";
+            this.button_xSend.Size = new System.Drawing.Size(75, 21);
+            this.button_xSend.TabIndex = 23;
+            this.button_xSend.Text = "Send";
+            this.button_xSend.UseVisualStyleBackColor = true;
+            this.button_xSend.Click += new System.EventHandler(this.button_xSend_Click);
+            // 
+            // label_xRead
+            // 
+            this.label_xRead.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_xRead.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_xRead.Location = new System.Drawing.Point(337, 409);
+            this.label_xRead.Name = "label_xRead";
+            this.label_xRead.Size = new System.Drawing.Size(123, 20);
+            this.label_xRead.TabIndex = 24;
+            this.label_xRead.Text = "........";
+            this.label_xRead.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_xRead.Click += new System.EventHandler(this.label_xRead_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1383,6 +1570,7 @@ namespace Digitizer_ver1
             this.groupBox7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ConfigFile)).EndInit();
             this.Setting.ResumeLayout(false);
+            this.Setting.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_RegistersFiles)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -1495,6 +1683,23 @@ namespace Digitizer_ver1
         private System.Windows.Forms.Button button_led0off;
         private System.Windows.Forms.Button button_led0on;
         private System.Windows.Forms.Button button_led0tgl;
+        private System.Windows.Forms.Button button_ConfigStop;
+        private System.Windows.Forms.Button button_InputsRead;
+        public System.Windows.Forms.Label label_InputsRead;
+        public System.Windows.Forms.Label label_InputsFalling;
+        public System.Windows.Forms.Label label_InputsRising;
+        private System.Windows.Forms.Button button_ClearRF;
+        private System.Windows.Forms.Button button_ClearRFCounters;
+        public System.Windows.Forms.Label label_InputsFallingCounter;
+        public System.Windows.Forms.Label label_InputsRisingCounter;
+        private System.Windows.Forms.Button button_MaskRFCounters;
+        private System.Windows.Forms.TextBox textBox_MaskRFCounters;
+        private System.Windows.Forms.Label label_xRead;
+        private System.Windows.Forms.Button button_xSend;
+        private System.Windows.Forms.TextBox textBox_xSendByte0;
+        private System.Windows.Forms.TextBox textBox_xSendByte1;
+        private System.Windows.Forms.TextBox textBox_xSendByte2;
+        private System.Windows.Forms.TextBox textBox_xSendByte3;
     }
 }
 
