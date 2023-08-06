@@ -15,8 +15,8 @@ namespace Digitizer_ver1
 
             CMD_CONST_Loopback = 0x01,
 
-            CMD_CONST_SET_System_Controler = 0x03,
-            CMD_CONST_GET_System_Controler = 0x04,
+            CMD_CONST_SET_Reset_Controler = 0x03,
+            CMD_CONST_GET_Reset_Controler = 0x04,
 
             CMD_CONST_SET_TestRegisters = 0x11,
             CMD_CONST_GET_TestRegisters = 0x12,

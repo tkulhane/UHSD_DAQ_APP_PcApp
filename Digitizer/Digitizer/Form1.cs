@@ -75,6 +75,18 @@ namespace Digitizer_ver1
             Registers_LMX2.SendFunction = communication.SendCommand;
             Registers_FpgaTest.SendFunction = communication.SendCommand;
 
+            //gpio
+            gpio.SendCommand = communication.SendCommand;
+            gpio.DataGrid_GpioInput = dataGridView_GpioInputs;
+            gpio.DataGrid_GpioOutput = dataGridView_GpioOutputs;
+            gpio.LoadGpio();
+
+            //reset
+            rst.SendCommand = communication.SendCommand;
+            rst.DataGrid_Reset = dataGridView_Resets;
+            rst.LoadRst();
+
+
             //System Setting
             sysSetting.communication = communication;
             sysSetting.dataGridView_RegistersFiles = dataGridView_RegistersFiles;
@@ -90,6 +102,8 @@ namespace Digitizer_ver1
             //configuration file sequence
             ConfigSequence.dataGridView_ConfigFile = dataGridView_ConfigFile;
             ConfigSequence.List_ReigistersFile = sysSetting.List_ReigistersFile;
+
+            
 
 
         }
@@ -111,6 +125,8 @@ namespace Digitizer_ver1
         Communication communication = new Communication();
         Acquisition_Control AcqControl = new Acquisition_Control();
         SystemSetting sysSetting = new SystemSetting();
+        GPIO_Control gpio = new GPIO_Control();
+        Reset_Control rst = new Reset_Control();
 
         Registers_Setting Registers_ADC = new Registers_Setting("ADC", Registers_Setting.eAddressValueSize.Address16_Value8, Communication.eCommandCode.CMD_CONST_GET_AdcRegisters, Communication.eCommandCode.CMD_CONST_SET_AdcRegisters);
         Registers_Setting Registers_HMC = new Registers_Setting("HMC", Registers_Setting.eAddressValueSize.Address16_Value8, Communication.eCommandCode.CMD_CONST_GET_HmcRegisters, Communication.eCommandCode.CMD_CONST_SET_HmcRegisters);
@@ -131,13 +147,11 @@ namespace Digitizer_ver1
 
 
 
-
-
-
-
         private void timer_info_Tick(object sender, EventArgs e)
         {
             AcqControl.ReadSetting();
+            gpio.ReadStateCommands();
+            rst.ReadStateCommands();
         }
 
         private void ExecuteCommand()
@@ -179,8 +193,13 @@ namespace Digitizer_ver1
                     break;
 
                 case Communication.eCommandCode.CMD_CONST_GET_GPIO:
-                    label_ReadGpioUpdate(data[0], data[1], data[2]);
+                    gpio.UpdateFromCommunication(data[0], data[1], data[2]);
                     break;
+
+                case Communication.eCommandCode.CMD_CONST_GET_Reset_Controler:
+                    rst.UpdateFromCommunication(data[0], data[1], data[2]);
+                    break;
+
 
             }
         }
@@ -236,7 +255,7 @@ namespace Digitizer_ver1
 
         private void button_Reset_Click(object sender, EventArgs e)
         {
-            communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_System_Controler, 0x55, 0xAB, 0xCD);
+            //communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_System_Controler, 0x55, 0xAB, 0xCD);
         }
 
 
@@ -244,8 +263,6 @@ namespace Digitizer_ver1
         {
             label_Test.Text = " ";
         }
-
-
 
         private void button_Test_Click(object sender, EventArgs e)
         {
@@ -605,92 +622,9 @@ namespace Digitizer_ver1
 
 
         //-------------------------------------------------------------------------------------------------------------------
-        //gpio
-        //-------------------------------------------------------------------------------------------------------------------
-        private void button_led0(object sender, EventArgs e)
-        {
-            Button clickedButton = sender as Button;
-
-            if (clickedButton == null) return;
-
-            if (clickedButton.Name == "button_led0on")
-            {
-                communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_GPIO, 0x13, 0x00, 0x01);
-            }
-            else if (clickedButton.Name == "button_led0off")
-            {
-                communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_GPIO, 0x14, 0x00, 0x01);
-            }
-            else if (clickedButton.Name == "button_led0tgl")
-            {
-                communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_GPIO, 0x12, 0x00, 0x01);
-            }
-
-        }
-
-        private void button_InputsRead_Click(object sender, EventArgs e)
-        {
-            communication.SendCommand(Communication.eCommandCode.CMD_CONST_GET_GPIO, 0x21, 0x00, 0x00);
-            communication.SendCommand(Communication.eCommandCode.CMD_CONST_GET_GPIO, 0x22, 0x00, 0x00);
-            communication.SendCommand(Communication.eCommandCode.CMD_CONST_GET_GPIO, 0x23, 0x00, 0x00);
-            communication.SendCommand(Communication.eCommandCode.CMD_CONST_GET_GPIO, 0x24, 0x00, 0x00);
-            communication.SendCommand(Communication.eCommandCode.CMD_CONST_GET_GPIO, 0x25, 0x00, 0x00);
-        }
-
-        private void button_ClearRF_Click(object sender, EventArgs e)
-        {
-            communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_GPIO, 0xA1, 0xFF, 0xFF);
-            communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_GPIO, 0xA2, 0xFF, 0xFF);
-        }
-
-        private void button_ClearRFCounters_Click(object sender, EventArgs e)
-        {
-            communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_GPIO, 0xA3, 0xFF, 0xFF);
-            communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_GPIO, 0xA4, 0xFF, 0xFF);
-        }
-
-        private void label_ReadGpioUpdate(byte data_0, byte data_1, byte data_2)
-        {
-            int value = data_2 + (data_1 << 8);
-
-            if (data_0 == 0x21)
-            {
-                label_InputsRead.Text = value.ToString("X");
-            }
-            else if (data_0 == 0x22)
-            {
-                label_InputsRising.Text = value.ToString("X");
-            }
-            else if (data_0 == 0x23)
-            {
-                label_InputsFalling.Text = value.ToString("X");
-            }
-            else if (data_0 == 0x24)
-            {
-                label_InputsRisingCounter.Text = value.ToString("X");
-            }
-            else if (data_0 == 0x25)
-            {
-                label_InputsFallingCounter.Text = value.ToString("X");
-            }
-
-        }
-
-        private void button_MaskRFCounters_Click(object sender, EventArgs e)
-        {
-            int value = 0;
-
-            if (!int.TryParse(textBox_MaskRFCounters.Text, NumberStyles.HexNumber, null, out value)) return;
-
-            communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_GPIO, 0xAA, (byte)((value >> 8) & 0x00FF), (byte)(value & 0x00FF));
-        }
-
-
-
-        byte xSendedCMD;
-        //-------------------------------------------------------------------------------------------------------------------
         //xSend
         //-------------------------------------------------------------------------------------------------------------------
+        byte xSendedCMD;
         private void button_xSend_Click(object sender, EventArgs e)
         {
             byte b3 = 0;
@@ -718,6 +652,24 @@ namespace Digitizer_ver1
         private void label_xRead_Click(object sender, EventArgs e)
         {
             label_xRead.Text = String.Empty;
+        }
+
+        //-------------------------------------------------------------------------------------------------------------------
+        //gpio reset
+        //-------------------------------------------------------------------------------------------------------------------
+        private void dataGridView_GpioOutputs_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            gpio.DataGridView_Output_CellContentClick(sender, e);
+        }
+
+        private void button_ClearRisingFalling_Click(object sender, EventArgs e)
+        {
+            gpio.ClearRisingFalling();
+        }
+
+        private void dataGridView_Resets_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            rst.DataGridView_Reset_CellContentClick(sender, e);
         }
     }
 }
