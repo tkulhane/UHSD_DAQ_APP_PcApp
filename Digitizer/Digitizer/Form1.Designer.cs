@@ -30,9 +30,9 @@ namespace Digitizer_ver1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label_AcqState = new System.Windows.Forms.Label();
             this.button_Reset = new System.Windows.Forms.Button();
@@ -149,6 +149,7 @@ namespace Digitizer_ver1
             this.dataGridView_GpioInputs = new System.Windows.Forms.DataGridView();
             this.dataGridView_GpioOutputs = new System.Windows.Forms.DataGridView();
             this.dataGridView_Resets = new System.Windows.Forms.DataGridView();
+            this.button_ResetClearAll = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tabRegisters.SuspendLayout();
             this.tabControl_RegistersSetting.SuspendLayout();
@@ -579,21 +580,21 @@ namespace Digitizer_ver1
             // 
             this.chart_data.BorderlineColor = System.Drawing.Color.Black;
             this.chart_data.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea7.Name = "ChartArea1";
-            this.chart_data.ChartAreas.Add(chartArea7);
+            chartArea1.Name = "ChartArea1";
+            this.chart_data.ChartAreas.Add(chartArea1);
             this.chart_data.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend7.Name = "Legend1";
-            this.chart_data.Legends.Add(legend7);
+            legend1.Name = "Legend1";
+            this.chart_data.Legends.Add(legend1);
             this.chart_data.Location = new System.Drawing.Point(0, 0);
             this.chart_data.Margin = new System.Windows.Forms.Padding(2);
             this.chart_data.Name = "chart_data";
-            series7.BorderWidth = 2;
-            series7.ChartArea = "ChartArea1";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series7.IsVisibleInLegend = false;
-            series7.Legend = "Legend1";
-            series7.Name = "Data";
-            this.chart_data.Series.Add(series7);
+            series1.BorderWidth = 2;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.IsVisibleInLegend = false;
+            series1.Legend = "Legend1";
+            series1.Name = "Data";
+            this.chart_data.Series.Add(series1);
             this.chart_data.Size = new System.Drawing.Size(637, 414);
             this.chart_data.TabIndex = 4;
             this.chart_data.Text = "chart_data";
@@ -1399,6 +1400,7 @@ namespace Digitizer_ver1
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.button_ResetClearAll);
             this.panel2.Controls.Add(this.button_ClearRisingFalling);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
@@ -1506,6 +1508,17 @@ namespace Digitizer_ver1
             this.dataGridView_Resets.Size = new System.Drawing.Size(358, 520);
             this.dataGridView_Resets.TabIndex = 6;
             this.dataGridView_Resets.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Resets_CellContentClick);
+            // 
+            // button_ResetClearAll
+            // 
+            this.button_ResetClearAll.Location = new System.Drawing.Point(7, 487);
+            this.button_ResetClearAll.Margin = new System.Windows.Forms.Padding(2);
+            this.button_ResetClearAll.Name = "button_ResetClearAll";
+            this.button_ResetClearAll.Size = new System.Drawing.Size(74, 37);
+            this.button_ResetClearAll.TabIndex = 7;
+            this.button_ResetClearAll.Text = "Clear All Resets";
+            this.button_ResetClearAll.UseVisualStyleBackColor = true;
+            this.button_ResetClearAll.Click += new System.EventHandler(this.button_ResetClearAll_Click);
             // 
             // Form1
             // 
@@ -1695,6 +1708,7 @@ namespace Digitizer_ver1
         private System.Windows.Forms.DataGridView dataGridView_GpioInputs;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button_ClearRisingFalling;
+        private System.Windows.Forms.Button button_ResetClearAll;
     }
 }
 

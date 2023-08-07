@@ -42,12 +42,14 @@ namespace Digitizer_ver1
         public void LoadRst()
         {
             //Resets External
-            ResetExtAdd(0, "R-1");
-            ResetExtAdd(1, "R-2");
+            ResetExtAdd(0, "ADC");
+            ResetExtAdd(1, "HMC");
+            ResetExtAdd(2, "LMX1");
+            ResetExtAdd(3, "LMX2");
 
             //Reset Internal
-            ResetIntAdd(0, "R-3");
-            ResetIntAdd(1, "R-4");
+            ResetIntAdd(0, "DataFifo");
+            
 
 
 
@@ -210,6 +212,15 @@ namespace Digitizer_ver1
             SendCommand(Communication.eCommandCode.CMD_CONST_GET_Reset_Controler, (byte)eCommandCode_RESET.CMD_RST_INT_State, 0, 0);
         }
 
+        public void ClearAll() 
+        {
+            SendCommand(Communication.eCommandCode.CMD_CONST_SET_Reset_Controler, (byte)eCommandCode_RESET.CMD_RST_Clear_ALL, 0, 0);
+        }
+
+        public void SystemReset()
+        {
+            SendCommand(Communication.eCommandCode.CMD_CONST_SET_Reset_Controler, (byte)eCommandCode_RESET.CMD_RST_Main_Reset, 0xAB, 0xCD);
+        }
 
         public void ReadStateCommands()
         {

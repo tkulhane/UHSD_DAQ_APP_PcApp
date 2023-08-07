@@ -49,6 +49,8 @@ namespace Digitizer_ver1
             //Inputs
             InputAdd(0, "LED-0");
             InputAdd(1, "LED-1");
+            InputAdd(2, "BTN-0");
+            InputAdd(3, "BTN-1");
 
             //Outputs
             OutputAdd(0, "LED-0");
@@ -151,7 +153,7 @@ namespace Digitizer_ver1
 
             int value_cell = DataGrid_GpioInput.Columns["p_value"].Index;
 
-            for (int i = 0; i < List_GpioOutput.Count; i++)
+            for (int i = 0; i < List_GpioInput.Count; i++)
             {
                 List_GpioInput[i].p_value = (data >> List_GpioInput[i].p_number) & 0x0001;
                 DataGrid_GpioInput.UpdateCellValue(value_cell, i);
@@ -164,7 +166,7 @@ namespace Digitizer_ver1
 
             int value_cell = DataGrid_GpioInput.Columns["p_rising"].Index;
 
-            for (int i = 0; i < List_GpioOutput.Count; i++)
+            for (int i = 0; i < List_GpioInput.Count; i++)
             {
                 List_GpioInput[i].p_rising = (data >> List_GpioInput[i].p_number) & 0x0001;
                 DataGrid_GpioInput.UpdateCellValue(value_cell, i);
@@ -177,7 +179,7 @@ namespace Digitizer_ver1
 
             int value_cell = DataGrid_GpioInput.Columns["p_falling"].Index;
 
-            for (int i = 0; i < List_GpioOutput.Count; i++)
+            for (int i = 0; i < List_GpioInput.Count; i++)
             {
                 List_GpioInput[i].p_falling = (data >> List_GpioInput[i].p_number) & 0x0001;
                 DataGrid_GpioInput.UpdateCellValue(value_cell, i);

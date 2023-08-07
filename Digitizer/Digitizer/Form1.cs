@@ -256,6 +256,7 @@ namespace Digitizer_ver1
         private void button_Reset_Click(object sender, EventArgs e)
         {
             //communication.SendCommand(Communication.eCommandCode.CMD_CONST_SET_System_Controler, 0x55, 0xAB, 0xCD);
+            rst.SystemReset();
         }
 
 
@@ -670,6 +671,11 @@ namespace Digitizer_ver1
         private void dataGridView_Resets_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             rst.DataGridView_Reset_CellContentClick(sender, e);
+        }
+
+        private void button_ResetClearAll_Click(object sender, EventArgs e)
+        {
+            rst.ClearAll();
         }
     }
 }
