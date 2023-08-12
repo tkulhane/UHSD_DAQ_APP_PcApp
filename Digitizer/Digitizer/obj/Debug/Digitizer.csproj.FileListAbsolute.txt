@@ -18,3 +18,4 @@ C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\obj\Debug\Digitizer.csproj.Gene
 C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\obj\Debug\Digitizer.csproj.CoreCompileInputs.cache
 C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\obj\Debug\Digitizer_ver1.exe
 C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\obj\Debug\Digitizer_ver1.pdb
+C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\FTD3XX_NET.dll

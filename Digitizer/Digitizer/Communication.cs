@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -71,6 +72,8 @@ namespace Digitizer_ver1
 
 
         UART_Communication uart = new UART_Communication();
+        usb_3_0 usb = new usb_3_0();
+
         public eCommunicationType SelectedType;
         eCommunicationType OpenedType;
 
@@ -78,6 +81,9 @@ namespace Digitizer_ver1
         public byte[] CommandData = new byte[3];
 
         public byte[] ReceivedData = new byte[4];
+
+        Thread ThreadOfDataRead;
+        bool ThreadOfDataRead_stop = false;
 
         public void Scan()
         {
@@ -121,7 +127,12 @@ namespace Digitizer_ver1
             }
             else if(SelectedType == eCommunicationType.usb) 
             {
-
+                usb.DevicesScan(comboBox_Ports);
+                
+                if (comboBox_Ports.Items.Count > 0)
+                {
+                    comboBox_Ports.SelectedIndex = 0;
+                }
             }
 
 
@@ -142,10 +153,11 @@ namespace Digitizer_ver1
                 return;
             }
 
-            if (OpenedType == eCommunicationType.usb)
+            if (usb.IsOpen() || OpenedType == eCommunicationType.usb)
+            //if (OpenedType == eCommunicationType.usb)
             {
-            //    .StopRead();
-            //    .ClosePort();
+                usb.StopReceiving();
+                usb.Close();
                 OpenedType = eCommunicationType.non;
                 EnableDisableControls(true);
                 return;
@@ -180,8 +192,29 @@ namespace Digitizer_ver1
 
             if(SelectedType == eCommunicationType.usb) 
             {
-                OpenedType = eCommunicationType.usb;
-                EnableDisableControls(false);
+                if (comboBox_Ports.SelectedIndex < 0)
+                {
+                    MessageBox.Show("Nevybran port", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    string port = comboBox_Ports.SelectedItem as String;
+
+                    try
+                    {
+                        usb.OpenByString(port);
+                        usb.StartReceiving();
+
+                        OpenedType = eCommunicationType.usb;
+                        EnableDisableControls(false); ;
+                        EnableDisableControls(false);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                }
             }
 
         }
@@ -190,14 +223,37 @@ namespace Digitizer_ver1
         {
             byte id = (byte)(0x80 | (byte)CMD);
 
-            uart.SendCommand(id, data[0], data[1], data[2]);
+            if(SelectedType == eCommunicationType.non) 
+            {
+                return;
+            }
+            else if(SelectedType == eCommunicationType.uart) 
+            {
+                uart.SendCommand(id, data[0], data[1], data[2]);
+            }
+            else if (SelectedType == eCommunicationType.usb)
+            {
+                usb.SendCommand(id, data[0], data[1], data[2]);
+            }
         }
 
         public void SendCommand(eCommandCode CMD, byte data_0, byte data_1, byte data_2)
         {
             byte id = (byte)(0x80 | (byte)CMD);
 
-            uart.SendCommand(id, data_0, data_1, data_2);
+            if (SelectedType == eCommunicationType.non)
+            {
+                return;
+            }
+            else if (SelectedType == eCommunicationType.uart)
+            {
+                uart.SendCommand(id, data_0, data_1, data_2);
+            }
+            else if (SelectedType == eCommunicationType.usb)
+            {
+                usb.SendCommand(id, data_0, data_1, data_2);
+            }
+
         }
 
         public void SendCommand(eCommandCode CMD, string address, string value)
@@ -216,16 +272,32 @@ namespace Digitizer_ver1
                 return;
             }
 
-            uart.SendCommand(id, (byte)((i_address >> 8) & 0x00FF), (byte)(i_address & 0x00FF), i_value);
+
+
+            if (SelectedType == eCommunicationType.non)
+            {
+                return;
+            }
+            else if (SelectedType == eCommunicationType.uart)
+            {
+                uart.SendCommand(id, (byte)((i_address >> 8) & 0x00FF), (byte)(i_address & 0x00FF), i_value);
+            }
+            else if (SelectedType == eCommunicationType.usb)
+            {
+                usb.SendCommand(id, (byte)((i_address >> 8) & 0x00FF), (byte)(i_address & 0x00FF), i_value);
+            }
+
         }
 
+        
+        /*
         public void SendCommand_XXX(int CMD, int address, int value)
         {
             byte id = (byte)(0x80 | (byte)CMD);
 
             uart.SendCommand(id, (byte)((address >> 8) & 0x00FF), (byte)(address & 0x00FF), (byte)value);
         }
-
+        */
 
 
         private void ReadData() 
@@ -255,6 +327,62 @@ namespace Digitizer_ver1
                 ExecuteCommand();
             }
 
+        }
+
+        private void ReadData_USB()
+        {
+            byte[] data = new byte[4];
+            
+
+            while (!ThreadOfDataRead_stop)
+            {
+
+                bool isSuccessful = usb.GetDataBytes(out data, (uint)data.Length);
+                if (isSuccessful == false) continue;
+
+                ReceivedData = data;
+
+                if ((data[0] & 0x80) >> 7 == 0)
+                {
+                    ExecuteData();
+                }
+                else
+                {
+
+                    CommandID = (eCommandCode)(data[0] & 0x7F);
+                    CommandData[0] = data[1];
+                    CommandData[1] = data[2];
+                    CommandData[2] = data[3];
+
+                    if (CommandID == eCommandCode.CMD_CONST_EVENT_HEAD || CommandID == eCommandCode.CMD_CONST_EVENT_TAIL ||
+                        CommandID == eCommandCode.CMD_CONST_PACKET_HEAD || CommandID == eCommandCode.CMD_CONST_PACKET_TAIL)
+                    {
+                        ExecuteData();
+                        return;
+                    }
+
+                    ExecuteCommand();
+                }
+
+            }
+
+        }
+
+        private void StartDataRead() 
+        {
+            if (SelectedType == eCommunicationType.non) return;
+            
+            ThreadOfDataRead = new Thread(this.ReadData_USB);
+            ThreadOfDataRead_stop = false;
+            ThreadOfDataRead.Start();
+        }
+
+        private void StopDataRead() 
+        {
+            if (ThreadOfDataRead == null) return;
+
+            ThreadOfDataRead_stop = true;
+            ThreadOfDataRead = null;
         }
 
         private void EnableDisableControls(bool state) 

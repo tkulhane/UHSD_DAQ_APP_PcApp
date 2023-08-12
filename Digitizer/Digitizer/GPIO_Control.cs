@@ -47,14 +47,35 @@ namespace Digitizer_ver1
         public void LoadGpio()
         {
             //Inputs
-            InputAdd(0, "LED-0");
-            InputAdd(1, "LED-1");
-            InputAdd(2, "BTN-0");
-            InputAdd(3, "BTN-1");
+            InputAdd(0, "BTN");
+            InputAdd(1, "ADC-GPIO-0");
+            InputAdd(2, "ADC-GPIO-1");
+            InputAdd(3, "ADC-GPIO-2");
+            InputAdd(4, "ADC-GPIO-3");
+            InputAdd(5, "ADC-GPIO-4");
+            InputAdd(6, "ADC-FD");
+            InputAdd(7, "HMC-GPIO-0");
+
+            InputAdd(8, "HMC-GPIO-1");
+            InputAdd(9, "HMC-GPIO-2");
+            InputAdd(10, "HMC-GPIO-3");
+            InputAdd(11, "SMPS-PWR-GOOD");
+            InputAdd(12, "LDO-PWR-GOOD");
+            InputAdd(13, "ADC-PWR-GOOD");
+            InputAdd(14, "SYNC-IN");
+            InputAdd(15, "LANE");
 
             //Outputs
-            OutputAdd(0, "LED-0");
-            OutputAdd(1, "LED-1");
+            OutputAdd(0, "ADC-PWDN");
+            OutputAdd(1, "ADC-SYNC");
+            OutputAdd(2, "SYNC-OUT-1");
+            OutputAdd(3, "SYNC-OUT-2");
+            OutputAdd(6, "BOARD-PWR-RUN");
+            OutputAdd(7, "ADC-PWR-RUN");
+            OutputAdd(12, "GPIO-0");
+            OutputAdd(13, "GPIO-1");
+            OutputAdd(14, "LED-2");
+            OutputAdd(15, "LED-3");
 
 
 
