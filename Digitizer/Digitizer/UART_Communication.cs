@@ -102,7 +102,7 @@ namespace Digitizer_ver1
 
 
 
-        
+
         public byte[] dataBuffer = new byte[4];
         
         private int dataBuf_pos = 0;

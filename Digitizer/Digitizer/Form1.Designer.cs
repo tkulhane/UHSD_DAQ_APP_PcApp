@@ -113,7 +113,19 @@ namespace Digitizer_ver1
             this.radioButton_AcqTime = new System.Windows.Forms.RadioButton();
             this.radioButton_AcqNumEvents = new System.Windows.Forms.RadioButton();
             this.radioButton_AcqInfinite = new System.Windows.Forms.RadioButton();
+            this.tab_Gpio_Reset = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.dataGridView_Resets = new System.Windows.Forms.DataGridView();
+            this.dataGridView_GpioOutputs = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dataGridView_GpioInputs = new System.Windows.Forms.DataGridView();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button_ResetClearAll = new System.Windows.Forms.Button();
+            this.button_ClearRisingFalling = new System.Windows.Forms.Button();
             this.Configuration = new System.Windows.Forms.TabPage();
+            this.button_ConfigStop = new System.Windows.Forms.Button();
             this.button_ConfigRun = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.button_ConfigFileLoadFromFile = new System.Windows.Forms.Button();
@@ -121,6 +133,14 @@ namespace Digitizer_ver1
             this.button_ConfigFileSaveAs = new System.Windows.Forms.Button();
             this.dataGridView_ConfigFile = new System.Windows.Forms.DataGridView();
             this.Setting = new System.Windows.Forms.TabPage();
+            this.label_xRead = new System.Windows.Forms.Label();
+            this.button_xSend = new System.Windows.Forms.Button();
+            this.textBox_xSendByte0 = new System.Windows.Forms.TextBox();
+            this.textBox_xSendByte1 = new System.Windows.Forms.TextBox();
+            this.textBox_xSendByte2 = new System.Windows.Forms.TextBox();
+            this.textBox_xSendByte3 = new System.Windows.Forms.TextBox();
+            this.label_Test = new System.Windows.Forms.Label();
+            this.button_Test = new System.Windows.Forms.Button();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.dataGridView_RegistersFiles = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -130,26 +150,7 @@ namespace Digitizer_ver1
             this.radioButton_PCIe = new System.Windows.Forms.RadioButton();
             this.radioButton_USB = new System.Windows.Forms.RadioButton();
             this.radioButton_UART = new System.Windows.Forms.RadioButton();
-            this.label_Test = new System.Windows.Forms.Label();
-            this.button_Test = new System.Windows.Forms.Button();
-            this.button_ConfigStop = new System.Windows.Forms.Button();
-            this.textBox_xSendByte3 = new System.Windows.Forms.TextBox();
-            this.textBox_xSendByte2 = new System.Windows.Forms.TextBox();
-            this.textBox_xSendByte1 = new System.Windows.Forms.TextBox();
-            this.textBox_xSendByte0 = new System.Windows.Forms.TextBox();
-            this.button_xSend = new System.Windows.Forms.Button();
-            this.label_xRead = new System.Windows.Forms.Label();
-            this.tab_Gpio_Reset = new System.Windows.Forms.TabPage();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.button_ClearRisingFalling = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView_GpioInputs = new System.Windows.Forms.DataGridView();
-            this.dataGridView_GpioOutputs = new System.Windows.Forms.DataGridView();
-            this.dataGridView_Resets = new System.Windows.Forms.DataGridView();
-            this.button_ResetClearAll = new System.Windows.Forms.Button();
+            this.label_RecvBytes = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tabRegisters.SuspendLayout();
             this.tabControl_RegistersSetting.SuspendLayout();
@@ -182,6 +183,12 @@ namespace Digitizer_ver1
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_AcqRepeats)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_NumOfEvents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Time)).BeginInit();
+            this.tab_Gpio_Reset.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Resets)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_GpioOutputs)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_GpioInputs)).BeginInit();
+            this.panel2.SuspendLayout();
             this.Configuration.SuspendLayout();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ConfigFile)).BeginInit();
@@ -189,12 +196,6 @@ namespace Digitizer_ver1
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_RegistersFiles)).BeginInit();
             this.groupBox1.SuspendLayout();
-            this.tab_Gpio_Reset.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_GpioInputs)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_GpioOutputs)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Resets)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -1113,6 +1114,139 @@ namespace Digitizer_ver1
             this.radioButton_AcqInfinite.UseVisualStyleBackColor = true;
             this.radioButton_AcqInfinite.CheckedChanged += new System.EventHandler(this.radioButton_Acq_CheckedChanged);
             // 
+            // tab_Gpio_Reset
+            // 
+            this.tab_Gpio_Reset.Controls.Add(this.tableLayoutPanel1);
+            this.tab_Gpio_Reset.Controls.Add(this.panel2);
+            this.tab_Gpio_Reset.Location = new System.Drawing.Point(4, 22);
+            this.tab_Gpio_Reset.Name = "tab_Gpio_Reset";
+            this.tab_Gpio_Reset.Size = new System.Drawing.Size(1176, 546);
+            this.tab_Gpio_Reset.TabIndex = 9;
+            this.tab_Gpio_Reset.Text = "GPIO RESET";
+            this.tab_Gpio_Reset.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.Controls.Add(this.dataGridView_Resets, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.dataGridView_GpioOutputs, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label3, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.dataGridView_GpioInputs, 0, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(88, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1088, 546);
+            this.tableLayoutPanel1.TabIndex = 3;
+            // 
+            // dataGridView_Resets
+            // 
+            this.dataGridView_Resets.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_Resets.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView_Resets.Location = new System.Drawing.Point(727, 23);
+            this.dataGridView_Resets.Name = "dataGridView_Resets";
+            this.dataGridView_Resets.ReadOnly = true;
+            this.dataGridView_Resets.Size = new System.Drawing.Size(358, 520);
+            this.dataGridView_Resets.TabIndex = 6;
+            this.dataGridView_Resets.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Resets_CellContentClick);
+            // 
+            // dataGridView_GpioOutputs
+            // 
+            this.dataGridView_GpioOutputs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_GpioOutputs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView_GpioOutputs.Location = new System.Drawing.Point(365, 23);
+            this.dataGridView_GpioOutputs.Name = "dataGridView_GpioOutputs";
+            this.dataGridView_GpioOutputs.ReadOnly = true;
+            this.dataGridView_GpioOutputs.Size = new System.Drawing.Size(356, 520);
+            this.dataGridView_GpioOutputs.TabIndex = 5;
+            this.dataGridView_GpioOutputs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_GpioOutputs_CellContentClick);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.label1.Size = new System.Drawing.Size(356, 20);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "INPUTs";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label3.Location = new System.Drawing.Point(727, 0);
+            this.label3.Name = "label3";
+            this.label3.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.label3.Size = new System.Drawing.Size(358, 20);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "RESETs";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.Location = new System.Drawing.Point(365, 0);
+            this.label2.Name = "label2";
+            this.label2.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.label2.Size = new System.Drawing.Size(356, 20);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "OUTPUTs";
+            // 
+            // dataGridView_GpioInputs
+            // 
+            this.dataGridView_GpioInputs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_GpioInputs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView_GpioInputs.Location = new System.Drawing.Point(3, 23);
+            this.dataGridView_GpioInputs.Name = "dataGridView_GpioInputs";
+            this.dataGridView_GpioInputs.ReadOnly = true;
+            this.dataGridView_GpioInputs.Size = new System.Drawing.Size(356, 520);
+            this.dataGridView_GpioInputs.TabIndex = 4;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.button_ResetClearAll);
+            this.panel2.Controls.Add(this.button_ClearRisingFalling);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(88, 546);
+            this.panel2.TabIndex = 2;
+            // 
+            // button_ResetClearAll
+            // 
+            this.button_ResetClearAll.Location = new System.Drawing.Point(7, 487);
+            this.button_ResetClearAll.Margin = new System.Windows.Forms.Padding(2);
+            this.button_ResetClearAll.Name = "button_ResetClearAll";
+            this.button_ResetClearAll.Size = new System.Drawing.Size(74, 37);
+            this.button_ResetClearAll.TabIndex = 7;
+            this.button_ResetClearAll.Text = "Clear All Resets";
+            this.button_ResetClearAll.UseVisualStyleBackColor = true;
+            this.button_ResetClearAll.Click += new System.EventHandler(this.button_ResetClearAll_Click);
+            // 
+            // button_ClearRisingFalling
+            // 
+            this.button_ClearRisingFalling.Location = new System.Drawing.Point(7, 26);
+            this.button_ClearRisingFalling.Margin = new System.Windows.Forms.Padding(2);
+            this.button_ClearRisingFalling.Name = "button_ClearRisingFalling";
+            this.button_ClearRisingFalling.Size = new System.Drawing.Size(74, 37);
+            this.button_ClearRisingFalling.TabIndex = 6;
+            this.button_ClearRisingFalling.Text = "Clear Rising Falling";
+            this.button_ClearRisingFalling.UseVisualStyleBackColor = true;
+            this.button_ClearRisingFalling.Click += new System.EventHandler(this.button_ClearRisingFalling_Click);
+            // 
             // Configuration
             // 
             this.Configuration.Controls.Add(this.button_ConfigStop);
@@ -1125,6 +1259,17 @@ namespace Digitizer_ver1
             this.Configuration.TabIndex = 8;
             this.Configuration.Text = "Configuration";
             this.Configuration.UseVisualStyleBackColor = true;
+            // 
+            // button_ConfigStop
+            // 
+            this.button_ConfigStop.Location = new System.Drawing.Point(219, 135);
+            this.button_ConfigStop.Margin = new System.Windows.Forms.Padding(2);
+            this.button_ConfigStop.Name = "button_ConfigStop";
+            this.button_ConfigStop.Size = new System.Drawing.Size(74, 37);
+            this.button_ConfigStop.TabIndex = 14;
+            this.button_ConfigStop.Text = "Config Stop";
+            this.button_ConfigStop.UseVisualStyleBackColor = true;
+            this.button_ConfigStop.Click += new System.EventHandler(this.button_ConfigStop_Click);
             // 
             // button_ConfigRun
             // 
@@ -1193,6 +1338,7 @@ namespace Digitizer_ver1
             // 
             // Setting
             // 
+            this.Setting.Controls.Add(this.label_RecvBytes);
             this.Setting.Controls.Add(this.label_xRead);
             this.Setting.Controls.Add(this.button_xSend);
             this.Setting.Controls.Add(this.textBox_xSendByte0);
@@ -1209,6 +1355,76 @@ namespace Digitizer_ver1
             this.Setting.TabIndex = 6;
             this.Setting.Text = "System Setting";
             this.Setting.UseVisualStyleBackColor = true;
+            // 
+            // label_xRead
+            // 
+            this.label_xRead.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_xRead.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_xRead.Location = new System.Drawing.Point(337, 409);
+            this.label_xRead.Name = "label_xRead";
+            this.label_xRead.Size = new System.Drawing.Size(123, 20);
+            this.label_xRead.TabIndex = 24;
+            this.label_xRead.Text = "........";
+            this.label_xRead.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_xRead.Click += new System.EventHandler(this.label_xRead_Click);
+            // 
+            // button_xSend
+            // 
+            this.button_xSend.Location = new System.Drawing.Point(256, 409);
+            this.button_xSend.Name = "button_xSend";
+            this.button_xSend.Size = new System.Drawing.Size(75, 21);
+            this.button_xSend.TabIndex = 23;
+            this.button_xSend.Text = "Send";
+            this.button_xSend.UseVisualStyleBackColor = true;
+            this.button_xSend.Click += new System.EventHandler(this.button_xSend_Click);
+            // 
+            // textBox_xSendByte0
+            // 
+            this.textBox_xSendByte0.Location = new System.Drawing.Point(206, 409);
+            this.textBox_xSendByte0.Name = "textBox_xSendByte0";
+            this.textBox_xSendByte0.Size = new System.Drawing.Size(44, 20);
+            this.textBox_xSendByte0.TabIndex = 22;
+            // 
+            // textBox_xSendByte1
+            // 
+            this.textBox_xSendByte1.Location = new System.Drawing.Point(156, 409);
+            this.textBox_xSendByte1.Name = "textBox_xSendByte1";
+            this.textBox_xSendByte1.Size = new System.Drawing.Size(44, 20);
+            this.textBox_xSendByte1.TabIndex = 21;
+            // 
+            // textBox_xSendByte2
+            // 
+            this.textBox_xSendByte2.Location = new System.Drawing.Point(106, 409);
+            this.textBox_xSendByte2.Name = "textBox_xSendByte2";
+            this.textBox_xSendByte2.Size = new System.Drawing.Size(44, 20);
+            this.textBox_xSendByte2.TabIndex = 20;
+            // 
+            // textBox_xSendByte3
+            // 
+            this.textBox_xSendByte3.Location = new System.Drawing.Point(56, 409);
+            this.textBox_xSendByte3.Name = "textBox_xSendByte3";
+            this.textBox_xSendByte3.Size = new System.Drawing.Size(44, 20);
+            this.textBox_xSendByte3.TabIndex = 19;
+            // 
+            // label_Test
+            // 
+            this.label_Test.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_Test.Location = new System.Drawing.Point(164, 290);
+            this.label_Test.Name = "label_Test";
+            this.label_Test.Size = new System.Drawing.Size(83, 21);
+            this.label_Test.TabIndex = 4;
+            this.label_Test.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_Test.Click += new System.EventHandler(this.label_Test_Click);
+            // 
+            // button_Test
+            // 
+            this.button_Test.Location = new System.Drawing.Point(81, 290);
+            this.button_Test.Name = "button_Test";
+            this.button_Test.Size = new System.Drawing.Size(75, 21);
+            this.button_Test.TabIndex = 5;
+            this.button_Test.Text = "Test";
+            this.button_Test.UseVisualStyleBackColor = true;
+            this.button_Test.Click += new System.EventHandler(this.button_Test_Click);
             // 
             // groupBox8
             // 
@@ -1306,219 +1522,14 @@ namespace Digitizer_ver1
             this.radioButton_UART.UseVisualStyleBackColor = true;
             this.radioButton_UART.CheckedChanged += new System.EventHandler(this.radioButton_Communication_CheckedChanged);
             // 
-            // label_Test
+            // label_RecvBytes
             // 
-            this.label_Test.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_Test.Location = new System.Drawing.Point(164, 290);
-            this.label_Test.Name = "label_Test";
-            this.label_Test.Size = new System.Drawing.Size(83, 21);
-            this.label_Test.TabIndex = 4;
-            this.label_Test.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label_Test.Click += new System.EventHandler(this.label_Test_Click);
-            // 
-            // button_Test
-            // 
-            this.button_Test.Location = new System.Drawing.Point(81, 290);
-            this.button_Test.Name = "button_Test";
-            this.button_Test.Size = new System.Drawing.Size(75, 21);
-            this.button_Test.TabIndex = 5;
-            this.button_Test.Text = "Test";
-            this.button_Test.UseVisualStyleBackColor = true;
-            this.button_Test.Click += new System.EventHandler(this.button_Test_Click);
-            // 
-            // button_ConfigStop
-            // 
-            this.button_ConfigStop.Location = new System.Drawing.Point(219, 135);
-            this.button_ConfigStop.Margin = new System.Windows.Forms.Padding(2);
-            this.button_ConfigStop.Name = "button_ConfigStop";
-            this.button_ConfigStop.Size = new System.Drawing.Size(74, 37);
-            this.button_ConfigStop.TabIndex = 14;
-            this.button_ConfigStop.Text = "Config Stop";
-            this.button_ConfigStop.UseVisualStyleBackColor = true;
-            this.button_ConfigStop.Click += new System.EventHandler(this.button_ConfigStop_Click);
-            // 
-            // textBox_xSendByte3
-            // 
-            this.textBox_xSendByte3.Location = new System.Drawing.Point(56, 409);
-            this.textBox_xSendByte3.Name = "textBox_xSendByte3";
-            this.textBox_xSendByte3.Size = new System.Drawing.Size(44, 20);
-            this.textBox_xSendByte3.TabIndex = 19;
-            // 
-            // textBox_xSendByte2
-            // 
-            this.textBox_xSendByte2.Location = new System.Drawing.Point(106, 409);
-            this.textBox_xSendByte2.Name = "textBox_xSendByte2";
-            this.textBox_xSendByte2.Size = new System.Drawing.Size(44, 20);
-            this.textBox_xSendByte2.TabIndex = 20;
-            // 
-            // textBox_xSendByte1
-            // 
-            this.textBox_xSendByte1.Location = new System.Drawing.Point(156, 409);
-            this.textBox_xSendByte1.Name = "textBox_xSendByte1";
-            this.textBox_xSendByte1.Size = new System.Drawing.Size(44, 20);
-            this.textBox_xSendByte1.TabIndex = 21;
-            // 
-            // textBox_xSendByte0
-            // 
-            this.textBox_xSendByte0.Location = new System.Drawing.Point(206, 409);
-            this.textBox_xSendByte0.Name = "textBox_xSendByte0";
-            this.textBox_xSendByte0.Size = new System.Drawing.Size(44, 20);
-            this.textBox_xSendByte0.TabIndex = 22;
-            // 
-            // button_xSend
-            // 
-            this.button_xSend.Location = new System.Drawing.Point(256, 409);
-            this.button_xSend.Name = "button_xSend";
-            this.button_xSend.Size = new System.Drawing.Size(75, 21);
-            this.button_xSend.TabIndex = 23;
-            this.button_xSend.Text = "Send";
-            this.button_xSend.UseVisualStyleBackColor = true;
-            this.button_xSend.Click += new System.EventHandler(this.button_xSend_Click);
-            // 
-            // label_xRead
-            // 
-            this.label_xRead.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_xRead.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_xRead.Location = new System.Drawing.Point(337, 409);
-            this.label_xRead.Name = "label_xRead";
-            this.label_xRead.Size = new System.Drawing.Size(123, 20);
-            this.label_xRead.TabIndex = 24;
-            this.label_xRead.Text = "........";
-            this.label_xRead.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label_xRead.Click += new System.EventHandler(this.label_xRead_Click);
-            // 
-            // tab_Gpio_Reset
-            // 
-            this.tab_Gpio_Reset.Controls.Add(this.tableLayoutPanel1);
-            this.tab_Gpio_Reset.Controls.Add(this.panel2);
-            this.tab_Gpio_Reset.Location = new System.Drawing.Point(4, 22);
-            this.tab_Gpio_Reset.Name = "tab_Gpio_Reset";
-            this.tab_Gpio_Reset.Size = new System.Drawing.Size(1176, 546);
-            this.tab_Gpio_Reset.TabIndex = 9;
-            this.tab_Gpio_Reset.Text = "GPIO RESET";
-            this.tab_Gpio_Reset.UseVisualStyleBackColor = true;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.button_ResetClearAll);
-            this.panel2.Controls.Add(this.button_ClearRisingFalling);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(88, 546);
-            this.panel2.TabIndex = 2;
-            // 
-            // button_ClearRisingFalling
-            // 
-            this.button_ClearRisingFalling.Location = new System.Drawing.Point(7, 26);
-            this.button_ClearRisingFalling.Margin = new System.Windows.Forms.Padding(2);
-            this.button_ClearRisingFalling.Name = "button_ClearRisingFalling";
-            this.button_ClearRisingFalling.Size = new System.Drawing.Size(74, 37);
-            this.button_ClearRisingFalling.TabIndex = 6;
-            this.button_ClearRisingFalling.Text = "Clear Rising Falling";
-            this.button_ClearRisingFalling.UseVisualStyleBackColor = true;
-            this.button_ClearRisingFalling.Click += new System.EventHandler(this.button_ClearRisingFalling_Click);
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Controls.Add(this.dataGridView_Resets, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.dataGridView_GpioOutputs, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.dataGridView_GpioInputs, 0, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(88, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1088, 546);
-            this.tableLayoutPanel1.TabIndex = 3;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(365, 0);
-            this.label2.Name = "label2";
-            this.label2.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.label2.Size = new System.Drawing.Size(356, 20);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "OUTPUTs";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(727, 0);
-            this.label3.Name = "label3";
-            this.label3.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.label3.Size = new System.Drawing.Size(358, 20);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "RESETs";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.label1.Size = new System.Drawing.Size(356, 20);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "INPUTs";
-            // 
-            // dataGridView_GpioInputs
-            // 
-            this.dataGridView_GpioInputs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_GpioInputs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView_GpioInputs.Location = new System.Drawing.Point(3, 23);
-            this.dataGridView_GpioInputs.Name = "dataGridView_GpioInputs";
-            this.dataGridView_GpioInputs.ReadOnly = true;
-            this.dataGridView_GpioInputs.Size = new System.Drawing.Size(356, 520);
-            this.dataGridView_GpioInputs.TabIndex = 4;
-            // 
-            // dataGridView_GpioOutputs
-            // 
-            this.dataGridView_GpioOutputs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_GpioOutputs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView_GpioOutputs.Location = new System.Drawing.Point(365, 23);
-            this.dataGridView_GpioOutputs.Name = "dataGridView_GpioOutputs";
-            this.dataGridView_GpioOutputs.ReadOnly = true;
-            this.dataGridView_GpioOutputs.Size = new System.Drawing.Size(356, 520);
-            this.dataGridView_GpioOutputs.TabIndex = 5;
-            this.dataGridView_GpioOutputs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_GpioOutputs_CellContentClick);
-            // 
-            // dataGridView_Resets
-            // 
-            this.dataGridView_Resets.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_Resets.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView_Resets.Location = new System.Drawing.Point(727, 23);
-            this.dataGridView_Resets.Name = "dataGridView_Resets";
-            this.dataGridView_Resets.ReadOnly = true;
-            this.dataGridView_Resets.Size = new System.Drawing.Size(358, 520);
-            this.dataGridView_Resets.TabIndex = 6;
-            this.dataGridView_Resets.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Resets_CellContentClick);
-            // 
-            // button_ResetClearAll
-            // 
-            this.button_ResetClearAll.Location = new System.Drawing.Point(7, 487);
-            this.button_ResetClearAll.Margin = new System.Windows.Forms.Padding(2);
-            this.button_ResetClearAll.Name = "button_ResetClearAll";
-            this.button_ResetClearAll.Size = new System.Drawing.Size(74, 37);
-            this.button_ResetClearAll.TabIndex = 7;
-            this.button_ResetClearAll.Text = "Clear All Resets";
-            this.button_ResetClearAll.UseVisualStyleBackColor = true;
-            this.button_ResetClearAll.Click += new System.EventHandler(this.button_ResetClearAll_Click);
+            this.label_RecvBytes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_RecvBytes.Location = new System.Drawing.Point(423, 220);
+            this.label_RecvBytes.Name = "label_RecvBytes";
+            this.label_RecvBytes.Size = new System.Drawing.Size(83, 21);
+            this.label_RecvBytes.TabIndex = 25;
+            this.label_RecvBytes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form1
             // 
@@ -1570,6 +1581,13 @@ namespace Digitizer_ver1
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_AcqRepeats)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_NumOfEvents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Time)).EndInit();
+            this.tab_Gpio_Reset.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Resets)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_GpioOutputs)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_GpioInputs)).EndInit();
+            this.panel2.ResumeLayout(false);
             this.Configuration.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ConfigFile)).EndInit();
@@ -1579,13 +1597,6 @@ namespace Digitizer_ver1
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_RegistersFiles)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.tab_Gpio_Reset.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_GpioInputs)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_GpioOutputs)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Resets)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1709,6 +1720,7 @@ namespace Digitizer_ver1
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button_ClearRisingFalling;
         private System.Windows.Forms.Button button_ResetClearAll;
+        public System.Windows.Forms.Label label_RecvBytes;
     }
 }
 

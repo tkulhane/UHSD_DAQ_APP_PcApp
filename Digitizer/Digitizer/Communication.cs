@@ -141,9 +141,33 @@ namespace Digitizer_ver1
 
         }
 
+
+        public void CloseAll() 
+        {
+            if (uart.IsOpen() || OpenedType == eCommunicationType.uart)
+            {
+                uart.StopRead();
+                uart.ClosePort();
+                OpenedType = eCommunicationType.non;
+                EnableDisableControls(true);
+                //return;
+            }
+
+            if (usb.IsOpen() || OpenedType == eCommunicationType.usb)
+            //if (OpenedType == eCommunicationType.usb)
+            {
+                StopDataRead();
+                usb.StopReceiving();
+                usb.Close();
+                OpenedType = eCommunicationType.non;
+                EnableDisableControls(true);
+                //return;
+            }
+        }
+
         public void OpenClose()
         {
-
+            
             if (uart.IsOpen() || OpenedType == eCommunicationType.uart)
             {
                 uart.StopRead();
@@ -156,6 +180,7 @@ namespace Digitizer_ver1
             if (usb.IsOpen() || OpenedType == eCommunicationType.usb)
             //if (OpenedType == eCommunicationType.usb)
             {
+                StopDataRead();
                 usb.StopReceiving();
                 usb.Close();
                 OpenedType = eCommunicationType.non;
@@ -163,9 +188,10 @@ namespace Digitizer_ver1
                 return;
             }
 
+            
+            //CloseAll();
 
-
-            if(SelectedType == eCommunicationType.uart) 
+            if (SelectedType == eCommunicationType.uart) 
             {
                 if (comboBox_Ports.SelectedIndex < 0)
                 {
@@ -204,9 +230,10 @@ namespace Digitizer_ver1
                     {
                         usb.OpenByString(port);
                         usb.StartReceiving();
+                        StartDataRead();
 
                         OpenedType = eCommunicationType.usb;
-                        EnableDisableControls(false); ;
+                        
                         EnableDisableControls(false);
                     }
                     catch (Exception ex)
@@ -337,6 +364,8 @@ namespace Digitizer_ver1
             while (!ThreadOfDataRead_stop)
             {
 
+                if (usb.BytesInqueue() < data.Length) continue;
+
                 bool isSuccessful = usb.GetDataBytes(out data, (uint)data.Length);
                 if (isSuccessful == false) continue;
 
@@ -398,6 +427,7 @@ namespace Digitizer_ver1
 
         public bool OpenAutomatic(eCommunicationType type, string name) 
         {
+            
             radioButton_UART.Checked = false;
             radioButton_USB.Checked = false;
             radioButton_PCIe.Checked = false;
@@ -418,6 +448,8 @@ namespace Digitizer_ver1
 
             Scan();
 
+            
+
             int Selected = -1;
             int count = comboBox_Ports.Items.Count;
             for (int i = 0; (i <= (count - 1)); i++)
@@ -428,6 +460,7 @@ namespace Digitizer_ver1
                 if (name.Equals(port))
                 {
                     Selected = i;
+                    
                 }
 
             }
@@ -476,6 +509,8 @@ namespace Digitizer_ver1
 
             Scan();
 
+            
+
             int Selected = -1;
             int count = comboBox_Ports.Items.Count;
             for (int i = 0; (i <= (count - 1)); i++)
@@ -486,11 +521,12 @@ namespace Digitizer_ver1
                 if (s_parts[1].Equals(port))
                 {
                     Selected = i;
+                    
                 }
 
             }
 
-            if (Selected > 0)
+            if (Selected >= 0)
             {
                 comboBox_Ports.SelectedIndex = Selected;
                 OpenClose();
@@ -547,6 +583,12 @@ namespace Digitizer_ver1
 
                 writer.WriteLine(s);
             }
+        }
+
+
+        public UInt64 USB_RecvBytes()
+        {
+            return usb.GetReceivedBytes();
         }
 
 

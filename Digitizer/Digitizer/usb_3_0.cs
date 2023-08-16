@@ -27,9 +27,11 @@ namespace Digitizer_ver1
 
             FTDI.FT_STATUS ftStatus = FTDI.FT_STATUS.FT_OK;
             d3xxDevice = new FTDI();
-
+            
+            /*
             //nacteni poctu pripojenych zarizeni
             ftStatus = d3xxDevice.GetNumberOfDevicesConnected(out ftdiDeviceCount);
+            //MessageBox.Show(ftdiDeviceCount.ToString(), "xxx", MessageBoxButtons.OK, MessageBoxIcon.Error);
             if (ftStatus != FTDI.FT_STATUS.FT_OK)
             {
                 string msg = "Failed to get number of devices(error " + ftStatus.ToString() + ")";
@@ -42,8 +44,23 @@ namespace Digitizer_ver1
             {
                 return 0;
             }
+            */
 
-            
+            ftStatus = d3xxDevice.CreateDeviceInfoList(out ftdiDeviceCount);
+            if (ftStatus != FTDI.FT_STATUS.FT_OK)
+            {
+                string msg = "Failed to get number of devices (create device info list)(error " + ftStatus.ToString() + ")";
+                MessageBox.Show(msg, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 0;
+            }
+
+            //zadne zarizeni neni dostupne - return
+            if (ftdiDeviceCount == 0)
+            {
+                return 0;
+            }
+
+
             ftStatus = d3xxDevice.GetDeviceInfoList(out ListDeviceInfo);
             if (ftStatus != FTDI.FT_STATUS.FT_OK)
             {
@@ -60,7 +77,8 @@ namespace Digitizer_ver1
 
             foreach (var DeviceInfo in ListDeviceInfo)
             {
-                string s = DeviceInfo.Description.ToString();
+                string s = d3xxDevice.GetDescription(DeviceInfo);
+                //string s = DeviceInfo.Description.ToString();
                 comboBox_Devices.Items.Add(s);
             }
 
@@ -82,6 +100,29 @@ namespace Digitizer_ver1
                 return;
             }
 
+
+
+
+            //DisablePipeTimeout(d3xxDevice, 0x02);
+            DisablePipeTimeout(d3xxDevice, 0x82);
+
+
+
+            int count = d3xxDevice.DataPipeInformation.Count;
+            //MessageBox.Show(d3xxDevice.IsOpen.ToString() + " usb3: " + d3xxDevice.IsUSB3.ToString(), "MSG", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //MessageBox.Show("Pipes: " + count.ToString(), "MSG", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            string p = "Pipes: ";
+
+            foreach (var desc in d3xxDevice.DataPipeInformation) 
+            {
+                p += desc.PipeId.ToString("X");
+                p += ", ";
+            }
+
+            //MessageBox.Show(p, "MSG", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
         }
 
         public void Close() 
@@ -98,31 +139,52 @@ namespace Digitizer_ver1
 
         public bool IsOpen() 
         {
+            if (d3xxDevice == null) return false;
             return d3xxDevice.IsOpen;
         }
 
         public uint SendCommand(byte ID, byte data_1, byte data_2, byte data_3) 
         {
+            if (!d3xxDevice.IsOpen) return 0 ;
+
             FTDI.FT_STATUS ftStatus = FTDI.FT_STATUS.FT_OK;
-            
-            byte[] buffer = { ID, data_1, data_2, data_3 };
-            uint transfered = 0;
-            
-            d3xxDevice.WritePipe(0x02, buffer, (uint)buffer.Length, ref transfered);
+
+            //byte[] buffer = { ID, data_1, data_2, data_3 };
+            byte[] buffer = { data_3, data_2, data_1, ID };
+            UInt32 transfered = 0;
+
+            /*
+            UInt32 loopBytes = 256;
+            byte[] buffer = new byte[loopBytes];
+
+            for (UInt32 j = 0; j < buffer.Length; j++)
+            {
+                buffer[j] = 0xAA;
+            }
+            */
+
+            //NativeOverlapped overlappedWrite = new NativeOverlapped();
+
+            ftStatus = d3xxDevice.WritePipe(0x02, buffer, (UInt32)buffer.Length, ref transfered);
+            //d3xxDevice.WritePipeEx(0x02, buffer, (uint)buffer.Length, ref transfered, ref overlappedWrite);
+            //d3xxDevice.AbortPipe(0x02);
 
             if (ftStatus != FTDI.FT_STATUS.FT_OK)
             {
                 string msg = "Failed to send data (error " + ftStatus.ToString() + ")";
                 MessageBox.Show(msg, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                d3xxDevice.AbortPipe(0x02);
                 return 0;
             }
 
             if(buffer.Length != transfered) 
             {
-                string msg = "Failed to send data (error " + ftStatus.ToString() + ")";
+                string msg = "Failed to send data:" + (buffer.Length).ToString() + " != " + transfered.ToString();
                 MessageBox.Show(msg, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return 0;
             }
+
+            //MessageBox.Show(transfered.ToString(), "Send", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             return transfered;
         }
@@ -157,6 +219,8 @@ namespace Digitizer_ver1
                 ftStatus = d3xxDevice.ReadPipe(0x82, readData, (UInt32)readData.Length, ref numBytesRead);
                 if (ftStatus != FTDI.FT_STATUS.FT_OK)
                 {
+                    if (ThreadOfReceiving_stop) return;
+                    
                     string msg = "Failed to read data (error " + ftStatus.ToString() + ")";
                     MessageBox.Show(msg, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -166,7 +230,7 @@ namespace Digitizer_ver1
                 {
                     continue;
                 }
-                else if(numBytesRead == readData.Length) 
+                else if(numBytesRead != readData.Length) 
                 {
                     //nahodit nejakou chybu?
                     return; //nebo jen continue?
@@ -174,7 +238,7 @@ namespace Digitizer_ver1
 
                 for(int i = 0; i < readData.Length; i++) 
                 {
-                    queue.Enqueue(readData[i]);
+                    queue.Enqueue(readData[readData.Length - 1 - i]);
                     ReceivedBytes++;
                 }
 
@@ -230,6 +294,31 @@ namespace Digitizer_ver1
         public int BytesInqueue()
         {
             return queue.Count;
+        }
+
+        public static void DisablePipeTimeout(FTDI d3xxDevice, byte bReadPipe)
+        {
+            FTDI.FT_STATUS ftStatus = FTDI.FT_STATUS.FT_OK;
+
+            if (!d3xxDevice.IsOpen)
+            {
+                return;
+            }
+
+            if (d3xxDevice.LibraryVersion > 0x01010000 &&
+                d3xxDevice.DriverVersion > 0x01010000)
+            {
+                // Disable timeout by setting to 0
+                ftStatus = d3xxDevice.SetPipeTimeout(bReadPipe, 0);
+                if (ftStatus != FTDI.FT_STATUS.FT_OK)
+                {
+                    //Debug.Log("\tSetPipeTimeout 0x{0:X2} {1}", bReadPipe, 0);
+
+                    string msg = "Set Pipe Timeout Error (error " + ftStatus.ToString() + ")";
+                    MessageBox.Show(msg, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
         }
 
 

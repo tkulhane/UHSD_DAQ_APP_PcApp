@@ -111,6 +111,7 @@ namespace Digitizer_ver1
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             sysSetting.SettingSave();
+            communication.CloseAll();
         }
 
 
@@ -152,6 +153,7 @@ namespace Digitizer_ver1
             AcqControl.ReadSetting();
             gpio.ReadStateCommands();
             rst.ReadStateCommands();
+            label_RecvBytes.Text = communication.USB_RecvBytes().ToString();
         }
 
         private void ExecuteCommand()
