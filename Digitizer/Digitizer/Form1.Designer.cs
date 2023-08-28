@@ -133,6 +133,9 @@ namespace Digitizer_ver1
             this.button_ConfigFileSaveAs = new System.Windows.Forms.Button();
             this.dataGridView_ConfigFile = new System.Windows.Forms.DataGridView();
             this.Setting = new System.Windows.Forms.TabPage();
+            this.label_InQ = new System.Windows.Forms.Label();
+            this.checkBox_cmdQuestions = new System.Windows.Forms.CheckBox();
+            this.label_RecvBytes = new System.Windows.Forms.Label();
             this.label_xRead = new System.Windows.Forms.Label();
             this.button_xSend = new System.Windows.Forms.Button();
             this.textBox_xSendByte0 = new System.Windows.Forms.TextBox();
@@ -150,7 +153,7 @@ namespace Digitizer_ver1
             this.radioButton_PCIe = new System.Windows.Forms.RadioButton();
             this.radioButton_USB = new System.Windows.Forms.RadioButton();
             this.radioButton_UART = new System.Windows.Forms.RadioButton();
-            this.label_RecvBytes = new System.Windows.Forms.Label();
+            this.button_usbCycle = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tabRegisters.SuspendLayout();
             this.tabControl_RegistersSetting.SuspendLayout();
@@ -1338,6 +1341,9 @@ namespace Digitizer_ver1
             // 
             // Setting
             // 
+            this.Setting.Controls.Add(this.button_usbCycle);
+            this.Setting.Controls.Add(this.label_InQ);
+            this.Setting.Controls.Add(this.checkBox_cmdQuestions);
             this.Setting.Controls.Add(this.label_RecvBytes);
             this.Setting.Controls.Add(this.label_xRead);
             this.Setting.Controls.Add(this.button_xSend);
@@ -1355,6 +1361,34 @@ namespace Digitizer_ver1
             this.Setting.TabIndex = 6;
             this.Setting.Text = "System Setting";
             this.Setting.UseVisualStyleBackColor = true;
+            // 
+            // label_InQ
+            // 
+            this.label_InQ.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_InQ.Location = new System.Drawing.Point(423, 290);
+            this.label_InQ.Name = "label_InQ";
+            this.label_InQ.Size = new System.Drawing.Size(83, 21);
+            this.label_InQ.TabIndex = 27;
+            this.label_InQ.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // checkBox_cmdQuestions
+            // 
+            this.checkBox_cmdQuestions.AutoSize = true;
+            this.checkBox_cmdQuestions.Location = new System.Drawing.Point(81, 343);
+            this.checkBox_cmdQuestions.Name = "checkBox_cmdQuestions";
+            this.checkBox_cmdQuestions.Size = new System.Drawing.Size(100, 17);
+            this.checkBox_cmdQuestions.TabIndex = 26;
+            this.checkBox_cmdQuestions.Text = "CMD Questions";
+            this.checkBox_cmdQuestions.UseVisualStyleBackColor = true;
+            // 
+            // label_RecvBytes
+            // 
+            this.label_RecvBytes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_RecvBytes.Location = new System.Drawing.Point(423, 246);
+            this.label_RecvBytes.Name = "label_RecvBytes";
+            this.label_RecvBytes.Size = new System.Drawing.Size(83, 21);
+            this.label_RecvBytes.TabIndex = 25;
+            this.label_RecvBytes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label_xRead
             // 
@@ -1522,14 +1556,15 @@ namespace Digitizer_ver1
             this.radioButton_UART.UseVisualStyleBackColor = true;
             this.radioButton_UART.CheckedChanged += new System.EventHandler(this.radioButton_Communication_CheckedChanged);
             // 
-            // label_RecvBytes
+            // button_usbCycle
             // 
-            this.label_RecvBytes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_RecvBytes.Location = new System.Drawing.Point(423, 220);
-            this.label_RecvBytes.Name = "label_RecvBytes";
-            this.label_RecvBytes.Size = new System.Drawing.Size(83, 21);
-            this.label_RecvBytes.TabIndex = 25;
-            this.label_RecvBytes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.button_usbCycle.Location = new System.Drawing.Point(411, 136);
+            this.button_usbCycle.Name = "button_usbCycle";
+            this.button_usbCycle.Size = new System.Drawing.Size(75, 21);
+            this.button_usbCycle.TabIndex = 28;
+            this.button_usbCycle.Text = "Cycle";
+            this.button_usbCycle.UseVisualStyleBackColor = true;
+            this.button_usbCycle.Click += new System.EventHandler(this.button_usbCycle_Click);
             // 
             // Form1
             // 
@@ -1721,6 +1756,9 @@ namespace Digitizer_ver1
         private System.Windows.Forms.Button button_ClearRisingFalling;
         private System.Windows.Forms.Button button_ResetClearAll;
         public System.Windows.Forms.Label label_RecvBytes;
+        private System.Windows.Forms.CheckBox checkBox_cmdQuestions;
+        public System.Windows.Forms.Label label_InQ;
+        private System.Windows.Forms.Button button_usbCycle;
     }
 }
 

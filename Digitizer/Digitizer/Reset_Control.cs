@@ -49,7 +49,8 @@ namespace Digitizer_ver1
 
             //Reset Internal
             ResetIntAdd(0, "DataFifo");
-            
+            ResetIntAdd(1, "FIFO");
+
 
 
 

@@ -364,10 +364,18 @@ namespace Digitizer_ver1
             while (!ThreadOfDataRead_stop)
             {
 
-                if (usb.BytesInqueue() < data.Length) continue;
+                if (usb.BytesInqueue() < data.Length)
+                {
+                    continue;
+                }
+                
+                //bool isSuccessful = usb.GetDataBytes(out data, (uint)data.Length);
+                bool isSuccessful = usb.GetDataWord(out data);
+                if (isSuccessful == false)
+                {
+                    continue;
+                }
 
-                bool isSuccessful = usb.GetDataBytes(out data, (uint)data.Length);
-                if (isSuccessful == false) continue;
 
                 ReceivedData = data;
 
@@ -387,10 +395,14 @@ namespace Digitizer_ver1
                         CommandID == eCommandCode.CMD_CONST_PACKET_HEAD || CommandID == eCommandCode.CMD_CONST_PACKET_TAIL)
                     {
                         ExecuteData();
-                        return;
+                        
+                    }
+                    else 
+                    {
+                        ExecuteCommand();
                     }
 
-                    ExecuteCommand();
+                    
                 }
 
             }
@@ -591,6 +603,15 @@ namespace Digitizer_ver1
             return usb.GetReceivedBytes();
         }
 
+        public int USB_InQ()
+        {
+            return usb.BytesInqueue();
+        }
+
+        public void UsbPortCycle() 
+        {
+            usb.PortCycle();
+        }
 
     }
 }

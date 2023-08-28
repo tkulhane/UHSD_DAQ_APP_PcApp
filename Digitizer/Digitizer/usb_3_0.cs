@@ -143,6 +143,11 @@ namespace Digitizer_ver1
             return d3xxDevice.IsOpen;
         }
 
+        public void PortCycle() 
+        {
+            d3xxDevice.CycleDevicePort();
+        }
+
         public uint SendCommand(byte ID, byte data_1, byte data_2, byte data_3) 
         {
             if (!d3xxDevice.IsOpen) return 0 ;
@@ -171,6 +176,9 @@ namespace Digitizer_ver1
 
             if (ftStatus != FTDI.FT_STATUS.FT_OK)
             {
+                d3xxDevice.Close();
+
+
                 string msg = "Failed to send data (error " + ftStatus.ToString() + ")";
                 MessageBox.Show(msg, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 d3xxDevice.AbortPipe(0x02);
@@ -179,7 +187,7 @@ namespace Digitizer_ver1
 
             if(buffer.Length != transfered) 
             {
-                string msg = "Failed to send data:" + (buffer.Length).ToString() + " != " + transfered.ToString();
+                string msg = "Failed to send data - Length Does Not Match :" + (buffer.Length).ToString() + " != " + transfered.ToString();
                 MessageBox.Show(msg, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return 0;
             }
@@ -213,7 +221,7 @@ namespace Digitizer_ver1
 
                 FTDI.FT_STATUS ftStatus = FTDI.FT_STATUS.FT_OK;
 
-                byte[] readData = new byte[4];
+                byte[] readData = new byte[2048];
                 UInt32 numBytesRead = 0;
 
                 ftStatus = d3xxDevice.ReadPipe(0x82, readData, (UInt32)readData.Length, ref numBytesRead);
@@ -230,16 +238,15 @@ namespace Digitizer_ver1
                 {
                     continue;
                 }
-                else if(numBytesRead != readData.Length) 
-                {
-                    //nahodit nejakou chybu?
-                    return; //nebo jen continue?
-                }
 
-                for(int i = 0; i < readData.Length; i++) 
+                //for(int i = 0; i < readData.Length; i++) 
+                for(int i = 0; i < numBytesRead; i++) 
                 {
-                    queue.Enqueue(readData[readData.Length - 1 - i]);
+                    queue.Enqueue(readData[i]);
+
+                    //queue.Enqueue(readData[readData.Length - 1 - i]);
                     ReceivedBytes++;
+
                 }
 
             }
@@ -278,6 +285,27 @@ namespace Digitizer_ver1
                 readData[i] = read;
             }
              
+            data = readData;
+            return isSuccessful;
+        }
+
+        public bool GetDataWord(out byte[] data)
+        {
+            bool isSuccessful = true;
+            byte[] readData = new byte[4];
+
+            for (int i = 0; i < 4; i++)
+            {
+                byte read = 0;
+
+                if (!queue.TryDequeue(out read))
+                {
+                    isSuccessful = false;
+                }
+
+                readData[4-1 - i] = read;
+            }
+
             data = readData;
             return isSuccessful;
         }

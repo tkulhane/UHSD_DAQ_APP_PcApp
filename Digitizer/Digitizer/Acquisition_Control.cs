@@ -122,7 +122,7 @@ namespace Digitizer_ver1
                 
 
                 SetNumberOfEvents();
-                SetRunTime();
+                //SetRunTime();
             }
             else if(radioButton_AcqNumEvents.Checked)
             {
@@ -135,7 +135,7 @@ namespace Digitizer_ver1
                 numericUpDown_AcqRepeats.Enabled = true;
 
                 SetNumberOfEvents();
-                SetRunTime();
+                //SetRunTime();
             }
             else if (radioButton_AcqTime.Checked) 
             {
@@ -147,7 +147,7 @@ namespace Digitizer_ver1
                 numericUpDown_AcqRepeats.Enabled = true;
 
                 SetNumberOfEvents();
-                SetRunTime();
+                //SetRunTime();
             }
         }
 

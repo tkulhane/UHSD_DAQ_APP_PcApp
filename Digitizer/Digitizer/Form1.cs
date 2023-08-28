@@ -18,12 +18,12 @@ namespace Digitizer_ver1
         {
             InitializeComponent();
 
-            dataGridView_data.DataSource = list_data;
+            //dataGridView_data.DataSource = list_data;
             dataGridView_events.DataSource = list_events;
 
 
-            dataGridView_data.Columns[0].Width = 80;
-            dataGridView_data.Columns[1].Width = 80;
+            //dataGridView_data.Columns[0].Width = 80;
+            //dataGridView_data.Columns[1].Width = 80;
 
             dataGridView_events.Columns[0].Width = 50;
             dataGridView_events.Columns[1].Width = 50;
@@ -145,15 +145,20 @@ namespace Digitizer_ver1
 
         EventInfo EventNow = new EventInfo(-1, -1);
 
-
+        UInt32 EventCount;
 
 
         private void timer_info_Tick(object sender, EventArgs e)
         {
-            AcqControl.ReadSetting();
-            gpio.ReadStateCommands();
-            rst.ReadStateCommands();
+            if (checkBox_cmdQuestions.Checked) 
+            {
+                AcqControl.ReadSetting();
+                gpio.ReadStateCommands();
+                rst.ReadStateCommands();
+            }
+            
             label_RecvBytes.Text = communication.USB_RecvBytes().ToString();
+            label_InQ.Text = communication.USB_InQ().ToString();
         }
 
         private void ExecuteCommand()
@@ -210,48 +215,60 @@ namespace Digitizer_ver1
         {
             byte[] data = communication.ReceivedData;
 
+            
+
+            using (StreamWriter writer = File.AppendText("comm_log.txt"))
+            {
+                //string s = b.ToString("X2") + " ";
+                string s = data[0].ToString("X2") + " " + data[1].ToString("X2") + " " + data[2].ToString("X2") + " " + data[3].ToString("X2") + Environment.NewLine;
+                
+                writer.Write(s);
+
+            }
+            
+
+            /*
             if (data[0] == 0xFA) //Event head - actualing Number Of Event
             {
                 EventNow = new EventInfo(data[3], list_data.Count);
                 //EventNow = new EventInfo(E_Inc, list_data.Count);
-                label_E.Text = label_E.Text + "A";
+                //label_E.Text = label_E.Text + "A";
             }
 
             else if (data[0] == 0xFB) //Event tail - store event
             {
                 //E_Inc++;
                 list_events.Add(EventNow);
-                label_E.Text = label_E.Text + "B";
-                //dataGridView_events.Rows[dataGridView_events.Rows.Count - 1].Selected = true;
+                //label_E.Text = label_E.Text + "B";
             }
 
             else if (data[0] == 0xFC)
             {
-                label_E.Text = label_E.Text + "C";
+                //label_E.Text = label_E.Text + "C";
             }
 
             else if (data[0] == 0xFD)
             {
-                label_E.Text = label_E.Text + "D";
+                //label_E.Text = label_E.Text + "D";
             }
 
             else if ((data[0] & 0x80) >> 7 == 0) // data frame
             {
 
-                int sample1 = data[3] + ((data[2] & 0x0F) << 8);
-                int sample2 = ((data[2] & 0xF0) >> 4) + (data[1] << 4);
+                //int sample1 = data[3] + ((data[2] & 0x0F) << 8);
+                //int sample2 = ((data[2] & 0xF0) >> 4) + (data[1] << 4);
 
 
-                EventData s1 = new EventData(EventNow.p_eventNum, sample1);
-                EventData s2 = new EventData(EventNow.p_eventNum, sample2);
+                //EventData s1 = new EventData(EventNow.p_eventNum, sample1);
+                //EventData s2 = new EventData(EventNow.p_eventNum, sample2);
 
-                list_data.Add(s1);
-                list_data.Add(s2);
+                //list_data.Add(s1);
+                //list_data.Add(s2);
 
                 EventNow.IncreaseSize(2);
-                label_E.Text = label_E.Text + "F";
+                //label_E.Text = label_E.Text + "F";
             }
-
+            */
 
         }
 
@@ -678,6 +695,11 @@ namespace Digitizer_ver1
         private void button_ResetClearAll_Click(object sender, EventArgs e)
         {
             rst.ClearAll();
+        }
+
+        private void button_usbCycle_Click(object sender, EventArgs e)
+        {
+            communication.UsbPortCycle();
         }
     }
 }
