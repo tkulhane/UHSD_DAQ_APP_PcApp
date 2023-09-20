@@ -19,17 +19,24 @@ namespace Digitizer_ver1
             InitializeComponent();
 
             //dataGridView_data.DataSource = list_data;
-            dataGridView_events.DataSource = list_events;
+            //dataGridView_events.DataSource = list_events;
 
 
             //dataGridView_data.Columns[0].Width = 80;
             //dataGridView_data.Columns[1].Width = 80;
 
-            dataGridView_events.Columns[0].Width = 50;
-            dataGridView_events.Columns[1].Width = 50;
-            dataGridView_events.Columns[2].Width = 50;
+            //dataGridView_events.Columns[0].Width = 50;
+            //dataGridView_events.Columns[1].Width = 50;
+            //dataGridView_events.Columns[2].Width = 50;
 
-            chart_data.DataSource = list_data;
+            //chart_data.DataSource = list_data;
+
+            //acq data
+            AcqData.dataGridView_Events = dataGridView_events;
+            AcqData.chart_data = chart_data;
+            AcqData.checkBox_SaveToRam = checkBox_SaveToRam;
+            AcqData.checkBox_SaveToFile = checkBox_SaveToFile;
+            AcqData.SetAcquisitionDataProcess();
 
             //setting form elements for communication class
             communication.comboBox_Ports = comboBox_Communication;
@@ -100,12 +107,20 @@ namespace Digitizer_ver1
             sysSetting.SettingLoad();
 
             //configuration file sequence
-            ConfigSequence.dataGridView_ConfigFile = dataGridView_ConfigFile;
-            ConfigSequence.List_ReigistersFile = sysSetting.List_ReigistersFile;
+            //ConfigSequence.dataGridView_ConfigFile = dataGridView_ConfigFile;
+            //ConfigSequence.List_ReigistersFile = sysSetting.List_ReigistersFile;
+            //ConfigSequence.rst = rst;
+            //ConfigSequence.gpio = gpio;
+            MultiConfigSequence.dataGridView_ConfigFile = dataGridView_ConfigFile;
+            MultiConfigSequence.comboBox_ConfigFiles = comboBox_ConfigFiles;
+            MultiConfigSequence.List_ReigistersFile = sysSetting.List_ReigistersFile;
+            MultiConfigSequence.rst = rst;
+            MultiConfigSequence.gpio = gpio;
 
-            
 
 
+
+            AcqControl.ReadSettingAndValues();
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -124,6 +139,7 @@ namespace Digitizer_ver1
 
 
         Communication communication = new Communication();
+        AcquisitionDataProcess AcqData = new AcquisitionDataProcess();
         Acquisition_Control AcqControl = new Acquisition_Control();
         SystemSetting sysSetting = new SystemSetting();
         GPIO_Control gpio = new GPIO_Control();
@@ -135,7 +151,8 @@ namespace Digitizer_ver1
         Registers_Setting Registers_LMX2 = new Registers_Setting("LMX2", Registers_Setting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Lmx2Registers, Communication.eCommandCode.CMD_CONST_SET_Lmx2Registers);
         Registers_Setting Registers_FpgaTest = new Registers_Setting("FpgaTest", Registers_Setting.eAddressValueSize.Address8_Value8, Communication.eCommandCode.CMD_CONST_GET_TestRegisters, Communication.eCommandCode.CMD_CONST_SET_TestRegisters);
 
-        ConfigurationFileSequencer ConfigSequence = new ConfigurationFileSequencer();
+        //ConfigurationFileSequencer ConfigSequence = new ConfigurationFileSequencer();
+        MultipleConfigurationFileSequencer MultiConfigSequence = new MultipleConfigurationFileSequencer();
 
 
         BindingList<EventData> list_data = new BindingList<EventData>();
@@ -152,13 +169,15 @@ namespace Digitizer_ver1
         {
             if (checkBox_cmdQuestions.Checked) 
             {
-                AcqControl.ReadSetting();
+                AcqControl.ReadValues();
                 gpio.ReadStateCommands();
                 rst.ReadStateCommands();
             }
             
             label_RecvBytes.Text = communication.USB_RecvBytes().ToString();
             label_InQ.Text = communication.USB_InQ().ToString();
+
+            label_dataErrors.Text = AcqData.ErrorCounter.ToString();
         }
 
         private void ExecuteCommand()
@@ -215,61 +234,15 @@ namespace Digitizer_ver1
         {
             byte[] data = communication.ReceivedData;
 
-            
+            AcqData.ExecuteData(data);
+        }
 
-            using (StreamWriter writer = File.AppendText("comm_log.txt"))
-            {
-                //string s = b.ToString("X2") + " ";
-                string s = data[0].ToString("X2") + " " + data[1].ToString("X2") + " " + data[2].ToString("X2") + " " + data[3].ToString("X2") + Environment.NewLine;
-                
-                writer.Write(s);
-
-            }
-            
-
-            /*
-            if (data[0] == 0xFA) //Event head - actualing Number Of Event
-            {
-                EventNow = new EventInfo(data[3], list_data.Count);
-                //EventNow = new EventInfo(E_Inc, list_data.Count);
-                //label_E.Text = label_E.Text + "A";
-            }
-
-            else if (data[0] == 0xFB) //Event tail - store event
-            {
-                //E_Inc++;
-                list_events.Add(EventNow);
-                //label_E.Text = label_E.Text + "B";
-            }
-
-            else if (data[0] == 0xFC)
-            {
-                //label_E.Text = label_E.Text + "C";
-            }
-
-            else if (data[0] == 0xFD)
-            {
-                //label_E.Text = label_E.Text + "D";
-            }
-
-            else if ((data[0] & 0x80) >> 7 == 0) // data frame
-            {
-
-                //int sample1 = data[3] + ((data[2] & 0x0F) << 8);
-                //int sample2 = ((data[2] & 0xF0) >> 4) + (data[1] << 4);
-
-
-                //EventData s1 = new EventData(EventNow.p_eventNum, sample1);
-                //EventData s2 = new EventData(EventNow.p_eventNum, sample2);
-
-                //list_data.Add(s1);
-                //list_data.Add(s2);
-
-                EventNow.IncreaseSize(2);
-                //label_E.Text = label_E.Text + "F";
-            }
-            */
-
+        //-------------------------------------------------------------------------------------------------------------------
+        //TabControl
+        //-------------------------------------------------------------------------------------------------------------------
+        private void tabControl_MAIN_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AcqControl.ReadSettingAndValues();
         }
 
         private void button_Reset_Click(object sender, EventArgs e)
@@ -506,47 +479,17 @@ namespace Digitizer_ver1
 
 
         //-------------------------------------------------------------------------------------------------------------------
-        //Data Chart
+        //Measurement Data
         //-------------------------------------------------------------------------------------------------------------------
         private void chart_data_Click(object sender, EventArgs e)
         {
-
-            int selectedRows = dataGridView_events.SelectedRows.Count;
-
-            if (selectedRows == 0)
-            {
-                return;
-            }
-
-            //chart_data.Series["Data"].Points.Clear();
-            chart_data.Series.Clear();
-
-            for (int r = 0; r < selectedRows; r++)
-            {
-
-                int selectedIndex = dataGridView_events.SelectedRows[r].Index;
-                EventInfo SelectedEvent = list_events[selectedIndex];
-
-                int EventStartIndex = SelectedEvent.p_eventStart;
-                int EventEndIndex = EventStartIndex + SelectedEvent.p_eventSize - 1;
-
-                chart_data.Series.Add(r.ToString());
-                chart_data.Series[r.ToString()].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-                chart_data.Series[r.ToString()].LegendText = SelectedEvent.p_eventNum.ToString();
-                chart_data.Series[r.ToString()].BorderWidth = 3;
-
-
-                for (int i = EventStartIndex; i < EventEndIndex; i++)
-                {
-                    chart_data.Series[r.ToString()].Points.AddY(list_data[i].p_sample);
-
-                }
-
-            }
-
-            chart_data.DataBind();
+            AcqData.chart_data_Click(sender, e);
         }
 
+        private void button_EventsListClear_Click(object sender, EventArgs e)
+        {
+            AcqData.ClearEventsList();
+        }
 
         //-------------------------------------------------------------------------------------------------------------------
         //Communication Form Control
@@ -573,6 +516,7 @@ namespace Digitizer_ver1
         private void button_AcqStartStop_Click(object sender, EventArgs e)
         {
             AcqControl.StartStop();
+            if (AcqControl.AcqState) AcqData.UpdateSaving();
         }
 
         private void numericUpDown_NumOfEvents_ValueChanged(object sender, EventArgs e)
@@ -602,7 +546,7 @@ namespace Digitizer_ver1
 
         private void button_ReadAcqState_Click(object sender, EventArgs e)
         {
-            AcqControl.ReadSetting();
+            AcqControl.ReadSettingAndValues();
         }
 
         private void checkBox_TestGeneratorEnable_CheckedChanged(object sender, EventArgs e)
@@ -616,7 +560,8 @@ namespace Digitizer_ver1
         //-------------------------------------------------------------------------------------------------------------------
         private void button_ConfigFileLoadFromFile_Click(object sender, EventArgs e)
         {
-            ConfigSequence.OpenRegistersFile();
+            //ConfigSequence.OpenRegistersFile();
+            MultiConfigSequence.AssignFile();
         }
 
         private void button_ConfigFileSaveToFile_Click(object sender, EventArgs e)
@@ -631,14 +576,24 @@ namespace Digitizer_ver1
 
         private void button_ConfigRun_Click(object sender, EventArgs e)
         {
-            ConfigSequence.ConfigSequenceStart();
+            MultiConfigSequence.ConfigSequenceStart();
+            
         }
 
         private void button_ConfigStop_Click(object sender, EventArgs e)
         {
-            ConfigSequence.ConfigSequenceStop();
+            MultiConfigSequence.ConfigSequenceStop();
         }
 
+        private void button_AddNewConfig_Click(object sender, EventArgs e)
+        {
+            MultiConfigSequence.AddConfig();
+        }
+
+        private void comboBox_ConfigFiles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MultiConfigSequence.comboBoxSelectedChanged();
+        }
 
 
         //-------------------------------------------------------------------------------------------------------------------
@@ -697,9 +652,6 @@ namespace Digitizer_ver1
             rst.ClearAll();
         }
 
-        private void button_usbCycle_Click(object sender, EventArgs e)
-        {
-            communication.UsbPortCycle();
-        }
+
     }
 }

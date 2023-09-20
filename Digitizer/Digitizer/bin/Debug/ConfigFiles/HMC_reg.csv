@@ -1,9 +1,258 @@
-0;xx;R/W;A
-1;xx;R/W;B
-2;xx;R/W;C
-3;xx;R/W;D
-4;xx;R/W;A1
-5;xx;R/W;B2
-6;xx;R/W;C3
-7;xx;R/W;D4
-8;xx;R/W;E5
+0;Global soft reset control ;R/W;0
+1;Global request and mode control;R/W;0
+2;Global request and mode control;R/W;0
+3;Global enable control;R/W;37
+4;Global enable control;R/W;7F
+5;Global mode and enable control;R/W;4F
+6;Global clear alarms;R/W;0
+7;Global miscellaneous control;R/W;0
+8;Global miscellaneous control;R/W;0
+9;Global miscellaneous control;R/W;1
+A;CLKIN0/CLKIN0 input buffer control;R/W;7
+B;CLKIN1/CLKIN1 input buffer control;R/W;7
+C;CLKIN2/CLKIN2 input buffer control;R/W;7
+D;CLKIN3/CLKIN3 input buffer control;R/W;7
+E;OSCIN/OSCIN input buffer control;R/W;7
+14;PLL1 reference priority control ;R/W;E4
+15;PLL1 loss of signal (LOS) control ;R/W;03
+16;PLL1 holdover exit control ;R/W;0C
+17;PLL1 holdover DAC/ADC control ;R/W;0
+18;PLL1 holdover DAC/ADC control ;R/W;04
+19;PLL1 LOS mode control ;R/W;0
+1A;PLL1 charge pump control ;R/W;08
+1B;PLL1 PFD control ;R/W;18
+1C;CLKIN0/CLKIN0 input prescaler control ;R/W;04
+1D;CLKIN1/CLKIN1 input prescaler control ;R/W;01
+1E;CLKIN2/CLKIN2 input prescaler control ;R/W;04
+1F;CLKIN3/CLKIN3 input prescaler control ;R/W;01
+20;OSCIN/OSCIN Input prescaler control ;R/W;04
+21;PLL1 reference divider control (R1)  LSB;R/W;04
+22;PLL1 reference divider control (R1) MSB;R/W;0
+26;PLL1 feedback divider control (N1) LSB;R/W;10
+27;PLL1 feedback divider control (N1)  MSB;R/W;0
+28;PLL1 lock detect control;R/W;0F
+29;PLL1 reference switching control ;R/W;05
+2A;PLL1 holdoff time control ;R/W;0
+31;PLL2 miscellaneous control ;R/W;01
+32;PLL2 frequency doubler control ;R/W;01
+33;PLL2 reference divider control (R2) LSB;R/W;02
+34;PLL2 reference divider control (R2) MSB;R/W;0
+35;PLL2 feedback divider control (N2) LSB;R/W;20
+36;PLL2 feedback divider control (N2) MSB;R/W;0
+37;PLL2 charge pump control ;R/W;0F
+38;PLL2 PFD control ;R/W;18
+39;OSCOUTx/ OSCOUTx path control ;R/W;0
+3A;OSCOUTx/ OSCOUTx driver control ;R/W;0
+3B;OSCOUTx/ OSCOUTx driver control ;R/W;0
+3C;PLL2 miscellaneous control ;R/W;0
+46;GPI1 control ;R/W;0
+47;GPI2 control ;R/W;0
+48;GPI3 control ;R/W;09
+49;GPI4 control ;R/W;11
+50;GPO1 control ;R/W;37
+51;GPO2 control ;R/W;33
+52;GPO3 control ;R/W;00
+53;GPO4 control ;R/W;00
+54;SDATA control ;R/W;03
+5A;Pulse generator control ;R/W;0
+5B;SYNC control ;R/W;06
+5C;SYSREF timer control LSB;R/W;0
+5D;SYSREF timer control MSB;R/W;01
+5E;SYSREF miscellaneous control ;R/W;0
+64;External VCO control ;R/W;0
+65;Analog delay common control ;R/W;0
+70;PLL1 alarm mask control ;R/W;0
+71;Alarm mask control ;R/W;10
+78;Product ID LSB;R;51
+79;Product ID MID;R;16
+7A;Product ID MSB;R;30
+7B;Readback register ;R;0
+7C;PLL1 alarm readback ;R;0
+7D;Alarm readback ;R;0
+7E;Latched alarm readback ;R;0
+7F;Alarm readback miscellaneous ;R;0
+82;PLL1 status registers ;R;0
+83;PLL1 status registers ;R;0
+84;PLL1 status registers ;R;0
+85;PLL1 status registers ;R;0
+86;PLL1 status registers ;R;0
+87;PLL1 status registers ;R;0
+8C;PLL2 status registers ;R;0
+8D;PLL2 status registers ;R;0
+8E;PLL2 status registers ;R;0
+8F;PLL2 status registers ;R;0
+90;PLL2 status registers ;R;0
+91;SYSREF status register ;R;0
+96;Reserved ;R/W;0
+97;Reserved ;R/W;0
+98;Reserved ;R/W;0
+99;Reserved ;R/W;0
+9A;Reserved ;R/W;0
+9B;Reserved ;R/W;AA
+9C;Reserved ;R/W;AA
+9D;Reserved ;R/W;AA
+9E;Reserved ;R/W;AA
+9F;Reserved ;R/W;55
+A0;Reserved ;R/W;56
+A1;Reserved ;R/W;97
+A2;Reserved ;R/W;03
+A3;Reserved ;R/W;0
+A4;Reserved ;R/W;0
+A5;Reserved ;R/W;0
+A6;Reserved ;R/W;1C
+A7;Reserved ;R/W;0
+A8;Reserved ;R/W;22
+A9;Reserved ;R/W;0
+AB;Reserved ;R/W;0
+AC;Reserved ;R/W;20
+AD;Reserved ;R/W;0
+AE;Reserved ;R/W;08
+AF;Reserved ;R/W;50
+B0;Reserved ;R/W;09
+B1;Reserved ;R/W;0D
+B2;Reserved ;R/W;0
+B3;Reserved ;R/W;0
+B5;Reserved ;R/W;0
+B6;Reserved ;R/W;0
+B7;Reserved ;R/W;0
+B8;Reserved ;R/W;0
+C8;Channel Output 0 control ;R/W;F3
+C9;Channel Output 0 control ;R/W;04
+CA;Channel Output 0 control ;R/W;0
+CB;Channel Output 0 control ;R/W;0
+CC;Channel Output 0 control ;R/W;0
+CD;Channel Output 0 control ;R/W;0
+CE;Channel Output 0 control ;R/W;0
+CF;Channel Output 0 control ;R/W;0
+D0;Channel Output 0 control ;R/W;1
+D1;Channel Output 0 control ;R/W;0
+D2;Channel Output 1 control ;R/W;FD
+D3;Channel Output 1 control ;R/W;0
+D4;Channel Output 1 control ;R/W;01
+D5;Channel Output 1 control ;R/W;0
+D6;Channel Output 1 control ;R/W;0
+D7;Channel Output 1 control ;R/W;0
+D8;Channel Output 1 control ;R/W;0
+D9;Channel Output 1 control ;R/W;0
+DA;Channel Output 1 control ;R/W;30
+DB;Channel Output 1 control ;R/W;0
+DC;Channel Output 2 control ;R/W;F3
+DD;Channel Output 2 control ;R/W;08
+DE;Channel Output 2 control ;R/W;0
+DF;Channel Output 2 control ;R/W;0
+E0;Channel Output 2 control ;R/W;0
+E1;Channel Output 2 control ;R/W;0
+E2;Channel Output 2 control ;R/W;0
+E3;Channel Output 2 control ;R/W;0
+E4;Channel Output 2 control ;R/W;01
+E5;Channel Output 2 control ;R/W;0
+E6;Channel Output 3 control ;R/W;FD
+E7;Channel Output 3 control ;R/W;0
+E8;Channel Output 3 control ;R/W;01
+E9;Channel Output 3 control ;R/W;0
+EA;Channel Output 3 control ;R/W;0
+EB;Channel Output 3 control ;R/W;0
+EC;Channel Output 3 control ;R/W;0
+ED;Channel Output 3 control ;R/W;0
+EE;Channel Output 3 control ;R/W;30
+EF;Channel Output 3 control ;R/W;0
+F0;Channel Output 4 control ;R/W;F3
+F1;Channel Output 4 control ;R/W;02
+F2;Channel Output 4 control ;R/W;0
+F3;Channel Output 4 control ;R/W;0
+F4;Channel Output 4 control ;R/W;0
+F5;Channel Output 4 control ;R/W;0
+F6;Channel Output 4 control ;R/W;0
+F7;Channel Output 4 control ;R/W;0
+F8;Channel Output 4 control ;R/W;01
+F9;Channel Output 4 control ;R/W;0
+FA;Channel Output 5 control ;R/W;FD
+FB;Channel Output 5 control ;R/W;0
+FC;Channel Output 5 control ;R/W;01
+FD;Channel Output 5 control ;R/W;0
+FE;Channel Output 5 control ;R/W;0
+FF;Channel Output 5 control ;R/W;0
+100;Channel Output 5 control ;R/W;0
+101;Channel Output 5 control ;R/W;0
+102;Channel Output 5 control ;R/W;30
+103;Channel Output 5 control ;R/W;0
+104;Channel Output 6 control ;R/W;F3
+105;Channel Output 6 control ;R/W;02
+106;Channel Output 6 control ;R/W;0
+107;Channel Output 6 control ;R/W;0
+108;Channel Output 6 control ;R/W;0
+109;Channel Output 6 control ;R/W;0
+10A;Channel Output 6 control ;R/W;0
+10B;Channel Output 6 control ;R/W;0
+10C;Channel Output 6 control ;R/W;01
+10D;Channel Output 6 control ;R/W;0
+10E;Channel Output 7 control ;R/W;FD
+10F;Channel Output 7 control ;R/W;0
+110;Channel Output 7 control ;R/W;01
+111;Channel Output 7 control ;R/W;0
+112;Channel Output 7 control ;R/W;0
+113;Channel Output 7 control ;R/W;0
+114;Channel Output 7 control ;R/W;0
+115;Channel Output 7 control ;R/W;0
+116;Channel Output 7 control ;R/W;30
+117;Channel Output 7 control ;R/W;0
+118;Channel Output 8 control ;R/W;F3
+119;Channel Output 8 control ;R/W;02
+11A;Channel Output 8 control ;R/W;0
+11B;Channel Output 8 control ;R/W;0
+11C;Channel Output 8 control ;R/W;0
+11D;Channel Output 8 control ;R/W;0
+11E;Channel Output 8 control ;R/W;0
+11F;Channel Output 8 control ;R/W;0
+120;Channel Output 8 control ;R/W;01
+121;Channel Output 8 control ;R/W;0
+122;Channel Output 9 control ;R/W;FD
+123;Channel Output 9 control ;R/W;0
+124;Channel Output 9 control ;R/W;01
+125;Channel Output 9 control ;R/W;0
+126;Channel Output 9 control ;R/W;0
+127;Channel Output 9 control ;R/W;0
+128;Channel Output 9 control ;R/W;0
+129;Channel Output 9 control ;R/W;0
+12A;Channel Output 9 control ;R/W;30
+12B;Channel Output 9 control ;R/W;0
+12C;Channel Output 10 control ;R/W;F3
+12D;Channel Output 10 control ;R/W;02
+12E;Channel Output 10 control ;R/W;0
+12F;Channel Output 10 control ;R/W;0
+130;Channel Output 10 control ;R/W;0
+131;Channel Output 10 control ;R/W;0
+132;Channel Output 10 control ;R/W;0
+133;Channel Output 10 control ;R/W;0
+134;Channel Output 10 control ;R/W;01
+135;Channel Output 10 control ;R/W;0
+136;Channel Output 11 control ;R/W;FD
+137;Channel Output 11 control ;R/W;0
+138;Channel Output 11 control ;R/W;01
+139;Channel Output 11 control ;R/W;0
+13A;Channel Output 11 control ;R/W;0
+13B;Channel Output 11 control ;R/W;0
+13C;Channel Output 11 control ;R/W;0
+13D;Channel Output 11 control ;R/W;0
+13E;Channel Output 11 control ;R/W;30
+13F;Channel Output 11 control ;R/W;0
+140;Channel Output 12 control ;R/W;F3
+141;Channel Output 12 control ;R/W;10
+142;Channel Output 12 control ;R/W;0
+143;Channel Output 12 control ;R/W;0
+144;Channel Output 12 control ;R/W;0
+145;Channel Output 12 control ;R/W;0
+146;Channel Output 12 control ;R/W;0
+147;Channel Output 12 control ;R/W;0
+148;Channel Output 12 control ;R/W;01
+149;Channel Output 12 control ;R/W;0
+14A;Channel Output 13 control ;R/W;FD
+14B;Channel Output 13 control ;R/W;0
+14C;Channel Output 13 control ;R/W;01
+14D;Channel Output 13 control ;R/W;0
+14E;Channel Output 13 control ;R/W;0
+14F;Channel Output 13 control ;R/W;0
+150;Channel Output 13 control ;R/W;0
+151;Channel Output 13 control ;R/W;0
+152;Channel Output 13 control ;R/W;30
+153;Channel Output 13 control ;R/W;0

@@ -15,10 +15,16 @@ namespace Digitizer_ver1
     class ConfigurationFileSequencer
     {
         
-        private BindingList<ConfigurationFileSequencer_Data> List_ConfigSequence = new BindingList<ConfigurationFileSequencer_Data>();
+        public BindingList<ConfigurationFileSequencer_Data> List_ConfigSequence = new BindingList<ConfigurationFileSequencer_Data>();
 
-        public DataGridView dataGridView_ConfigFile;
+        public DataGridView _dataGridView_ConfigFile;
         public BindingList<SystemSetting_RegistersFileData> List_ReigistersFile;
+        
+        public Reset_Control rst;
+        public GPIO_Control gpio;
+
+        public bool VisibleOnDataGrid = false;
+
 
 
         System.Timers.Timer TimerWait = new System.Timers.Timer();
@@ -72,7 +78,7 @@ namespace Digitizer_ver1
                 }
 
 
-                dataGridView_ConfigFile.DataSource = List_ConfigSequence;
+                //dataGridView_ConfigFile.DataSource = List_ConfigSequence;
 
 
                 return fname;
@@ -142,7 +148,7 @@ namespace Digitizer_ver1
             }
 
 
-            dataGridView_ConfigFile.DataSource = List_ConfigSequence;
+           
 
         }
 
@@ -169,6 +175,23 @@ namespace Digitizer_ver1
 
 
         //-------------------------------------------------------------------------------------------------------------------
+        //DataGrid
+        //-------------------------------------------------------------------------------------------------------------------
+        public void SetDataGrid() 
+        {
+            _dataGridView_ConfigFile.DataSource = List_ConfigSequence;
+            _dataGridView_ConfigFile.Update();
+            VisibleOnDataGrid = true;
+        }
+
+        public void ClrDataGrid()
+        {
+            //_dataGridView_ConfigFile.DataSource = null;
+            //_dataGridView_ConfigFile.Update();
+            VisibleOnDataGrid = false;
+        }
+
+        //-------------------------------------------------------------------------------------------------------------------
         //Sequence operation
         //-------------------------------------------------------------------------------------------------------------------
 
@@ -184,10 +207,13 @@ namespace Digitizer_ver1
             {
                 return;
             }
-            
-            for (int i = 0; i < dataGridView_ConfigFile.RowCount; i++)
+
+            if (VisibleOnDataGrid)
             {
-                dataGridView_ConfigFile.Rows[i].DefaultCellStyle.BackColor = System.Drawing.Color.White;
+                for (int i = 0; i < _dataGridView_ConfigFile.RowCount; i++)
+                {
+                    _dataGridView_ConfigFile.Rows[i].DefaultCellStyle.BackColor = System.Drawing.Color.White;
+                }
             }
 
             StepSequence = 0;
@@ -209,10 +235,13 @@ namespace Digitizer_ver1
             ConfigurationFileSequencer_Data SequenceData = List_ConfigSequence[StepSequence];
             bool decodeOk = DecodeSequenceLine(SequenceData);
 
-            if(decodeOk)
-                dataGridView_ConfigFile.Rows[StepSequence].DefaultCellStyle.BackColor = System.Drawing.Color.Green;
-            else
-                dataGridView_ConfigFile.Rows[StepSequence].DefaultCellStyle.BackColor = System.Drawing.Color.Red;
+            if (VisibleOnDataGrid)
+            {
+                if (decodeOk)
+                    _dataGridView_ConfigFile.Rows[StepSequence].DefaultCellStyle.BackColor = System.Drawing.Color.Green;
+                else
+                    _dataGridView_ConfigFile.Rows[StepSequence].DefaultCellStyle.BackColor = System.Drawing.Color.Red;
+            }
 
             if (StepSequence >= List_ConfigSequence.Count-1) 
             {
@@ -255,7 +284,15 @@ namespace Digitizer_ver1
 
             if (Action.Equals("RESET")) 
             {
-
+                int val;
+                if (!int.TryParse(Value1, NumberStyles.HexNumber, null, out val)) return false; //parsovani hodnoty resetu
+                rst.SetByName(Periphery, val);
+            }
+            else if (Action.Equals("OUTPUT"))
+            {
+                int val;
+                if (!int.TryParse(Value1, NumberStyles.HexNumber, null, out val)) return false; //parsovani hodnoty outputu
+                gpio.SetByName(Periphery, val);
             }
             else if (Action.Equals("REG"))
             {

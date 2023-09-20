@@ -30,7 +30,7 @@ namespace Digitizer_ver1
 
         }
 
-        private BindingList<ResetControl_Data> List_Reset = new BindingList<ResetControl_Data>();
+        public BindingList<ResetControl_Data> List_Reset = new BindingList<ResetControl_Data>();
 
         public delegate void efunction(Communication.eCommandCode CMD, byte d1, byte d2, byte d3);
         public efunction SendCommand;
@@ -49,7 +49,7 @@ namespace Digitizer_ver1
 
             //Reset Internal
             ResetIntAdd(0, "DataFifo");
-            ResetIntAdd(1, "FIFO");
+            ResetIntAdd(1, "FTDI");
 
 
 
@@ -84,6 +84,12 @@ namespace Digitizer_ver1
             btn_clear.UseColumnTextForButtonValue = true;
             DataGrid_Reset.Columns.Add(btn_clear);
 
+            //DataGrid_Reset.Columns.
+            
+            for(int i = 0;i < DataGrid_Reset.Columns.Count; i++) 
+            {
+                DataGrid_Reset.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
             
 
         }
@@ -152,6 +158,53 @@ namespace Digitizer_ver1
             }
         }
 
+        public void SetByName(string Name, int value) 
+        {
+            for (int i = 0; i < List_Reset.Count; i++)
+            {
+                if (Name.Equals(List_Reset[i].p_name))
+                {
+                    SetByIndex(i, value);
+                }
+            }
+        }
+
+        public void SetByIndex(int index, int value) 
+        {
+            ResetControl_Data data = List_Reset[index];
+            int Number = data.p_number;
+            if (Number < 0) return;
+            int reg = 0 | 1 << Number;
+
+            if (value == 1)
+            {
+                if (data._Res_ExtInt == ResetControl_Data.eExtIntRes.External_Reset)
+                {
+                    SendCommand(Communication.eCommandCode.CMD_CONST_SET_Reset_Controler, (byte)eCommandCode_RESET.CMD_RST_EXT_SET, (byte)((reg >> 8) & 0x00FF), (byte)(reg & 0x00FF));
+                }
+                else if (data._Res_ExtInt == ResetControl_Data.eExtIntRes.Internal_Reset)
+                {
+                    SendCommand(Communication.eCommandCode.CMD_CONST_SET_Reset_Controler, (byte)eCommandCode_RESET.CMD_RST_INT_SET, (byte)((reg >> 8) & 0x00FF), (byte)(reg & 0x00FF));
+                }
+
+            }
+            else if (value == 0)
+            {
+                if (data._Res_ExtInt == ResetControl_Data.eExtIntRes.External_Reset)
+                {
+                    SendCommand(Communication.eCommandCode.CMD_CONST_SET_Reset_Controler, (byte)eCommandCode_RESET.CMD_RST_EXT_CLR, (byte)((reg >> 8) & 0x00FF), (byte)(reg & 0x00FF));
+                }
+                else if (data._Res_ExtInt == ResetControl_Data.eExtIntRes.Internal_Reset)
+                {
+                    SendCommand(Communication.eCommandCode.CMD_CONST_SET_Reset_Controler, (byte)eCommandCode_RESET.CMD_RST_INT_CLR, (byte)((reg >> 8) & 0x00FF), (byte)(reg & 0x00FF));
+                }
+
+            }
+            else
+            {
+                return;
+            }
+        }
 
         public void DataGridView_Reset_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

@@ -107,6 +107,16 @@ namespace Digitizer_ver1
 
 
             DataGrid_GpioOutput.Update();
+
+            for (int i = 0; i < DataGrid_GpioInput.Columns.Count; i++)
+            {
+                DataGrid_GpioInput.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+
+            for (int i = 0; i < DataGrid_GpioOutput.Columns.Count; i++)
+            {
+                DataGrid_GpioOutput.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
         }
 
         private void InputAdd(int Number, string Name)
@@ -204,6 +214,39 @@ namespace Digitizer_ver1
             {
                 List_GpioInput[i].p_falling = (data >> List_GpioInput[i].p_number) & 0x0001;
                 DataGrid_GpioInput.UpdateCellValue(value_cell, i);
+            }
+        }
+
+
+        public void SetByName(string Name, int value)
+        {
+            for (int i = 0; i < List_GpioOutput.Count; i++)
+            {
+                if (Name.Equals(List_GpioOutput[i].p_name))
+                {
+                    SetByIndex(i, value);
+                }
+            }
+        }
+
+        public void SetByIndex(int index, int value)
+        {
+            GpioOutput_Data data = List_GpioOutput[index];
+            int Number = data.p_number;
+            if (Number < 0) return;
+            int reg = 0 | 1 << Number;
+
+            if (value == 1)
+            {
+                SendCommand(Communication.eCommandCode.CMD_CONST_SET_GPIO, (byte)eCommandCode_GPIO.CMD_GPIO_OUTPUT_SET, (byte)((reg >> 8) & 0x00FF), (byte)(reg & 0x00FF));
+            }
+            else if (value == 0)
+            {
+                SendCommand(Communication.eCommandCode.CMD_CONST_SET_GPIO, (byte)eCommandCode_GPIO.CMD_GPIO_OUTPUT_CLEAR, (byte)((reg >> 8) & 0x00FF), (byte)(reg & 0x00FF));
+            }
+            else
+            {
+                return;
             }
         }
 

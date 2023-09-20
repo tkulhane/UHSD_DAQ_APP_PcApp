@@ -36,8 +36,10 @@ namespace Digitizer_ver1
 
             using (StreamReader reader = new StreamReader(SettingFileName, Encoding.UTF8))
             {
+                //precteni nastaveni komhnikace
                 communication.OpenBySettingString(reader.ReadLine());
 
+                //nacteni souboru registru
                 for (int i = 0; i < List_ReigistersFile.Count; i++)
                 {
                     UpdateRowRegistersFile(i, reader.ReadLine());

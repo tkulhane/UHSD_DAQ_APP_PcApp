@@ -53,6 +53,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AcquisitionDataProcess.cs" />
+    <Compile Include="AcquisitionDataProcess_Data.cs" />
     <Compile Include="Acquisition_Control.cs" />
     <Compile Include="Communication.cs" />
     <Compile Include="ConfigurationFileSequencer.cs" />
@@ -67,6 +69,8 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="GpioInput_Data.cs" />
+    <Compile Include="MultipleConfigurationFileSequencer.cs" />
+    <Compile Include="MultipleConfigurationFileSequencer_Data.cs" />
     <Compile Include="ResetControl_Data.cs" />
     <Compile Include="GpioOutput_Data.cs" />
     <Compile Include="GPIO_Control.cs" />
