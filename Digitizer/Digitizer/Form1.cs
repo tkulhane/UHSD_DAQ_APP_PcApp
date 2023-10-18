@@ -112,10 +112,12 @@ namespace Digitizer_ver1
             //ConfigSequence.rst = rst;
             //ConfigSequence.gpio = gpio;
             MultiConfigSequence.dataGridView_ConfigFile = dataGridView_ConfigFile;
-            MultiConfigSequence.comboBox_ConfigFiles = comboBox_ConfigFiles;
+            //MultiConfigSequence.comboBox_ConfigFiles = comboBox_ConfigFiles;
+            MultiConfigSequence.MultipleConfigFiles = dataGridView_MultipleConfigFiles;
             MultiConfigSequence.List_ReigistersFile = sysSetting.List_ReigistersFile;
             MultiConfigSequence.rst = rst;
             MultiConfigSequence.gpio = gpio;
+            MultiConfigSequence.Init();
 
 
 
@@ -600,6 +602,11 @@ namespace Digitizer_ver1
             MultiConfigSequence.AssignFile();
         }
 
+        private void button_RemoveConfig_Click(object sender, EventArgs e)
+        {
+            MultiConfigSequence.RemoveFile();
+        }
+
         private void button_ConfigFileSaveToFile_Click(object sender, EventArgs e)
         {
 
@@ -628,7 +635,12 @@ namespace Digitizer_ver1
 
         private void comboBox_ConfigFiles_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MultiConfigSequence.comboBoxSelectedChanged();
+            //MultiConfigSequence.comboBoxSelectedChanged();
+        }
+
+        private void dataGridView_MultipleConfigFiles_SelectionChanged(object sender, EventArgs e)
+        {
+            MultiConfigSequence.SelectedChanged();
         }
 
 

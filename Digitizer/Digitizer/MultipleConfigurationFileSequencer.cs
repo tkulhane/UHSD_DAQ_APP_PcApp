@@ -12,14 +12,29 @@ namespace Digitizer_ver1
     {
         private BindingList<MultipleConfigurationFileSequencer_Data> List_MultipleConfigFiles = new BindingList<MultipleConfigurationFileSequencer_Data>();
 
-
-        public ComboBox comboBox_ConfigFiles;
+        public DataGridView MultipleConfigFiles;
+        //public ComboBox comboBox_ConfigFiles;
         public DataGridView dataGridView_ConfigFile;
         public BindingList<SystemSetting_RegistersFileData> List_ReigistersFile;
         public Reset_Control rst;
         public GPIO_Control gpio;
 
         public MultipleConfigurationFileSequencer_Data ActualSelected;
+
+        public void Init() 
+        {
+            List_MultipleConfigFiles.Clear();
+
+
+            MultipleConfigFiles.DataSource = List_MultipleConfigFiles;
+
+            for (int i = 0; i < MultipleConfigFiles.Columns.Count; i++)
+            {
+                MultipleConfigFiles.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+
+            MultipleConfigFiles.Update();
+        }
 
         public void AddConfig() 
         {
@@ -28,14 +43,31 @@ namespace Digitizer_ver1
             data._ConfigSequencer.rst = rst;
             data._ConfigSequencer.gpio = gpio;
             data._ConfigSequencer._dataGridView_ConfigFile = dataGridView_ConfigFile;
+            data._ConfigSequencer._MultiConfig_data = data;
+            data._ConfigSequencer.StateSetFunction = StateSet;
+
             List_MultipleConfigFiles.Add(data);
 
-            UpdateBox();
+            //MultipleConfigFiles.Update();
 
+            for (int i = 0; i < MultipleConfigFiles.Rows.Count; i++) 
+            {
+                MultipleConfigFiles.Rows[i].Selected = false;
+            }
+            MultipleConfigFiles.Rows[MultipleConfigFiles.Rows.Count - 1].Selected = true;
         }
 
         public void AssignFile()
         {
+            
+            int selCount = MultipleConfigFiles.SelectedRows.Count;
+            if (selCount == 0) return;
+
+            int selIndex = MultipleConfigFiles.SelectedRows[0].Index;
+            if (selIndex < 0) return;
+
+
+
             String fname = String.Empty;
             String OnlyName = String.Empty;
 
@@ -59,26 +91,57 @@ namespace Digitizer_ver1
                 }
             }
 
-            int selIndex = comboBox_ConfigFiles.SelectedIndex;
-            if (selIndex < 0) return;
 
             List_MultipleConfigFiles[selIndex]._Patch = fname;
             List_MultipleConfigFiles[selIndex].p_Name = OnlyName;
             List_MultipleConfigFiles[selIndex]._ConfigSequencer.OpenRegistersFileAsString(fname);
 
+            List_MultipleConfigFiles[selIndex].SetState(MultipleConfigurationFileSequencer_Data.eStates.Idle);
 
-            UpdateBox();
+            MultipleConfigFiles.Refresh();
+
         }
 
-        public void comboBoxSelectedChanged() 
+        public void RemoveFile() 
+        {
+            int selCount = MultipleConfigFiles.SelectedRows.Count;
+            if (selCount == 0) return;
+
+            int selIndex = MultipleConfigFiles.SelectedRows[0].Index;
+            if (selIndex < 0) return;
+
+            //List_MultipleConfigFiles[selIndex].
+            List_MultipleConfigFiles.Remove(List_MultipleConfigFiles[selIndex]);
+
+
+            if(List_MultipleConfigFiles.Count == 0) 
+            {
+                dataGridView_ConfigFile.DataSource = null;
+                dataGridView_ConfigFile.Refresh();
+            }
+        }
+
+        public void SelectedChanged() 
         {
             foreach(MultipleConfigurationFileSequencer_Data x in List_MultipleConfigFiles) 
             {
                 x._ConfigSequencer.ClrDataGrid();
             }
 
-            int selIndex = comboBox_ConfigFiles.SelectedIndex;
+            int selCount = MultipleConfigFiles.SelectedRows.Count;
+            if (selCount == 0) 
+            {
+                dataGridView_ConfigFile.DataSource = null;
+                dataGridView_ConfigFile.Refresh();
+                return;
+            } 
+
+            int selIndex = MultipleConfigFiles.SelectedRows[0].Index;
             if (selIndex < 0) return;
+
+
+            //int selIndex = comboBox_ConfigFiles.SelectedIndex;
+            //if (selIndex < 0) return;
 
             ActualSelected = List_MultipleConfigFiles[selIndex];
             ActualSelected._ConfigSequencer.SetDataGrid();
@@ -94,20 +157,12 @@ namespace Digitizer_ver1
             ActualSelected._ConfigSequencer.ConfigSequenceStop();
         }
 
-
-        private void UpdateBox() 
+        public void StateSet(MultipleConfigurationFileSequencer_Data.eStates state, MultipleConfigurationFileSequencer_Data MultiConfig_data) 
         {
-            comboBox_ConfigFiles.Items.Clear();
-
-
-            foreach (MultipleConfigurationFileSequencer_Data data in List_MultipleConfigFiles)
-            {
-                comboBox_ConfigFiles.Items.Add(data.p_Name);
-            }
-
-            comboBox_ConfigFiles.SelectedIndex = comboBox_ConfigFiles.Items.Count - 1;
-
+            MultiConfig_data.SetState(state);
+            MultipleConfigFiles.Refresh();
         }
+
 
     }
 }

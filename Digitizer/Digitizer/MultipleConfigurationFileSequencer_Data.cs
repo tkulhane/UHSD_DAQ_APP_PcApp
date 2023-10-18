@@ -9,9 +9,23 @@ namespace Digitizer_ver1
 {
     class MultipleConfigurationFileSequencer_Data
     {
+        public enum eStates : byte
+        {
+            NotAssign,
+            Idle,
+            Run,
+            RunFault,
+            LoadFault
+        }
+
+
         string _Name;
         [DisplayName("Name")]
         public string p_Name { get { return _Name; } set { _Name = value; } }
+
+        string _State;
+        [DisplayName("State")]
+        public string p_State { get { return _State; }}
 
 
         public string _Patch;
@@ -23,8 +37,40 @@ namespace Digitizer_ver1
             _ConfigSequencer = new ConfigurationFileSequencer();
             _Assigned = false;
             _Name = "New Config (Not Assign)";
+
+            SetState(eStates.NotAssign);
         }
 
+        public void SetState(eStates state) 
+        {
+            switch (state) 
+            {
+                case eStates.NotAssign:
+                    _State = "Not Assign";
+                    break;
+
+                case eStates.Idle:
+                    _State = "Idle";
+                    break;
+
+                case eStates.Run:
+                    _State = "Run";
+                    break;
+
+                case eStates.RunFault:
+                    _State = "Run Fault";
+                    break;
+
+                case eStates.LoadFault:
+                    _State = "Load Fault";
+                    break;
+
+                default:
+                    _State = "???";
+                    break;
+
+            }
+        }
 
     }
 }

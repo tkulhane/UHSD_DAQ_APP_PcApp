@@ -24,6 +24,10 @@ namespace Digitizer_ver1
 
         public BindingList<ConfigurationFileSequencer_Data> List_ConfigSequence = new BindingList<ConfigurationFileSequencer_Data>();
 
+        public MultipleConfigurationFileSequencer_Data _MultiConfig_data;
+        public delegate void efunction(MultipleConfigurationFileSequencer_Data.eStates state, MultipleConfigurationFileSequencer_Data MultiConfig_data);
+        public efunction StateSetFunction;
+
         public DataGridView _dataGridView_ConfigFile;
         public BindingList<SystemSetting_RegistersFileData> List_ReigistersFile;
         
@@ -198,7 +202,8 @@ namespace Digitizer_ver1
         public void SetDataGrid() 
         {
             _dataGridView_ConfigFile.DataSource = List_ConfigSequence;
-            _dataGridView_ConfigFile.Update();
+            _dataGridView_ConfigFile.Update(); 
+            _dataGridView_ConfigFile.Refresh();
             VisibleOnDataGrid = true;
         }
 
@@ -255,25 +260,41 @@ namespace Digitizer_ver1
 
             StepSequence = 0;
             SequenceDone = false;
+
+            StateSetFunction(MultipleConfigurationFileSequencer_Data.eStates.Run, _MultiConfig_data);
             ConfigSequenceGo();
         }
 
         public void ConfigSequenceStop()
         {
+            
             SequenceDone = true;
         }
 
-        public void ConfigSequenceGo() 
+        public void ConfigSequenceGo()
         {
-            if (SequenceDone) return;
-            
+            if (SequenceDone)
+            {
+                StateSetFunction(MultipleConfigurationFileSequencer_Data.eStates.Idle, _MultiConfig_data);
+                return;
+            }
+              
+                
+
             //SequenceDone = false;
 
+            
             ConfigurationFileSequencer_Data SequenceData = List_ConfigSequence[StepSequence];
             bool decodeOk = DecodeSequenceLine(SequenceData);
 
             if (VisibleOnDataGrid)
             {
+                for(int i = 0; i < _dataGridView_ConfigFile.RowCount; i++) 
+                {
+                    _dataGridView_ConfigFile.Rows[i].DefaultCellStyle.BackColor = System.Drawing.Color.White;
+                }
+                
+                
                 if (decodeOk)
                     _dataGridView_ConfigFile.Rows[StepSequence].DefaultCellStyle.BackColor = System.Drawing.Color.Green;
                 else
@@ -282,9 +303,13 @@ namespace Digitizer_ver1
 
             if (StepSequence >= List_ConfigSequence.Count-1) 
             {
-
+                StateSetFunction(MultipleConfigurationFileSequencer_Data.eStates.Idle, _MultiConfig_data);
                 SequenceDone = true;
 
+                for (int i = 0; i < _dataGridView_ConfigFile.RowCount; i++)
+                {
+                    _dataGridView_ConfigFile.Rows[i].DefaultCellStyle.BackColor = System.Drawing.Color.White;
+                }
                 //StepSequence = 0;
             }
             else 

@@ -127,7 +127,6 @@ namespace Digitizer_ver1
             this.button_ResetClearAll = new System.Windows.Forms.Button();
             this.tabConfiguration = new System.Windows.Forms.TabPage();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.comboBox_ConfigFiles = new System.Windows.Forms.ComboBox();
             this.button_ConfigRun = new System.Windows.Forms.Button();
             this.button_ConfigStop = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -158,6 +157,11 @@ namespace Digitizer_ver1
             this.radioButton_USB = new System.Windows.Forms.RadioButton();
             this.radioButton_UART = new System.Windows.Forms.RadioButton();
             this.button_RegUpdateFromExtFile = new System.Windows.Forms.Button();
+            this.dataGridView_MultipleConfigFiles = new System.Windows.Forms.DataGridView();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.button_RemoveConfig = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tabRegisters.SuspendLayout();
             this.tabControl_RegistersSetting.SuspendLayout();
@@ -205,6 +209,13 @@ namespace Digitizer_ver1
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_RegistersFiles)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_MultipleConfigFiles)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -215,7 +226,7 @@ namespace Digitizer_ver1
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1184, 39);
+            this.panel1.Size = new System.Drawing.Size(1248, 39);
             this.panel1.TabIndex = 0;
             // 
             // label_dataErrors
@@ -575,7 +586,7 @@ namespace Digitizer_ver1
             this.tabControl_MAIN.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl_MAIN.Name = "tabControl_MAIN";
             this.tabControl_MAIN.SelectedIndex = 0;
-            this.tabControl_MAIN.Size = new System.Drawing.Size(1184, 572);
+            this.tabControl_MAIN.Size = new System.Drawing.Size(1248, 606);
             this.tabControl_MAIN.TabIndex = 1;
             this.tabControl_MAIN.SelectedIndexChanged += new System.EventHandler(this.tabControl_MAIN_SelectedIndexChanged);
             // 
@@ -588,7 +599,7 @@ namespace Digitizer_ver1
             this.tabMeasurement_Setting.Controls.Add(this.groupBox3);
             this.tabMeasurement_Setting.Location = new System.Drawing.Point(4, 22);
             this.tabMeasurement_Setting.Name = "tabMeasurement_Setting";
-            this.tabMeasurement_Setting.Size = new System.Drawing.Size(1176, 546);
+            this.tabMeasurement_Setting.Size = new System.Drawing.Size(1240, 580);
             this.tabMeasurement_Setting.TabIndex = 7;
             this.tabMeasurement_Setting.Text = "Measurement Settings";
             this.tabMeasurement_Setting.UseVisualStyleBackColor = true;
@@ -1020,7 +1031,7 @@ namespace Digitizer_ver1
             this.tabMeasurementData.Margin = new System.Windows.Forms.Padding(2);
             this.tabMeasurementData.Name = "tabMeasurementData";
             this.tabMeasurementData.Padding = new System.Windows.Forms.Padding(2);
-            this.tabMeasurementData.Size = new System.Drawing.Size(1176, 546);
+            this.tabMeasurementData.Size = new System.Drawing.Size(1240, 580);
             this.tabMeasurementData.TabIndex = 1;
             this.tabMeasurementData.Text = "Measurement Data";
             this.tabMeasurementData.UseVisualStyleBackColor = true;
@@ -1037,18 +1048,18 @@ namespace Digitizer_ver1
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1172, 542);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1236, 576);
             this.tableLayoutPanel2.TabIndex = 20;
             // 
             // dataGridView_events
             // 
             this.dataGridView_events.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_events.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView_events.Location = new System.Drawing.Point(815, 3);
+            this.dataGridView_events.Location = new System.Drawing.Point(859, 3);
             this.dataGridView_events.Name = "dataGridView_events";
             this.dataGridView_events.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView_events.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dataGridView_events.Size = new System.Drawing.Size(354, 536);
+            this.dataGridView_events.Size = new System.Drawing.Size(374, 570);
             this.dataGridView_events.TabIndex = 20;
             // 
             // panel4
@@ -1059,7 +1070,7 @@ namespace Digitizer_ver1
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(3, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(806, 536);
+            this.panel4.Size = new System.Drawing.Size(850, 570);
             this.panel4.TabIndex = 21;
             // 
             // button_EventsListClear
@@ -1090,7 +1101,7 @@ namespace Digitizer_ver1
             this.chart_data.Dock = System.Windows.Forms.DockStyle.Bottom;
             legend1.Name = "Legend1";
             this.chart_data.Legends.Add(legend1);
-            this.chart_data.Location = new System.Drawing.Point(0, 142);
+            this.chart_data.Location = new System.Drawing.Point(0, 176);
             this.chart_data.Margin = new System.Windows.Forms.Padding(2);
             this.chart_data.Name = "chart_data";
             series1.BorderWidth = 2;
@@ -1100,7 +1111,7 @@ namespace Digitizer_ver1
             series1.Legend = "Legend1";
             series1.Name = "Data";
             this.chart_data.Series.Add(series1);
-            this.chart_data.Size = new System.Drawing.Size(806, 394);
+            this.chart_data.Size = new System.Drawing.Size(850, 394);
             this.chart_data.TabIndex = 21;
             this.chart_data.Text = "chart_data";
             this.chart_data.Click += new System.EventHandler(this.chart_data_Click);
@@ -1269,40 +1280,28 @@ namespace Digitizer_ver1
             // 
             // tabConfiguration
             // 
-            this.tabConfiguration.Controls.Add(this.groupBox9);
-            this.tabConfiguration.Controls.Add(this.groupBox7);
-            this.tabConfiguration.Controls.Add(this.dataGridView_ConfigFile);
+            this.tabConfiguration.Controls.Add(this.tableLayoutPanel3);
             this.tabConfiguration.Location = new System.Drawing.Point(4, 22);
             this.tabConfiguration.Name = "tabConfiguration";
-            this.tabConfiguration.Size = new System.Drawing.Size(1176, 546);
+            this.tabConfiguration.Size = new System.Drawing.Size(1240, 580);
             this.tabConfiguration.TabIndex = 8;
             this.tabConfiguration.Text = "Configuration";
             this.tabConfiguration.UseVisualStyleBackColor = true;
             // 
             // groupBox9
             // 
-            this.groupBox9.Controls.Add(this.comboBox_ConfigFiles);
             this.groupBox9.Controls.Add(this.button_ConfigRun);
             this.groupBox9.Controls.Add(this.button_ConfigStop);
-            this.groupBox9.Location = new System.Drawing.Point(50, 320);
+            this.groupBox9.Location = new System.Drawing.Point(53, 413);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(231, 165);
+            this.groupBox9.Size = new System.Drawing.Size(231, 94);
             this.groupBox9.TabIndex = 16;
             this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Sequence Select";
-            // 
-            // comboBox_ConfigFiles
-            // 
-            this.comboBox_ConfigFiles.FormattingEnabled = true;
-            this.comboBox_ConfigFiles.Location = new System.Drawing.Point(31, 36);
-            this.comboBox_ConfigFiles.Name = "comboBox_ConfigFiles";
-            this.comboBox_ConfigFiles.Size = new System.Drawing.Size(165, 21);
-            this.comboBox_ConfigFiles.TabIndex = 15;
-            this.comboBox_ConfigFiles.SelectedIndexChanged += new System.EventHandler(this.comboBox_ConfigFiles_SelectedIndexChanged);
+            this.groupBox9.Text = "Sequence Action";
             // 
             // button_ConfigRun
             // 
-            this.button_ConfigRun.Location = new System.Drawing.Point(31, 95);
+            this.button_ConfigRun.Location = new System.Drawing.Point(31, 32);
             this.button_ConfigRun.Margin = new System.Windows.Forms.Padding(2);
             this.button_ConfigRun.Name = "button_ConfigRun";
             this.button_ConfigRun.Size = new System.Drawing.Size(74, 37);
@@ -1313,7 +1312,7 @@ namespace Digitizer_ver1
             // 
             // button_ConfigStop
             // 
-            this.button_ConfigStop.Location = new System.Drawing.Point(122, 95);
+            this.button_ConfigStop.Location = new System.Drawing.Point(122, 32);
             this.button_ConfigStop.Margin = new System.Windows.Forms.Padding(2);
             this.button_ConfigStop.Name = "button_ConfigStop";
             this.button_ConfigStop.Size = new System.Drawing.Size(74, 37);
@@ -1324,20 +1323,21 @@ namespace Digitizer_ver1
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.button_RemoveConfig);
             this.groupBox7.Controls.Add(this.button_AddNewConfig);
             this.groupBox7.Controls.Add(this.button_ConfigFileLoadFromFile);
             this.groupBox7.Controls.Add(this.button_ConfigFileSaveToFile);
             this.groupBox7.Controls.Add(this.button_ConfigFileSaveAs);
-            this.groupBox7.Location = new System.Drawing.Point(50, 57);
+            this.groupBox7.Location = new System.Drawing.Point(53, 26);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(127, 230);
+            this.groupBox7.Size = new System.Drawing.Size(231, 230);
             this.groupBox7.TabIndex = 12;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Configuration File";
             // 
             // button_AddNewConfig
             // 
-            this.button_AddNewConfig.Location = new System.Drawing.Point(26, 32);
+            this.button_AddNewConfig.Location = new System.Drawing.Point(31, 32);
             this.button_AddNewConfig.Margin = new System.Windows.Forms.Padding(2);
             this.button_AddNewConfig.Name = "button_AddNewConfig";
             this.button_AddNewConfig.Size = new System.Drawing.Size(74, 37);
@@ -1348,7 +1348,7 @@ namespace Digitizer_ver1
             // 
             // button_ConfigFileLoadFromFile
             // 
-            this.button_ConfigFileLoadFromFile.Location = new System.Drawing.Point(26, 91);
+            this.button_ConfigFileLoadFromFile.Location = new System.Drawing.Point(31, 91);
             this.button_ConfigFileLoadFromFile.Margin = new System.Windows.Forms.Padding(2);
             this.button_ConfigFileLoadFromFile.Name = "button_ConfigFileLoadFromFile";
             this.button_ConfigFileLoadFromFile.Size = new System.Drawing.Size(74, 37);
@@ -1359,7 +1359,7 @@ namespace Digitizer_ver1
             // 
             // button_ConfigFileSaveToFile
             // 
-            this.button_ConfigFileSaveToFile.Location = new System.Drawing.Point(26, 132);
+            this.button_ConfigFileSaveToFile.Location = new System.Drawing.Point(31, 173);
             this.button_ConfigFileSaveToFile.Margin = new System.Windows.Forms.Padding(2);
             this.button_ConfigFileSaveToFile.Name = "button_ConfigFileSaveToFile";
             this.button_ConfigFileSaveToFile.Size = new System.Drawing.Size(74, 37);
@@ -1370,7 +1370,7 @@ namespace Digitizer_ver1
             // 
             // button_ConfigFileSaveAs
             // 
-            this.button_ConfigFileSaveAs.Location = new System.Drawing.Point(26, 173);
+            this.button_ConfigFileSaveAs.Location = new System.Drawing.Point(122, 173);
             this.button_ConfigFileSaveAs.Margin = new System.Windows.Forms.Padding(2);
             this.button_ConfigFileSaveAs.Name = "button_ConfigFileSaveAs";
             this.button_ConfigFileSaveAs.Size = new System.Drawing.Size(74, 37);
@@ -1381,14 +1381,17 @@ namespace Digitizer_ver1
             // 
             // dataGridView_ConfigFile
             // 
+            this.dataGridView_ConfigFile.AllowUserToAddRows = false;
+            this.dataGridView_ConfigFile.AllowUserToDeleteRows = false;
+            this.dataGridView_ConfigFile.AllowUserToResizeColumns = false;
+            this.dataGridView_ConfigFile.AllowUserToResizeRows = false;
             this.dataGridView_ConfigFile.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_ConfigFile.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dataGridView_ConfigFile.Location = new System.Drawing.Point(287, 0);
+            this.dataGridView_ConfigFile.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView_ConfigFile.Location = new System.Drawing.Point(0, 0);
             this.dataGridView_ConfigFile.MultiSelect = false;
             this.dataGridView_ConfigFile.Name = "dataGridView_ConfigFile";
             this.dataGridView_ConfigFile.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dataGridView_ConfigFile.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_ConfigFile.Size = new System.Drawing.Size(889, 546);
+            this.dataGridView_ConfigFile.Size = new System.Drawing.Size(446, 574);
             this.dataGridView_ConfigFile.TabIndex = 2;
             // 
             // tabSetting
@@ -1408,7 +1411,7 @@ namespace Digitizer_ver1
             this.tabSetting.Controls.Add(this.groupBox1);
             this.tabSetting.Location = new System.Drawing.Point(4, 22);
             this.tabSetting.Name = "tabSetting";
-            this.tabSetting.Size = new System.Drawing.Size(1176, 546);
+            this.tabSetting.Size = new System.Drawing.Size(1240, 580);
             this.tabSetting.TabIndex = 6;
             this.tabSetting.Text = "System Setting";
             this.tabSetting.UseVisualStyleBackColor = true;
@@ -1618,11 +1621,81 @@ namespace Digitizer_ver1
             this.button_RegUpdateFromExtFile.UseVisualStyleBackColor = true;
             this.button_RegUpdateFromExtFile.Click += new System.EventHandler(this.button_RegUpdateFromExtFile_Click);
             // 
+            // dataGridView_MultipleConfigFiles
+            // 
+            this.dataGridView_MultipleConfigFiles.AllowUserToAddRows = false;
+            this.dataGridView_MultipleConfigFiles.AllowUserToDeleteRows = false;
+            this.dataGridView_MultipleConfigFiles.AllowUserToResizeColumns = false;
+            this.dataGridView_MultipleConfigFiles.AllowUserToResizeRows = false;
+            this.dataGridView_MultipleConfigFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_MultipleConfigFiles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView_MultipleConfigFiles.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView_MultipleConfigFiles.MultiSelect = false;
+            this.dataGridView_MultipleConfigFiles.Name = "dataGridView_MultipleConfigFiles";
+            this.dataGridView_MultipleConfigFiles.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dataGridView_MultipleConfigFiles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView_MultipleConfigFiles.Size = new System.Drawing.Size(450, 574);
+            this.dataGridView_MultipleConfigFiles.TabIndex = 17;
+            this.dataGridView_MultipleConfigFiles.SelectionChanged += new System.EventHandler(this.dataGridView_MultipleConfigFiles_SelectionChanged);
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(337, 3);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.dataGridView_MultipleConfigFiles);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.dataGridView_ConfigFile);
+            this.splitContainer1.Size = new System.Drawing.Size(900, 574);
+            this.splitContainer1.SplitterDistance = 450;
+            this.splitContainer1.TabIndex = 18;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.groupBox7);
+            this.panel5.Controls.Add(this.groupBox9);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(3, 3);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(328, 574);
+            this.panel5.TabIndex = 19;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 334F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Controls.Add(this.splitContainer1, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.panel5, 0, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1240, 580);
+            this.tableLayoutPanel3.TabIndex = 20;
+            // 
+            // button_RemoveConfig
+            // 
+            this.button_RemoveConfig.Location = new System.Drawing.Point(122, 32);
+            this.button_RemoveConfig.Margin = new System.Windows.Forms.Padding(2);
+            this.button_RemoveConfig.Name = "button_RemoveConfig";
+            this.button_RemoveConfig.Size = new System.Drawing.Size(74, 37);
+            this.button_RemoveConfig.TabIndex = 17;
+            this.button_RemoveConfig.Text = "Remove";
+            this.button_RemoveConfig.UseVisualStyleBackColor = true;
+            this.button_RemoveConfig.Click += new System.EventHandler(this.button_RemoveConfig_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 611);
+            this.ClientSize = new System.Drawing.Size(1248, 645);
             this.Controls.Add(this.tabControl_MAIN);
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -1687,6 +1760,13 @@ namespace Digitizer_ver1
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_RegistersFiles)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_MultipleConfigFiles)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1801,7 +1881,6 @@ namespace Digitizer_ver1
         private System.Windows.Forms.CheckBox checkBox_cmdQuestions;
         public System.Windows.Forms.Label label_InQ;
         private System.Windows.Forms.Button button_AddNewConfig;
-        private System.Windows.Forms.ComboBox comboBox_ConfigFiles;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.TabPage tabReset;
         private System.Windows.Forms.DataGridView dataGridView_Resets;
@@ -1818,6 +1897,11 @@ namespace Digitizer_ver1
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_data;
         public System.Windows.Forms.Label label_dataErrors;
         private System.Windows.Forms.Button button_RegUpdateFromExtFile;
+        private System.Windows.Forms.DataGridView dataGridView_MultipleConfigFiles;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.Button button_RemoveConfig;
     }
 }
 
