@@ -461,11 +461,13 @@ namespace Digitizer_ver1
                     break;
 
                 case 2:
-                    Registers_LMX1.WriteAll();
+                    //Registers_LMX1.WriteAll();
+                    Registers_LMX1.WriteAllReverse();
                     break;
 
                 case 3:
-                    Registers_LMX2.WriteAll();
+                    //Registers_LMX2.WriteAll();
+                    Registers_LMX2.WriteAllReverse();
                     break;
 
                 case 4:
@@ -477,6 +479,40 @@ namespace Digitizer_ver1
             }
         }
 
+        private void button_RegUpdateFromExtFile_Click(object sender, EventArgs e)
+        {
+            int selected = tabControl_RegistersSetting.SelectedIndex;
+ 
+
+            switch (selected)
+            {
+                case 0:
+                    //FileName = Registers_ADC.OpenRegistersFile();
+                    //sysSetting.AddFileRegistersInList(Registers_ADC, FileName);
+                    break;
+
+                case 1:
+                    Registers_HMC.UpdateFromPyFile();
+                    break;
+
+                case 2:
+                    Registers_LMX1.UpdateFromTxtFile();
+                    break;
+
+                case 3:
+                    Registers_LMX2.UpdateFromTxtFile();
+                    break;
+
+                case 4:
+                    //FileName = Registers_FpgaTest.OpenRegistersFile();
+                    //sysSetting.AddFileRegistersInList(Registers_FpgaTest, FileName);
+                    break;
+
+                default:
+                    return;
+                    //break;
+            }
+        }
 
         //-------------------------------------------------------------------------------------------------------------------
         //Measurement Data

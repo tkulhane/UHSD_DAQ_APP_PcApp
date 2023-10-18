@@ -43,6 +43,10 @@ namespace Digitizer_ver1
         public DataGridView DataGrid_GpioInput;
         public DataGridView DataGrid_GpioOutput;
 
+        bool _ReadRequest = true;
+        int _ReadRequest_Number = 0;
+        public int _LastReadValue = 0;
+
 
         public void LoadGpio()
         {
@@ -57,8 +61,6 @@ namespace Digitizer_ver1
             InputAdd(7, "HMC-GPIO-0");
 
             InputAdd(8, "HMC-GPIO-1");
-            InputAdd(9, "HMC-GPIO-2");
-            InputAdd(10, "HMC-GPIO-3");
             InputAdd(11, "SMPS-PWR-GOOD");
             InputAdd(12, "LDO-PWR-GOOD");
             InputAdd(13, "ADC-PWR-GOOD");
@@ -70,12 +72,16 @@ namespace Digitizer_ver1
             OutputAdd(1, "ADC-SYNC");
             OutputAdd(2, "SYNC-OUT-1");
             OutputAdd(3, "SYNC-OUT-2");
+
+            OutputAdd(4, "HMC-GPIO-2");
+            OutputAdd(5, "HMC-GPIO-3");
+
             OutputAdd(6, "BOARD-PWR-RUN");
             OutputAdd(7, "ADC-PWR-RUN");
             OutputAdd(12, "GPIO-0");
             OutputAdd(13, "GPIO-1");
-            OutputAdd(14, "LED-2");
-            OutputAdd(15, "LED-3");
+            OutputAdd(14, "LED_2");
+            OutputAdd(15, "LED_3");
 
 
 
@@ -188,6 +194,16 @@ namespace Digitizer_ver1
             {
                 List_GpioInput[i].p_value = (data >> List_GpioInput[i].p_number) & 0x0001;
                 DataGrid_GpioInput.UpdateCellValue(value_cell, i);
+
+                if(_ReadRequest == true) 
+                {
+                    if(_ReadRequest_Number == i) 
+                    {
+                        _LastReadValue = List_GpioInput[i].p_value;
+                        _ReadRequest = false;
+                    }
+                }
+
             }
         }
 
@@ -315,6 +331,27 @@ namespace Digitizer_ver1
         {
             SendCommand(Communication.eCommandCode.CMD_CONST_SET_GPIO, (byte)eCommandCode_GPIO.CMD_GPIO_INPUT_RISING_COUNTER_CLEAR, 0xFF, 0xFF);
             SendCommand(Communication.eCommandCode.CMD_CONST_SET_GPIO, (byte)eCommandCode_GPIO.CMD_GPIO_INPUT_FALLING_COUNTER_CLEAR, 0xFF, 0xFF);
+        }
+
+
+        public void ReadRequestInput(string Name) 
+        {
+            SendCommand(Communication.eCommandCode.CMD_CONST_GET_GPIO, (byte)eCommandCode_GPIO.CMD_GPIO_INPUT_STATE, 0, 0);
+
+            for (int i = 0; i < List_GpioInput.Count; i++)
+            {
+                if (Name.Equals(List_GpioInput[i].p_name))
+                {
+                    _ReadRequest = true;
+                    _ReadRequest_Number = i;
+                }
+            }
+
+        }
+
+        public bool StateReadInput()
+        {
+            return !_ReadRequest;
         }
 
     }

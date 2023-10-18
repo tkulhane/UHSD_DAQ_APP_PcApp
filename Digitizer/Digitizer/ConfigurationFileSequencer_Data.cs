@@ -25,9 +25,18 @@ namespace Digitizer_ver1
         [DisplayName("Value 2")]
         public string p_Value2 { get { return _Value2; } set { _Value2 = value; } }
 
+        string _Value3;
+        [DisplayName("Value 3")]
+        public string p_Value3 { get { return _Value3; } set { _Value3 = value; } }
+
+        string _Value4;
+        [DisplayName("Value 4")]
+        public string p_Value4 { get { return _Value4; } set { _Value4 = value; } }
+
         string _Description;
         [DisplayName("Description")]
         public string p_Description { get { return _Description; } set { _Description = value; } }
+
 
 
         static char[] caSplit = new char[] { ';' };
@@ -41,13 +50,15 @@ namespace Digitizer_ver1
 
             String[] line_parts = line.Split(caSplit);
 
-            if (line_parts.Length < 5) return;
+            if (line_parts.Length < 7) return;
 
             _Action = line_parts[0];
             _Periphery = line_parts[1];
             _Value1 = line_parts[2];
             _Value2 = line_parts[3];
-            _Description = line_parts[4];
+            _Value3 = line_parts[4];
+            _Value4 = line_parts[5];
+            _Description = line_parts[6];
 
         }
 

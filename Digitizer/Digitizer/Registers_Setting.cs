@@ -19,6 +19,7 @@ namespace Digitizer_ver1
             Address8_Value16
         }
 
+       
 
         private BindingList<Registers_SettingData> List_RegistersSetting = new BindingList<Registers_SettingData>();
 
@@ -30,6 +31,17 @@ namespace Digitizer_ver1
         private eAddressValueSize Registers_AddressValueSize;
         private Communication.eCommandCode Registers_ID_GET;
         private Communication.eCommandCode Registers_ID_SET;
+
+        private bool _ReadRequestMask = false;
+        private int _ReadRequestMask_Address = 0;
+        private int _ReadRequestMask_Value = 0;
+        private int _ReadRequestMask_Mask = 0;
+
+        private bool _ReadRequest = false;
+        private int _ReadRequest_Address = 0;
+        public int _LastReadValue = 0;
+
+
 
         string _description;
         [DisplayName("Description")]
@@ -260,6 +272,171 @@ namespace Digitizer_ver1
 
         }
 
+        public void UpdateFromPyFile() 
+        {
+            if (List_RegistersSetting.Count == 0) return;
+
+            String fname = String.Empty;
+
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Filter = "Soubory dat (*.py)|*.py|Vsechny|*.*";
+
+                if (DialogResult.OK == ofd.ShowDialog())
+                {
+                    fname = ofd.FileName;
+                }
+                else
+                {
+                    return;
+                }
+
+                if (String.IsNullOrEmpty(fname))
+                {
+                    return;
+                }
+
+            }
+
+
+            String[] lines = File.ReadAllLines(fname, Encoding.GetEncoding("Windows-1250"));
+
+            foreach (String s in lines)
+            {
+                ParsingPyLine(s);
+
+            }
+
+
+        }
+
+        public void ParsingPyLine(string line) 
+        {
+            line = line.Trim();
+
+            char[] SplitChars = new char[] { '(', ')', ',' };
+
+            String[] line_parts = line.Split(SplitChars);
+
+            if (line_parts.Length != 4 || line_parts[0].Length <= 0) return;
+            if (line_parts[0][0].Equals('#')) return;
+
+            if (line_parts[0].Equals("dut.write"))
+            {
+                string s_address = line_parts[1].Trim();
+                string s_value = line_parts[2].Trim();
+
+                int address;
+                int value;
+                
+                if(!(s_address.StartsWith("0x") && int.TryParse(s_address.Substring(2), NumberStyles.HexNumber, null, out address))) return;
+                if(!(s_value.StartsWith("0x") && int.TryParse(s_value.Substring(2), NumberStyles.HexNumber, null, out value))) return;
+
+                //MessageBox.Show(address.ToString() +"  "+ value.ToString());
+
+                UpdateRegistersNoRequest(address, value);
+            }
+
+            
+            string s = String.Empty;
+            for(int i = 0; i < line_parts.Length; i++) 
+            {
+                s += "-" + i.ToString() + "="  + line_parts[i] + "-";
+            }
+
+            //MessageBox.Show(line_parts.Length.ToString() + "..... " + s);
+        }
+
+
+        public void UpdateFromTxtFile()
+        {
+            if (List_RegistersSetting.Count == 0) return;
+
+            String fname = String.Empty;
+
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Filter = "Soubory dat (*.txt)|*.txt|Vsechny|*.*";
+
+                if (DialogResult.OK == ofd.ShowDialog())
+                {
+                    fname = ofd.FileName;
+                }
+                else
+                {
+                    return;
+                }
+
+                if (String.IsNullOrEmpty(fname))
+                {
+                    return;
+                }
+
+            }
+
+
+            String[] lines = File.ReadAllLines(fname, Encoding.GetEncoding("Windows-1250"));
+
+            foreach (String s in lines)
+            {
+                ParsingTxtLine(s);
+
+            }
+
+
+        }
+
+        public void ParsingTxtLine(string line)
+        {
+            line = line.Trim();
+
+            char[] SplitChars = new char[] { (char)9, };
+
+            String[] line_parts = line.Split(SplitChars);
+
+            //if (line_parts.Length != 4 || line_parts[0].Length <= 0) return;
+            //if (line_parts[0][0].Equals('#')) return;
+
+            if (line_parts.Length < 2) return;
+
+            string temp = line_parts[1].Trim();
+
+            if (temp == String.Empty) return;
+
+            string s_address;
+            string s_value;
+
+            if (temp.StartsWith("0x")) 
+            {
+                temp = temp.Substring(2);
+
+                s_address = temp.Substring(0, 2);
+                s_value = temp.Substring(2, 4);
+            }
+            else 
+            {
+                return;
+            } 
+
+            int address;
+            int value;
+
+            if (!int.TryParse(s_address, NumberStyles.HexNumber, null, out address)) return;
+            if (!int.TryParse(s_value, NumberStyles.HexNumber, null, out value)) return;
+
+            UpdateRegistersNoRequest(address, value);
+
+            string s = String.Empty;
+            for (int i = 0; i < line_parts.Length; i++)
+            {
+                //s += "-" + i.ToString() + "=" + line_parts[i] + "-";
+                //s = temp + " ... " + s_address + " " + s_value;
+            }
+
+           
+            //MessageBox.Show(line_parts.Length.ToString() + "..... " + s);
+        }
+
         //-------------------------------------------------------------------------------------------------------------------
         //Read Write function
         //-------------------------------------------------------------------------------------------------------------------
@@ -343,6 +520,31 @@ namespace Digitizer_ver1
             }
         }
 
+        public void WriteAllReverse()
+        {
+            
+            
+            
+            //foreach (Registers_SettingData data in List_RegistersSetting)
+            for(int i = 0; i < List_RegistersSetting.Count;i++)
+            {
+                Registers_SettingData data = List_RegistersSetting[List_RegistersSetting.Count -1 - i];
+
+
+                int address = data.p_address;
+                int value = data.ParseValue(Registers_AddressValueSize);
+                Registers_SettingData.eReadWrite readWrite = data._ReadWrite;
+
+                if (value < 0) continue;
+
+                if (readWrite == Registers_SettingData.eReadWrite.read_write || readWrite == Registers_SettingData.eReadWrite.read)
+                {
+                    Send(Registers_ID_SET, address, value);
+                }
+
+            }
+        }
+
         //-------------------------------------------------------------------------------------------------------------------
         //Send function
         //-------------------------------------------------------------------------------------------------------------------
@@ -400,16 +602,163 @@ namespace Digitizer_ver1
         }
 
         //-------------------------------------------------------------------------------------------------------------------
+        //Read function
+        //-------------------------------------------------------------------------------------------------------------------
+        public void ReadRequestRegister(int address)
+        {
+            if (_ReadRequestMask == true) return;
+
+            for (int i = 0; i < List_RegistersSetting.Count; i++)
+            {
+                Registers_SettingData data = List_RegistersSetting[i];
+
+                if (address == data.p_address)
+                {
+                    Registers_SettingData.eReadWrite readWrite = data._ReadWrite;
+
+                    if (readWrite == Registers_SettingData.eReadWrite.read_write || readWrite == Registers_SettingData.eReadWrite.read)
+                    {
+                        Send(Registers_ID_GET, address, 0x00);
+                        _ReadRequest = true;
+                        _ReadRequest_Address = address;
+                        //nastavit timeout
+                       
+                    }
+                }
+            }
+        }
+
+        public bool StateReadRegister()
+        {
+            return !_ReadRequest;
+        }
+
+        //-------------------------------------------------------------------------------------------------------------------
+        //Send with mask
+        //-------------------------------------------------------------------------------------------------------------------
+        public void SendMaskRegister_Request(int address, int value, int mask)
+        {
+            if (_ReadRequestMask == true) return;
+            
+            for (int i = 0; i < List_RegistersSetting.Count; i++)
+            {
+                Registers_SettingData data = List_RegistersSetting[i];
+
+                if (address == data.p_address)
+                {
+                    Registers_SettingData.eReadWrite readWrite = data._ReadWrite;
+
+                    if (readWrite == Registers_SettingData.eReadWrite.read_write || readWrite == Registers_SettingData.eReadWrite.read)
+                    {
+                        Send(Registers_ID_GET, address, 0x00);
+                        _ReadRequestMask = true;
+                        _ReadRequestMask_Address = address;
+                        _ReadRequestMask_Value = value;
+                        _ReadRequestMask_Mask = mask;
+                        //nastavit timeout
+
+                    }
+                }
+            }
+
+        }
+
+        public void SendMaskRegister_Request(int address, int mask)
+        {
+            if (_ReadRequestMask == true) return;
+
+            for (int i = 0; i < List_RegistersSetting.Count; i++)
+            {
+                Registers_SettingData data = List_RegistersSetting[i];
+
+                if (address == data.p_address)
+                {
+                    int value = data.ParseValue(Registers_AddressValueSize);
+
+                    Registers_SettingData.eReadWrite readWrite = data._ReadWrite;
+
+                    if (readWrite == Registers_SettingData.eReadWrite.read_write || readWrite == Registers_SettingData.eReadWrite.read || readWrite == Registers_SettingData.eReadWrite.write)
+                    {
+                        Send(Registers_ID_GET, address, 0x00);
+                        _ReadRequestMask = true;
+                        _ReadRequestMask_Address = address;
+                        _ReadRequestMask_Value = value;
+                        _ReadRequestMask_Mask = mask;
+                        //nastavit timeout
+
+                    }
+                }
+            }
+
+        }
+
+
+        private void MaskRegister_Send(int readValue) 
+        {
+            if (_ReadRequestMask == true)
+            {
+                _ReadRequestMask = false;
+
+                int x = (readValue & ~_ReadRequestMask_Mask) | (_ReadRequestMask_Value & _ReadRequestMask_Mask);
+                SendRegister(_ReadRequestMask_Address, x);
+
+            }
+        }
+
+        public bool StateMaskRegister() 
+        {
+            return !_ReadRequestMask;
+        }
+
+
+        //-------------------------------------------------------------------------------------------------------------------
         //Update registers
         //-------------------------------------------------------------------------------------------------------------------
-        public void UpdateRegisters(int address, int value) 
+        public void UpdateRegistersNoRequest(int address, int value)
         {
+            int value_cell = DataGrid_RegistersSetting.Columns["p_value"].Index;
+
             for (int i = 0; i < List_RegistersSetting.Count; i++)
             {
                 if (address.Equals(List_RegistersSetting[i].p_address))
                 {
                     List_RegistersSetting[i].p_value = value.ToString("X");
-                    DataGrid_RegistersSetting.UpdateCellValue(2, i);
+                    DataGrid_RegistersSetting.UpdateCellValue(value_cell, i);
+                }
+            }
+        }
+
+
+        public void UpdateRegisters(int address, int value) 
+        {
+            int value_cell = DataGrid_RegistersSetting.Columns["p_value"].Index;
+
+            for (int i = 0; i < List_RegistersSetting.Count; i++)
+            {
+                if (address.Equals(List_RegistersSetting[i].p_address))
+                {
+                    List_RegistersSetting[i].p_value = value.ToString("X");
+                    DataGrid_RegistersSetting.UpdateCellValue(value_cell, i);
+
+                    if (_ReadRequestMask == true)
+                    {
+                        if(address.Equals(_ReadRequestMask_Address))
+                        {
+                            MaskRegister_Send(value);
+                        }
+                    }
+                    
+                    if(_ReadRequest == true) 
+                    {
+                        //if (address.Equals(_ReadRequest_Address))
+                        {
+                            //MessageBox.Show("Prijato");
+                            _LastReadValue = value;
+                            _ReadRequest = false;
+                        }
+                    }
+
+
                 }
             }
         }
@@ -439,12 +788,13 @@ namespace Digitizer_ver1
 
             if (address < 0 || value < 0) return;
 
+
+            UpdateRegisters(address, value);
+            /*
             int value_cell = DataGrid_RegistersSetting.Columns["p_value"].Index;
 
             for (int i = 0; i < List_RegistersSetting.Count; i++)
             {
-                
-
                 if (address.Equals(List_RegistersSetting[i].p_address))
                 {
                    
@@ -454,6 +804,7 @@ namespace Digitizer_ver1
                     //DataGrid_RegistersSetting.
                 }
             }
+            */
 
         }
 

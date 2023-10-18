@@ -186,7 +186,7 @@ namespace Digitizer_ver1
                 {
                     SendCommand(Communication.eCommandCode.CMD_CONST_SET_Reset_Controler, (byte)eCommandCode_RESET.CMD_RST_INT_SET, (byte)((reg >> 8) & 0x00FF), (byte)(reg & 0x00FF));
                 }
-
+                //MessageBox.Show("Reset set");
             }
             else if (value == 0)
             {
@@ -198,7 +198,7 @@ namespace Digitizer_ver1
                 {
                     SendCommand(Communication.eCommandCode.CMD_CONST_SET_Reset_Controler, (byte)eCommandCode_RESET.CMD_RST_INT_CLR, (byte)((reg >> 8) & 0x00FF), (byte)(reg & 0x00FF));
                 }
-
+                //MessageBox.Show("Reset clr");
             }
             else
             {
@@ -234,7 +234,7 @@ namespace Digitizer_ver1
                 {
                     SendCommand(Communication.eCommandCode.CMD_CONST_SET_Reset_Controler, (byte)eCommandCode_RESET.CMD_RST_INT_SET, (byte)((reg >> 8) & 0x00FF), (byte)(reg & 0x00FF));
                 }
-
+                //MessageBox.Show("Reset set");
             }
             else if (e.ColumnIndex == index_clear)
             {
@@ -246,7 +246,7 @@ namespace Digitizer_ver1
                 {
                     SendCommand(Communication.eCommandCode.CMD_CONST_SET_Reset_Controler, (byte)eCommandCode_RESET.CMD_RST_INT_CLR, (byte)((reg >> 8) & 0x00FF), (byte)(reg & 0x00FF));
                 }
-
+                //MessageBox.Show("Reset clr");
             }
             else if (e.ColumnIndex == index_pulse)
             {

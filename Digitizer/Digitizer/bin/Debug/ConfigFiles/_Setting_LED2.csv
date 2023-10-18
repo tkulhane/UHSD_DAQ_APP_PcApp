@@ -1,0 +1,34 @@
+OUTPUT;LED_2;1;;;;GPIO output set
+WAIT;;1000;;;;Wait
+OUTPUT;LED_2;0;;;;GPIO output set
+WAIT;;1000;;;;Wait
+OUTPUT;LED_3;1;;;;GPIO output set
+WAIT;;1000;;;;Wait
+OUTPUT;LED_3;0;;;;GPIO output set
+WAIT;;1000;;;;Wait
+OUTPUT;LED_2;1;;;;GPIO output set
+WAIT;;1000;;;;Wait
+OUTPUT;LED_2;0;;;;GPIO output set
+WAIT;;1000;;;;Wait
+OUTPUT;LED_3;1;;;;GPIO output set
+WAIT;;1000;;;;Wait
+OUTPUT;LED_3;0;;;;GPIO output set
+WAIT;;1000;;;;Wait
+REG_READ;FpgaTest;0;;;;
+JUMP;NOT_EQUAL;1;17;;;
+OUTPUT;LED_2;1;;;;GPIO output set
+WAIT;;1000;;;;Wait
+OUTPUT;LED_2;0;;;;GPIO output set
+WAIT;;1000;;;;Wait
+OUTPUT;LED_3;1;;;;GPIO output set
+WAIT;;1000;;;;Wait
+OUTPUT;LED_3;0;;;;GPIO output set
+WAIT;;1000;;;;Wait
+OUTPUT;LED_2;1;;;;GPIO output set
+WAIT;;1000;;;;Wait
+OUTPUT;LED_2;0;;;;GPIO output set
+WAIT;;1000;;;;Wait
+OUTPUT;LED_3;1;;;;GPIO output set
+WAIT;;1000;;;;Wait
+OUTPUT;LED_3;0;;;;GPIO output set
+WAIT;;1000;;;;Wait

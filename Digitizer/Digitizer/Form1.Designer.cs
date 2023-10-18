@@ -157,6 +157,7 @@ namespace Digitizer_ver1
             this.radioButton_PCIe = new System.Windows.Forms.RadioButton();
             this.radioButton_USB = new System.Windows.Forms.RadioButton();
             this.radioButton_UART = new System.Windows.Forms.RadioButton();
+            this.button_RegUpdateFromExtFile = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tabRegisters.SuspendLayout();
             this.tabControl_RegistersSetting.SuspendLayout();
@@ -240,7 +241,7 @@ namespace Digitizer_ver1
             // timer_info
             // 
             this.timer_info.Enabled = true;
-            this.timer_info.Interval = 50;
+            this.timer_info.Interval = 500;
             this.timer_info.Tick += new System.EventHandler(this.timer_info_Tick);
             // 
             // tabRegisters
@@ -375,6 +376,7 @@ namespace Digitizer_ver1
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.button_RegUpdateFromExtFile);
             this.panel3.Controls.Add(this.button_RegWriteAll);
             this.panel3.Controls.Add(this.button_RegReadAll);
             this.panel3.Controls.Add(this.button_RegSaveToFile);
@@ -1282,7 +1284,7 @@ namespace Digitizer_ver1
             this.groupBox9.Controls.Add(this.comboBox_ConfigFiles);
             this.groupBox9.Controls.Add(this.button_ConfigRun);
             this.groupBox9.Controls.Add(this.button_ConfigStop);
-            this.groupBox9.Location = new System.Drawing.Point(200, 57);
+            this.groupBox9.Location = new System.Drawing.Point(50, 320);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(231, 165);
             this.groupBox9.TabIndex = 16;
@@ -1381,9 +1383,12 @@ namespace Digitizer_ver1
             // 
             this.dataGridView_ConfigFile.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_ConfigFile.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dataGridView_ConfigFile.Location = new System.Drawing.Point(489, 0);
+            this.dataGridView_ConfigFile.Location = new System.Drawing.Point(287, 0);
+            this.dataGridView_ConfigFile.MultiSelect = false;
             this.dataGridView_ConfigFile.Name = "dataGridView_ConfigFile";
-            this.dataGridView_ConfigFile.Size = new System.Drawing.Size(687, 546);
+            this.dataGridView_ConfigFile.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dataGridView_ConfigFile.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView_ConfigFile.Size = new System.Drawing.Size(889, 546);
             this.dataGridView_ConfigFile.TabIndex = 2;
             // 
             // tabSetting
@@ -1602,6 +1607,17 @@ namespace Digitizer_ver1
             this.radioButton_UART.UseVisualStyleBackColor = true;
             this.radioButton_UART.CheckedChanged += new System.EventHandler(this.radioButton_Communication_CheckedChanged);
             // 
+            // button_RegUpdateFromExtFile
+            // 
+            this.button_RegUpdateFromExtFile.Location = new System.Drawing.Point(13, 192);
+            this.button_RegUpdateFromExtFile.Margin = new System.Windows.Forms.Padding(2);
+            this.button_RegUpdateFromExtFile.Name = "button_RegUpdateFromExtFile";
+            this.button_RegUpdateFromExtFile.Size = new System.Drawing.Size(74, 37);
+            this.button_RegUpdateFromExtFile.TabIndex = 8;
+            this.button_RegUpdateFromExtFile.Text = "Update from Ext File";
+            this.button_RegUpdateFromExtFile.UseVisualStyleBackColor = true;
+            this.button_RegUpdateFromExtFile.Click += new System.EventHandler(this.button_RegUpdateFromExtFile_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1801,6 +1817,7 @@ namespace Digitizer_ver1
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_data;
         public System.Windows.Forms.Label label_dataErrors;
+        private System.Windows.Forms.Button button_RegUpdateFromExtFile;
     }
 }
 

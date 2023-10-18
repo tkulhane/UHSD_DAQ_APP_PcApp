@@ -257,6 +257,7 @@ namespace Digitizer_ver1
         {
             if (!d3xxDevice.IsOpen) return;
             ThreadOfReceiving = new Thread(this.Receive);
+            ThreadOfReceiving_stop = false;
             ThreadOfReceiving.Start();
         }
 
