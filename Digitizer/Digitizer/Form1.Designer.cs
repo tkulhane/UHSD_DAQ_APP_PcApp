@@ -30,9 +30,9 @@ namespace Digitizer_ver1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label_dataErrors = new System.Windows.Forms.Label();
             this.label_AcqState = new System.Windows.Forms.Label();
@@ -50,10 +50,13 @@ namespace Digitizer_ver1
             this.tabPage_TestReg = new System.Windows.Forms.TabPage();
             this.dataGridView_TestReg = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.label_RegDescription = new System.Windows.Forms.Label();
+            this.label_RegRW = new System.Windows.Forms.Label();
+            this.button_RegUpdateFromExtFile = new System.Windows.Forms.Button();
             this.button_RegWriteAll = new System.Windows.Forms.Button();
             this.button_RegReadAll = new System.Windows.Forms.Button();
             this.button_RegSaveToFile = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
@@ -126,15 +129,20 @@ namespace Digitizer_ver1
             this.button_Reset = new System.Windows.Forms.Button();
             this.button_ResetClearAll = new System.Windows.Forms.Button();
             this.tabConfiguration = new System.Windows.Forms.TabPage();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.button_ConfigRun = new System.Windows.Forms.Button();
-            this.button_ConfigStop = new System.Windows.Forms.Button();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.dataGridView_MultipleConfigFiles = new System.Windows.Forms.DataGridView();
+            this.dataGridView_ConfigFile = new System.Windows.Forms.DataGridView();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.button_RemoveConfig = new System.Windows.Forms.Button();
             this.button_AddNewConfig = new System.Windows.Forms.Button();
             this.button_ConfigFileLoadFromFile = new System.Windows.Forms.Button();
             this.button_ConfigFileSaveToFile = new System.Windows.Forms.Button();
             this.button_ConfigFileSaveAs = new System.Windows.Forms.Button();
-            this.dataGridView_ConfigFile = new System.Windows.Forms.DataGridView();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.button_ConfigRun = new System.Windows.Forms.Button();
+            this.button_ConfigStop = new System.Windows.Forms.Button();
             this.tabSetting = new System.Windows.Forms.TabPage();
             this.label_InQ = new System.Windows.Forms.Label();
             this.checkBox_cmdQuestions = new System.Windows.Forms.CheckBox();
@@ -156,12 +164,22 @@ namespace Digitizer_ver1
             this.radioButton_PCIe = new System.Windows.Forms.RadioButton();
             this.radioButton_USB = new System.Windows.Forms.RadioButton();
             this.radioButton_UART = new System.Windows.Forms.RadioButton();
-            this.button_RegUpdateFromExtFile = new System.Windows.Forms.Button();
-            this.dataGridView_MultipleConfigFiles = new System.Windows.Forms.DataGridView();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.button_RemoveConfig = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.textBox_RegValue = new System.Windows.Forms.TextBox();
+            this.checkBox9 = new System.Windows.Forms.CheckBox();
+            this.checkBox10 = new System.Windows.Forms.CheckBox();
+            this.checkBox11 = new System.Windows.Forms.CheckBox();
+            this.checkBox12 = new System.Windows.Forms.CheckBox();
+            this.checkBox13 = new System.Windows.Forms.CheckBox();
+            this.checkBox14 = new System.Windows.Forms.CheckBox();
+            this.checkBox15 = new System.Windows.Forms.CheckBox();
+            this.checkBox16 = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.textBox_RegAddress = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.tabRegisters.SuspendLayout();
             this.tabControl_RegistersSetting.SuspendLayout();
@@ -176,6 +194,7 @@ namespace Digitizer_ver1
             this.tabPage_TestReg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TestReg)).BeginInit();
             this.panel3.SuspendLayout();
+            this.groupBox10.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabControl_MAIN.SuspendLayout();
             this.tabMeasurement_Setting.SuspendLayout();
@@ -202,20 +221,20 @@ namespace Digitizer_ver1
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Resets)).BeginInit();
             this.panel6.SuspendLayout();
             this.tabConfiguration.SuspendLayout();
-            this.groupBox9.SuspendLayout();
-            this.groupBox7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ConfigFile)).BeginInit();
-            this.tabSetting.SuspendLayout();
-            this.groupBox8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_RegistersFiles)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_MultipleConfigFiles)).BeginInit();
+            this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_MultipleConfigFiles)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ConfigFile)).BeginInit();
             this.panel5.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            this.groupBox9.SuspendLayout();
+            this.tabSetting.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_RegistersFiles)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -263,7 +282,7 @@ namespace Digitizer_ver1
             this.tabRegisters.Margin = new System.Windows.Forms.Padding(2);
             this.tabRegisters.Name = "tabRegisters";
             this.tabRegisters.Padding = new System.Windows.Forms.Padding(2);
-            this.tabRegisters.Size = new System.Drawing.Size(1176, 546);
+            this.tabRegisters.Size = new System.Drawing.Size(1240, 580);
             this.tabRegisters.TabIndex = 4;
             this.tabRegisters.Text = "Registers";
             this.tabRegisters.UseVisualStyleBackColor = true;
@@ -276,10 +295,10 @@ namespace Digitizer_ver1
             this.tabControl_RegistersSetting.Controls.Add(this.tabPage_LMX2);
             this.tabControl_RegistersSetting.Controls.Add(this.tabPage_TestReg);
             this.tabControl_RegistersSetting.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl_RegistersSetting.Location = new System.Drawing.Point(222, 2);
+            this.tabControl_RegistersSetting.Location = new System.Drawing.Point(266, 2);
             this.tabControl_RegistersSetting.Name = "tabControl_RegistersSetting";
             this.tabControl_RegistersSetting.SelectedIndex = 0;
-            this.tabControl_RegistersSetting.Size = new System.Drawing.Size(952, 542);
+            this.tabControl_RegistersSetting.Size = new System.Drawing.Size(972, 576);
             this.tabControl_RegistersSetting.TabIndex = 2;
             // 
             // tabPage_ADC
@@ -288,7 +307,7 @@ namespace Digitizer_ver1
             this.tabPage_ADC.Location = new System.Drawing.Point(4, 22);
             this.tabPage_ADC.Name = "tabPage_ADC";
             this.tabPage_ADC.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_ADC.Size = new System.Drawing.Size(944, 516);
+            this.tabPage_ADC.Size = new System.Drawing.Size(964, 550);
             this.tabPage_ADC.TabIndex = 0;
             this.tabPage_ADC.Text = "ADC";
             this.tabPage_ADC.UseVisualStyleBackColor = true;
@@ -298,10 +317,13 @@ namespace Digitizer_ver1
             this.dataGridView_ADCReg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_ADCReg.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView_ADCReg.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView_ADCReg.MultiSelect = false;
             this.dataGridView_ADCReg.Name = "dataGridView_ADCReg";
-            this.dataGridView_ADCReg.Size = new System.Drawing.Size(938, 510);
+            this.dataGridView_ADCReg.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView_ADCReg.Size = new System.Drawing.Size(958, 544);
             this.dataGridView_ADCReg.TabIndex = 0;
             this.dataGridView_ADCReg.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_AllRegistersGrids_CellContentClick);
+            this.dataGridView_ADCReg.SelectionChanged += new System.EventHandler(this.dataGridView_AllRegistersGrids_SelectedChanged);
             // 
             // tabPage_HMC
             // 
@@ -309,7 +331,7 @@ namespace Digitizer_ver1
             this.tabPage_HMC.Location = new System.Drawing.Point(4, 22);
             this.tabPage_HMC.Name = "tabPage_HMC";
             this.tabPage_HMC.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_HMC.Size = new System.Drawing.Size(944, 516);
+            this.tabPage_HMC.Size = new System.Drawing.Size(964, 550);
             this.tabPage_HMC.TabIndex = 1;
             this.tabPage_HMC.Text = "HMC";
             this.tabPage_HMC.UseVisualStyleBackColor = true;
@@ -319,8 +341,10 @@ namespace Digitizer_ver1
             this.dataGridView_HMCReg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_HMCReg.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView_HMCReg.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView_HMCReg.MultiSelect = false;
             this.dataGridView_HMCReg.Name = "dataGridView_HMCReg";
-            this.dataGridView_HMCReg.Size = new System.Drawing.Size(938, 510);
+            this.dataGridView_HMCReg.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView_HMCReg.Size = new System.Drawing.Size(958, 544);
             this.dataGridView_HMCReg.TabIndex = 1;
             this.dataGridView_HMCReg.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_AllRegistersGrids_CellContentClick);
             // 
@@ -329,7 +353,7 @@ namespace Digitizer_ver1
             this.tabPage_LMX1.Controls.Add(this.dataGridView_LMX1Reg);
             this.tabPage_LMX1.Location = new System.Drawing.Point(4, 22);
             this.tabPage_LMX1.Name = "tabPage_LMX1";
-            this.tabPage_LMX1.Size = new System.Drawing.Size(944, 516);
+            this.tabPage_LMX1.Size = new System.Drawing.Size(964, 550);
             this.tabPage_LMX1.TabIndex = 2;
             this.tabPage_LMX1.Text = "LMX1";
             this.tabPage_LMX1.UseVisualStyleBackColor = true;
@@ -339,8 +363,10 @@ namespace Digitizer_ver1
             this.dataGridView_LMX1Reg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_LMX1Reg.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView_LMX1Reg.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView_LMX1Reg.MultiSelect = false;
             this.dataGridView_LMX1Reg.Name = "dataGridView_LMX1Reg";
-            this.dataGridView_LMX1Reg.Size = new System.Drawing.Size(944, 516);
+            this.dataGridView_LMX1Reg.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView_LMX1Reg.Size = new System.Drawing.Size(964, 550);
             this.dataGridView_LMX1Reg.TabIndex = 2;
             this.dataGridView_LMX1Reg.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_AllRegistersGrids_CellContentClick);
             // 
@@ -349,7 +375,7 @@ namespace Digitizer_ver1
             this.tabPage_LMX2.Controls.Add(this.dataGridView_LMX2Reg);
             this.tabPage_LMX2.Location = new System.Drawing.Point(4, 22);
             this.tabPage_LMX2.Name = "tabPage_LMX2";
-            this.tabPage_LMX2.Size = new System.Drawing.Size(944, 516);
+            this.tabPage_LMX2.Size = new System.Drawing.Size(964, 550);
             this.tabPage_LMX2.TabIndex = 3;
             this.tabPage_LMX2.Text = "LMX2";
             this.tabPage_LMX2.UseVisualStyleBackColor = true;
@@ -359,8 +385,10 @@ namespace Digitizer_ver1
             this.dataGridView_LMX2Reg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_LMX2Reg.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView_LMX2Reg.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView_LMX2Reg.MultiSelect = false;
             this.dataGridView_LMX2Reg.Name = "dataGridView_LMX2Reg";
-            this.dataGridView_LMX2Reg.Size = new System.Drawing.Size(944, 516);
+            this.dataGridView_LMX2Reg.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView_LMX2Reg.Size = new System.Drawing.Size(964, 550);
             this.dataGridView_LMX2Reg.TabIndex = 2;
             this.dataGridView_LMX2Reg.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_AllRegistersGrids_CellContentClick);
             // 
@@ -369,7 +397,7 @@ namespace Digitizer_ver1
             this.tabPage_TestReg.Controls.Add(this.dataGridView_TestReg);
             this.tabPage_TestReg.Location = new System.Drawing.Point(4, 22);
             this.tabPage_TestReg.Name = "tabPage_TestReg";
-            this.tabPage_TestReg.Size = new System.Drawing.Size(944, 516);
+            this.tabPage_TestReg.Size = new System.Drawing.Size(964, 550);
             this.tabPage_TestReg.TabIndex = 4;
             this.tabPage_TestReg.Text = "TestRegisters";
             this.tabPage_TestReg.UseVisualStyleBackColor = true;
@@ -381,17 +409,18 @@ namespace Digitizer_ver1
             this.dataGridView_TestReg.Location = new System.Drawing.Point(0, 0);
             this.dataGridView_TestReg.MultiSelect = false;
             this.dataGridView_TestReg.Name = "dataGridView_TestReg";
-            this.dataGridView_TestReg.Size = new System.Drawing.Size(944, 516);
+            this.dataGridView_TestReg.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView_TestReg.Size = new System.Drawing.Size(964, 550);
             this.dataGridView_TestReg.TabIndex = 3;
             this.dataGridView_TestReg.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_AllRegistersGrids_CellContentClick);
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.groupBox10);
             this.panel3.Controls.Add(this.button_RegUpdateFromExtFile);
             this.panel3.Controls.Add(this.button_RegWriteAll);
             this.panel3.Controls.Add(this.button_RegReadAll);
             this.panel3.Controls.Add(this.button_RegSaveToFile);
-            this.panel3.Controls.Add(this.textBox2);
             this.panel3.Controls.Add(this.groupBox2);
             this.panel3.Controls.Add(this.button_RegSaveAs);
             this.panel3.Controls.Add(this.button_RegLoadFromFile);
@@ -399,12 +428,62 @@ namespace Digitizer_ver1
             this.panel3.Location = new System.Drawing.Point(2, 2);
             this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(220, 542);
+            this.panel3.Size = new System.Drawing.Size(264, 576);
             this.panel3.TabIndex = 1;
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.textBox_RegAddress);
+            this.groupBox10.Controls.Add(this.button2);
+            this.groupBox10.Controls.Add(this.button1);
+            this.groupBox10.Controls.Add(this.textBox_RegValue);
+            this.groupBox10.Controls.Add(this.label10);
+            this.groupBox10.Controls.Add(this.label6);
+            this.groupBox10.Controls.Add(this.label5);
+            this.groupBox10.Controls.Add(this.label3);
+            this.groupBox10.Controls.Add(this.label_RegDescription);
+            this.groupBox10.Controls.Add(this.label_RegRW);
+            this.groupBox10.Location = new System.Drawing.Point(13, 235);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(236, 154);
+            this.groupBox10.TabIndex = 9;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Selected Line";
+            // 
+            // label_RegDescription
+            // 
+            this.label_RegDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_RegDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_RegDescription.Location = new System.Drawing.Point(69, 24);
+            this.label_RegDescription.Name = "label_RegDescription";
+            this.label_RegDescription.Size = new System.Drawing.Size(161, 20);
+            this.label_RegDescription.TabIndex = 3;
+            this.label_RegDescription.Text = "label3";
+            // 
+            // label_RegRW
+            // 
+            this.label_RegRW.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_RegRW.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_RegRW.Location = new System.Drawing.Point(69, 44);
+            this.label_RegRW.Name = "label_RegRW";
+            this.label_RegRW.Size = new System.Drawing.Size(67, 20);
+            this.label_RegRW.TabIndex = 2;
+            this.label_RegRW.Text = "label3";
+            // 
+            // button_RegUpdateFromExtFile
+            // 
+            this.button_RegUpdateFromExtFile.Location = new System.Drawing.Point(13, 168);
+            this.button_RegUpdateFromExtFile.Margin = new System.Windows.Forms.Padding(2);
+            this.button_RegUpdateFromExtFile.Name = "button_RegUpdateFromExtFile";
+            this.button_RegUpdateFromExtFile.Size = new System.Drawing.Size(74, 37);
+            this.button_RegUpdateFromExtFile.TabIndex = 8;
+            this.button_RegUpdateFromExtFile.Text = "Update from Ext File";
+            this.button_RegUpdateFromExtFile.UseVisualStyleBackColor = true;
+            this.button_RegUpdateFromExtFile.Click += new System.EventHandler(this.button_RegUpdateFromExtFile_Click);
             // 
             // button_RegWriteAll
             // 
-            this.button_RegWriteAll.Location = new System.Drawing.Point(132, 57);
+            this.button_RegWriteAll.Location = new System.Drawing.Point(175, 57);
             this.button_RegWriteAll.Margin = new System.Windows.Forms.Padding(2);
             this.button_RegWriteAll.Name = "button_RegWriteAll";
             this.button_RegWriteAll.Size = new System.Drawing.Size(74, 37);
@@ -415,7 +494,7 @@ namespace Digitizer_ver1
             // 
             // button_RegReadAll
             // 
-            this.button_RegReadAll.Location = new System.Drawing.Point(132, 16);
+            this.button_RegReadAll.Location = new System.Drawing.Point(175, 16);
             this.button_RegReadAll.Margin = new System.Windows.Forms.Padding(2);
             this.button_RegReadAll.Name = "button_RegReadAll";
             this.button_RegReadAll.Size = new System.Drawing.Size(74, 37);
@@ -435,16 +514,16 @@ namespace Digitizer_ver1
             this.button_RegSaveToFile.UseVisualStyleBackColor = true;
             this.button_RegSaveToFile.Click += new System.EventHandler(this.button_SaveToFile_Click);
             // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(26, 295);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(52, 20);
-            this.textBox2.TabIndex = 4;
-            // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.checkBox9);
+            this.groupBox2.Controls.Add(this.checkBox10);
+            this.groupBox2.Controls.Add(this.checkBox11);
+            this.groupBox2.Controls.Add(this.checkBox12);
+            this.groupBox2.Controls.Add(this.checkBox13);
+            this.groupBox2.Controls.Add(this.checkBox14);
+            this.groupBox2.Controls.Add(this.checkBox15);
+            this.groupBox2.Controls.Add(this.checkBox16);
             this.groupBox2.Controls.Add(this.checkBox1);
             this.groupBox2.Controls.Add(this.checkBox2);
             this.groupBox2.Controls.Add(this.checkBox3);
@@ -453,11 +532,11 @@ namespace Digitizer_ver1
             this.groupBox2.Controls.Add(this.checkBox6);
             this.groupBox2.Controls.Add(this.checkBox7);
             this.groupBox2.Controls.Add(this.checkBox8);
-            this.groupBox2.Location = new System.Drawing.Point(26, 329);
+            this.groupBox2.Location = new System.Drawing.Point(13, 394);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Size = new System.Drawing.Size(78, 188);
+            this.groupBox2.Size = new System.Drawing.Size(136, 175);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Bit Setting";
@@ -465,7 +544,7 @@ namespace Digitizer_ver1
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(12, 161);
+            this.checkBox1.Location = new System.Drawing.Point(23, 149);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(32, 17);
@@ -476,7 +555,7 @@ namespace Digitizer_ver1
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(12, 142);
+            this.checkBox2.Location = new System.Drawing.Point(23, 130);
             this.checkBox2.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(32, 17);
@@ -487,7 +566,7 @@ namespace Digitizer_ver1
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(12, 33);
+            this.checkBox3.Location = new System.Drawing.Point(23, 21);
             this.checkBox3.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(32, 17);
@@ -498,7 +577,7 @@ namespace Digitizer_ver1
             // checkBox4
             // 
             this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(12, 51);
+            this.checkBox4.Location = new System.Drawing.Point(23, 39);
             this.checkBox4.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(32, 17);
@@ -509,7 +588,7 @@ namespace Digitizer_ver1
             // checkBox5
             // 
             this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(12, 70);
+            this.checkBox5.Location = new System.Drawing.Point(23, 58);
             this.checkBox5.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox5.Name = "checkBox5";
             this.checkBox5.Size = new System.Drawing.Size(32, 17);
@@ -520,7 +599,7 @@ namespace Digitizer_ver1
             // checkBox6
             // 
             this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(12, 88);
+            this.checkBox6.Location = new System.Drawing.Point(23, 76);
             this.checkBox6.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox6.Name = "checkBox6";
             this.checkBox6.Size = new System.Drawing.Size(32, 17);
@@ -531,7 +610,7 @@ namespace Digitizer_ver1
             // checkBox7
             // 
             this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(12, 106);
+            this.checkBox7.Location = new System.Drawing.Point(23, 94);
             this.checkBox7.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox7.Name = "checkBox7";
             this.checkBox7.Size = new System.Drawing.Size(32, 17);
@@ -542,7 +621,7 @@ namespace Digitizer_ver1
             // checkBox8
             // 
             this.checkBox8.AutoSize = true;
-            this.checkBox8.Location = new System.Drawing.Point(12, 124);
+            this.checkBox8.Location = new System.Drawing.Point(23, 112);
             this.checkBox8.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox8.Name = "checkBox8";
             this.checkBox8.Size = new System.Drawing.Size(32, 17);
@@ -1096,21 +1175,21 @@ namespace Digitizer_ver1
             // 
             this.chart_data.BorderlineColor = System.Drawing.Color.Black;
             this.chart_data.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea1.Name = "ChartArea1";
-            this.chart_data.ChartAreas.Add(chartArea1);
+            chartArea5.Name = "ChartArea1";
+            this.chart_data.ChartAreas.Add(chartArea5);
             this.chart_data.Dock = System.Windows.Forms.DockStyle.Bottom;
-            legend1.Name = "Legend1";
-            this.chart_data.Legends.Add(legend1);
+            legend5.Name = "Legend1";
+            this.chart_data.Legends.Add(legend5);
             this.chart_data.Location = new System.Drawing.Point(0, 176);
             this.chart_data.Margin = new System.Windows.Forms.Padding(2);
             this.chart_data.Name = "chart_data";
-            series1.BorderWidth = 2;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.IsVisibleInLegend = false;
-            series1.Legend = "Legend1";
-            series1.Name = "Data";
-            this.chart_data.Series.Add(series1);
+            series5.BorderWidth = 2;
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series5.IsVisibleInLegend = false;
+            series5.Legend = "Legend1";
+            series5.Name = "Data";
+            this.chart_data.Series.Add(series5);
             this.chart_data.Size = new System.Drawing.Size(850, 394);
             this.chart_data.TabIndex = 21;
             this.chart_data.Text = "chart_data";
@@ -1122,7 +1201,7 @@ namespace Digitizer_ver1
             this.tabGpio.Controls.Add(this.panel2);
             this.tabGpio.Location = new System.Drawing.Point(4, 22);
             this.tabGpio.Name = "tabGpio";
-            this.tabGpio.Size = new System.Drawing.Size(1176, 546);
+            this.tabGpio.Size = new System.Drawing.Size(1240, 580);
             this.tabGpio.TabIndex = 9;
             this.tabGpio.Text = "GPIOs";
             this.tabGpio.UseVisualStyleBackColor = true;
@@ -1143,17 +1222,17 @@ namespace Digitizer_ver1
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1055, 546);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1119, 580);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // dataGridView_GpioOutputs
             // 
             this.dataGridView_GpioOutputs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_GpioOutputs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView_GpioOutputs.Location = new System.Drawing.Point(530, 23);
+            this.dataGridView_GpioOutputs.Location = new System.Drawing.Point(562, 23);
             this.dataGridView_GpioOutputs.Name = "dataGridView_GpioOutputs";
             this.dataGridView_GpioOutputs.ReadOnly = true;
-            this.dataGridView_GpioOutputs.Size = new System.Drawing.Size(522, 520);
+            this.dataGridView_GpioOutputs.Size = new System.Drawing.Size(554, 554);
             this.dataGridView_GpioOutputs.TabIndex = 5;
             this.dataGridView_GpioOutputs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_GpioOutputs_CellContentClick);
             // 
@@ -1165,7 +1244,7 @@ namespace Digitizer_ver1
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
             this.label1.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.label1.Size = new System.Drawing.Size(521, 20);
+            this.label1.Size = new System.Drawing.Size(553, 20);
             this.label1.TabIndex = 3;
             this.label1.Text = "INPUTs";
             // 
@@ -1174,10 +1253,10 @@ namespace Digitizer_ver1
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Top;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(530, 0);
+            this.label2.Location = new System.Drawing.Point(562, 0);
             this.label2.Name = "label2";
             this.label2.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.label2.Size = new System.Drawing.Size(522, 20);
+            this.label2.Size = new System.Drawing.Size(554, 20);
             this.label2.TabIndex = 1;
             this.label2.Text = "OUTPUTs";
             // 
@@ -1188,7 +1267,7 @@ namespace Digitizer_ver1
             this.dataGridView_GpioInputs.Location = new System.Drawing.Point(3, 23);
             this.dataGridView_GpioInputs.Name = "dataGridView_GpioInputs";
             this.dataGridView_GpioInputs.ReadOnly = true;
-            this.dataGridView_GpioInputs.Size = new System.Drawing.Size(521, 520);
+            this.dataGridView_GpioInputs.Size = new System.Drawing.Size(553, 554);
             this.dataGridView_GpioInputs.TabIndex = 4;
             // 
             // panel2
@@ -1198,7 +1277,7 @@ namespace Digitizer_ver1
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(121, 546);
+            this.panel2.Size = new System.Drawing.Size(121, 580);
             this.panel2.TabIndex = 2;
             // 
             // button_ClearRisingFalling
@@ -1219,7 +1298,7 @@ namespace Digitizer_ver1
             this.tabReset.Controls.Add(this.panel6);
             this.tabReset.Location = new System.Drawing.Point(4, 22);
             this.tabReset.Name = "tabReset";
-            this.tabReset.Size = new System.Drawing.Size(1176, 546);
+            this.tabReset.Size = new System.Drawing.Size(1240, 580);
             this.tabReset.TabIndex = 10;
             this.tabReset.Text = "RESETs";
             this.tabReset.UseVisualStyleBackColor = true;
@@ -1231,7 +1310,7 @@ namespace Digitizer_ver1
             this.dataGridView_Resets.Location = new System.Drawing.Point(446, 21);
             this.dataGridView_Resets.Name = "dataGridView_Resets";
             this.dataGridView_Resets.ReadOnly = true;
-            this.dataGridView_Resets.Size = new System.Drawing.Size(730, 525);
+            this.dataGridView_Resets.Size = new System.Drawing.Size(794, 559);
             this.dataGridView_Resets.TabIndex = 8;
             this.dataGridView_Resets.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Resets_CellContentClick);
             // 
@@ -1255,7 +1334,7 @@ namespace Digitizer_ver1
             this.panel6.Location = new System.Drawing.Point(0, 0);
             this.panel6.Margin = new System.Windows.Forms.Padding(2);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(446, 546);
+            this.panel6.Size = new System.Drawing.Size(446, 580);
             this.panel6.TabIndex = 3;
             // 
             // button_Reset
@@ -1288,38 +1367,79 @@ namespace Digitizer_ver1
             this.tabConfiguration.Text = "Configuration";
             this.tabConfiguration.UseVisualStyleBackColor = true;
             // 
-            // groupBox9
+            // tableLayoutPanel3
             // 
-            this.groupBox9.Controls.Add(this.button_ConfigRun);
-            this.groupBox9.Controls.Add(this.button_ConfigStop);
-            this.groupBox9.Location = new System.Drawing.Point(53, 413);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(231, 94);
-            this.groupBox9.TabIndex = 16;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Sequence Action";
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 334F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Controls.Add(this.splitContainer1, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.panel5, 0, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1240, 580);
+            this.tableLayoutPanel3.TabIndex = 20;
             // 
-            // button_ConfigRun
+            // splitContainer1
             // 
-            this.button_ConfigRun.Location = new System.Drawing.Point(31, 32);
-            this.button_ConfigRun.Margin = new System.Windows.Forms.Padding(2);
-            this.button_ConfigRun.Name = "button_ConfigRun";
-            this.button_ConfigRun.Size = new System.Drawing.Size(74, 37);
-            this.button_ConfigRun.TabIndex = 13;
-            this.button_ConfigRun.Text = "Config Run";
-            this.button_ConfigRun.UseVisualStyleBackColor = true;
-            this.button_ConfigRun.Click += new System.EventHandler(this.button_ConfigRun_Click);
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(337, 3);
+            this.splitContainer1.Name = "splitContainer1";
             // 
-            // button_ConfigStop
+            // splitContainer1.Panel1
             // 
-            this.button_ConfigStop.Location = new System.Drawing.Point(122, 32);
-            this.button_ConfigStop.Margin = new System.Windows.Forms.Padding(2);
-            this.button_ConfigStop.Name = "button_ConfigStop";
-            this.button_ConfigStop.Size = new System.Drawing.Size(74, 37);
-            this.button_ConfigStop.TabIndex = 14;
-            this.button_ConfigStop.Text = "Config Stop";
-            this.button_ConfigStop.UseVisualStyleBackColor = true;
-            this.button_ConfigStop.Click += new System.EventHandler(this.button_ConfigStop_Click);
+            this.splitContainer1.Panel1.Controls.Add(this.dataGridView_MultipleConfigFiles);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.dataGridView_ConfigFile);
+            this.splitContainer1.Size = new System.Drawing.Size(900, 574);
+            this.splitContainer1.SplitterDistance = 450;
+            this.splitContainer1.TabIndex = 18;
+            // 
+            // dataGridView_MultipleConfigFiles
+            // 
+            this.dataGridView_MultipleConfigFiles.AllowUserToAddRows = false;
+            this.dataGridView_MultipleConfigFiles.AllowUserToDeleteRows = false;
+            this.dataGridView_MultipleConfigFiles.AllowUserToResizeColumns = false;
+            this.dataGridView_MultipleConfigFiles.AllowUserToResizeRows = false;
+            this.dataGridView_MultipleConfigFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_MultipleConfigFiles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView_MultipleConfigFiles.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView_MultipleConfigFiles.MultiSelect = false;
+            this.dataGridView_MultipleConfigFiles.Name = "dataGridView_MultipleConfigFiles";
+            this.dataGridView_MultipleConfigFiles.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dataGridView_MultipleConfigFiles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView_MultipleConfigFiles.Size = new System.Drawing.Size(450, 574);
+            this.dataGridView_MultipleConfigFiles.TabIndex = 17;
+            this.dataGridView_MultipleConfigFiles.SelectionChanged += new System.EventHandler(this.dataGridView_MultipleConfigFiles_SelectionChanged);
+            // 
+            // dataGridView_ConfigFile
+            // 
+            this.dataGridView_ConfigFile.AllowUserToAddRows = false;
+            this.dataGridView_ConfigFile.AllowUserToDeleteRows = false;
+            this.dataGridView_ConfigFile.AllowUserToResizeColumns = false;
+            this.dataGridView_ConfigFile.AllowUserToResizeRows = false;
+            this.dataGridView_ConfigFile.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_ConfigFile.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView_ConfigFile.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView_ConfigFile.MultiSelect = false;
+            this.dataGridView_ConfigFile.Name = "dataGridView_ConfigFile";
+            this.dataGridView_ConfigFile.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dataGridView_ConfigFile.Size = new System.Drawing.Size(446, 574);
+            this.dataGridView_ConfigFile.TabIndex = 2;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.groupBox7);
+            this.panel5.Controls.Add(this.groupBox9);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(3, 3);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(328, 574);
+            this.panel5.TabIndex = 19;
             // 
             // groupBox7
             // 
@@ -1328,12 +1448,23 @@ namespace Digitizer_ver1
             this.groupBox7.Controls.Add(this.button_ConfigFileLoadFromFile);
             this.groupBox7.Controls.Add(this.button_ConfigFileSaveToFile);
             this.groupBox7.Controls.Add(this.button_ConfigFileSaveAs);
-            this.groupBox7.Location = new System.Drawing.Point(53, 26);
+            this.groupBox7.Location = new System.Drawing.Point(21, 25);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(231, 230);
+            this.groupBox7.Size = new System.Drawing.Size(228, 230);
             this.groupBox7.TabIndex = 12;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Configuration File";
+            // 
+            // button_RemoveConfig
+            // 
+            this.button_RemoveConfig.Location = new System.Drawing.Point(122, 32);
+            this.button_RemoveConfig.Margin = new System.Windows.Forms.Padding(2);
+            this.button_RemoveConfig.Name = "button_RemoveConfig";
+            this.button_RemoveConfig.Size = new System.Drawing.Size(74, 37);
+            this.button_RemoveConfig.TabIndex = 17;
+            this.button_RemoveConfig.Text = "Remove";
+            this.button_RemoveConfig.UseVisualStyleBackColor = true;
+            this.button_RemoveConfig.Click += new System.EventHandler(this.button_RemoveConfig_Click);
             // 
             // button_AddNewConfig
             // 
@@ -1379,20 +1510,38 @@ namespace Digitizer_ver1
             this.button_ConfigFileSaveAs.UseVisualStyleBackColor = true;
             this.button_ConfigFileSaveAs.Click += new System.EventHandler(this.button_ConfigFileSaveAs_Click);
             // 
-            // dataGridView_ConfigFile
+            // groupBox9
             // 
-            this.dataGridView_ConfigFile.AllowUserToAddRows = false;
-            this.dataGridView_ConfigFile.AllowUserToDeleteRows = false;
-            this.dataGridView_ConfigFile.AllowUserToResizeColumns = false;
-            this.dataGridView_ConfigFile.AllowUserToResizeRows = false;
-            this.dataGridView_ConfigFile.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_ConfigFile.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView_ConfigFile.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView_ConfigFile.MultiSelect = false;
-            this.dataGridView_ConfigFile.Name = "dataGridView_ConfigFile";
-            this.dataGridView_ConfigFile.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dataGridView_ConfigFile.Size = new System.Drawing.Size(446, 574);
-            this.dataGridView_ConfigFile.TabIndex = 2;
+            this.groupBox9.Controls.Add(this.button_ConfigRun);
+            this.groupBox9.Controls.Add(this.button_ConfigStop);
+            this.groupBox9.Location = new System.Drawing.Point(21, 277);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(228, 94);
+            this.groupBox9.TabIndex = 16;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Sequence Action";
+            // 
+            // button_ConfigRun
+            // 
+            this.button_ConfigRun.Location = new System.Drawing.Point(31, 32);
+            this.button_ConfigRun.Margin = new System.Windows.Forms.Padding(2);
+            this.button_ConfigRun.Name = "button_ConfigRun";
+            this.button_ConfigRun.Size = new System.Drawing.Size(74, 37);
+            this.button_ConfigRun.TabIndex = 13;
+            this.button_ConfigRun.Text = "Config Run";
+            this.button_ConfigRun.UseVisualStyleBackColor = true;
+            this.button_ConfigRun.Click += new System.EventHandler(this.button_ConfigRun_Click);
+            // 
+            // button_ConfigStop
+            // 
+            this.button_ConfigStop.Location = new System.Drawing.Point(122, 32);
+            this.button_ConfigStop.Margin = new System.Windows.Forms.Padding(2);
+            this.button_ConfigStop.Name = "button_ConfigStop";
+            this.button_ConfigStop.Size = new System.Drawing.Size(74, 37);
+            this.button_ConfigStop.TabIndex = 14;
+            this.button_ConfigStop.Text = "Config Stop";
+            this.button_ConfigStop.UseVisualStyleBackColor = true;
+            this.button_ConfigStop.Click += new System.EventHandler(this.button_ConfigStop_Click);
             // 
             // tabSetting
             // 
@@ -1428,6 +1577,8 @@ namespace Digitizer_ver1
             // checkBox_cmdQuestions
             // 
             this.checkBox_cmdQuestions.AutoSize = true;
+            this.checkBox_cmdQuestions.Checked = true;
+            this.checkBox_cmdQuestions.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox_cmdQuestions.Location = new System.Drawing.Point(81, 343);
             this.checkBox_cmdQuestions.Name = "checkBox_cmdQuestions";
             this.checkBox_cmdQuestions.Size = new System.Drawing.Size(100, 17);
@@ -1610,86 +1761,165 @@ namespace Digitizer_ver1
             this.radioButton_UART.UseVisualStyleBackColor = true;
             this.radioButton_UART.CheckedChanged += new System.EventHandler(this.radioButton_Communication_CheckedChanged);
             // 
-            // button_RegUpdateFromExtFile
+            // label3
             // 
-            this.button_RegUpdateFromExtFile.Location = new System.Drawing.Point(13, 192);
-            this.button_RegUpdateFromExtFile.Margin = new System.Windows.Forms.Padding(2);
-            this.button_RegUpdateFromExtFile.Name = "button_RegUpdateFromExtFile";
-            this.button_RegUpdateFromExtFile.Size = new System.Drawing.Size(74, 37);
-            this.button_RegUpdateFromExtFile.TabIndex = 8;
-            this.button_RegUpdateFromExtFile.Text = "Update from Ext File";
-            this.button_RegUpdateFromExtFile.UseVisualStyleBackColor = true;
-            this.button_RegUpdateFromExtFile.Click += new System.EventHandler(this.button_RegUpdateFromExtFile_Click);
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(19, 70);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(48, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Address:";
             // 
-            // dataGridView_MultipleConfigFiles
+            // label5
             // 
-            this.dataGridView_MultipleConfigFiles.AllowUserToAddRows = false;
-            this.dataGridView_MultipleConfigFiles.AllowUserToDeleteRows = false;
-            this.dataGridView_MultipleConfigFiles.AllowUserToResizeColumns = false;
-            this.dataGridView_MultipleConfigFiles.AllowUserToResizeRows = false;
-            this.dataGridView_MultipleConfigFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_MultipleConfigFiles.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView_MultipleConfigFiles.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView_MultipleConfigFiles.MultiSelect = false;
-            this.dataGridView_MultipleConfigFiles.Name = "dataGridView_MultipleConfigFiles";
-            this.dataGridView_MultipleConfigFiles.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dataGridView_MultipleConfigFiles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_MultipleConfigFiles.Size = new System.Drawing.Size(450, 574);
-            this.dataGridView_MultipleConfigFiles.TabIndex = 17;
-            this.dataGridView_MultipleConfigFiles.SelectionChanged += new System.EventHandler(this.dataGridView_MultipleConfigFiles_SelectionChanged);
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(30, 93);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(37, 13);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Value:";
             // 
-            // splitContainer1
+            // label6
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(337, 3);
-            this.splitContainer1.Name = "splitContainer1";
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(33, 47);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(34, 13);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "R/W:";
             // 
-            // splitContainer1.Panel1
+            // label10
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.dataGridView_MultipleConfigFiles);
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(5, 27);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(63, 13);
+            this.label10.TabIndex = 7;
+            this.label10.Text = "Description:";
             // 
-            // splitContainer1.Panel2
+            // textBox_RegValue
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.dataGridView_ConfigFile);
-            this.splitContainer1.Size = new System.Drawing.Size(900, 574);
-            this.splitContainer1.SplitterDistance = 450;
-            this.splitContainer1.TabIndex = 18;
+            this.textBox_RegValue.Location = new System.Drawing.Point(69, 90);
+            this.textBox_RegValue.Name = "textBox_RegValue";
+            this.textBox_RegValue.Size = new System.Drawing.Size(67, 20);
+            this.textBox_RegValue.TabIndex = 8;
+            this.textBox_RegValue.TextChanged += new System.EventHandler(this.textBox_RegValue_TextChanged);
             // 
-            // panel5
+            // checkBox9
             // 
-            this.panel5.Controls.Add(this.groupBox7);
-            this.panel5.Controls.Add(this.groupBox9);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(3, 3);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(328, 574);
-            this.panel5.TabIndex = 19;
+            this.checkBox9.AutoSize = true;
+            this.checkBox9.Location = new System.Drawing.Point(79, 149);
+            this.checkBox9.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox9.Name = "checkBox9";
+            this.checkBox9.Size = new System.Drawing.Size(32, 17);
+            this.checkBox9.TabIndex = 17;
+            this.checkBox9.Text = "0";
+            this.checkBox9.UseVisualStyleBackColor = true;
             // 
-            // tableLayoutPanel3
+            // checkBox10
             // 
-            this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 334F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Controls.Add(this.splitContainer1, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.panel5, 0, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1240, 580);
-            this.tableLayoutPanel3.TabIndex = 20;
+            this.checkBox10.AutoSize = true;
+            this.checkBox10.Location = new System.Drawing.Point(79, 130);
+            this.checkBox10.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox10.Name = "checkBox10";
+            this.checkBox10.Size = new System.Drawing.Size(32, 17);
+            this.checkBox10.TabIndex = 16;
+            this.checkBox10.Text = "1";
+            this.checkBox10.UseVisualStyleBackColor = true;
             // 
-            // button_RemoveConfig
+            // checkBox11
             // 
-            this.button_RemoveConfig.Location = new System.Drawing.Point(122, 32);
-            this.button_RemoveConfig.Margin = new System.Windows.Forms.Padding(2);
-            this.button_RemoveConfig.Name = "button_RemoveConfig";
-            this.button_RemoveConfig.Size = new System.Drawing.Size(74, 37);
-            this.button_RemoveConfig.TabIndex = 17;
-            this.button_RemoveConfig.Text = "Remove";
-            this.button_RemoveConfig.UseVisualStyleBackColor = true;
-            this.button_RemoveConfig.Click += new System.EventHandler(this.button_RemoveConfig_Click);
+            this.checkBox11.AutoSize = true;
+            this.checkBox11.Location = new System.Drawing.Point(79, 21);
+            this.checkBox11.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox11.Name = "checkBox11";
+            this.checkBox11.Size = new System.Drawing.Size(32, 17);
+            this.checkBox11.TabIndex = 15;
+            this.checkBox11.Text = "7";
+            this.checkBox11.UseVisualStyleBackColor = true;
+            // 
+            // checkBox12
+            // 
+            this.checkBox12.AutoSize = true;
+            this.checkBox12.Location = new System.Drawing.Point(79, 39);
+            this.checkBox12.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox12.Name = "checkBox12";
+            this.checkBox12.Size = new System.Drawing.Size(32, 17);
+            this.checkBox12.TabIndex = 14;
+            this.checkBox12.Text = "6";
+            this.checkBox12.UseVisualStyleBackColor = true;
+            // 
+            // checkBox13
+            // 
+            this.checkBox13.AutoSize = true;
+            this.checkBox13.Location = new System.Drawing.Point(79, 58);
+            this.checkBox13.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox13.Name = "checkBox13";
+            this.checkBox13.Size = new System.Drawing.Size(32, 17);
+            this.checkBox13.TabIndex = 13;
+            this.checkBox13.Text = "5";
+            this.checkBox13.UseVisualStyleBackColor = true;
+            // 
+            // checkBox14
+            // 
+            this.checkBox14.AutoSize = true;
+            this.checkBox14.Location = new System.Drawing.Point(79, 76);
+            this.checkBox14.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox14.Name = "checkBox14";
+            this.checkBox14.Size = new System.Drawing.Size(32, 17);
+            this.checkBox14.TabIndex = 12;
+            this.checkBox14.Text = "4";
+            this.checkBox14.UseVisualStyleBackColor = true;
+            // 
+            // checkBox15
+            // 
+            this.checkBox15.AutoSize = true;
+            this.checkBox15.Location = new System.Drawing.Point(79, 94);
+            this.checkBox15.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox15.Name = "checkBox15";
+            this.checkBox15.Size = new System.Drawing.Size(32, 17);
+            this.checkBox15.TabIndex = 11;
+            this.checkBox15.Text = "3";
+            this.checkBox15.UseVisualStyleBackColor = true;
+            // 
+            // checkBox16
+            // 
+            this.checkBox16.AutoSize = true;
+            this.checkBox16.Location = new System.Drawing.Point(79, 112);
+            this.checkBox16.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox16.Name = "checkBox16";
+            this.checkBox16.Size = new System.Drawing.Size(32, 17);
+            this.checkBox16.TabIndex = 10;
+            this.checkBox16.Text = "2";
+            this.checkBox16.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(33, 122);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(69, 24);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "Read";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(106, 122);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(69, 24);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "Write";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // textBox_RegAddress
+            // 
+            this.textBox_RegAddress.Location = new System.Drawing.Point(69, 67);
+            this.textBox_RegAddress.Name = "textBox_RegAddress";
+            this.textBox_RegAddress.Size = new System.Drawing.Size(67, 20);
+            this.textBox_RegAddress.TabIndex = 12;
+            this.textBox_RegAddress.TextChanged += new System.EventHandler(this.textBox_RegAddress_TextChanged);
             // 
             // Form1
             // 
@@ -1717,7 +1947,8 @@ namespace Digitizer_ver1
             this.tabPage_TestReg.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TestReg)).EndInit();
             this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.tabControl_MAIN.ResumeLayout(false);
@@ -1751,22 +1982,22 @@ namespace Digitizer_ver1
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Resets)).EndInit();
             this.panel6.ResumeLayout(false);
             this.tabConfiguration.ResumeLayout(false);
-            this.groupBox9.ResumeLayout(false);
-            this.groupBox7.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_MultipleConfigFiles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ConfigFile)).EndInit();
+            this.panel5.ResumeLayout(false);
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox9.ResumeLayout(false);
             this.tabSetting.ResumeLayout(false);
             this.tabSetting.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_RegistersFiles)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_MultipleConfigFiles)).EndInit();
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
-            this.tableLayoutPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1786,7 +2017,6 @@ namespace Digitizer_ver1
         private System.Windows.Forms.TabPage tabPage_LMX2;
         private System.Windows.Forms.DataGridView dataGridView_LMX2Reg;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBox2;
@@ -1902,6 +2132,25 @@ namespace Digitizer_ver1
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Button button_RemoveConfig;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.Label label_RegDescription;
+        private System.Windows.Forms.Label label_RegRW;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBox_RegValue;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox checkBox9;
+        private System.Windows.Forms.CheckBox checkBox10;
+        private System.Windows.Forms.CheckBox checkBox11;
+        private System.Windows.Forms.CheckBox checkBox12;
+        private System.Windows.Forms.CheckBox checkBox13;
+        private System.Windows.Forms.CheckBox checkBox14;
+        private System.Windows.Forms.CheckBox checkBox15;
+        private System.Windows.Forms.CheckBox checkBox16;
+        private System.Windows.Forms.TextBox textBox_RegAddress;
     }
 }
 

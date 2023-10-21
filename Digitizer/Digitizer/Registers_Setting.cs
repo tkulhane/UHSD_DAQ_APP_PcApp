@@ -272,6 +272,10 @@ namespace Digitizer_ver1
 
         }
 
+        //-------------------------------------------------------------------------------------------------------------------
+        //update from ext file (txt or py) 
+        //-------------------------------------------------------------------------------------------------------------------
+
         public void UpdateFromPyFile() 
         {
             if (List_RegistersSetting.Count == 0) return;
@@ -438,7 +442,7 @@ namespace Digitizer_ver1
         }
 
         //-------------------------------------------------------------------------------------------------------------------
-        //Read Write function
+        //¨Data grid
         //-------------------------------------------------------------------------------------------------------------------
         public void DataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -486,6 +490,24 @@ namespace Digitizer_ver1
             }
         }
 
+        public bool Grid_GetSelectData(out Registers_SettingData data) 
+        {
+            data = null;
+            
+            int selCount = DataGrid_RegistersSetting.SelectedRows.Count;
+            if (selCount == 0) return false;
+
+            int selIndex = DataGrid_RegistersSetting.SelectedRows[0].Index;
+            if (selIndex < 0) return false;
+
+            data = List_RegistersSetting[selIndex];
+
+            return true;
+        }
+
+        //-------------------------------------------------------------------------------------------------------------------
+        //Read Write function
+        //-------------------------------------------------------------------------------------------------------------------
         public void ReadAll() 
         {
             foreach(Registers_SettingData data in List_RegistersSetting) 

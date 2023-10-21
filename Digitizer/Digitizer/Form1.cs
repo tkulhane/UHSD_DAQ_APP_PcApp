@@ -415,6 +415,146 @@ namespace Digitizer_ver1
 
         }
 
+
+        private void dataGridView_AllRegistersGrids_SelectedChanged(object sender, EventArgs e)
+        {
+            int selected = tabControl_RegistersSetting.SelectedIndex;
+            Registers_Setting SelectedRegisters = null;
+
+            switch (selected)
+            {
+
+
+                case 0:
+                    SelectedRegisters = Registers_ADC;
+                    break;
+
+                case 1:
+                    SelectedRegisters = Registers_HMC;
+                    break;
+
+                case 2:
+                    SelectedRegisters = Registers_LMX1;
+                    break;
+
+                case 3:
+                    SelectedRegisters = Registers_LMX2;
+                    break;
+
+                case 4:
+                    SelectedRegisters = Registers_FpgaTest;
+                    break;
+
+                default:
+                    break;
+            }
+
+            if (SelectedRegisters == null) //nebyl vybran zadny registers
+            {
+                SetRegistersInfoElements(false, null);
+                return;
+            }
+
+            Registers_SettingData data = null;
+            if (SelectedRegisters.Grid_GetSelectData(out data))
+            {
+                // radek je vybran
+                SetRegistersInfoElements(true, data);
+            }
+            else
+            {
+                //radek neni vybran
+                SetRegistersInfoElements(false, null);
+            }
+
+        }
+
+
+        private void SetRegistersInfoElements(bool set, Registers_SettingData data) 
+        {
+            if (set == false || data == null) 
+            {
+                textBox_RegAddress.Text = String.Empty;
+                textBox_RegValue.Text = String.Empty;
+                label_RegRW.Text = String.Empty;
+                label_RegDescription.Text = String.Empty;
+                return;
+            }
+
+
+            textBox_RegAddress.Text = data.p_address.ToString("X");
+            textBox_RegValue.Text = data.p_value;
+            label_RegRW.Text = data.p__StrReadWrite;
+            label_RegDescription.Text = data.p_description;
+
+        }
+
+        private void textBox_RegAddress_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox_RegValue_TextChanged(object sender, EventArgs e)
+        {
+            int selected = tabControl_RegistersSetting.SelectedIndex;
+            Registers_Setting SelectedRegisters = null;
+
+
+            switch (selected)
+            {
+                case 0:
+                    SelectedRegisters = Registers_ADC;
+                    break;
+
+                case 1:
+                    SelectedRegisters = Registers_HMC;
+                    break;
+
+                case 2:
+                    SelectedRegisters = Registers_LMX1;
+                    break;
+
+                case 3:
+                    SelectedRegisters = Registers_LMX2;
+                    break;
+
+                case 4:
+                    SelectedRegisters = Registers_FpgaTest;
+                    break;
+
+                default:
+                    break;
+            }
+
+            if (SelectedRegisters == null) //nebyl vybran zadny registers
+            {
+                SetRegistersInfoElements(false, null);
+                return;
+            }
+
+            int address;
+            int value;
+
+            Registers_SettingData data = null;
+            if (SelectedRegisters.Grid_GetSelectData(out data))
+            {
+                // radek je vybran
+                address = data.p_address;
+            }
+            else
+            {
+                //radek neni vybran
+                return;
+            }
+
+            if (!int.TryParse(textBox_RegValue.Text, NumberStyles.HexNumber, null, out value)) return;
+
+            SelectedRegisters.UpdateRegistersNoRequest(address, value);
+
+        }
+
+
+
         private void button_RegReadAll_Click(object sender, EventArgs e)
         {
             int selected = tabControl_RegistersSetting.SelectedIndex;

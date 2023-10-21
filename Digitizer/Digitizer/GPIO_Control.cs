@@ -18,6 +18,9 @@ namespace Digitizer_ver1
             CMD_GPIO_OUTPUT_TOOGLE = 0x12,
             CMD_GPIO_OUTPUT_SET = 0x13,
             CMD_GPIO_OUTPUT_CLEAR = 0x14,
+            CMD_GPIO_OUTPUT_PULSE = 0x15,
+            CMD_GPIO_PULSE_LENGTH_L = 0x1A,
+            CMD_GPIO_PULSE_LENGTH_M = 0x1B,
 
             CMD_GPIO_INPUT_STATE = 0x21,
             CMD_GPIO_INPUT_RISING = 0x22,
@@ -96,6 +99,13 @@ namespace Digitizer_ver1
 
 
             DataGrid_GpioOutput.DataSource = List_GpioOutput;
+
+            DataGridViewButtonColumn btn_pulse = new DataGridViewButtonColumn();
+            btn_pulse.HeaderText = "PULSE";
+            btn_pulse.Text = "PULSE";
+            btn_pulse.Name = "button_GpioPulse";
+            btn_pulse.UseColumnTextForButtonValue = true;
+            DataGrid_GpioOutput.Columns.Add(btn_pulse);
 
             DataGridViewButtonColumn btn_set = new DataGridViewButtonColumn();
             btn_set.HeaderText = "SET";
@@ -278,6 +288,7 @@ namespace Digitizer_ver1
 
             int index_set = DataGrid_GpioOutput.Columns["button_GpioSet"].Index;
             int index_clear = DataGrid_GpioOutput.Columns["button_GpioClear"].Index;
+            int index_pulse = DataGrid_GpioOutput.Columns["button_GpioPulse"].Index;
 
             int reg = 0 | 1 << Number;
 
@@ -290,6 +301,10 @@ namespace Digitizer_ver1
             else if (e.ColumnIndex == index_clear)
             {
                 SendCommand(Communication.eCommandCode.CMD_CONST_SET_GPIO, (byte)eCommandCode_GPIO.CMD_GPIO_OUTPUT_CLEAR, (byte)((reg >> 8) & 0x00FF), (byte)(reg & 0x00FF));
+            }
+            else if (e.ColumnIndex == index_pulse)
+            {
+                SendCommand(Communication.eCommandCode.CMD_CONST_SET_GPIO, (byte)eCommandCode_GPIO.CMD_GPIO_OUTPUT_PULSE, (byte)((reg >> 8) & 0x00FF), (byte)(reg & 0x00FF));
             }
 
             SendCommand(Communication.eCommandCode.CMD_CONST_GET_GPIO, (byte)eCommandCode_GPIO.CMD_GPIO_OUTPUT_STATE, 0,0);
@@ -317,7 +332,7 @@ namespace Digitizer_ver1
             }
 
             step++;
-            if (step >= 2) step = 0;
+            if (step >= 1) step = 0;
 
         }
 
