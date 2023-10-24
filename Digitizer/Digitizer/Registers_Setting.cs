@@ -65,6 +65,48 @@ namespace Digitizer_ver1
             Registers_ID_SET = ID_SET;
         }
 
+
+        public int GetValueSize() 
+        {
+            if(Registers_AddressValueSize == eAddressValueSize.Address8_Value8) 
+            {
+                return 8;
+            }
+            else if (Registers_AddressValueSize == eAddressValueSize.Address8_Value16)
+            {
+                return 16;
+            }
+            else if (Registers_AddressValueSize == eAddressValueSize.Address16_Value8)
+            {
+                return 8;
+            }
+            else 
+            {
+                return 0;
+            }
+
+        }
+
+        public int GetAddressSize()
+        {
+            if (Registers_AddressValueSize == eAddressValueSize.Address8_Value8)
+            {
+                return 8;
+            }
+            else if (Registers_AddressValueSize == eAddressValueSize.Address8_Value16)
+            {
+                return 8;
+            }
+            else if (Registers_AddressValueSize == eAddressValueSize.Address16_Value8)
+            {
+                return 16;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
         //-------------------------------------------------------------------------------------------------------------------
         //File operation
         //-------------------------------------------------------------------------------------------------------------------
@@ -442,7 +484,7 @@ namespace Digitizer_ver1
         }
 
         //-------------------------------------------------------------------------------------------------------------------
-        //¨Data grid
+        //Data grid
         //-------------------------------------------------------------------------------------------------------------------
         public void DataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -714,7 +756,6 @@ namespace Digitizer_ver1
 
         }
 
-
         private void MaskRegister_Send(int readValue) 
         {
             if (_ReadRequestMask == true)
@@ -732,6 +773,28 @@ namespace Digitizer_ver1
             return !_ReadRequestMask;
         }
 
+        public void SendMaskRegisterTblVal(int address, int value, int mask)
+        {
+
+            for (int i = 0; i < List_RegistersSetting.Count; i++)
+            {
+                Registers_SettingData data = List_RegistersSetting[i];
+
+                if (address == data.p_address)
+                {
+                    Registers_SettingData.eReadWrite readWrite = data._ReadWrite;
+
+                    if (readWrite == Registers_SettingData.eReadWrite.read_write)
+                    {
+                        int x = (data.ParseValue() & ~mask) | (value & mask);
+
+                        SendRegister(address, x);
+                        MessageBox.Show(x.ToString("x"));
+                    }
+                }
+            }
+
+        }
 
         //-------------------------------------------------------------------------------------------------------------------
         //Update registers
@@ -749,7 +812,6 @@ namespace Digitizer_ver1
                 }
             }
         }
-
 
         public void UpdateRegisters(int address, int value) 
         {
@@ -828,6 +890,63 @@ namespace Digitizer_ver1
             }
             */
 
+        }
+
+        //-------------------------------------------------------------------------------------------------------------------
+        //line operation
+        //-------------------------------------------------------------------------------------------------------------------
+        public int FindLineAddress(int address) 
+        {
+
+            for (int i = 0; i < List_RegistersSetting.Count; i++)
+            {
+                if (address.Equals(List_RegistersSetting[i].p_address))
+                {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
+
+        public void SelectLine(int line) 
+        {
+            DataGrid_RegistersSetting.Rows[line].Selected = true;
+        }
+
+        public bool FindAddressSelect(int address) 
+        {
+            int line = FindLineAddress(address);
+            if (line < 0) 
+            {
+                
+                return false;
+            }
+            
+            SelectLine(line);
+            return true; 
+        }
+
+        public int GetRegisterValue(int address) 
+        {
+            for (int i = 0; i < List_RegistersSetting.Count; i++)
+            {
+                Registers_SettingData data = List_RegistersSetting[i];
+
+                if (address == data.p_address)
+                {
+                    Registers_SettingData.eReadWrite readWrite = data._ReadWrite;
+
+                    int value = data.ParseValue(Registers_AddressValueSize);
+
+                    if (readWrite == Registers_SettingData.eReadWrite.read_write || readWrite == Registers_SettingData.eReadWrite.read)
+                    {
+                        return value;
+                    }
+                }
+            }
+
+            return -1;
         }
 
     }

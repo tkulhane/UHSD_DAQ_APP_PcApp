@@ -245,7 +245,12 @@ namespace Digitizer_ver1
         private void tabControl_MAIN_SelectedIndexChanged(object sender, EventArgs e)
         {
             AcqControl.ReadSettingAndValues();
+
+            Update_label_QS_Phase1();
+            Update_label_QS_Phase2();
+            Update_QS_FcalEn_checkBox();
         }
+
 
         private void button_Reset_Click(object sender, EventArgs e)
         {
@@ -309,7 +314,6 @@ namespace Digitizer_ver1
 
 
         }
-
 
         private void button_SaveToFile_Click(object sender, EventArgs e)
         {
@@ -415,7 +419,6 @@ namespace Digitizer_ver1
 
         }
 
-
         private void dataGridView_AllRegistersGrids_SelectedChanged(object sender, EventArgs e)
         {
             int selected = tabControl_RegistersSetting.SelectedIndex;
@@ -451,7 +454,7 @@ namespace Digitizer_ver1
 
             if (SelectedRegisters == null) //nebyl vybran zadny registers
             {
-                SetRegistersInfoElements(false, null);
+                SetRegistersInfoElements(false, null, 0);
                 return;
             }
 
@@ -459,18 +462,19 @@ namespace Digitizer_ver1
             if (SelectedRegisters.Grid_GetSelectData(out data))
             {
                 // radek je vybran
-                SetRegistersInfoElements(true, data);
+                int valSize = SelectedRegisters.GetValueSize();
+                SetRegistersInfoElements(true, data, valSize);
             }
             else
             {
                 //radek neni vybran
-                SetRegistersInfoElements(false, null);
+                SetRegistersInfoElements(false, null, 0);
             }
+
 
         }
 
-
-        private void SetRegistersInfoElements(bool set, Registers_SettingData data) 
+        private void SetRegistersInfoElements(bool set, Registers_SettingData data, int ValueSize) 
         {
             if (set == false || data == null) 
             {
@@ -478,15 +482,101 @@ namespace Digitizer_ver1
                 textBox_RegValue.Text = String.Empty;
                 label_RegRW.Text = String.Empty;
                 label_RegDescription.Text = String.Empty;
+
+                foreach (CheckBox ch in groupBox_RegBits.Controls)
+                {
+                    ch.Checked = false;
+                    ch.Enabled = false;
+                }
                 return;
             }
 
+            //zobrazeni adresy
+            if (radioButton_RegAddrHEX.Checked)
+            {
+                textBox_RegAddress.Text = data.p_address.ToString("X"); //zobrazit jako hex
+            }
+            else if (radioButton_RegAddrDEC.Checked)
+            {
+                textBox_RegAddress.Text = data.p_address.ToString(); //zobrazit jako dec
+            }
 
-            textBox_RegAddress.Text = data.p_address.ToString("X");
-            textBox_RegValue.Text = data.p_value;
+            //zobrazeni hodnoty
+            if (radioButton_RegValHEX.Checked)
+            {
+                textBox_RegValue.Text = data.p_value; //zobrazit jako hex
+            }
+            else if (radioButton_RegValDEC.Checked)
+            {
+                textBox_RegValue.Text = data.ParseValue().ToString(); //zobrazit jako dec
+            }
+
+            
+            
             label_RegRW.Text = data.p__StrReadWrite;
             label_RegDescription.Text = data.p_description;
 
+            if (data._ReadWrite == Registers_SettingData.eReadWrite.read_write || data._ReadWrite == Registers_SettingData.eReadWrite.write)
+            {
+                textBox_RegValue.Enabled = true;
+            }
+            else
+            {
+                textBox_RegValue.Enabled = false;
+            }
+
+            int value = data.ParseValue();
+
+            foreach (CheckBox ch in groupBox_RegBits.Controls) 
+            {
+                int chTag = int.Parse((string)ch.Tag);
+
+                if (chTag < ValueSize) 
+                {
+                    if(data._ReadWrite == Registers_SettingData.eReadWrite.read_write || data._ReadWrite == Registers_SettingData.eReadWrite.write) 
+                    {
+                        ch.Enabled = true;
+                    }
+                    else 
+                    {
+                        ch.Enabled = false;
+                    }
+
+                    if(((value & (1 << chTag)) >> chTag) == 1 ) 
+                    {
+                        ch.Checked = true;
+                    }
+                    else 
+                    {
+                        ch.Checked = false;
+                    }
+
+                }
+                else 
+                {
+                    ch.Checked = false;
+                    ch.Enabled = false;
+                }
+                
+                
+            }
+        }
+
+        private void checkBox_RegBitSet_CheckedChanged(object sender, EventArgs e)
+        {
+            int value = 0;
+
+            foreach(CheckBox ch in groupBox_RegBits.Controls) 
+            {
+                int chTag = int.Parse((string)ch.Tag);
+
+                if (ch.Checked && ch.Enabled)
+                {
+                    value |= 1 << chTag;
+                }
+            }
+
+            textBox_RegValue.Text = value.ToString("X"); 
         }
 
         private void textBox_RegAddress_TextChanged(object sender, EventArgs e)
@@ -528,12 +618,12 @@ namespace Digitizer_ver1
 
             if (SelectedRegisters == null) //nebyl vybran zadny registers
             {
-                SetRegistersInfoElements(false, null);
+                SetRegistersInfoElements(false, null,0);
                 return;
             }
 
             int address;
-            int value;
+            int value = 0;
 
             Registers_SettingData data = null;
             if (SelectedRegisters.Grid_GetSelectData(out data))
@@ -547,13 +637,95 @@ namespace Digitizer_ver1
                 return;
             }
 
-            if (!int.TryParse(textBox_RegValue.Text, NumberStyles.HexNumber, null, out value)) return;
+
+            //zobrazeni hodnoty
+            if (radioButton_RegValHEX.Checked) //parsovat jako hex
+            {
+                if (!int.TryParse(textBox_RegValue.Text, NumberStyles.HexNumber, null, out value)) return;
+            }
+            else if (radioButton_RegValDEC.Checked) //parsovat jako dec
+            {
+                if (!int.TryParse(textBox_RegValue.Text, out value)) return;
+            }
+
+           
 
             SelectedRegisters.UpdateRegistersNoRequest(address, value);
 
         }
 
+        private void button_RegAddrFind_Click(object sender, EventArgs e)
+        {
+            int selected = tabControl_RegistersSetting.SelectedIndex;
+            Registers_Setting SelectedRegisters = null;
 
+
+            switch (selected)
+            {
+                case 0:
+                    SelectedRegisters = Registers_ADC;
+                    break;
+
+                case 1:
+                    SelectedRegisters = Registers_HMC;
+                    break;
+
+                case 2:
+                    SelectedRegisters = Registers_LMX1;
+                    break;
+
+                case 3:
+                    SelectedRegisters = Registers_LMX2;
+                    break;
+
+                case 4:
+                    SelectedRegisters = Registers_FpgaTest;
+                    break;
+
+                default:
+                    break;
+            }
+
+            if (SelectedRegisters == null) //nebyl vybran zadny registers
+            {
+                return;
+            }
+
+            int address = 0;
+            bool parseResult = false;
+
+            //parsovani
+            if (radioButton_RegAddrHEX.Checked)
+            {
+                parseResult = int.TryParse(textBox_RegAddress.Text, NumberStyles.HexNumber, null, out address);
+            }
+            else if (radioButton_RegAddrDEC.Checked)
+            {
+                parseResult = int.TryParse(textBox_RegAddress.Text, out address);
+            }
+
+            if (!parseResult)
+            {
+                MessageBox.Show("Wrong value when parsing text. \nText: " + textBox_RegAddress.Text, "Wrong Value", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!SelectedRegisters.FindAddressSelect(address)) 
+            {
+                MessageBox.Show("Address not found. \nAddress: " + address.ToString("X"), "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+        }
+
+        private void radioButton_RegAddr_CheckedChanged(object sender, EventArgs e)
+        {
+            dataGridView_AllRegistersGrids_SelectedChanged(null, null);
+        }
+
+        private void radioButton_RegVal_CheckedChanged(object sender, EventArgs e)
+        {
+            dataGridView_AllRegistersGrids_SelectedChanged(null, null);
+        }
 
         private void button_RegReadAll_Click(object sender, EventArgs e)
         {
@@ -736,9 +908,13 @@ namespace Digitizer_ver1
         //-------------------------------------------------------------------------------------------------------------------
         //Configutation Sequence File
         //-------------------------------------------------------------------------------------------------------------------
+        private void button_AddNewConfig_Click(object sender, EventArgs e)
+        {
+            MultiConfigSequence.AddConfig();
+        }
+
         private void button_ConfigFileLoadFromFile_Click(object sender, EventArgs e)
         {
-            //ConfigSequence.OpenRegistersFile();
             MultiConfigSequence.AssignFile();
         }
 
@@ -760,7 +936,6 @@ namespace Digitizer_ver1
         private void button_ConfigRun_Click(object sender, EventArgs e)
         {
             MultiConfigSequence.ConfigSequenceStart();
-            
         }
 
         private void button_ConfigStop_Click(object sender, EventArgs e)
@@ -768,15 +943,7 @@ namespace Digitizer_ver1
             MultiConfigSequence.ConfigSequenceStop();
         }
 
-        private void button_AddNewConfig_Click(object sender, EventArgs e)
-        {
-            MultiConfigSequence.AddConfig();
-        }
 
-        private void comboBox_ConfigFiles_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //MultiConfigSequence.comboBoxSelectedChanged();
-        }
 
         private void dataGridView_MultipleConfigFiles_SelectionChanged(object sender, EventArgs e)
         {
@@ -838,6 +1005,192 @@ namespace Digitizer_ver1
         private void button_ResetClearAll_Click(object sender, EventArgs e)
         {
             rst.ClearAll();
+        }
+
+
+        //-------------------------------------------------------------------------------------------------------------------
+        //quick setup
+        //-------------------------------------------------------------------------------------------------------------------
+
+        private void numericUpDown_QS_Seed1_ValueChanged(object sender, EventArgs e)
+        {
+            UInt32 value = (UInt32)numericUpDown_QS_Seed1.Value;
+
+
+            Registers_LMX1.UpdateRegisters(0x29, (int)(value & 0x0000FFFF));
+            Registers_LMX1.UpdateRegisters(0x28, (int)((value >> 16) & 0x0000FFFF));
+
+            Update_label_QS_Phase1();
+
+
+            Registers_LMX1.SendRegister(0x29);
+            Registers_LMX1.SendRegister(0x28);
+        }
+
+        private void numericUpDown_QS_Seed2_ValueChanged(object sender, EventArgs e)
+        {
+            UInt32 value = (UInt32)numericUpDown_QS_Seed2.Value;
+
+
+            Registers_LMX2.UpdateRegisters(0x29, (int)(value & 0x0000FFFF));
+            Registers_LMX2.UpdateRegisters(0x28, (int)((value >> 16) & 0x0000FFFF));
+
+            Update_label_QS_Phase2();
+
+            Registers_LMX2.SendRegister(0x29);
+            Registers_LMX2.SendRegister(0x28);
+        }
+
+        private void Update_label_QS_Phase1() 
+        {
+
+            label_QS_PLL_DEN1.Text = String.Empty;
+            label_QS_INC_DIV1.Text = String.Empty;
+            label_QS_CHDIV1.Text = String.Empty;
+            label_QS_Phase1.Text = String.Empty;
+
+            UInt32 SEED_value = (UInt32)((Registers_LMX1.GetRegisterValue(0x28) << 16) | Registers_LMX1.GetRegisterValue(0x29));
+            numericUpDown_QS_Seed1.Value = SEED_value;
+
+            UInt32 PLL_DEN = (UInt32)((Registers_LMX1.GetRegisterValue(0x26) << 16) | Registers_LMX1.GetRegisterValue(0x27));
+            UInt16 reg0 = (UInt16)Registers_LMX1.GetRegisterValue(0x00);
+            UInt16 IncludedDivide;
+            if (((reg0 >> 14) & 0x0001) == 1) //VCO_PHASE_SYNC enable
+            {
+                IncludedDivide = 4;
+            }
+            else
+            {
+                IncludedDivide = 1;
+            }
+
+            UInt16 CHDIV;
+            UInt16 CHDIV_reg = (UInt16)((Registers_LMX1.GetRegisterValue(0x4B) & 0x07C0) >> 6);
+
+            UInt16[] chdiv_val = { 0, 4, 6, 8, 12, 16, 24, 32, 48, 64, 72, 96, 128, 192, 256, 384, 512, 768 };
+
+            if(CHDIV_reg <= 18) 
+            {
+                CHDIV = chdiv_val[CHDIV_reg];
+            }
+            else 
+            {
+                label_QS_CHDIV1.Text = "----";
+                return;
+            }
+
+            label_QS_PLL_DEN1.Text = PLL_DEN.ToString();
+            label_QS_INC_DIV1.Text = IncludedDivide.ToString();
+            label_QS_CHDIV1.Text = CHDIV.ToString();
+
+            float phase = (float)360 * ((float)SEED_value / (float)PLL_DEN) * ((float)IncludedDivide / (float)CHDIV);
+
+            label_QS_Phase1.Text = phase.ToString();
+        }
+
+        private void Update_label_QS_Phase2()
+        {
+
+            label_QS_PLL_DEN2.Text = String.Empty;
+            label_QS_INC_DIV2.Text = String.Empty;
+            label_QS_CHDIV2.Text = String.Empty;
+            label_QS_Phase2.Text = String.Empty;
+
+            UInt32 SEED_value = (UInt32)((Registers_LMX2.GetRegisterValue(0x28) << 16) | Registers_LMX2.GetRegisterValue(0x29));
+            numericUpDown_QS_Seed2.Value = SEED_value;
+
+            UInt32 PLL_DEN = (UInt32)((Registers_LMX2.GetRegisterValue(0x26) << 16) | Registers_LMX2.GetRegisterValue(0x27));
+            UInt16 reg0 = (UInt16)Registers_LMX2.GetRegisterValue(0x00);
+            UInt16 IncludedDivide;
+            if (((reg0 >> 14) & 0x0001) == 1) //VCO_PHASE_SYNC enable
+            {
+                IncludedDivide = 4;
+            }
+            else
+            {
+                IncludedDivide = 1;
+            }
+
+            UInt16 CHDIV;
+            UInt16 CHDIV_reg = (UInt16)((Registers_LMX2.GetRegisterValue(0x4B) & 0x07C0) >> 6);
+
+            UInt16[] chdiv_val = { 0, 4, 6, 8, 12, 16, 24, 32, 48, 64, 72, 96, 128, 192, 256, 384, 512, 768 };
+
+            if (CHDIV_reg <= 18)
+            {
+                CHDIV = chdiv_val[CHDIV_reg];
+            }
+            else
+            {
+                label_QS_CHDIV2.Text = "----";
+                return;
+            }
+
+            label_QS_PLL_DEN2.Text = PLL_DEN.ToString();
+            label_QS_INC_DIV2.Text = IncludedDivide.ToString();
+            label_QS_CHDIV2.Text = CHDIV.ToString();
+
+            float phase = (float)360 * ((float)SEED_value / (float)PLL_DEN) * ((float)IncludedDivide / (float)CHDIV);
+
+            label_QS_Phase2.Text = phase.ToString();
+        }
+
+        private void button_QS_Sync_Click(object sender, EventArgs e)
+        {
+            gpio.PulseByIndex(2);
+        }
+
+        private void Update_QS_FcalEn_checkBox()
+        {
+            UInt16 reg1 = (UInt16)Registers_LMX1.GetRegisterValue(0x00);
+            UInt16 reg2 = (UInt16)Registers_LMX2.GetRegisterValue(0x00);
+
+            if(((reg1 >> 3) & 0x0001) == 0x0001) 
+            {
+                checkBox_QS_FcalEn1.Checked = true;
+            }
+            else 
+            {
+                checkBox_QS_FcalEn1.Checked = false;
+            }
+
+            if (((reg2 >> 3) & 0x0001) == 0x0001)
+            {
+                checkBox_QS_FcalEn2.Checked = true;
+            }
+            else
+            {
+                checkBox_QS_FcalEn2.Checked = false;
+            }
+
+        }
+
+        private void checkBox_QS_FcalEn1_CheckedChanged(object sender, EventArgs e)
+        {
+            UInt16 mask = 0 | 1 << 3;
+
+            if (checkBox_QS_FcalEn1.Checked) 
+            {
+                Registers_LMX1.SendMaskRegisterTblVal(0x00, 0xFFFF, mask);
+            }
+            else
+            {
+                Registers_LMX1.SendMaskRegisterTblVal(0x00, 0x0000, mask);
+            }
+        }
+
+        private void checkBox_QS_FcalEn2_CheckedChanged(object sender, EventArgs e)
+        {
+            UInt16 mask = 0 | 1 << 3;
+
+            if (checkBox_QS_FcalEn2.Checked)
+            {
+                Registers_LMX2.SendMaskRegisterTblVal(0x00, 0xFFFF, (int)mask);
+            }
+            else
+            {
+                Registers_LMX2.SendMaskRegisterTblVal(0x00, 0x0000, (int)mask);
+            }
         }
 
 

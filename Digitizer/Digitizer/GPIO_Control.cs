@@ -72,9 +72,8 @@ namespace Digitizer_ver1
 
             //Outputs
             OutputAdd(0, "ADC-PWDN");
-            OutputAdd(1, "ADC-SYNC");
-            OutputAdd(2, "SYNC-OUT-1");
-            OutputAdd(3, "SYNC-OUT-2");
+            OutputAdd(1, "HMC-SYNC");
+            
 
             OutputAdd(4, "HMC-GPIO-2");
             OutputAdd(5, "HMC-GPIO-3");
@@ -86,7 +85,7 @@ namespace Digitizer_ver1
             OutputAdd(14, "LED_2");
             OutputAdd(15, "LED_3");
 
-
+            OutputAdd(2, "LMX-SYNC");
 
             //datagrid
             DataGridsLoad();
@@ -274,6 +273,23 @@ namespace Digitizer_ver1
             {
                 return;
             }
+        }
+
+        public void PulseByName(string Name) 
+        {
+            for (int i = 0; i < List_GpioOutput.Count; i++)
+            {
+                if (Name.Equals(List_GpioOutput[i].p_name))
+                {
+                    PulseByIndex(i);
+                }
+            }
+        }
+
+        public void PulseByIndex(int index) 
+        {
+            int reg = 0 | 1 << index;
+            SendCommand(Communication.eCommandCode.CMD_CONST_SET_GPIO, (byte)eCommandCode_GPIO.CMD_GPIO_OUTPUT_PULSE, (byte)((reg >> 8) & 0x00FF), (byte)(reg & 0x00FF));
         }
 
 
