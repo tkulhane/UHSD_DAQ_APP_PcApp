@@ -94,17 +94,6 @@ namespace Digitizer_ver1
             rst.LoadRst();
 
 
-            //System Setting
-            sysSetting.communication = communication;
-            sysSetting.dataGridView_RegistersFiles = dataGridView_RegistersFiles;
-            sysSetting.CreateRegistersInList(Registers_ADC);
-            sysSetting.CreateRegistersInList(Registers_HMC);
-            sysSetting.CreateRegistersInList(Registers_LMX1);
-            sysSetting.CreateRegistersInList(Registers_LMX2);
-            sysSetting.CreateRegistersInList(Registers_FpgaTest);
-
-            //system setting load
-            sysSetting.SettingLoad();
 
             //configuration file sequence
             //ConfigSequence.dataGridView_ConfigFile = dataGridView_ConfigFile;
@@ -120,6 +109,20 @@ namespace Digitizer_ver1
             MultiConfigSequence.Init();
 
 
+
+            //System Setting
+            sysSetting.communication = communication;
+            sysSetting.dataGridView_RegistersFiles = dataGridView_RegistersFiles;
+            sysSetting.configurationFiles = MultiConfigSequence;
+            sysSetting.CreateRegistersInList(Registers_ADC);
+            sysSetting.CreateRegistersInList(Registers_HMC);
+            sysSetting.CreateRegistersInList(Registers_LMX1);
+            sysSetting.CreateRegistersInList(Registers_LMX2);
+            sysSetting.CreateRegistersInList(Registers_FpgaTest);
+
+
+            //system setting load
+            sysSetting.SettingLoad();
 
 
             AcqControl.ReadSettingAndValues();
@@ -1192,7 +1195,5 @@ namespace Digitizer_ver1
                 Registers_LMX2.SendMaskRegisterTblVal(0x00, 0x0000, (int)mask);
             }
         }
-
-
     }
 }

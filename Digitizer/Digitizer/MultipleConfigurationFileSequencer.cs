@@ -102,6 +102,50 @@ namespace Digitizer_ver1
 
         }
 
+        public void OpenFromSetting(string name, string file)
+        {
+            if (name == string.Empty) return;
+            
+            MultipleConfigurationFileSequencer_Data data = new MultipleConfigurationFileSequencer_Data();
+
+            data._ConfigSequencer.List_ReigistersFile = List_ReigistersFile;
+            data._ConfigSequencer.rst = rst;
+            data._ConfigSequencer.gpio = gpio;
+            data._ConfigSequencer._dataGridView_ConfigFile = dataGridView_ConfigFile;
+            data._ConfigSequencer._MultiConfig_data = data;
+            data._ConfigSequencer.StateSetFunction = StateSet;
+
+            //pokud neni prirazen file, ale vytvori se v tabulce nepreirazeny
+            if (file != string.Empty) 
+            {
+                data.p_Name = name;
+                data._Patch = file;
+                data.SetState(MultipleConfigurationFileSequencer_Data.eStates.Idle);
+            }
+
+            List_MultipleConfigFiles.Add(data);
+            MultipleConfigFiles.Refresh();
+
+        }
+
+        public int GetCountOfConfigFiles() 
+        {
+            return List_MultipleConfigFiles.Count;
+        }
+
+        public string GetStringForSettingSave(int lineConfig) 
+        {
+            if (lineConfig < 0 || lineConfig > List_MultipleConfigFiles.Count - 1) return string.Empty;
+            
+            MultipleConfigurationFileSequencer_Data data = List_MultipleConfigFiles[lineConfig];
+
+            string s = data.p_Name + ";" + data._Patch;
+
+            return s;
+        }
+
+
+
         public void RemoveFile() 
         {
             int selCount = MultipleConfigFiles.SelectedRows.Count;

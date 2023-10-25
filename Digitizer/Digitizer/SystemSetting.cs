@@ -14,14 +14,16 @@ namespace Digitizer_ver1
         public Communication communication;
         public DataGridView dataGridView_RegistersFiles;
 
+        public MultipleConfigurationFileSequencer configurationFiles;
 
         static string SettingFileName = "AppSetting.txt";
 
         public BindingList<SystemSetting_RegistersFileData> List_ReigistersFile = new BindingList<SystemSetting_RegistersFileData>();
 
+        static char[] caSplit = new char[] { ';' };
 
 
-        public void SettingLoad()
+        public void SettingLoadOld()
         {
             dataGridView_RegistersFiles.DataSource = List_ReigistersFile;
             dataGridView_RegistersFiles.Columns[0].Visible = false;
@@ -50,8 +52,59 @@ namespace Digitizer_ver1
             OpenRegistersFiles();
         }
 
+        public void SettingLoad()
+        {
+            dataGridView_RegistersFiles.DataSource = List_ReigistersFile;
+            dataGridView_RegistersFiles.Columns[0].Visible = false;
 
-        public void SettingSave()
+            if (!File.Exists(SettingFileName))
+            {
+                MessageBox.Show("The configuration file does not exist.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            String[] lines = File.ReadAllLines(SettingFileName, Encoding.GetEncoding("Windows-1250"));
+
+            foreach (String s in lines)
+            {
+                SettingLoad_ProcessLine(s);
+                
+            }
+
+            OpenRegistersFiles();
+        }
+
+
+        public void SettingLoad_ProcessLine(string line) 
+        {
+            if (line == string.Empty) return;
+
+            String[] lineParts = line.Split(caSplit);
+            if (lineParts.Length < 3) return;
+
+
+            if (lineParts[0].Equals("communication"))
+            {
+                communication.OpenBySettingString(lineParts[1] + ";" + lineParts[2]);
+            }
+            else if (lineParts[0].Equals("register")) 
+            {
+                UpdateRowRegisterFile(lineParts[1], lineParts[2]);
+            }
+            else if (lineParts[0].Equals("config"))
+            {
+                configurationFiles.OpenFromSetting(lineParts[1], lineParts[2]);
+            }
+            
+
+
+        }
+
+
+
+
+
+        public void SettingSaveOld()
         {
             System.IO.File.WriteAllText(SettingFileName, string.Empty);
 
@@ -66,6 +119,35 @@ namespace Digitizer_ver1
                 }
 
 
+
+            }
+
+        }
+
+        public void SettingSave() 
+        {
+            System.IO.File.WriteAllText(SettingFileName, string.Empty);
+
+            using (StreamWriter writer = new StreamWriter(SettingFileName))
+            {
+
+                //ulozeni komunikace
+                writer.WriteLine("communication;" + communication.GetSettingString());
+
+                //ulozeni registru
+                foreach(SystemSetting_RegistersFileData data in List_ReigistersFile) 
+                {
+                    string line = "register" + ";" + data.DataString();
+                    writer.WriteLine(line);
+                }
+
+                //ulozeni configuracnich souboru
+                int countOfConfigs = configurationFiles.GetCountOfConfigFiles();
+                for (int i = 0; i < countOfConfigs; i++) 
+                {
+                    string line = "config" + ";" + configurationFiles.GetStringForSettingSave(i);
+                    writer.WriteLine(line);
+                }
 
             }
 
@@ -112,7 +194,7 @@ namespace Digitizer_ver1
             return file;
         }
 
-        static char[] caSplit = new char[] { ';' };
+        //static char[] caSplit = new char[] { ';' };
         private void UpdateRowRegistersFile(int row, string s)
         {
             if (String.IsNullOrEmpty(s) || !s.Contains(";"))
@@ -127,6 +209,23 @@ namespace Digitizer_ver1
             List_ReigistersFile[row].p_registerSettingFile = s_parts[1];
             dataGridView_RegistersFiles.Update();
 
+        }
+
+        private void UpdateRowRegisterFile(string register, string file) 
+        {
+            if (String.IsNullOrEmpty(register) || String.IsNullOrEmpty(file))
+            {
+                return;
+            }
+
+            for(int i = 0; i < List_ReigistersFile.Count; i++) 
+            {
+                if(List_ReigistersFile[i].p_registerSetting.p_description.Equals(register))
+                {
+                    List_ReigistersFile[i].p_registerSettingFile = file;
+                }
+            }
+            
         }
 
         private void OpenRegistersFiles() 

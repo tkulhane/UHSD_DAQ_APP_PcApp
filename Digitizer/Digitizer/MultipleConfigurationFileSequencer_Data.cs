@@ -41,6 +41,15 @@ namespace Digitizer_ver1
             SetState(eStates.NotAssign);
         }
 
+        public MultipleConfigurationFileSequencer_Data(string name, string file)
+        {
+            _ConfigSequencer = new ConfigurationFileSequencer();
+            _Assigned = true;
+            _Name = name;
+
+            SetState(eStates.Idle);
+        }
+
         public void SetState(eStates state) 
         {
             switch (state) 
