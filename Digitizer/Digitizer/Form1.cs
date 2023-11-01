@@ -897,11 +897,6 @@ namespace Digitizer_ver1
             AcqControl.AcqRunSetting();
         }
 
-        private void button_ReadAcqState_Click(object sender, EventArgs e)
-        {
-            AcqControl.ReadSettingAndValues();
-        }
-
         private void checkBox_TestGeneratorEnable_CheckedChanged(object sender, EventArgs e)
         {
             AcqControl.TestGeneratorEnable();
@@ -1020,8 +1015,8 @@ namespace Digitizer_ver1
             UInt32 value = (UInt32)numericUpDown_QS_Seed1.Value;
 
 
-            Registers_LMX1.UpdateRegisters(0x29, (int)(value & 0x0000FFFF));
-            Registers_LMX1.UpdateRegisters(0x28, (int)((value >> 16) & 0x0000FFFF));
+            Registers_LMX1.UpdateRegistersNoRequest(0x29, (int)(value & 0x0000FFFF));
+            Registers_LMX1.UpdateRegistersNoRequest(0x28, (int)((value >> 16) & 0x0000FFFF));
 
             Update_label_QS_Phase1();
 
@@ -1035,8 +1030,8 @@ namespace Digitizer_ver1
             UInt32 value = (UInt32)numericUpDown_QS_Seed2.Value;
 
 
-            Registers_LMX2.UpdateRegisters(0x29, (int)(value & 0x0000FFFF));
-            Registers_LMX2.UpdateRegisters(0x28, (int)((value >> 16) & 0x0000FFFF));
+            Registers_LMX2.UpdateRegistersNoRequest(0x29, (int)(value & 0x0000FFFF));
+            Registers_LMX2.UpdateRegistersNoRequest(0x28, (int)((value >> 16) & 0x0000FFFF));
 
             Update_label_QS_Phase2();
 

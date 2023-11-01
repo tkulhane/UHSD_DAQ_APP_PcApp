@@ -789,7 +789,6 @@ namespace Digitizer_ver1
                         int x = (data.ParseValue() & ~mask) | (value & mask);
 
                         SendRegister(address, x);
-                        MessageBox.Show(x.ToString("x"));
                     }
                 }
             }
@@ -801,6 +800,8 @@ namespace Digitizer_ver1
         //-------------------------------------------------------------------------------------------------------------------
         public void UpdateRegistersNoRequest(int address, int value)
         {
+            if (List_RegistersSetting.Count <= 0) return;
+
             int value_cell = DataGrid_RegistersSetting.Columns["p_value"].Index;
 
             for (int i = 0; i < List_RegistersSetting.Count; i++)
@@ -815,6 +816,8 @@ namespace Digitizer_ver1
 
         public void UpdateRegisters(int address, int value) 
         {
+            if (List_RegistersSetting.Count <= 0) return;
+
             int value_cell = DataGrid_RegistersSetting.Columns["p_value"].Index;
 
             for (int i = 0; i < List_RegistersSetting.Count; i++)
@@ -946,7 +949,7 @@ namespace Digitizer_ver1
                 }
             }
 
-            return -1;
+            return 0;
         }
 
     }

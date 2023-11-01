@@ -126,6 +126,8 @@ namespace Digitizer_ver1
             List_MultipleConfigFiles.Add(data);
             MultipleConfigFiles.Refresh();
 
+            data._ConfigSequencer.OpenRegistersFileAsString(file);
+
         }
 
         public int GetCountOfConfigFiles() 

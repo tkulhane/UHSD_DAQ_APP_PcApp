@@ -30,9 +30,9 @@ namespace Digitizer_ver1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label_dataErrors = new System.Windows.Forms.Label();
             this.label_AcqState = new System.Windows.Forms.Label();
@@ -93,7 +93,6 @@ namespace Digitizer_ver1
             this.button_RegLoadFromFile = new System.Windows.Forms.Button();
             this.tabControl_MAIN = new System.Windows.Forms.TabControl();
             this.tabMeasurement_Setting = new System.Windows.Forms.TabPage();
-            this.button_ReadAcqState = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.checkBox_TestGeneratorEnable = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -988,7 +987,6 @@ namespace Digitizer_ver1
             // 
             // tabMeasurement_Setting
             // 
-            this.tabMeasurement_Setting.Controls.Add(this.button_ReadAcqState);
             this.tabMeasurement_Setting.Controls.Add(this.groupBox6);
             this.tabMeasurement_Setting.Controls.Add(this.groupBox5);
             this.tabMeasurement_Setting.Controls.Add(this.groupBox4);
@@ -999,16 +997,6 @@ namespace Digitizer_ver1
             this.tabMeasurement_Setting.TabIndex = 7;
             this.tabMeasurement_Setting.Text = "Measurement Settings";
             this.tabMeasurement_Setting.UseVisualStyleBackColor = true;
-            // 
-            // button_ReadAcqState
-            // 
-            this.button_ReadAcqState.Location = new System.Drawing.Point(497, 441);
-            this.button_ReadAcqState.Name = "button_ReadAcqState";
-            this.button_ReadAcqState.Size = new System.Drawing.Size(75, 30);
-            this.button_ReadAcqState.TabIndex = 5;
-            this.button_ReadAcqState.Text = "Read";
-            this.button_ReadAcqState.UseVisualStyleBackColor = true;
-            this.button_ReadAcqState.Click += new System.EventHandler(this.button_ReadAcqState_Click);
             // 
             // groupBox6
             // 
@@ -1492,21 +1480,21 @@ namespace Digitizer_ver1
             // 
             this.chart_data.BorderlineColor = System.Drawing.Color.Black;
             this.chart_data.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea2.Name = "ChartArea1";
-            this.chart_data.ChartAreas.Add(chartArea2);
+            chartArea3.Name = "ChartArea1";
+            this.chart_data.ChartAreas.Add(chartArea3);
             this.chart_data.Dock = System.Windows.Forms.DockStyle.Bottom;
-            legend2.Name = "Legend1";
-            this.chart_data.Legends.Add(legend2);
+            legend3.Name = "Legend1";
+            this.chart_data.Legends.Add(legend3);
             this.chart_data.Location = new System.Drawing.Point(0, 197);
             this.chart_data.Margin = new System.Windows.Forms.Padding(2);
             this.chart_data.Name = "chart_data";
-            series2.BorderWidth = 2;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.IsVisibleInLegend = false;
-            series2.Legend = "Legend1";
-            series2.Name = "Data";
-            this.chart_data.Series.Add(series2);
+            series3.BorderWidth = 2;
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.IsVisibleInLegend = false;
+            series3.Legend = "Legend1";
+            series3.Name = "Data";
+            this.chart_data.Series.Add(series3);
             this.chart_data.Size = new System.Drawing.Size(850, 394);
             this.chart_data.TabIndex = 21;
             this.chart_data.Text = "chart_data";
@@ -2323,6 +2311,11 @@ namespace Digitizer_ver1
             // 
             this.numericUpDown_QS_Seed2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.numericUpDown_QS_Seed2.Location = new System.Drawing.Point(243, 50);
+            this.numericUpDown_QS_Seed2.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
             this.numericUpDown_QS_Seed2.Name = "numericUpDown_QS_Seed2";
             this.numericUpDown_QS_Seed2.Size = new System.Drawing.Size(103, 26);
             this.numericUpDown_QS_Seed2.TabIndex = 2;
@@ -2341,6 +2334,11 @@ namespace Digitizer_ver1
             // 
             this.numericUpDown_QS_Seed1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.numericUpDown_QS_Seed1.Location = new System.Drawing.Point(36, 50);
+            this.numericUpDown_QS_Seed1.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
             this.numericUpDown_QS_Seed1.Name = "numericUpDown_QS_Seed1";
             this.numericUpDown_QS_Seed1.Size = new System.Drawing.Size(103, 26);
             this.numericUpDown_QS_Seed1.TabIndex = 0;
@@ -2511,7 +2509,6 @@ namespace Digitizer_ver1
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.NumericUpDown numericUpDown_NumOfSamples;
         private System.Windows.Forms.Label label_AcqState;
-        private System.Windows.Forms.Button button_ReadAcqState;
         private System.Windows.Forms.TabPage tabConfiguration;
         private System.Windows.Forms.Button button_RegSaveToFile;
         private System.Windows.Forms.Button button_RegWriteAll;
