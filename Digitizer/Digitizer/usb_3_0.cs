@@ -12,6 +12,8 @@ namespace Digitizer_ver1
 {
     class usb_3_0
     {
+        public delegate void efunction(string message);
+        public efunction ErrorHandlerFunction;
 
         FTDI d3xxDevice;
         List<FTDI.FT_DEVICE_INFO> ListDeviceInfo;
@@ -20,6 +22,9 @@ namespace Digitizer_ver1
         UInt64 ReceivedBytes;
         Thread ThreadOfReceiving;
         bool ThreadOfReceiving_stop = false;
+
+
+
 
         public UInt32 DevicesScan(ComboBox comboBox_Devices) 
         {

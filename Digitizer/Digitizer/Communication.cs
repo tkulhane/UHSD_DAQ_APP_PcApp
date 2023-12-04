@@ -73,6 +73,7 @@ namespace Digitizer_ver1
 
         UART_Communication uart = new UART_Communication();
         usb_3_0 usb = new usb_3_0();
+        
 
         public eCommunicationType SelectedType;
         eCommunicationType OpenedType;
@@ -84,6 +85,28 @@ namespace Digitizer_ver1
 
         Thread ThreadOfDataRead;
         bool ThreadOfDataRead_stop = false;
+
+
+        public Communication()
+        {
+            usb.ErrorHandlerFunction = ErrorHandlerFunction;
+
+
+
+        }
+
+
+        private void ErrorHandlerFunction(string message)
+        {
+            if (message != string.Empty)
+            {
+                MessageBox.Show(message, "Communication ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            CloseAll();
+
+        }
+
 
         public void Scan()
         {

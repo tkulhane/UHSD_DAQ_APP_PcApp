@@ -1065,7 +1065,7 @@ namespace Digitizer_ver1
             UInt16 CHDIV;
             UInt16 CHDIV_reg = (UInt16)((Registers_LMX1.GetRegisterValue(0x4B) & 0x07C0) >> 6);
 
-            UInt16[] chdiv_val = { 0, 4, 6, 8, 12, 16, 24, 32, 48, 64, 72, 96, 128, 192, 256, 384, 512, 768 };
+            UInt16[] chdiv_val = { 2, 4, 6, 8, 12, 16, 24, 32, 48, 64, 72, 96, 128, 192, 256, 384, 512, 768 };
 
             if(CHDIV_reg <= 18) 
             {
@@ -1112,7 +1112,7 @@ namespace Digitizer_ver1
             UInt16 CHDIV;
             UInt16 CHDIV_reg = (UInt16)((Registers_LMX2.GetRegisterValue(0x4B) & 0x07C0) >> 6);
 
-            UInt16[] chdiv_val = { 0, 4, 6, 8, 12, 16, 24, 32, 48, 64, 72, 96, 128, 192, 256, 384, 512, 768 };
+            UInt16[] chdiv_val = { 2, 4, 6, 8, 12, 16, 24, 32, 48, 64, 72, 96, 128, 192, 256, 384, 512, 768 };
 
             if (CHDIV_reg <= 18)
             {

@@ -133,7 +133,7 @@ namespace Digitizer_ver1
                 Registers_SettingData data = new Registers_SettingData(s, Registers_AddressValueSize);
                 if (data.dataOk == false)
                 {
-                    MessageBox.Show("Wrong value when parsing config file.", "Wrong Value", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Wrong value when parsing register file." + "\n" + fname + "......" + s, "Wrong Value", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
                 }
                 List_RegistersSetting.Add(data);
