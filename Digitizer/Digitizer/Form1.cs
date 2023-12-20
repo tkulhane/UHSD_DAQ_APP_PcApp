@@ -170,20 +170,34 @@ namespace Digitizer_ver1
         UInt32 EventCount;
 
 
-        private void timer_info_Tick(object sender, EventArgs e)
+        private void timerForm_Tick(object sender, EventArgs e)
         {
-            if (checkBox_cmdQuestions.Checked) 
-            {
-                AcqControl.ReadValues();
-                gpio.ReadStateCommands();
-                rst.ReadStateCommands();
-            }
-            
+
+            //if (communication.communicationControl.ActivityError == true)
+            //    labelXXX.Text += "nOK";
+            //else
+            //    labelXXX.Text += "OK";
+
+
             label_RecvBytes.Text = communication.USB_RecvBytes().ToString();
             label_InQ.Text = communication.USB_InQ().ToString();
 
             label_dataErrors.Text = AcqData.ErrorCounter.ToString();
         }
+
+        private void timerRequest_Tick(object sender, EventArgs e)
+        {
+            if (checkBox_cmdQuestions.Checked)
+            {
+                AcqControl.ReadValues();
+                gpio.ReadStateCommands();
+                rst.ReadStateCommands();
+            }
+
+        }
+
+
+
 
         private void ExecuteCommand()
         {
@@ -229,6 +243,10 @@ namespace Digitizer_ver1
 
                 case Communication.eCommandCode.CMD_CONST_GET_Reset_Controler:
                     rst.UpdateFromCommunication(data[0], data[1], data[2]);
+                    break;
+
+                case Communication.eCommandCode.CMD_CONST_GET_CommunicationControl:
+                    communication.communicationControl.ActivityWatchUpdate(data[0], data[1], data[2]);
                     break;
 
 
@@ -1190,5 +1208,7 @@ namespace Digitizer_ver1
                 Registers_LMX2.SendMaskRegisterTblVal(0x00, 0x0000, (int)mask);
             }
         }
+
+
     }
 }

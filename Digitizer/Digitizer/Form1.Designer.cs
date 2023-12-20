@@ -30,13 +30,13 @@ namespace Digitizer_ver1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label_dataErrors = new System.Windows.Forms.Label();
             this.label_AcqState = new System.Windows.Forms.Label();
-            this.timer_info = new System.Windows.Forms.Timer(this.components);
+            this.timerRequest = new System.Windows.Forms.Timer(this.components);
             this.tabRegisters = new System.Windows.Forms.TabPage();
             this.tabControl_RegistersSetting = new System.Windows.Forms.TabControl();
             this.tabPage_ADC = new System.Windows.Forms.TabPage();
@@ -211,6 +211,8 @@ namespace Digitizer_ver1
             this.numericUpDown_QS_Seed2 = new System.Windows.Forms.NumericUpDown();
             this.label12 = new System.Windows.Forms.Label();
             this.numericUpDown_QS_Seed1 = new System.Windows.Forms.NumericUpDown();
+            this.timerForm = new System.Windows.Forms.Timer(this.components);
+            this.labelXXX = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tabRegisters.SuspendLayout();
             this.tabControl_RegistersSetting.SuspendLayout();
@@ -276,6 +278,7 @@ namespace Digitizer_ver1
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.labelXXX);
             this.panel1.Controls.Add(this.label_dataErrors);
             this.panel1.Controls.Add(this.label_AcqState);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -305,11 +308,11 @@ namespace Digitizer_ver1
             this.label_AcqState.Text = "........";
             this.label_AcqState.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // timer_info
+            // timerRequest
             // 
-            this.timer_info.Enabled = true;
-            this.timer_info.Interval = 500;
-            this.timer_info.Tick += new System.EventHandler(this.timer_info_Tick);
+            this.timerRequest.Enabled = true;
+            this.timerRequest.Interval = 500;
+            this.timerRequest.Tick += new System.EventHandler(this.timerRequest_Tick);
             // 
             // tabRegisters
             // 
@@ -1480,21 +1483,21 @@ namespace Digitizer_ver1
             // 
             this.chart_data.BorderlineColor = System.Drawing.Color.Black;
             this.chart_data.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea1.Name = "ChartArea1";
-            this.chart_data.ChartAreas.Add(chartArea1);
+            chartArea2.Name = "ChartArea1";
+            this.chart_data.ChartAreas.Add(chartArea2);
             this.chart_data.Dock = System.Windows.Forms.DockStyle.Bottom;
-            legend1.Name = "Legend1";
-            this.chart_data.Legends.Add(legend1);
+            legend2.Name = "Legend1";
+            this.chart_data.Legends.Add(legend2);
             this.chart_data.Location = new System.Drawing.Point(0, 197);
             this.chart_data.Margin = new System.Windows.Forms.Padding(2);
             this.chart_data.Name = "chart_data";
-            series1.BorderWidth = 2;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.IsVisibleInLegend = false;
-            series1.Legend = "Legend1";
-            series1.Name = "Data";
-            this.chart_data.Series.Add(series1);
+            series2.BorderWidth = 2;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.IsVisibleInLegend = false;
+            series2.Legend = "Legend1";
+            series2.Name = "Data";
+            this.chart_data.Series.Add(series2);
             this.chart_data.Size = new System.Drawing.Size(850, 394);
             this.chart_data.TabIndex = 21;
             this.chart_data.Text = "chart_data";
@@ -2344,6 +2347,21 @@ namespace Digitizer_ver1
             this.numericUpDown_QS_Seed1.TabIndex = 0;
             this.numericUpDown_QS_Seed1.ValueChanged += new System.EventHandler(this.numericUpDown_QS_Seed1_ValueChanged);
             // 
+            // timerForm
+            // 
+            this.timerForm.Enabled = true;
+            this.timerForm.Interval = 50;
+            this.timerForm.Tick += new System.EventHandler(this.timerForm_Tick);
+            // 
+            // labelXXX
+            // 
+            this.labelXXX.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labelXXX.Location = new System.Drawing.Point(583, 9);
+            this.labelXXX.Name = "labelXXX";
+            this.labelXXX.Size = new System.Drawing.Size(110, 21);
+            this.labelXXX.TabIndex = 29;
+            this.labelXXX.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2437,7 +2455,7 @@ namespace Digitizer_ver1
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Timer timer_info;
+        private System.Windows.Forms.Timer timerRequest;
         private System.Windows.Forms.TabPage tabRegisters;
         private System.Windows.Forms.TabControl tabControl_RegistersSetting;
         private System.Windows.Forms.TabPage tabPage_ADC;
@@ -2614,6 +2632,8 @@ namespace Digitizer_ver1
         private System.Windows.Forms.RadioButton radioButton_RegAddrHEX;
         private System.Windows.Forms.RadioButton radioButton_RegAddrDEC;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Timer timerForm;
+        public System.Windows.Forms.Label labelXXX;
     }
 }
 

@@ -55,7 +55,8 @@ namespace Digitizer_ver1
             if (ftStatus != FTDI.FT_STATUS.FT_OK)
             {
                 string msg = "Failed to get number of devices (create device info list)(error " + ftStatus.ToString() + ")";
-                MessageBox.Show(msg, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ErrorHandlerFunction(msg);
+                //MessageBox.Show(msg, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return 0;
             }
 
@@ -70,7 +71,8 @@ namespace Digitizer_ver1
             if (ftStatus != FTDI.FT_STATUS.FT_OK)
             {
                 string msg = "Failed to get Info of Devices(error " + ftStatus.ToString() + ")";
-                MessageBox.Show(msg, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ErrorHandlerFunction(msg);
+                //MessageBox.Show(msg, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return 0;
             }
 
@@ -101,7 +103,8 @@ namespace Digitizer_ver1
             if (ftStatus != FTDI.FT_STATUS.FT_OK)
             {
                 string msg = "Failed to open device (error " + ftStatus.ToString() + ")";
-                MessageBox.Show(msg, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ErrorHandlerFunction(msg);
+                //MessageBox.Show(msg, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -137,7 +140,8 @@ namespace Digitizer_ver1
             if (ftStatus != FTDI.FT_STATUS.FT_OK)
             {
                 string msg = "Failed to close device (error " + ftStatus.ToString() + ")";
-                MessageBox.Show(msg, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ErrorHandlerFunction(msg);
+                //MessageBox.Show(msg, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }
@@ -185,15 +189,17 @@ namespace Digitizer_ver1
 
 
                 string msg = "Failed to send data (error " + ftStatus.ToString() + ")";
-                MessageBox.Show(msg, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show(msg, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 d3xxDevice.AbortPipe(0x02);
+                ErrorHandlerFunction(msg);
                 return 0;
             }
 
             if(buffer.Length != transfered) 
             {
                 string msg = "Failed to send data - Length Does Not Match :" + (buffer.Length).ToString() + " != " + transfered.ToString();
-                MessageBox.Show(msg, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ErrorHandlerFunction(msg);
+                //MessageBox.Show(msg, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return 0;
             }
 
@@ -235,7 +241,8 @@ namespace Digitizer_ver1
                     if (ThreadOfReceiving_stop) return;
                     
                     string msg = "Failed to read data (error " + ftStatus.ToString() + ")";
-                    MessageBox.Show(msg, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ErrorHandlerFunction(msg);
+                    //MessageBox.Show(msg, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 

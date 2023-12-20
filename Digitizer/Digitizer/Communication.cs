@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Forms;
 
 namespace Digitizer_ver1
@@ -40,6 +41,8 @@ namespace Digitizer_ver1
             CMD_CONST_SET_GPIO = 0x33,
             CMD_CONST_GET_GPIO = 0x34,
 
+            CMD_CONST_SET_CommunicationControl = 0x35,
+            CMD_CONST_GET_CommunicationControl = 0x36,
 
 
             CMD_CONST_EVENT_HEAD = 0x7A,
@@ -73,6 +76,8 @@ namespace Digitizer_ver1
 
         UART_Communication uart = new UART_Communication();
         usb_3_0 usb = new usb_3_0();
+
+        public CommunicationControl communicationControl = new CommunicationControl(eCommandCode.CMD_CONST_GET_CommunicationControl, eCommandCode.CMD_CONST_SET_CommunicationControl);
         
 
         public eCommunicationType SelectedType;
@@ -86,14 +91,21 @@ namespace Digitizer_ver1
         Thread ThreadOfDataRead;
         bool ThreadOfDataRead_stop = false;
 
+        
+
 
         public Communication()
         {
             usb.ErrorHandlerFunction = ErrorHandlerFunction;
 
-
+            communicationControl.SendCommand = SendCommand;
+            communicationControl.ErrorHandlerFunction = ErrorHandlerFunction;
 
         }
+
+
+
+
 
 
         private void ErrorHandlerFunction(string message)
@@ -451,6 +463,15 @@ namespace Digitizer_ver1
 
         private void EnableDisableControls(bool state) 
         {
+            if (!state) 
+            {
+                communicationControl.ActivityMonitor_Start();
+            }
+            else 
+            {
+                communicationControl.ActivityMonitor_Stop();
+            }
+            
             comboBox_Ports.Enabled = state;
             radioButton_UART.Enabled = state;
             radioButton_USB.Enabled = state;
