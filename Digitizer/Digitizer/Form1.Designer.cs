@@ -30,10 +30,11 @@ namespace Digitizer_ver1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labelXXX = new System.Windows.Forms.Label();
             this.label_dataErrors = new System.Windows.Forms.Label();
             this.label_AcqState = new System.Windows.Forms.Label();
             this.timerRequest = new System.Windows.Forms.Timer(this.components);
@@ -212,7 +213,6 @@ namespace Digitizer_ver1
             this.label12 = new System.Windows.Forms.Label();
             this.numericUpDown_QS_Seed1 = new System.Windows.Forms.NumericUpDown();
             this.timerForm = new System.Windows.Forms.Timer(this.components);
-            this.labelXXX = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tabRegisters.SuspendLayout();
             this.tabControl_RegistersSetting.SuspendLayout();
@@ -287,6 +287,15 @@ namespace Digitizer_ver1
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1248, 39);
             this.panel1.TabIndex = 0;
+            // 
+            // labelXXX
+            // 
+            this.labelXXX.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labelXXX.Location = new System.Drawing.Point(583, 9);
+            this.labelXXX.Name = "labelXXX";
+            this.labelXXX.Size = new System.Drawing.Size(110, 21);
+            this.labelXXX.TabIndex = 29;
+            this.labelXXX.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label_dataErrors
             // 
@@ -1483,21 +1492,21 @@ namespace Digitizer_ver1
             // 
             this.chart_data.BorderlineColor = System.Drawing.Color.Black;
             this.chart_data.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea2.Name = "ChartArea1";
-            this.chart_data.ChartAreas.Add(chartArea2);
+            chartArea1.Name = "ChartArea1";
+            this.chart_data.ChartAreas.Add(chartArea1);
             this.chart_data.Dock = System.Windows.Forms.DockStyle.Bottom;
-            legend2.Name = "Legend1";
-            this.chart_data.Legends.Add(legend2);
+            legend1.Name = "Legend1";
+            this.chart_data.Legends.Add(legend1);
             this.chart_data.Location = new System.Drawing.Point(0, 197);
             this.chart_data.Margin = new System.Windows.Forms.Padding(2);
             this.chart_data.Name = "chart_data";
-            series2.BorderWidth = 2;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.IsVisibleInLegend = false;
-            series2.Legend = "Legend1";
-            series2.Name = "Data";
-            this.chart_data.Series.Add(series2);
+            series1.BorderWidth = 2;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.IsVisibleInLegend = false;
+            series1.Legend = "Legend1";
+            series1.Name = "Data";
+            this.chart_data.Series.Add(series1);
             this.chart_data.Size = new System.Drawing.Size(850, 394);
             this.chart_data.TabIndex = 21;
             this.chart_data.Text = "chart_data";
@@ -2352,15 +2361,6 @@ namespace Digitizer_ver1
             this.timerForm.Enabled = true;
             this.timerForm.Interval = 50;
             this.timerForm.Tick += new System.EventHandler(this.timerForm_Tick);
-            // 
-            // labelXXX
-            // 
-            this.labelXXX.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelXXX.Location = new System.Drawing.Point(583, 9);
-            this.labelXXX.Name = "labelXXX";
-            this.labelXXX.Size = new System.Drawing.Size(110, 21);
-            this.labelXXX.TabIndex = 29;
-            this.labelXXX.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form1
             // 
