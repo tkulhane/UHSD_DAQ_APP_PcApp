@@ -126,6 +126,9 @@ namespace Digitizer_ver1
 
 
             AcqControl.ReadSettingAndValues();
+
+
+            // tabControl_RegistersSetting.
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)

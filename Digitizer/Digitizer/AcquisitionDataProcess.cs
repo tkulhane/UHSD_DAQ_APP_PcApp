@@ -144,6 +144,7 @@ namespace Digitizer_ver1
 
                 FrameInPacketCounter++;
 
+                
 
                 int sample1 = data[3] + ((data[2] & 0x0F) << 8);
                 int sample2 = ((data[2] & 0xF0) >> 4) + (data[1] << 4);
@@ -155,8 +156,10 @@ namespace Digitizer_ver1
                 logStr += "; Sample 1 = " + sample1.ToString();
                 logStr += "; Sample 2 = " + sample2.ToString();
 
-            }
+                
 
+            }
+            /*
             logStr += Environment.NewLine;
             using (StreamWriter writer = File.AppendText("log_Communication_data.txt"))
             {
@@ -168,7 +171,7 @@ namespace Digitizer_ver1
             {
                 writer.Write(logErr);
             }
-
+            */
 
 
         }
