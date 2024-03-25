@@ -56,6 +56,8 @@
     <Compile Include="AcquisitionDataProcess.cs" />
     <Compile Include="AcquisitionDataProcess_Data.cs" />
     <Compile Include="Acquisition_Control.cs" />
+    <Compile Include="AnalyzInCirc.cs" />
+    <Compile Include="AnalyzInCirc_Data.cs" />
     <Compile Include="Communication.cs" />
     <Compile Include="CommunicationControl.cs" />
     <Compile Include="ConfigurationFileSequencer.cs" />
@@ -72,6 +74,7 @@
     <Compile Include="GpioInput_Data.cs" />
     <Compile Include="MultipleConfigurationFileSequencer.cs" />
     <Compile Include="MultipleConfigurationFileSequencer_Data.cs" />
+    <Compile Include="Registers_Setting_X.cs" />
     <Compile Include="ResetControl_Data.cs" />
     <Compile Include="GpioOutput_Data.cs" />
     <Compile Include="GPIO_Control.cs" />

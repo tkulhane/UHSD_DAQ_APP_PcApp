@@ -70,6 +70,9 @@ namespace Digitizer_ver1
             InputAdd(14, "SYNC-IN");
             InputAdd(15, "LANE");
 
+            InputAdd(9, "EN");
+            InputAdd(10, "BUSY");
+
             //Outputs
             OutputAdd(0, "ADC-PWDN");
             OutputAdd(1, "HMC-SYNC");
@@ -221,6 +224,7 @@ namespace Digitizer_ver1
             UInt16 data = (UInt16)((data_1 << 8) + data_2);
 
             int value_cell = DataGrid_GpioInput.Columns["p_rising"].Index;
+            
 
             for (int i = 0; i < List_GpioInput.Count; i++)
             {
@@ -348,7 +352,7 @@ namespace Digitizer_ver1
             }
 
             step++;
-            if (step >= 1) step = 0;
+            if (step > 1) step = 0;
 
         }
 

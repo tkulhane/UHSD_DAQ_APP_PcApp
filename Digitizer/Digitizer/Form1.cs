@@ -109,6 +109,19 @@ namespace Digitizer_ver1
             MultiConfigSequence.Init();
 
 
+            //Analyz In Circ
+            AnalyzInCirc.label_Enable = label_AnalyzEnable;
+            AnalyzInCirc.numericUpDown_NumOfSamples = numericUpDown_AnalyzNumOfSamples;
+            AnalyzInCirc.label_Empty = label_AnalyzEmpty;
+            AnalyzInCirc.label_DataReadState = label_DataReadState;
+            AnalyzInCirc._dataGridView_AnalyzData = dataGridView_AnalyzData;
+            CheckBox[] checkBoxes_Rising =  { checkBox_AnalyzTrg_R_1, checkBox_AnalyzTrg_R_2, checkBox_AnalyzTrg_R_3, checkBox_AnalyzTrg_R_4, checkBox_AnalyzTrg_R_5, checkBox_AnalyzTrg_R_6, checkBox_AnalyzTrg_R_7, checkBox_AnalyzTrg_R_8 };
+            CheckBox[] checkBoxes_Falling = { checkBox_AnalyzTrg_F_1, checkBox_AnalyzTrg_F_2, checkBox_AnalyzTrg_F_3, checkBox_AnalyzTrg_F_4, checkBox_AnalyzTrg_F_5, checkBox_AnalyzTrg_F_6, checkBox_AnalyzTrg_F_7, checkBox_AnalyzTrg_F_8 };
+            AnalyzInCirc.checkBox_Triggers_Rising = checkBoxes_Rising;
+            AnalyzInCirc.checkBox_Triggers_Falling = checkBoxes_Falling;
+            AnalyzInCirc.SendCommand = communication.SendCommand;
+            AnalyzInCirc.AnalyzInit();
+
 
             //System Setting
             sysSetting.communication = communication;
@@ -128,7 +141,14 @@ namespace Digitizer_ver1
             AcqControl.ReadSettingAndValues();
 
 
-            // tabControl_RegistersSetting.
+
+
+
+
+            reg_test = new Registers_Setting_X("TestTest", tabControl_RegistersSetting, Registers_Setting_X.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_AdcRegisters, Communication.eCommandCode.CMD_CONST_SET_AdcRegisters);
+            reg_test.SendFunction = communication.SendCommand;
+
+            //tabControl_RegistersSetting.Controls.Add(dgv);
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -152,12 +172,19 @@ namespace Digitizer_ver1
         SystemSetting sysSetting = new SystemSetting();
         GPIO_Control gpio = new GPIO_Control();
         Reset_Control rst = new Reset_Control();
+        AnalyzInCirc AnalyzInCirc = new AnalyzInCirc();
+
 
         Registers_Setting Registers_ADC = new Registers_Setting("ADC", Registers_Setting.eAddressValueSize.Address16_Value8, Communication.eCommandCode.CMD_CONST_GET_AdcRegisters, Communication.eCommandCode.CMD_CONST_SET_AdcRegisters);
         Registers_Setting Registers_HMC = new Registers_Setting("HMC", Registers_Setting.eAddressValueSize.Address16_Value8, Communication.eCommandCode.CMD_CONST_GET_HmcRegisters, Communication.eCommandCode.CMD_CONST_SET_HmcRegisters);
         Registers_Setting Registers_LMX1 = new Registers_Setting("LMX1", Registers_Setting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Lmx1Registers, Communication.eCommandCode.CMD_CONST_SET_Lmx1Registers);
         Registers_Setting Registers_LMX2 = new Registers_Setting("LMX2", Registers_Setting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Lmx2Registers, Communication.eCommandCode.CMD_CONST_SET_Lmx2Registers);
-        Registers_Setting Registers_FpgaTest = new Registers_Setting("FpgaTest", Registers_Setting.eAddressValueSize.Address8_Value8, Communication.eCommandCode.CMD_CONST_GET_TestRegisters, Communication.eCommandCode.CMD_CONST_SET_TestRegisters);
+        //Registers_Setting Registers_FpgaTest = new Registers_Setting("FpgaTest", Registers_Setting.eAddressValueSize.Address8_Value8, Communication.eCommandCode.CMD_CONST_GET_TestRegisters, Communication.eCommandCode.CMD_CONST_SET_TestRegisters);
+
+        Registers_Setting Registers_FpgaTest = new Registers_Setting("FpgaTest", Registers_Setting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_TransceiversControl, Communication.eCommandCode.CMD_CONST_SET_TransceiversControl);
+
+
+        Registers_Setting_X reg_test;
 
         //ConfigurationFileSequencer ConfigSequence = new ConfigurationFileSequencer();
         MultipleConfigurationFileSequencer MultiConfigSequence = new MultipleConfigurationFileSequencer();
@@ -195,6 +222,7 @@ namespace Digitizer_ver1
                 AcqControl.ReadValues();
                 gpio.ReadStateCommands();
                 rst.ReadStateCommands();
+                AnalyzInCirc.GetSetting();
             }
 
         }
@@ -232,7 +260,8 @@ namespace Digitizer_ver1
                     Registers_LMX2.UpdateRegisters(data[0], data[1], data[2]);
                     break;
 
-                case Communication.eCommandCode.CMD_CONST_GET_TestRegisters:
+                //case Communication.eCommandCode.CMD_CONST_GET_TestRegisters:       //ToDo:
+                case Communication.eCommandCode.CMD_CONST_GET_TransceiversControl:
                     Registers_FpgaTest.UpdateRegisters(data[0], data[1], data[2]);
                     break;
 
@@ -250,6 +279,10 @@ namespace Digitizer_ver1
 
                 case Communication.eCommandCode.CMD_CONST_GET_CommunicationControl:
                     communication.communicationControl.ActivityWatchUpdate(data[0], data[1], data[2]);
+                    break;
+
+                case Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc:
+                    AnalyzInCirc.UpdateFromCommunication(data[0], data[1], data[2]);
                     break;
 
 
@@ -273,6 +306,8 @@ namespace Digitizer_ver1
             Update_label_QS_Phase1();
             Update_label_QS_Phase2();
             Update_QS_FcalEn_checkBox();
+
+            AnalyzInCirc.GetSetting();
         }
 
 
@@ -1213,5 +1248,56 @@ namespace Digitizer_ver1
         }
 
 
+
+
+        //-------------------------------------------------------------------------------------------------------------------
+        //Analyz In Circ
+        //-------------------------------------------------------------------------------------------------------------------
+
+
+        private void numericUpDown_AnalyzNumOfSamples_ValueChanged(object sender, EventArgs e)
+        {
+            AnalyzInCirc.SetNumberOfSamples();
+        }
+
+        private void button_AnalyzSwStart_Click(object sender, EventArgs e)
+        {
+            AnalyzInCirc.SwStart();
+        }
+
+        private void checkBox_AnalyzTrg_CheckedChanged(object sender, EventArgs e)
+        {
+            AnalyzInCirc.TriggerSetting_CheckBox();
+        }
+
+        private void button_AnalyzClear_Click(object sender, EventArgs e)
+        {
+            AnalyzInCirc.Clear();
+        }
+
+        private void button_AnalyzEnable_Click(object sender, EventArgs e)
+        {
+            AnalyzInCirc.EnableDisable(true);
+        }
+
+        private void button_AnalyzDisable_Click(object sender, EventArgs e)
+        {
+            AnalyzInCirc.EnableDisable(false);
+        }
+
+        private void button_AnalyzClearList_Click(object sender, EventArgs e)
+        {
+            AnalyzInCirc.ClearList();
+        }
+
+        private void button_DataReadStart_Click(object sender, EventArgs e)
+        {
+            AnalyzInCirc.ReadData_Start();
+        }
+
+        private void button_DataReadStop_Click(object sender, EventArgs e)
+        {
+            AnalyzInCirc.ReadData_Stop();
+        }
     }
 }

@@ -44,6 +44,12 @@ namespace Digitizer_ver1
             CMD_CONST_SET_CommunicationControl = 0x35,
             CMD_CONST_GET_CommunicationControl = 0x36,
 
+            CMD_CONST_SET_TransceiversControl = 0x37,
+            CMD_CONST_GET_TransceiversControl = 0x38,
+
+            CMD_CONST_SET_AnalyzInCirc = 0x39,
+            CMD_CONST_GET_AnalyzInCirc = 0x40,
+
 
             CMD_CONST_EVENT_HEAD = 0x7A,
             CMD_CONST_EVENT_TAIL = 0x7B,

@@ -64,8 +64,10 @@ namespace Digitizer_ver1
                 }
                 EventsCount_Started++;
 
+                int eventNumber = data[3] + (data[2] << 8) + ((data[1] & 0x0F) << 16); 
+
                 ActualEventData = null;
-                ActualEventData = new AcquisitionDataProcess_Data(data[3]);
+                ActualEventData = new AcquisitionDataProcess_Data(eventNumber);
 
                 logStr += "Event Head; Event Num = " + ActualEventData.p_eventNum.ToString();
 
@@ -92,6 +94,8 @@ namespace Digitizer_ver1
                 }
 
                 SaveEventData();
+                ActualEventData = null;
+
 
                 logStr += "Event Tail; Packet Count = " + data[3].ToString();
                 logStr += Environment.NewLine;
@@ -159,13 +163,20 @@ namespace Digitizer_ver1
                 
 
             }
-            /*
+            
             logStr += Environment.NewLine;
-            using (StreamWriter writer = File.AppendText("log_Communication_data.txt"))
+
+
+            if (checkBox_SaveToFile.Checked) 
             {
-                writer.Write(logStr);
+                using (StreamWriter writer = File.AppendText("log_Communication_data.txt"))
+                {
+                    writer.Write(logStr);
+                }
             }
 
+
+            /*
             if(logErr != string.Empty) logErr += Environment.NewLine;
             using (StreamWriter writer = File.AppendText("log_Error_data.txt"))
             {
@@ -179,6 +190,8 @@ namespace Digitizer_ver1
 
         private void SaveEventData() 
         {
+            if (ActualEventData == null) return;
+            
             if (SavingInRam) 
             {
                 List_EventsData.Add(ActualEventData);
