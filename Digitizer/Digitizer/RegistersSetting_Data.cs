@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Digitizer_ver1
 {
-    class Registers_SettingData
+    class RegistersSetting_Data
     {
 
         public enum eReadWrite : byte
@@ -42,7 +42,7 @@ namespace Digitizer_ver1
 
 
         static char[] caSplit = new char[] { ';' };
-        public Registers_SettingData(String line)
+        public RegistersSetting_Data(String line)
         {
             if (String.IsNullOrEmpty(line) || !line.Contains(";")) 
             {
@@ -82,7 +82,7 @@ namespace Digitizer_ver1
 
         
 
-        public Registers_SettingData(String line, Registers_Setting.eAddressValueSize size)
+        public RegistersSetting_Data(String line, RegistersSetting.eAddressValueSize size)
         {
             if (String.IsNullOrEmpty(line) || !line.Contains(";")) 
             {
@@ -99,17 +99,17 @@ namespace Digitizer_ver1
             if (!int.TryParse(line_parts[3], NumberStyles.HexNumber, null, out temp_intValue)) temp_intValue = -1 ;
 
 
-            if (size == Registers_Setting.eAddressValueSize.Address8_Value8)
+            if (size == RegistersSetting.eAddressValueSize.Address8_Value8)
             {
                 if (_address > 0xFF)        _address = -1;
                 if (temp_intValue > 0xFF)   temp_intValue = -1;
             }
-            else if (size == Registers_Setting.eAddressValueSize.Address16_Value8)
+            else if (size == RegistersSetting.eAddressValueSize.Address16_Value8)
             {
                 if (_address > 0xFFFF)      _address = -1;
                 if (temp_intValue > 0xFF)   temp_intValue = -1;
             }
-            else if (size == Registers_Setting.eAddressValueSize.Address8_Value16)
+            else if (size == RegistersSetting.eAddressValueSize.Address8_Value16)
             {
                 if (_address > 0xFF)        _address = -1;
                 if (temp_intValue > 0xFFFF) temp_intValue = -1;
@@ -151,22 +151,22 @@ namespace Digitizer_ver1
             return value;
         }
 
-        public int ParseValue(Registers_Setting.eAddressValueSize size)
+        public int ParseValue(RegistersSetting.eAddressValueSize size)
         {
             int value = -1;
 
             if(!int.TryParse(_value, NumberStyles.HexNumber, null, out value)) value = -1;
 
 
-            if (size == Registers_Setting.eAddressValueSize.Address8_Value8) 
+            if (size == RegistersSetting.eAddressValueSize.Address8_Value8) 
             {
                 if (value > 0xFF) value = - 1;
             }
-            else if (size == Registers_Setting.eAddressValueSize.Address16_Value8)
+            else if (size == RegistersSetting.eAddressValueSize.Address16_Value8)
             {
                 if (value > 0xFF) value = - 1;
             }
-            else if (size == Registers_Setting.eAddressValueSize.Address8_Value16)
+            else if (size == RegistersSetting.eAddressValueSize.Address8_Value16)
             {
                 if (value > 0xFFFF) value = - 1;
             }

@@ -21,7 +21,7 @@ namespace Digitizer_ver1
 
        
 
-        private BindingList<Registers_SettingData> List_RegistersSetting = new BindingList<Registers_SettingData>();
+        private BindingList<RegistersSetting_Data> List_RegistersSetting = new BindingList<RegistersSetting_Data>();
 
         public DataGridView DataGrid_RegistersSetting;
 
@@ -134,7 +134,7 @@ namespace Digitizer_ver1
 
             foreach (String s in lines)
             {
-                Registers_SettingData data = new Registers_SettingData(s, (Registers_Setting.eAddressValueSize)Registers_AddressValueSize);
+                RegistersSetting_Data data = new RegistersSetting_Data(s, (RegistersSetting.eAddressValueSize)Registers_AddressValueSize);
                 if (data.dataOk == false)
                 {
                     MessageBox.Show("Wrong value when parsing register file." + "\n" + fname + "......" + s, "Wrong Value", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -212,7 +212,7 @@ namespace Digitizer_ver1
 
                 foreach (String s in lines)
                 {
-                    Registers_SettingData data = new Registers_SettingData(s, (Registers_Setting.eAddressValueSize)Registers_AddressValueSize);
+                    RegistersSetting_Data data = new RegistersSetting_Data(s, (RegistersSetting.eAddressValueSize)Registers_AddressValueSize);
                     if(data.dataOk == false)
                     {
                         MessageBox.Show("Wrong value when parsing config file.", "Wrong Value", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -286,7 +286,7 @@ namespace Digitizer_ver1
 
             FileStream fs = File.OpenWrite(fname);
 
-            foreach (Registers_SettingData data in List_RegistersSetting)
+            foreach (RegistersSetting_Data data in List_RegistersSetting)
             {
                 byte[] line = Encoding.ASCII.GetBytes(data.FormatToCSV());
 
@@ -307,7 +307,7 @@ namespace Digitizer_ver1
 
             FileStream fs = File.OpenWrite(fname);
 
-            foreach (Registers_SettingData data in List_RegistersSetting)
+            foreach (RegistersSetting_Data data in List_RegistersSetting)
             {
                 byte[] line = Encoding.ASCII.GetBytes(data.FormatToCSV());
 
@@ -492,11 +492,11 @@ namespace Digitizer_ver1
         //-------------------------------------------------------------------------------------------------------------------
         public void DataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            Registers_SettingData data = List_RegistersSetting[e.RowIndex];
+            RegistersSetting_Data data = List_RegistersSetting[e.RowIndex];
 
             int address = data.p_address;
-            int value = data.ParseValue((Registers_Setting.eAddressValueSize)Registers_AddressValueSize);
-            Registers_SettingData.eReadWrite readWrite = data._ReadWrite;
+            int value = data.ParseValue((RegistersSetting.eAddressValueSize)Registers_AddressValueSize);
+            RegistersSetting_Data.eReadWrite readWrite = data._ReadWrite;
 
             if (value < 0) return;
 
@@ -512,7 +512,7 @@ namespace Digitizer_ver1
             //if (e.ColumnIndex == 4 || e.ColumnIndex == 0) //read
             {
                 
-                if (readWrite == Registers_SettingData.eReadWrite.read_write || readWrite == Registers_SettingData.eReadWrite.read) 
+                if (readWrite == RegistersSetting_Data.eReadWrite.read_write || readWrite == RegistersSetting_Data.eReadWrite.read) 
                 {
                     Send(Registers_ID_GET, address, value);
                 }
@@ -525,7 +525,7 @@ namespace Digitizer_ver1
             else if (e.ColumnIndex == index_write)
             //else if (e.ColumnIndex == 5 || e.ColumnIndex == 1) //write
             {
-                if (readWrite == Registers_SettingData.eReadWrite.read_write || readWrite == Registers_SettingData.eReadWrite.write)
+                if (readWrite == RegistersSetting_Data.eReadWrite.read_write || readWrite == RegistersSetting_Data.eReadWrite.write)
                 {
                     Send(Registers_ID_SET, address, value);
                 }
@@ -536,7 +536,7 @@ namespace Digitizer_ver1
             }
         }
 
-        public bool Grid_GetSelectData(out Registers_SettingData data) 
+        public bool Grid_GetSelectData(out RegistersSetting_Data data) 
         {
             data = null;
             
@@ -556,13 +556,13 @@ namespace Digitizer_ver1
         //-------------------------------------------------------------------------------------------------------------------
         public void ReadAll() 
         {
-            foreach(Registers_SettingData data in List_RegistersSetting) 
+            foreach(RegistersSetting_Data data in List_RegistersSetting) 
             {
                 int address = data.p_address;
                 
-                Registers_SettingData.eReadWrite readWrite = data._ReadWrite;
+                RegistersSetting_Data.eReadWrite readWrite = data._ReadWrite;
 
-                if (readWrite == Registers_SettingData.eReadWrite.read_write || readWrite == Registers_SettingData.eReadWrite.read)
+                if (readWrite == RegistersSetting_Data.eReadWrite.read_write || readWrite == RegistersSetting_Data.eReadWrite.read)
                 {
                     Send(Registers_ID_GET, address, 0);
                 }
@@ -572,15 +572,15 @@ namespace Digitizer_ver1
 
         public void WriteAll() 
         {
-            foreach (Registers_SettingData data in List_RegistersSetting)
+            foreach (RegistersSetting_Data data in List_RegistersSetting)
             {
                 int address = data.p_address;
-                int value = data.ParseValue((Registers_Setting.eAddressValueSize)Registers_AddressValueSize);
-                Registers_SettingData.eReadWrite readWrite = data._ReadWrite;
+                int value = data.ParseValue((RegistersSetting.eAddressValueSize)Registers_AddressValueSize);
+                RegistersSetting_Data.eReadWrite readWrite = data._ReadWrite;
 
                 if (value < 0) continue;
 
-                if (readWrite == Registers_SettingData.eReadWrite.read_write || readWrite == Registers_SettingData.eReadWrite.read)
+                if (readWrite == RegistersSetting_Data.eReadWrite.read_write || readWrite == RegistersSetting_Data.eReadWrite.read)
                 {
                     Send(Registers_ID_SET, address, value);
                 }
@@ -596,16 +596,16 @@ namespace Digitizer_ver1
             //foreach (Registers_SettingData data in List_RegistersSetting)
             for(int i = 0; i < List_RegistersSetting.Count;i++)
             {
-                Registers_SettingData data = List_RegistersSetting[List_RegistersSetting.Count -1 - i];
+                RegistersSetting_Data data = List_RegistersSetting[List_RegistersSetting.Count -1 - i];
 
 
                 int address = data.p_address;
-                int value = data.ParseValue((Registers_Setting.eAddressValueSize)Registers_AddressValueSize);
-                Registers_SettingData.eReadWrite readWrite = data._ReadWrite;
+                int value = data.ParseValue((RegistersSetting.eAddressValueSize)Registers_AddressValueSize);
+                RegistersSetting_Data.eReadWrite readWrite = data._ReadWrite;
 
                 if (value < 0) continue;
 
-                if (readWrite == Registers_SettingData.eReadWrite.read_write || readWrite == Registers_SettingData.eReadWrite.read)
+                if (readWrite == RegistersSetting_Data.eReadWrite.read_write || readWrite == RegistersSetting_Data.eReadWrite.read)
                 {
                     Send(Registers_ID_SET, address, value);
                 }
@@ -620,15 +620,15 @@ namespace Digitizer_ver1
         {
             for (int i = 0; i < List_RegistersSetting.Count; i++)
             {
-                Registers_SettingData data = List_RegistersSetting[i];
+                RegistersSetting_Data data = List_RegistersSetting[i];
 
                 if (address == data.p_address) 
                 {
-                    Registers_SettingData.eReadWrite readWrite = data._ReadWrite;
+                    RegistersSetting_Data.eReadWrite readWrite = data._ReadWrite;
 
-                    int value = data.ParseValue((Registers_Setting.eAddressValueSize)Registers_AddressValueSize);
+                    int value = data.ParseValue((RegistersSetting.eAddressValueSize)Registers_AddressValueSize);
 
-                    if (readWrite == Registers_SettingData.eReadWrite.read_write || readWrite == Registers_SettingData.eReadWrite.write)
+                    if (readWrite == RegistersSetting_Data.eReadWrite.read_write || readWrite == RegistersSetting_Data.eReadWrite.write)
                     {
                         Send(Registers_ID_SET, address, value);
                     }
@@ -678,13 +678,13 @@ namespace Digitizer_ver1
 
             for (int i = 0; i < List_RegistersSetting.Count; i++)
             {
-                Registers_SettingData data = List_RegistersSetting[i];
+                RegistersSetting_Data data = List_RegistersSetting[i];
 
                 if (address == data.p_address)
                 {
-                    Registers_SettingData.eReadWrite readWrite = data._ReadWrite;
+                    RegistersSetting_Data.eReadWrite readWrite = data._ReadWrite;
 
-                    if (readWrite == Registers_SettingData.eReadWrite.read_write || readWrite == Registers_SettingData.eReadWrite.read)
+                    if (readWrite == RegistersSetting_Data.eReadWrite.read_write || readWrite == RegistersSetting_Data.eReadWrite.read)
                     {
                         Send(Registers_ID_GET, address, 0x00);
                         _ReadRequest = true;
@@ -710,13 +710,13 @@ namespace Digitizer_ver1
             
             for (int i = 0; i < List_RegistersSetting.Count; i++)
             {
-                Registers_SettingData data = List_RegistersSetting[i];
+                RegistersSetting_Data data = List_RegistersSetting[i];
 
                 if (address == data.p_address)
                 {
-                    Registers_SettingData.eReadWrite readWrite = data._ReadWrite;
+                    RegistersSetting_Data.eReadWrite readWrite = data._ReadWrite;
 
-                    if (readWrite == Registers_SettingData.eReadWrite.read_write || readWrite == Registers_SettingData.eReadWrite.read)
+                    if (readWrite == RegistersSetting_Data.eReadWrite.read_write || readWrite == RegistersSetting_Data.eReadWrite.read)
                     {
                         Send(Registers_ID_GET, address, 0x00);
                         _ReadRequestMask = true;
@@ -737,15 +737,15 @@ namespace Digitizer_ver1
 
             for (int i = 0; i < List_RegistersSetting.Count; i++)
             {
-                Registers_SettingData data = List_RegistersSetting[i];
+                RegistersSetting_Data data = List_RegistersSetting[i];
 
                 if (address == data.p_address)
                 {
-                    int value = data.ParseValue((Registers_Setting.eAddressValueSize)Registers_AddressValueSize);
+                    int value = data.ParseValue((RegistersSetting.eAddressValueSize)Registers_AddressValueSize);
 
-                    Registers_SettingData.eReadWrite readWrite = data._ReadWrite;
+                    RegistersSetting_Data.eReadWrite readWrite = data._ReadWrite;
 
-                    if (readWrite == Registers_SettingData.eReadWrite.read_write || readWrite == Registers_SettingData.eReadWrite.read || readWrite == Registers_SettingData.eReadWrite.write)
+                    if (readWrite == RegistersSetting_Data.eReadWrite.read_write || readWrite == RegistersSetting_Data.eReadWrite.read || readWrite == RegistersSetting_Data.eReadWrite.write)
                     {
                         Send(Registers_ID_GET, address, 0x00);
                         _ReadRequestMask = true;
@@ -782,13 +782,13 @@ namespace Digitizer_ver1
 
             for (int i = 0; i < List_RegistersSetting.Count; i++)
             {
-                Registers_SettingData data = List_RegistersSetting[i];
+                RegistersSetting_Data data = List_RegistersSetting[i];
 
                 if (address == data.p_address)
                 {
-                    Registers_SettingData.eReadWrite readWrite = data._ReadWrite;
+                    RegistersSetting_Data.eReadWrite readWrite = data._ReadWrite;
 
-                    if (readWrite == Registers_SettingData.eReadWrite.read_write)
+                    if (readWrite == RegistersSetting_Data.eReadWrite.read_write)
                     {
                         int x = (data.ParseValue() & ~mask) | (value & mask);
 
@@ -938,15 +938,15 @@ namespace Digitizer_ver1
         {
             for (int i = 0; i < List_RegistersSetting.Count; i++)
             {
-                Registers_SettingData data = List_RegistersSetting[i];
+                RegistersSetting_Data data = List_RegistersSetting[i];
 
                 if (address == data.p_address)
                 {
-                    Registers_SettingData.eReadWrite readWrite = data._ReadWrite;
+                    RegistersSetting_Data.eReadWrite readWrite = data._ReadWrite;
 
-                    int value = data.ParseValue((Registers_Setting.eAddressValueSize)Registers_AddressValueSize);
+                    int value = data.ParseValue((RegistersSetting.eAddressValueSize)Registers_AddressValueSize);
 
-                    if (readWrite == Registers_SettingData.eReadWrite.read_write || readWrite == Registers_SettingData.eReadWrite.read)
+                    if (readWrite == RegistersSetting_Data.eReadWrite.read_write || readWrite == RegistersSetting_Data.eReadWrite.read)
                     {
                         return value;
                     }

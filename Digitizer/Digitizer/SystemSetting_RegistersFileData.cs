@@ -9,8 +9,8 @@ namespace Digitizer_ver1
 {
     class SystemSetting_RegistersFileData
     {
-        Registers_Setting _registerSetting;
-        public Registers_Setting p_registerSetting { get { return _registerSetting; } set { _registerSetting = value; } }
+        RegistersSetting _registerSetting;
+        public RegistersSetting p_registerSetting { get { return _registerSetting; } set { _registerSetting = value; } }
 
         
 
@@ -23,7 +23,7 @@ namespace Digitizer_ver1
         public string p_registerSettingFile { get { return _registerSettingFile; } set { _registerSettingFile = value; } }
 
 
-        public SystemSetting_RegistersFileData(Registers_Setting registerSetting, string description) 
+        public SystemSetting_RegistersFileData(RegistersSetting registerSetting, string description) 
         {
             _registerSetting = registerSetting;
             _registerSettingDescription = description;

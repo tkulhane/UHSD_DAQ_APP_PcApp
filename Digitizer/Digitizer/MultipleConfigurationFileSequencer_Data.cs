@@ -19,6 +19,10 @@ namespace Digitizer_ver1
         }
 
 
+        bool _Enable;
+        [DisplayName("Enable")]
+        public bool p_Enable { get { return _Enable; } set { _Enable = value; } }
+
         string _Name;
         [DisplayName("Name")]
         public string p_Name { get { return _Name; } set { _Name = value; } }
@@ -26,6 +30,8 @@ namespace Digitizer_ver1
         string _State;
         [DisplayName("State")]
         public string p_State { get { return _State; }}
+
+
 
 
         public string _Patch;

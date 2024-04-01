@@ -79,6 +79,10 @@ namespace Digitizer_ver1
         public Button button_Scan;
         public Button button_OpenClose;
 
+        //public TextBox textBox_ddSpecNum;
+        //public CheckBox checkBox_ddSameAsComm;
+        //public Label label_ddMyNum;
+
 
         UART_Communication uart = new UART_Communication();
         usb_3_0 usb = new usb_3_0();
@@ -107,6 +111,7 @@ namespace Digitizer_ver1
             communicationControl.SendCommand = SendCommand;
             communicationControl.ErrorHandlerFunction = ErrorHandlerFunction;
 
+
         }
 
 
@@ -116,6 +121,8 @@ namespace Digitizer_ver1
 
         private void ErrorHandlerFunction(string message)
         {
+            //ToDo: dodelat
+            
             if (message != string.Empty)
             {
                 MessageBox.Show(message, "Communication ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -284,6 +291,9 @@ namespace Digitizer_ver1
 
                 }
             }
+
+
+            communicationControl.CommunicationOpen();
 
         }
 

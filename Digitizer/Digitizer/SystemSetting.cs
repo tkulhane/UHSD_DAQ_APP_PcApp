@@ -87,6 +87,10 @@ namespace Digitizer_ver1
             {
                 communication.OpenBySettingString(lineParts[1] + ";" + lineParts[2]);
             }
+            else if (lineParts[0].Equals("data_destination"))
+            {
+                communication.communicationControl.SetFromString(lineParts[1] + ";" + lineParts[2]);
+            }
             else if (lineParts[0].Equals("register")) 
             {
                 UpdateRowRegisterFile(lineParts[1], lineParts[2]);
@@ -130,12 +134,14 @@ namespace Digitizer_ver1
 
             using (StreamWriter writer = new StreamWriter(SettingFileName))
             {
-
+                
                 //ulozeni komunikace
                 writer.WriteLine("communication;" + communication.GetSettingString());
 
+                writer.WriteLine("data_destination;"+communication.communicationControl.GetSettingString());
+
                 //ulozeni registru
-                foreach(SystemSetting_RegistersFileData data in List_ReigistersFile) 
+                foreach (SystemSetting_RegistersFileData data in List_ReigistersFile) 
                 {
                     string line = "register" + ";" + data.DataString();
                     writer.WriteLine(line);
@@ -154,7 +160,7 @@ namespace Digitizer_ver1
         }
 
 
-        public void CreateRegistersInList(Registers_Setting registerSetting)
+        public void CreateRegistersInList(RegistersSetting registerSetting)
         {
             
 
@@ -164,7 +170,7 @@ namespace Digitizer_ver1
             dataGridView_RegistersFiles.Update();
         }
 
-        public void AddFileRegistersInList(Registers_Setting registerSetting, string file)
+        public void AddFileRegistersInList(RegistersSetting registerSetting, string file)
         {
             for (int i = 0; i < List_ReigistersFile.Count; i++)
             {
@@ -179,7 +185,7 @@ namespace Digitizer_ver1
         }
 
 
-        public string GetFileStringForRegisters(Registers_Setting registerSetting) 
+        public string GetFileStringForRegisters(RegistersSetting registerSetting) 
         {
             string file = String.Empty;
             

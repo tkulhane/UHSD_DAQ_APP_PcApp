@@ -30,25 +30,23 @@ namespace Digitizer_ver1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.checkBox_xListen2 = new System.Windows.Forms.CheckBox();
+            this.checkBox_xListen3 = new System.Windows.Forms.CheckBox();
             this.label_dataErrors = new System.Windows.Forms.Label();
             this.label_AcqState = new System.Windows.Forms.Label();
+            this.textBox_xSendByte3 = new System.Windows.Forms.TextBox();
+            this.label_xRead = new System.Windows.Forms.Label();
+            this.textBox_xSendByte2 = new System.Windows.Forms.TextBox();
+            this.button_xSend = new System.Windows.Forms.Button();
+            this.textBox_xSendByte1 = new System.Windows.Forms.TextBox();
+            this.textBox_xSendByte0 = new System.Windows.Forms.TextBox();
             this.timerRequest = new System.Windows.Forms.Timer(this.components);
             this.tabRegisters = new System.Windows.Forms.TabPage();
             this.tabControl_RegistersSetting = new System.Windows.Forms.TabControl();
-            this.tabPage_ADC = new System.Windows.Forms.TabPage();
-            this.dataGridView_ADCReg = new System.Windows.Forms.DataGridView();
-            this.tabPage_HMC = new System.Windows.Forms.TabPage();
-            this.dataGridView_HMCReg = new System.Windows.Forms.DataGridView();
-            this.tabPage_LMX1 = new System.Windows.Forms.TabPage();
-            this.dataGridView_LMX1Reg = new System.Windows.Forms.DataGridView();
-            this.tabPage_LMX2 = new System.Windows.Forms.TabPage();
-            this.dataGridView_LMX2Reg = new System.Windows.Forms.DataGridView();
-            this.tabPage_TestReg = new System.Windows.Forms.TabPage();
-            this.dataGridView_TestReg = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
@@ -166,15 +164,19 @@ namespace Digitizer_ver1
             this.button_ConfigRun = new System.Windows.Forms.Button();
             this.button_ConfigStop = new System.Windows.Forms.Button();
             this.tabSetting = new System.Windows.Forms.TabPage();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.radioButton_ddSpecNum = new System.Windows.Forms.RadioButton();
+            this.radioButton_ddSameAsComm = new System.Windows.Forms.RadioButton();
+            this.radioButton_ddNotSet = new System.Windows.Forms.RadioButton();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label_ddMyNum = new System.Windows.Forms.Label();
+            this.button_ddRead = new System.Windows.Forms.Button();
+            this.textBox_ddSpecNum = new System.Windows.Forms.TextBox();
+            this.button_ddWrite = new System.Windows.Forms.Button();
+            this.label_comState = new System.Windows.Forms.Label();
             this.label_InQ = new System.Windows.Forms.Label();
             this.checkBox_cmdQuestions = new System.Windows.Forms.CheckBox();
             this.label_RecvBytes = new System.Windows.Forms.Label();
-            this.label_xRead = new System.Windows.Forms.Label();
-            this.button_xSend = new System.Windows.Forms.Button();
-            this.textBox_xSendByte0 = new System.Windows.Forms.TextBox();
-            this.textBox_xSendByte1 = new System.Windows.Forms.TextBox();
-            this.textBox_xSendByte2 = new System.Windows.Forms.TextBox();
-            this.textBox_xSendByte3 = new System.Windows.Forms.TextBox();
             this.label_Test = new System.Windows.Forms.Label();
             this.button_Test = new System.Windows.Forms.Button();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
@@ -212,6 +214,14 @@ namespace Digitizer_ver1
             this.label12 = new System.Windows.Forms.Label();
             this.numericUpDown_QS_Seed1 = new System.Windows.Forms.NumericUpDown();
             this.tabAnalyzInCirc = new System.Windows.Forms.TabPage();
+            this.dataGridView_AnalyzData = new System.Windows.Forms.DataGridView();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label_DataReadState = new System.Windows.Forms.Label();
+            this.button_AnalyzClearList = new System.Windows.Forms.Button();
+            this.button_DataReadStop = new System.Windows.Forms.Button();
+            this.button_DataReadStart = new System.Windows.Forms.Button();
+            this.label_AnalyzEmpty = new System.Windows.Forms.Label();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.checkBox_AnalyzTrg_F_8 = new System.Windows.Forms.CheckBox();
             this.checkBox_AnalyzTrg_R_8 = new System.Windows.Forms.CheckBox();
@@ -230,36 +240,19 @@ namespace Digitizer_ver1
             this.checkBox_AnalyzTrg_F_1 = new System.Windows.Forms.CheckBox();
             this.checkBox_AnalyzTrg_R_1 = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label_AnalyzEmpty = new System.Windows.Forms.Label();
+            this.label_AnalyzEnable = new System.Windows.Forms.Label();
+            this.button_AnalyzDisable = new System.Windows.Forms.Button();
+            this.button_AnalyzEnable = new System.Windows.Forms.Button();
+            this.button_AnalyzClear = new System.Windows.Forms.Button();
             this.button_AnalyzSwStart = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.numericUpDown_AnalyzNumOfSamples = new System.Windows.Forms.NumericUpDown();
             this.timerForm = new System.Windows.Forms.Timer(this.components);
-            this.button_AnalyzClear = new System.Windows.Forms.Button();
-            this.button_AnalyzEnable = new System.Windows.Forms.Button();
-            this.button_AnalyzDisable = new System.Windows.Forms.Button();
-            this.label_AnalyzEnable = new System.Windows.Forms.Label();
-            this.button_AnalyzClearList = new System.Windows.Forms.Button();
-            this.groupBox12 = new System.Windows.Forms.GroupBox();
-            this.label_DataReadState = new System.Windows.Forms.Label();
-            this.button_DataReadStop = new System.Windows.Forms.Button();
-            this.button_DataReadStart = new System.Windows.Forms.Button();
-            this.label28 = new System.Windows.Forms.Label();
-            this.dataGridView_AnalyzData = new System.Windows.Forms.DataGridView();
+            this.button_ConfigUp = new System.Windows.Forms.Button();
+            this.button_ConfigDown = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tabRegisters.SuspendLayout();
-            this.tabControl_RegistersSetting.SuspendLayout();
-            this.tabPage_ADC.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ADCReg)).BeginInit();
-            this.tabPage_HMC.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_HMCReg)).BeginInit();
-            this.tabPage_LMX1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_LMX1Reg)).BeginInit();
-            this.tabPage_LMX2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_LMX2Reg)).BeginInit();
-            this.tabPage_TestReg.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TestReg)).BeginInit();
             this.panel3.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -301,6 +294,7 @@ namespace Digitizer_ver1
             this.groupBox7.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.tabSetting.SuspendLayout();
+            this.groupBox13.SuspendLayout();
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_RegistersFiles)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -309,15 +303,17 @@ namespace Digitizer_ver1
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_QS_Seed2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_QS_Seed1)).BeginInit();
             this.tabAnalyzInCirc.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_AnalyzData)).BeginInit();
+            this.groupBox12.SuspendLayout();
             this.groupBox11.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_AnalyzNumOfSamples)).BeginInit();
-            this.groupBox12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_AnalyzData)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.checkBox_xListen2);
+            this.panel1.Controls.Add(this.checkBox_xListen3);
             this.panel1.Controls.Add(this.label_dataErrors);
             this.panel1.Controls.Add(this.label_AcqState);
             this.panel1.Controls.Add(this.textBox_xSendByte3);
@@ -332,6 +328,26 @@ namespace Digitizer_ver1
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1248, 39);
             this.panel1.TabIndex = 0;
+            // 
+            // checkBox_xListen2
+            // 
+            this.checkBox_xListen2.AutoSize = true;
+            this.checkBox_xListen2.Location = new System.Drawing.Point(1146, 12);
+            this.checkBox_xListen2.Name = "checkBox_xListen2";
+            this.checkBox_xListen2.Size = new System.Drawing.Size(38, 17);
+            this.checkBox_xListen2.TabIndex = 32;
+            this.checkBox_xListen2.Text = "L2";
+            this.checkBox_xListen2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_xListen3
+            // 
+            this.checkBox_xListen3.AutoSize = true;
+            this.checkBox_xListen3.Location = new System.Drawing.Point(1107, 12);
+            this.checkBox_xListen3.Name = "checkBox_xListen3";
+            this.checkBox_xListen3.Size = new System.Drawing.Size(38, 17);
+            this.checkBox_xListen3.TabIndex = 31;
+            this.checkBox_xListen3.Text = "L3";
+            this.checkBox_xListen3.UseVisualStyleBackColor = true;
             // 
             // label_dataErrors
             // 
@@ -352,6 +368,56 @@ namespace Digitizer_ver1
             this.label_AcqState.TabIndex = 9;
             this.label_AcqState.Text = "........";
             this.label_AcqState.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBox_xSendByte3
+            // 
+            this.textBox_xSendByte3.Location = new System.Drawing.Point(652, 9);
+            this.textBox_xSendByte3.Name = "textBox_xSendByte3";
+            this.textBox_xSendByte3.Size = new System.Drawing.Size(44, 20);
+            this.textBox_xSendByte3.TabIndex = 19;
+            // 
+            // label_xRead
+            // 
+            this.label_xRead.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_xRead.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_xRead.Location = new System.Drawing.Point(966, 9);
+            this.label_xRead.Name = "label_xRead";
+            this.label_xRead.Size = new System.Drawing.Size(123, 20);
+            this.label_xRead.TabIndex = 24;
+            this.label_xRead.Text = "........";
+            this.label_xRead.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_xRead.Click += new System.EventHandler(this.label_xRead_Click);
+            // 
+            // textBox_xSendByte2
+            // 
+            this.textBox_xSendByte2.Location = new System.Drawing.Point(702, 9);
+            this.textBox_xSendByte2.Name = "textBox_xSendByte2";
+            this.textBox_xSendByte2.Size = new System.Drawing.Size(44, 20);
+            this.textBox_xSendByte2.TabIndex = 20;
+            // 
+            // button_xSend
+            // 
+            this.button_xSend.Location = new System.Drawing.Point(852, 9);
+            this.button_xSend.Name = "button_xSend";
+            this.button_xSend.Size = new System.Drawing.Size(75, 21);
+            this.button_xSend.TabIndex = 23;
+            this.button_xSend.Text = "Send";
+            this.button_xSend.UseVisualStyleBackColor = true;
+            this.button_xSend.Click += new System.EventHandler(this.button_xSend_Click);
+            // 
+            // textBox_xSendByte1
+            // 
+            this.textBox_xSendByte1.Location = new System.Drawing.Point(752, 9);
+            this.textBox_xSendByte1.Name = "textBox_xSendByte1";
+            this.textBox_xSendByte1.Size = new System.Drawing.Size(44, 20);
+            this.textBox_xSendByte1.TabIndex = 21;
+            // 
+            // textBox_xSendByte0
+            // 
+            this.textBox_xSendByte0.Location = new System.Drawing.Point(802, 9);
+            this.textBox_xSendByte0.Name = "textBox_xSendByte0";
+            this.textBox_xSendByte0.Size = new System.Drawing.Size(44, 20);
+            this.textBox_xSendByte0.TabIndex = 22;
             // 
             // timerRequest
             // 
@@ -374,132 +440,12 @@ namespace Digitizer_ver1
             // 
             // tabControl_RegistersSetting
             // 
-            this.tabControl_RegistersSetting.Controls.Add(this.tabPage_ADC);
-            this.tabControl_RegistersSetting.Controls.Add(this.tabPage_HMC);
-            this.tabControl_RegistersSetting.Controls.Add(this.tabPage_LMX1);
-            this.tabControl_RegistersSetting.Controls.Add(this.tabPage_LMX2);
-            this.tabControl_RegistersSetting.Controls.Add(this.tabPage_TestReg);
             this.tabControl_RegistersSetting.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl_RegistersSetting.Location = new System.Drawing.Point(266, 2);
             this.tabControl_RegistersSetting.Name = "tabControl_RegistersSetting";
             this.tabControl_RegistersSetting.SelectedIndex = 0;
             this.tabControl_RegistersSetting.Size = new System.Drawing.Size(972, 597);
             this.tabControl_RegistersSetting.TabIndex = 2;
-            // 
-            // tabPage_ADC
-            // 
-            this.tabPage_ADC.Controls.Add(this.dataGridView_ADCReg);
-            this.tabPage_ADC.Location = new System.Drawing.Point(4, 22);
-            this.tabPage_ADC.Name = "tabPage_ADC";
-            this.tabPage_ADC.Size = new System.Drawing.Size(964, 571);
-            this.tabPage_ADC.TabIndex = 0;
-            this.tabPage_ADC.Text = "ADC";
-            this.tabPage_ADC.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView_ADCReg
-            // 
-            this.dataGridView_ADCReg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_ADCReg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView_ADCReg.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView_ADCReg.MultiSelect = false;
-            this.dataGridView_ADCReg.Name = "dataGridView_ADCReg";
-            this.dataGridView_ADCReg.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_ADCReg.Size = new System.Drawing.Size(964, 571);
-            this.dataGridView_ADCReg.TabIndex = 0;
-            this.dataGridView_ADCReg.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_AllRegistersGrids_CellContentClick);
-            this.dataGridView_ADCReg.SelectionChanged += new System.EventHandler(this.dataGridView_AllRegistersGrids_SelectedChanged);
-            // 
-            // tabPage_HMC
-            // 
-            this.tabPage_HMC.Controls.Add(this.dataGridView_HMCReg);
-            this.tabPage_HMC.Location = new System.Drawing.Point(4, 22);
-            this.tabPage_HMC.Name = "tabPage_HMC";
-            this.tabPage_HMC.Size = new System.Drawing.Size(964, 571);
-            this.tabPage_HMC.TabIndex = 1;
-            this.tabPage_HMC.Text = "HMC";
-            this.tabPage_HMC.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView_HMCReg
-            // 
-            this.dataGridView_HMCReg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_HMCReg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView_HMCReg.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView_HMCReg.MultiSelect = false;
-            this.dataGridView_HMCReg.Name = "dataGridView_HMCReg";
-            this.dataGridView_HMCReg.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_HMCReg.Size = new System.Drawing.Size(964, 571);
-            this.dataGridView_HMCReg.TabIndex = 1;
-            this.dataGridView_HMCReg.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_AllRegistersGrids_CellContentClick);
-            this.dataGridView_HMCReg.SelectionChanged += new System.EventHandler(this.dataGridView_AllRegistersGrids_SelectedChanged);
-            // 
-            // tabPage_LMX1
-            // 
-            this.tabPage_LMX1.Controls.Add(this.dataGridView_LMX1Reg);
-            this.tabPage_LMX1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage_LMX1.Name = "tabPage_LMX1";
-            this.tabPage_LMX1.Size = new System.Drawing.Size(964, 571);
-            this.tabPage_LMX1.TabIndex = 2;
-            this.tabPage_LMX1.Text = "LMX1";
-            this.tabPage_LMX1.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView_LMX1Reg
-            // 
-            this.dataGridView_LMX1Reg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_LMX1Reg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView_LMX1Reg.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView_LMX1Reg.MultiSelect = false;
-            this.dataGridView_LMX1Reg.Name = "dataGridView_LMX1Reg";
-            this.dataGridView_LMX1Reg.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_LMX1Reg.Size = new System.Drawing.Size(964, 571);
-            this.dataGridView_LMX1Reg.TabIndex = 2;
-            this.dataGridView_LMX1Reg.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_AllRegistersGrids_CellContentClick);
-            this.dataGridView_LMX1Reg.SelectionChanged += new System.EventHandler(this.dataGridView_AllRegistersGrids_SelectedChanged);
-            // 
-            // tabPage_LMX2
-            // 
-            this.tabPage_LMX2.Controls.Add(this.dataGridView_LMX2Reg);
-            this.tabPage_LMX2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage_LMX2.Name = "tabPage_LMX2";
-            this.tabPage_LMX2.Size = new System.Drawing.Size(964, 571);
-            this.tabPage_LMX2.TabIndex = 3;
-            this.tabPage_LMX2.Text = "LMX2";
-            this.tabPage_LMX2.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView_LMX2Reg
-            // 
-            this.dataGridView_LMX2Reg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_LMX2Reg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView_LMX2Reg.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView_LMX2Reg.MultiSelect = false;
-            this.dataGridView_LMX2Reg.Name = "dataGridView_LMX2Reg";
-            this.dataGridView_LMX2Reg.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_LMX2Reg.Size = new System.Drawing.Size(964, 571);
-            this.dataGridView_LMX2Reg.TabIndex = 2;
-            this.dataGridView_LMX2Reg.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_AllRegistersGrids_CellContentClick);
-            this.dataGridView_LMX2Reg.SelectionChanged += new System.EventHandler(this.dataGridView_AllRegistersGrids_SelectedChanged);
-            // 
-            // tabPage_TestReg
-            // 
-            this.tabPage_TestReg.Controls.Add(this.dataGridView_TestReg);
-            this.tabPage_TestReg.Location = new System.Drawing.Point(4, 22);
-            this.tabPage_TestReg.Name = "tabPage_TestReg";
-            this.tabPage_TestReg.Size = new System.Drawing.Size(964, 571);
-            this.tabPage_TestReg.TabIndex = 4;
-            this.tabPage_TestReg.Text = "TestRegisters";
-            this.tabPage_TestReg.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView_TestReg
-            // 
-            this.dataGridView_TestReg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_TestReg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView_TestReg.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView_TestReg.MultiSelect = false;
-            this.dataGridView_TestReg.Name = "dataGridView_TestReg";
-            this.dataGridView_TestReg.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_TestReg.Size = new System.Drawing.Size(964, 571);
-            this.dataGridView_TestReg.TabIndex = 3;
-            this.dataGridView_TestReg.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_AllRegistersGrids_CellContentClick);
-            this.dataGridView_TestReg.SelectionChanged += new System.EventHandler(this.dataGridView_AllRegistersGrids_SelectedChanged);
             // 
             // panel3
             // 
@@ -1529,21 +1475,21 @@ namespace Digitizer_ver1
             // 
             this.chart_data.BorderlineColor = System.Drawing.Color.Black;
             this.chart_data.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea3.Name = "ChartArea1";
-            this.chart_data.ChartAreas.Add(chartArea3);
+            chartArea2.Name = "ChartArea1";
+            this.chart_data.ChartAreas.Add(chartArea2);
             this.chart_data.Dock = System.Windows.Forms.DockStyle.Bottom;
-            legend3.Name = "Legend1";
-            this.chart_data.Legends.Add(legend3);
+            legend2.Name = "Legend1";
+            this.chart_data.Legends.Add(legend2);
             this.chart_data.Location = new System.Drawing.Point(0, 197);
             this.chart_data.Margin = new System.Windows.Forms.Padding(2);
             this.chart_data.Name = "chart_data";
-            series3.BorderWidth = 2;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.IsVisibleInLegend = false;
-            series3.Legend = "Legend1";
-            series3.Name = "Data";
-            this.chart_data.Series.Add(series3);
+            series2.BorderWidth = 2;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.IsVisibleInLegend = false;
+            series2.Legend = "Legend1";
+            series2.Name = "Data";
+            this.chart_data.Series.Add(series2);
             this.chart_data.Size = new System.Drawing.Size(850, 394);
             this.chart_data.TabIndex = 21;
             this.chart_data.Text = "chart_data";
@@ -1787,6 +1733,8 @@ namespace Digitizer_ver1
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.button_ConfigDown);
+            this.panel5.Controls.Add(this.button_ConfigUp);
             this.panel5.Controls.Add(this.groupBox7);
             this.panel5.Controls.Add(this.groupBox9);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1899,6 +1847,8 @@ namespace Digitizer_ver1
             // 
             // tabSetting
             // 
+            this.tabSetting.Controls.Add(this.groupBox13);
+            this.tabSetting.Controls.Add(this.label_comState);
             this.tabSetting.Controls.Add(this.label_InQ);
             this.tabSetting.Controls.Add(this.checkBox_cmdQuestions);
             this.tabSetting.Controls.Add(this.label_RecvBytes);
@@ -1913,10 +1863,118 @@ namespace Digitizer_ver1
             this.tabSetting.Text = "System Setting";
             this.tabSetting.UseVisualStyleBackColor = true;
             // 
+            // groupBox13
+            // 
+            this.groupBox13.Controls.Add(this.radioButton_ddSpecNum);
+            this.groupBox13.Controls.Add(this.radioButton_ddSameAsComm);
+            this.groupBox13.Controls.Add(this.radioButton_ddNotSet);
+            this.groupBox13.Controls.Add(this.label32);
+            this.groupBox13.Controls.Add(this.label_ddMyNum);
+            this.groupBox13.Controls.Add(this.button_ddRead);
+            this.groupBox13.Controls.Add(this.textBox_ddSpecNum);
+            this.groupBox13.Controls.Add(this.button_ddWrite);
+            this.groupBox13.Location = new System.Drawing.Point(310, 47);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Size = new System.Drawing.Size(233, 230);
+            this.groupBox13.TabIndex = 30;
+            this.groupBox13.TabStop = false;
+            this.groupBox13.Text = "Data Destination";
+            // 
+            // radioButton_ddSpecNum
+            // 
+            this.radioButton_ddSpecNum.AutoSize = true;
+            this.radioButton_ddSpecNum.Location = new System.Drawing.Point(28, 85);
+            this.radioButton_ddSpecNum.Name = "radioButton_ddSpecNum";
+            this.radioButton_ddSpecNum.Size = new System.Drawing.Size(103, 17);
+            this.radioButton_ddSpecNum.TabIndex = 36;
+            this.radioButton_ddSpecNum.TabStop = true;
+            this.radioButton_ddSpecNum.Text = "Specific Number";
+            this.radioButton_ddSpecNum.UseVisualStyleBackColor = true;
+            this.radioButton_ddSpecNum.CheckedChanged += new System.EventHandler(this.radioButton_dataDestination_CheckedChanged);
+            // 
+            // radioButton_ddSameAsComm
+            // 
+            this.radioButton_ddSameAsComm.AutoSize = true;
+            this.radioButton_ddSameAsComm.Location = new System.Drawing.Point(28, 62);
+            this.radioButton_ddSameAsComm.Name = "radioButton_ddSameAsComm";
+            this.radioButton_ddSameAsComm.Size = new System.Drawing.Size(141, 17);
+            this.radioButton_ddSameAsComm.TabIndex = 35;
+            this.radioButton_ddSameAsComm.TabStop = true;
+            this.radioButton_ddSameAsComm.Text = "Same as Communication";
+            this.radioButton_ddSameAsComm.UseVisualStyleBackColor = true;
+            this.radioButton_ddSameAsComm.CheckedChanged += new System.EventHandler(this.radioButton_dataDestination_CheckedChanged);
+            // 
+            // radioButton_ddNotSet
+            // 
+            this.radioButton_ddNotSet.AutoSize = true;
+            this.radioButton_ddNotSet.Location = new System.Drawing.Point(28, 39);
+            this.radioButton_ddNotSet.Name = "radioButton_ddNotSet";
+            this.radioButton_ddNotSet.Size = new System.Drawing.Size(61, 17);
+            this.radioButton_ddNotSet.TabIndex = 34;
+            this.radioButton_ddNotSet.TabStop = true;
+            this.radioButton_ddNotSet.Text = "Not Set";
+            this.radioButton_ddNotSet.UseVisualStyleBackColor = true;
+            this.radioButton_ddNotSet.CheckedChanged += new System.EventHandler(this.radioButton_dataDestination_CheckedChanged);
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(49, 136);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(64, 13);
+            this.label32.TabIndex = 33;
+            this.label32.Text = "My Number:";
+            // 
+            // label_ddMyNum
+            // 
+            this.label_ddMyNum.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_ddMyNum.Location = new System.Drawing.Point(116, 132);
+            this.label_ddMyNum.Name = "label_ddMyNum";
+            this.label_ddMyNum.Size = new System.Drawing.Size(65, 20);
+            this.label_ddMyNum.TabIndex = 32;
+            this.label_ddMyNum.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button_ddRead
+            // 
+            this.button_ddRead.Location = new System.Drawing.Point(133, 174);
+            this.button_ddRead.Name = "button_ddRead";
+            this.button_ddRead.Size = new System.Drawing.Size(72, 35);
+            this.button_ddRead.TabIndex = 31;
+            this.button_ddRead.Text = "Read";
+            this.button_ddRead.UseVisualStyleBackColor = true;
+            this.button_ddRead.Click += new System.EventHandler(this.button_ddRead_Click);
+            // 
+            // textBox_ddSpecNum
+            // 
+            this.textBox_ddSpecNum.Location = new System.Drawing.Point(137, 84);
+            this.textBox_ddSpecNum.Name = "textBox_ddSpecNum";
+            this.textBox_ddSpecNum.Size = new System.Drawing.Size(44, 20);
+            this.textBox_ddSpecNum.TabIndex = 28;
+            this.textBox_ddSpecNum.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // button_ddWrite
+            // 
+            this.button_ddWrite.Location = new System.Drawing.Point(28, 174);
+            this.button_ddWrite.Name = "button_ddWrite";
+            this.button_ddWrite.Size = new System.Drawing.Size(72, 35);
+            this.button_ddWrite.TabIndex = 5;
+            this.button_ddWrite.Text = "Write";
+            this.button_ddWrite.UseVisualStyleBackColor = true;
+            this.button_ddWrite.Click += new System.EventHandler(this.button_ddWrite_Click);
+            // 
+            // label_comState
+            // 
+            this.label_comState.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_comState.Location = new System.Drawing.Point(627, 47);
+            this.label_comState.Name = "label_comState";
+            this.label_comState.Size = new System.Drawing.Size(83, 21);
+            this.label_comState.TabIndex = 29;
+            this.label_comState.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // label_InQ
             // 
             this.label_InQ.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_InQ.Location = new System.Drawing.Point(423, 290);
+            this.label_InQ.Location = new System.Drawing.Point(164, 464);
             this.label_InQ.Name = "label_InQ";
             this.label_InQ.Size = new System.Drawing.Size(83, 21);
             this.label_InQ.TabIndex = 27;
@@ -1937,61 +1995,11 @@ namespace Digitizer_ver1
             // label_RecvBytes
             // 
             this.label_RecvBytes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_RecvBytes.Location = new System.Drawing.Point(423, 246);
+            this.label_RecvBytes.Location = new System.Drawing.Point(164, 420);
             this.label_RecvBytes.Name = "label_RecvBytes";
             this.label_RecvBytes.Size = new System.Drawing.Size(83, 21);
             this.label_RecvBytes.TabIndex = 25;
             this.label_RecvBytes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label_xRead
-            // 
-            this.label_xRead.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_xRead.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_xRead.Location = new System.Drawing.Point(1037, 9);
-            this.label_xRead.Name = "label_xRead";
-            this.label_xRead.Size = new System.Drawing.Size(123, 20);
-            this.label_xRead.TabIndex = 24;
-            this.label_xRead.Text = "........";
-            this.label_xRead.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label_xRead.Click += new System.EventHandler(this.label_xRead_Click);
-            // 
-            // button_xSend
-            // 
-            this.button_xSend.Location = new System.Drawing.Point(956, 9);
-            this.button_xSend.Name = "button_xSend";
-            this.button_xSend.Size = new System.Drawing.Size(75, 21);
-            this.button_xSend.TabIndex = 23;
-            this.button_xSend.Text = "Send";
-            this.button_xSend.UseVisualStyleBackColor = true;
-            this.button_xSend.Click += new System.EventHandler(this.button_xSend_Click);
-            // 
-            // textBox_xSendByte0
-            // 
-            this.textBox_xSendByte0.Location = new System.Drawing.Point(906, 9);
-            this.textBox_xSendByte0.Name = "textBox_xSendByte0";
-            this.textBox_xSendByte0.Size = new System.Drawing.Size(44, 20);
-            this.textBox_xSendByte0.TabIndex = 22;
-            // 
-            // textBox_xSendByte1
-            // 
-            this.textBox_xSendByte1.Location = new System.Drawing.Point(856, 9);
-            this.textBox_xSendByte1.Name = "textBox_xSendByte1";
-            this.textBox_xSendByte1.Size = new System.Drawing.Size(44, 20);
-            this.textBox_xSendByte1.TabIndex = 21;
-            // 
-            // textBox_xSendByte2
-            // 
-            this.textBox_xSendByte2.Location = new System.Drawing.Point(806, 9);
-            this.textBox_xSendByte2.Name = "textBox_xSendByte2";
-            this.textBox_xSendByte2.Size = new System.Drawing.Size(44, 20);
-            this.textBox_xSendByte2.TabIndex = 20;
-            // 
-            // textBox_xSendByte3
-            // 
-            this.textBox_xSendByte3.Location = new System.Drawing.Point(756, 9);
-            this.textBox_xSendByte3.Name = "textBox_xSendByte3";
-            this.textBox_xSendByte3.Size = new System.Drawing.Size(44, 20);
-            this.textBox_xSendByte3.TabIndex = 19;
             // 
             // label_Test
             // 
@@ -2049,7 +2057,7 @@ namespace Digitizer_ver1
             // 
             // button_OpenCloseCommunication
             // 
-            this.button_OpenCloseCommunication.Location = new System.Drawing.Point(28, 166);
+            this.button_OpenCloseCommunication.Location = new System.Drawing.Point(28, 174);
             this.button_OpenCloseCommunication.Name = "button_OpenCloseCommunication";
             this.button_OpenCloseCommunication.Size = new System.Drawing.Size(177, 35);
             this.button_OpenCloseCommunication.TabIndex = 5;
@@ -2059,7 +2067,7 @@ namespace Digitizer_ver1
             // 
             // button_ScanCommunication
             // 
-            this.button_ScanCommunication.Location = new System.Drawing.Point(130, 47);
+            this.button_ScanCommunication.Location = new System.Drawing.Point(130, 39);
             this.button_ScanCommunication.Name = "button_ScanCommunication";
             this.button_ScanCommunication.Size = new System.Drawing.Size(75, 63);
             this.button_ScanCommunication.TabIndex = 4;
@@ -2070,7 +2078,7 @@ namespace Digitizer_ver1
             // comboBox_Communication
             // 
             this.comboBox_Communication.FormattingEnabled = true;
-            this.comboBox_Communication.Location = new System.Drawing.Point(28, 130);
+            this.comboBox_Communication.Location = new System.Drawing.Point(28, 122);
             this.comboBox_Communication.Name = "comboBox_Communication";
             this.comboBox_Communication.Size = new System.Drawing.Size(177, 21);
             this.comboBox_Communication.TabIndex = 3;
@@ -2078,7 +2086,7 @@ namespace Digitizer_ver1
             // radioButton_PCIe
             // 
             this.radioButton_PCIe.AutoSize = true;
-            this.radioButton_PCIe.Location = new System.Drawing.Point(28, 93);
+            this.radioButton_PCIe.Location = new System.Drawing.Point(28, 85);
             this.radioButton_PCIe.Name = "radioButton_PCIe";
             this.radioButton_PCIe.Size = new System.Drawing.Size(48, 17);
             this.radioButton_PCIe.TabIndex = 2;
@@ -2089,7 +2097,7 @@ namespace Digitizer_ver1
             // radioButton_USB
             // 
             this.radioButton_USB.AutoSize = true;
-            this.radioButton_USB.Location = new System.Drawing.Point(28, 70);
+            this.radioButton_USB.Location = new System.Drawing.Point(28, 62);
             this.radioButton_USB.Name = "radioButton_USB";
             this.radioButton_USB.Size = new System.Drawing.Size(47, 17);
             this.radioButton_USB.TabIndex = 1;
@@ -2100,7 +2108,7 @@ namespace Digitizer_ver1
             // radioButton_UART
             // 
             this.radioButton_UART.AutoSize = true;
-            this.radioButton_UART.Location = new System.Drawing.Point(28, 47);
+            this.radioButton_UART.Location = new System.Drawing.Point(28, 39);
             this.radioButton_UART.Name = "radioButton_UART";
             this.radioButton_UART.Size = new System.Drawing.Size(55, 17);
             this.radioButton_UART.TabIndex = 0;
@@ -2400,6 +2408,95 @@ namespace Digitizer_ver1
             this.tabAnalyzInCirc.Text = "Analyzator";
             this.tabAnalyzInCirc.UseVisualStyleBackColor = true;
             // 
+            // dataGridView_AnalyzData
+            // 
+            this.dataGridView_AnalyzData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_AnalyzData.Dock = System.Windows.Forms.DockStyle.Right;
+            this.dataGridView_AnalyzData.Location = new System.Drawing.Point(665, 0);
+            this.dataGridView_AnalyzData.Name = "dataGridView_AnalyzData";
+            this.dataGridView_AnalyzData.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dataGridView_AnalyzData.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.dataGridView_AnalyzData.Size = new System.Drawing.Size(575, 601);
+            this.dataGridView_AnalyzData.TabIndex = 27;
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.label28);
+            this.groupBox12.Controls.Add(this.label_DataReadState);
+            this.groupBox12.Controls.Add(this.button_AnalyzClearList);
+            this.groupBox12.Controls.Add(this.button_DataReadStop);
+            this.groupBox12.Controls.Add(this.button_DataReadStart);
+            this.groupBox12.Controls.Add(this.label_AnalyzEmpty);
+            this.groupBox12.Location = new System.Drawing.Point(320, 36);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(252, 208);
+            this.groupBox12.TabIndex = 26;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "Data Read";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label28.Location = new System.Drawing.Point(31, 89);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(52, 15);
+            this.label28.TabIndex = 26;
+            this.label28.Text = "All FIFO:";
+            // 
+            // label_DataReadState
+            // 
+            this.label_DataReadState.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_DataReadState.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_DataReadState.Location = new System.Drawing.Point(92, 29);
+            this.label_DataReadState.Name = "label_DataReadState";
+            this.label_DataReadState.Size = new System.Drawing.Size(65, 25);
+            this.label_DataReadState.TabIndex = 25;
+            this.label_DataReadState.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button_AnalyzClearList
+            // 
+            this.button_AnalyzClearList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button_AnalyzClearList.Location = new System.Drawing.Point(15, 168);
+            this.button_AnalyzClearList.Name = "button_AnalyzClearList";
+            this.button_AnalyzClearList.Size = new System.Drawing.Size(219, 25);
+            this.button_AnalyzClearList.TabIndex = 24;
+            this.button_AnalyzClearList.Text = "Clear List";
+            this.button_AnalyzClearList.UseVisualStyleBackColor = true;
+            this.button_AnalyzClearList.Click += new System.EventHandler(this.button_AnalyzClearList_Click);
+            // 
+            // button_DataReadStop
+            // 
+            this.button_DataReadStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button_DataReadStop.Location = new System.Drawing.Point(163, 29);
+            this.button_DataReadStop.Name = "button_DataReadStop";
+            this.button_DataReadStop.Size = new System.Drawing.Size(71, 25);
+            this.button_DataReadStop.TabIndex = 24;
+            this.button_DataReadStop.Text = "Stop";
+            this.button_DataReadStop.UseVisualStyleBackColor = true;
+            this.button_DataReadStop.Click += new System.EventHandler(this.button_DataReadStop_Click);
+            // 
+            // button_DataReadStart
+            // 
+            this.button_DataReadStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button_DataReadStart.Location = new System.Drawing.Point(15, 29);
+            this.button_DataReadStart.Name = "button_DataReadStart";
+            this.button_DataReadStart.Size = new System.Drawing.Size(71, 25);
+            this.button_DataReadStart.TabIndex = 23;
+            this.button_DataReadStart.Text = "Start";
+            this.button_DataReadStart.UseVisualStyleBackColor = true;
+            this.button_DataReadStart.Click += new System.EventHandler(this.button_DataReadStart_Click);
+            // 
+            // label_AnalyzEmpty
+            // 
+            this.label_AnalyzEmpty.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_AnalyzEmpty.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_AnalyzEmpty.Location = new System.Drawing.Point(92, 84);
+            this.label_AnalyzEmpty.Name = "label_AnalyzEmpty";
+            this.label_AnalyzEmpty.Size = new System.Drawing.Size(110, 24);
+            this.label_AnalyzEmpty.TabIndex = 21;
+            this.label_AnalyzEmpty.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // groupBox11
             // 
             this.groupBox11.Controls.Add(this.checkBox_AnalyzTrg_F_8);
@@ -2603,15 +2700,48 @@ namespace Digitizer_ver1
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Analyzator Setting";
             // 
-            // label_AnalyzEmpty
+            // label_AnalyzEnable
             // 
-            this.label_AnalyzEmpty.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_AnalyzEmpty.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_AnalyzEmpty.Location = new System.Drawing.Point(92, 84);
-            this.label_AnalyzEmpty.Name = "label_AnalyzEmpty";
-            this.label_AnalyzEmpty.Size = new System.Drawing.Size(110, 24);
-            this.label_AnalyzEmpty.TabIndex = 21;
-            this.label_AnalyzEmpty.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_AnalyzEnable.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_AnalyzEnable.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_AnalyzEnable.Location = new System.Drawing.Point(92, 29);
+            this.label_AnalyzEnable.Name = "label_AnalyzEnable";
+            this.label_AnalyzEnable.Size = new System.Drawing.Size(65, 25);
+            this.label_AnalyzEnable.TabIndex = 25;
+            this.label_AnalyzEnable.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button_AnalyzDisable
+            // 
+            this.button_AnalyzDisable.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button_AnalyzDisable.Location = new System.Drawing.Point(163, 29);
+            this.button_AnalyzDisable.Name = "button_AnalyzDisable";
+            this.button_AnalyzDisable.Size = new System.Drawing.Size(71, 25);
+            this.button_AnalyzDisable.TabIndex = 24;
+            this.button_AnalyzDisable.Text = "Disable";
+            this.button_AnalyzDisable.UseVisualStyleBackColor = true;
+            this.button_AnalyzDisable.Click += new System.EventHandler(this.button_AnalyzDisable_Click);
+            // 
+            // button_AnalyzEnable
+            // 
+            this.button_AnalyzEnable.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button_AnalyzEnable.Location = new System.Drawing.Point(15, 29);
+            this.button_AnalyzEnable.Name = "button_AnalyzEnable";
+            this.button_AnalyzEnable.Size = new System.Drawing.Size(71, 25);
+            this.button_AnalyzEnable.TabIndex = 23;
+            this.button_AnalyzEnable.Text = "Enable";
+            this.button_AnalyzEnable.UseVisualStyleBackColor = true;
+            this.button_AnalyzEnable.Click += new System.EventHandler(this.button_AnalyzEnable_Click);
+            // 
+            // button_AnalyzClear
+            // 
+            this.button_AnalyzClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button_AnalyzClear.Location = new System.Drawing.Point(35, 165);
+            this.button_AnalyzClear.Name = "button_AnalyzClear";
+            this.button_AnalyzClear.Size = new System.Drawing.Size(179, 25);
+            this.button_AnalyzClear.TabIndex = 22;
+            this.button_AnalyzClear.Text = "Clear";
+            this.button_AnalyzClear.UseVisualStyleBackColor = true;
+            this.button_AnalyzClear.Click += new System.EventHandler(this.button_AnalyzClear_Click);
             // 
             // button_AnalyzSwStart
             // 
@@ -2664,127 +2794,27 @@ namespace Digitizer_ver1
             this.timerForm.Interval = 50;
             this.timerForm.Tick += new System.EventHandler(this.timerForm_Tick);
             // 
-            // button_AnalyzClear
+            // button_ConfigUp
             // 
-            this.button_AnalyzClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button_AnalyzClear.Location = new System.Drawing.Point(35, 165);
-            this.button_AnalyzClear.Name = "button_AnalyzClear";
-            this.button_AnalyzClear.Size = new System.Drawing.Size(179, 25);
-            this.button_AnalyzClear.TabIndex = 22;
-            this.button_AnalyzClear.Text = "Clear";
-            this.button_AnalyzClear.UseVisualStyleBackColor = true;
-            this.button_AnalyzClear.Click += new System.EventHandler(this.button_AnalyzClear_Click);
+            this.button_ConfigUp.Location = new System.Drawing.Point(161, 428);
+            this.button_ConfigUp.Margin = new System.Windows.Forms.Padding(2);
+            this.button_ConfigUp.Name = "button_ConfigUp";
+            this.button_ConfigUp.Size = new System.Drawing.Size(56, 37);
+            this.button_ConfigUp.TabIndex = 17;
+            this.button_ConfigUp.Text = "UP";
+            this.button_ConfigUp.UseVisualStyleBackColor = true;
+            this.button_ConfigUp.Click += new System.EventHandler(this.button_ConfigUp_Click);
             // 
-            // button_AnalyzEnable
+            // button_ConfigDown
             // 
-            this.button_AnalyzEnable.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button_AnalyzEnable.Location = new System.Drawing.Point(15, 29);
-            this.button_AnalyzEnable.Name = "button_AnalyzEnable";
-            this.button_AnalyzEnable.Size = new System.Drawing.Size(71, 25);
-            this.button_AnalyzEnable.TabIndex = 23;
-            this.button_AnalyzEnable.Text = "Enable";
-            this.button_AnalyzEnable.UseVisualStyleBackColor = true;
-            this.button_AnalyzEnable.Click += new System.EventHandler(this.button_AnalyzEnable_Click);
-            // 
-            // button_AnalyzDisable
-            // 
-            this.button_AnalyzDisable.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button_AnalyzDisable.Location = new System.Drawing.Point(163, 29);
-            this.button_AnalyzDisable.Name = "button_AnalyzDisable";
-            this.button_AnalyzDisable.Size = new System.Drawing.Size(71, 25);
-            this.button_AnalyzDisable.TabIndex = 24;
-            this.button_AnalyzDisable.Text = "Disable";
-            this.button_AnalyzDisable.UseVisualStyleBackColor = true;
-            this.button_AnalyzDisable.Click += new System.EventHandler(this.button_AnalyzDisable_Click);
-            // 
-            // label_AnalyzEnable
-            // 
-            this.label_AnalyzEnable.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_AnalyzEnable.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_AnalyzEnable.Location = new System.Drawing.Point(92, 29);
-            this.label_AnalyzEnable.Name = "label_AnalyzEnable";
-            this.label_AnalyzEnable.Size = new System.Drawing.Size(65, 25);
-            this.label_AnalyzEnable.TabIndex = 25;
-            this.label_AnalyzEnable.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // button_AnalyzClearList
-            // 
-            this.button_AnalyzClearList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button_AnalyzClearList.Location = new System.Drawing.Point(15, 168);
-            this.button_AnalyzClearList.Name = "button_AnalyzClearList";
-            this.button_AnalyzClearList.Size = new System.Drawing.Size(219, 25);
-            this.button_AnalyzClearList.TabIndex = 24;
-            this.button_AnalyzClearList.Text = "Clear List";
-            this.button_AnalyzClearList.UseVisualStyleBackColor = true;
-            this.button_AnalyzClearList.Click += new System.EventHandler(this.button_AnalyzClearList_Click);
-            // 
-            // groupBox12
-            // 
-            this.groupBox12.Controls.Add(this.label28);
-            this.groupBox12.Controls.Add(this.label_DataReadState);
-            this.groupBox12.Controls.Add(this.button_AnalyzClearList);
-            this.groupBox12.Controls.Add(this.button_DataReadStop);
-            this.groupBox12.Controls.Add(this.button_DataReadStart);
-            this.groupBox12.Controls.Add(this.label_AnalyzEmpty);
-            this.groupBox12.Location = new System.Drawing.Point(320, 36);
-            this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(252, 208);
-            this.groupBox12.TabIndex = 26;
-            this.groupBox12.TabStop = false;
-            this.groupBox12.Text = "Data Read";
-            // 
-            // label_DataReadState
-            // 
-            this.label_DataReadState.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_DataReadState.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_DataReadState.Location = new System.Drawing.Point(92, 29);
-            this.label_DataReadState.Name = "label_DataReadState";
-            this.label_DataReadState.Size = new System.Drawing.Size(65, 25);
-            this.label_DataReadState.TabIndex = 25;
-            this.label_DataReadState.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // button_DataReadStop
-            // 
-            this.button_DataReadStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button_DataReadStop.Location = new System.Drawing.Point(163, 29);
-            this.button_DataReadStop.Name = "button_DataReadStop";
-            this.button_DataReadStop.Size = new System.Drawing.Size(71, 25);
-            this.button_DataReadStop.TabIndex = 24;
-            this.button_DataReadStop.Text = "Stop";
-            this.button_DataReadStop.UseVisualStyleBackColor = true;
-            this.button_DataReadStop.Click += new System.EventHandler(this.button_DataReadStop_Click);
-            // 
-            // button_DataReadStart
-            // 
-            this.button_DataReadStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button_DataReadStart.Location = new System.Drawing.Point(15, 29);
-            this.button_DataReadStart.Name = "button_DataReadStart";
-            this.button_DataReadStart.Size = new System.Drawing.Size(71, 25);
-            this.button_DataReadStart.TabIndex = 23;
-            this.button_DataReadStart.Text = "Start";
-            this.button_DataReadStart.UseVisualStyleBackColor = true;
-            this.button_DataReadStart.Click += new System.EventHandler(this.button_DataReadStart_Click);
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label28.Location = new System.Drawing.Point(31, 89);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(52, 15);
-            this.label28.TabIndex = 26;
-            this.label28.Text = "All FIFO:";
-            // 
-            // dataGridView_AnalyzData
-            // 
-            this.dataGridView_AnalyzData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_AnalyzData.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dataGridView_AnalyzData.Location = new System.Drawing.Point(665, 0);
-            this.dataGridView_AnalyzData.Name = "dataGridView_AnalyzData";
-            this.dataGridView_AnalyzData.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dataGridView_AnalyzData.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dataGridView_AnalyzData.Size = new System.Drawing.Size(575, 601);
-            this.dataGridView_AnalyzData.TabIndex = 27;
+            this.button_ConfigDown.Location = new System.Drawing.Point(161, 469);
+            this.button_ConfigDown.Margin = new System.Windows.Forms.Padding(2);
+            this.button_ConfigDown.Name = "button_ConfigDown";
+            this.button_ConfigDown.Size = new System.Drawing.Size(56, 37);
+            this.button_ConfigDown.TabIndex = 18;
+            this.button_ConfigDown.Text = "DOWN";
+            this.button_ConfigDown.UseVisualStyleBackColor = true;
+            this.button_ConfigDown.Click += new System.EventHandler(this.button_ConfigDown_Click);
             // 
             // Form1
             // 
@@ -2796,22 +2826,11 @@ namespace Digitizer_ver1
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(1200, 650);
             this.Name = "Form1";
-            this.Text = "Ultra High Speed  AdcDAQ";
+            this.Text = "Ultra High Speed Digitizer DAQ";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tabRegisters.ResumeLayout(false);
-            this.tabControl_RegistersSetting.ResumeLayout(false);
-            this.tabPage_ADC.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ADCReg)).EndInit();
-            this.tabPage_HMC.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_HMCReg)).EndInit();
-            this.tabPage_LMX1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_LMX1Reg)).EndInit();
-            this.tabPage_LMX2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_LMX2Reg)).EndInit();
-            this.tabPage_TestReg.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TestReg)).EndInit();
             this.panel3.ResumeLayout(false);
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
@@ -2864,6 +2883,8 @@ namespace Digitizer_ver1
             this.groupBox9.ResumeLayout(false);
             this.tabSetting.ResumeLayout(false);
             this.tabSetting.PerformLayout();
+            this.groupBox13.ResumeLayout(false);
+            this.groupBox13.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_RegistersFiles)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -2874,14 +2895,14 @@ namespace Digitizer_ver1
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_QS_Seed2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_QS_Seed1)).EndInit();
             this.tabAnalyzInCirc.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_AnalyzData)).EndInit();
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
             this.groupBox11.ResumeLayout(false);
             this.groupBox11.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_AnalyzNumOfSamples)).EndInit();
-            this.groupBox12.ResumeLayout(false);
-            this.groupBox12.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_AnalyzData)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2892,14 +2913,6 @@ namespace Digitizer_ver1
         private System.Windows.Forms.Timer timerRequest;
         private System.Windows.Forms.TabPage tabRegisters;
         private System.Windows.Forms.TabControl tabControl_RegistersSetting;
-        private System.Windows.Forms.TabPage tabPage_ADC;
-        private System.Windows.Forms.DataGridView dataGridView_ADCReg;
-        private System.Windows.Forms.TabPage tabPage_HMC;
-        private System.Windows.Forms.DataGridView dataGridView_HMCReg;
-        private System.Windows.Forms.TabPage tabPage_LMX1;
-        private System.Windows.Forms.DataGridView dataGridView_LMX1Reg;
-        private System.Windows.Forms.TabPage tabPage_LMX2;
-        private System.Windows.Forms.DataGridView dataGridView_LMX2Reg;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.GroupBox groupBox_RegBits;
         private System.Windows.Forms.CheckBox checkBox1;
@@ -2913,16 +2926,6 @@ namespace Digitizer_ver1
         private System.Windows.Forms.Button button_RegSaveAs;
         private System.Windows.Forms.Button button_RegLoadFromFile;
         private System.Windows.Forms.TabControl tabControl_MAIN;
-        private System.Windows.Forms.TabPage tabPage_TestReg;
-        private System.Windows.Forms.DataGridView dataGridView_TestReg;
-        private System.Windows.Forms.TabPage tabSetting;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button_OpenCloseCommunication;
-        private System.Windows.Forms.Button button_ScanCommunication;
-        private System.Windows.Forms.ComboBox comboBox_Communication;
-        private System.Windows.Forms.RadioButton radioButton_PCIe;
-        private System.Windows.Forms.RadioButton radioButton_USB;
-        private System.Windows.Forms.RadioButton radioButton_UART;
         private System.Windows.Forms.TabPage tabMeasurement_Setting;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.RadioButton radioButton4;
@@ -2971,10 +2974,6 @@ namespace Digitizer_ver1
         private System.Windows.Forms.Button button_ConfigFileSaveToFile;
         private System.Windows.Forms.Button button_ConfigFileSaveAs;
         private System.Windows.Forms.Button button_ConfigRun;
-        private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.DataGridView dataGridView_RegistersFiles;
-        public System.Windows.Forms.Label label_Test;
-        private System.Windows.Forms.Button button_Test;
         private System.Windows.Forms.Button button_ConfigStop;
         private System.Windows.Forms.Label label_xRead;
         private System.Windows.Forms.Button button_xSend;
@@ -2990,9 +2989,6 @@ namespace Digitizer_ver1
         private System.Windows.Forms.DataGridView dataGridView_GpioInputs;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button_ClearRisingFalling;
-        public System.Windows.Forms.Label label_RecvBytes;
-        private System.Windows.Forms.CheckBox checkBox_cmdQuestions;
-        public System.Windows.Forms.Label label_InQ;
         private System.Windows.Forms.Button button_AddNewConfig;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.TabPage tabReset;
@@ -3102,6 +3098,35 @@ namespace Digitizer_ver1
         private System.Windows.Forms.Button button_DataReadStop;
         private System.Windows.Forms.Button button_DataReadStart;
         private System.Windows.Forms.DataGridView dataGridView_AnalyzData;
+        private System.Windows.Forms.TabPage tabSetting;
+        private System.Windows.Forms.GroupBox groupBox13;
+        private System.Windows.Forms.Button button_ddRead;
+        private System.Windows.Forms.TextBox textBox_ddSpecNum;
+        private System.Windows.Forms.Button button_ddWrite;
+        public System.Windows.Forms.Label label_comState;
+        public System.Windows.Forms.Label label_InQ;
+        private System.Windows.Forms.CheckBox checkBox_cmdQuestions;
+        public System.Windows.Forms.Label label_RecvBytes;
+        public System.Windows.Forms.Label label_Test;
+        private System.Windows.Forms.Button button_Test;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.DataGridView dataGridView_RegistersFiles;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button button_OpenCloseCommunication;
+        private System.Windows.Forms.Button button_ScanCommunication;
+        private System.Windows.Forms.ComboBox comboBox_Communication;
+        private System.Windows.Forms.RadioButton radioButton_PCIe;
+        private System.Windows.Forms.RadioButton radioButton_USB;
+        private System.Windows.Forms.RadioButton radioButton_UART;
+        private System.Windows.Forms.Label label32;
+        public System.Windows.Forms.Label label_ddMyNum;
+        private System.Windows.Forms.RadioButton radioButton_ddSpecNum;
+        private System.Windows.Forms.RadioButton radioButton_ddSameAsComm;
+        private System.Windows.Forms.RadioButton radioButton_ddNotSet;
+        private System.Windows.Forms.CheckBox checkBox_xListen2;
+        private System.Windows.Forms.CheckBox checkBox_xListen3;
+        private System.Windows.Forms.Button button_ConfigDown;
+        private System.Windows.Forms.Button button_ConfigUp;
     }
 }
 

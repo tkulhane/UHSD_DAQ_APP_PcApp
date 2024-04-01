@@ -1,0 +1,30 @@
+0;General Status;R/W;0
+1;Lanes Restart;R/W;0
+2;…;R/W;0
+3;…;R/W;0
+4;…;R/W;0
+5;…;R/W;0
+6;…;R/W;0
+7;…;R/W;0
+8;…;R/W;0
+9;…;R/W;0
+A;Lane Number;R/W;0
+B;Alligment Fifo Count;R/W;0
+C;XCVR status;R/W;0
+D;FIFO status;R/W;0
+E;XCVR status Rising;R/W;0
+F;FIFO status Rising;R/W;0
+10;XCVR status Falling;R/W;0
+11;FIFO status Falling;R/W;0
+12;Reserved;R/W;0
+13;Reserved;R/W;0
+14;Lane Number;R/W;0
+15;Alligment Fifo Count;R/W;0
+16;XCVR status;R/W;0
+17;FIFO status;R/W;0
+18;XCVR status Rising;R/W;0
+19;FIFO status Rising;R/W;0
+1A;XCVR status Falling;R/W;0
+1B;FIFO status Falling;R/W;0
+1C;Reserved;R/W;0
+1D;Reserved;R/W;0

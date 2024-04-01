@@ -13,7 +13,6 @@ namespace Digitizer_ver1
         private BindingList<MultipleConfigurationFileSequencer_Data> List_MultipleConfigFiles = new BindingList<MultipleConfigurationFileSequencer_Data>();
 
         public DataGridView MultipleConfigFiles;
-        //public ComboBox comboBox_ConfigFiles;
         public DataGridView dataGridView_ConfigFile;
         public BindingList<SystemSetting_RegistersFileData> List_ReigistersFile;
         public Reset_Control rst;
@@ -34,6 +33,52 @@ namespace Digitizer_ver1
             }
 
             MultipleConfigFiles.Update();
+        }
+
+        public static void Move<T>(BindingList<T> list, int oldIndex, int newIndex)
+        {
+            var item = list[oldIndex];
+
+            list.RemoveAt(oldIndex);
+
+            //if (newIndex > oldIndex) newIndex--;
+            // the actual index could have shifted due to the removal
+
+            list.Insert(newIndex, item);
+        }
+
+        public void MoveConfigItemUp()
+        {
+            int selCount = MultipleConfigFiles.SelectedRows.Count;
+            if (selCount == 0)
+            {
+                return;
+            }
+
+            int selIndex = MultipleConfigFiles.SelectedRows[0].Index;
+            if (selIndex < 0) return;
+
+            if (selIndex == 0) return;
+
+            Move(List_MultipleConfigFiles, selIndex, selIndex - 1);
+            MultipleConfigFiles.Rows[selIndex - 1].Selected = true;
+        }
+
+        public void MoveConfigItemDown()
+        {
+            int selCount = MultipleConfigFiles.SelectedRows.Count;
+            if (selCount == 0)
+            {
+                return;
+            }
+
+            int selIndex = MultipleConfigFiles.SelectedRows[0].Index;
+            if (selIndex < 0) return;
+
+            if (selIndex >= List_MultipleConfigFiles.Count - 1) return;
+
+            Move(List_MultipleConfigFiles, selIndex, selIndex + 1);
+            MultipleConfigFiles.Rows[selIndex + 1].Selected = true;
         }
 
         public void AddConfig() 

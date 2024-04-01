@@ -48,7 +48,7 @@ namespace Digitizer_ver1
 
         bool _notIncStepSequence = false;
         eReadRequestType _ReadRequest_Type = eReadRequestType.non;
-        Registers_Setting _ReadRequest_RegisterSetting;
+        RegistersSetting _ReadRequest_RegisterSetting;
         int _ReadRequest_Input;
 
 
