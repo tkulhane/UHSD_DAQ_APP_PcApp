@@ -196,7 +196,20 @@ namespace Digitizer_ver1
             if(!(Last_ActivityMessage_Receive[0] == Last_ActivityMessage_Send[0] && Last_ActivityMessage_Receive[1] == Last_ActivityMessage_Send[1])) //nejsou stejne 
             {
                 ActivityError = true;
-                ActivityErrorDelayed_Counter += 10; 
+                ActivityErrorDelayed_Counter += 50;
+
+                /*
+                if(Last_ActivityMessage_Receive[0] != Last_ActivityMessage_Receive[1]) 
+                {
+                    string s = Last_ActivityMessage_Receive[0].ToString("x") + "!" + Last_ActivityMessage_Send[0].ToString("x");
+                    s += ".....";
+                    s += Last_ActivityMessage_Receive[1].ToString("x") + "!" + Last_ActivityMessage_Send[1].ToString("x");
+
+                    MessageBox.Show(s);
+                }
+                */
+
+                
             }
             else
             {
@@ -216,7 +229,7 @@ namespace Digitizer_ver1
             }
             
             
-            Last_ActivityMessage_Send[0] = 0x00;
+            Last_ActivityMessage_Send[0] = (byte)(Last_ActivityMessage_Send[1] + 1);//0x00;
             Last_ActivityMessage_Send[1] = (byte)(Last_ActivityMessage_Send[1] + 1);
 
             SendCommand(CommunicationControl_ID_GET, (byte)eCommandCode_CommunicationControl.CMD_COMSW_ACTIVITY_MSG, Last_ActivityMessage_Send[0], Last_ActivityMessage_Send[1]);

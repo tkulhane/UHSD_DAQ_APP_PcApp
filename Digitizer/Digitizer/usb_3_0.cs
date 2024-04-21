@@ -180,6 +180,7 @@ namespace Digitizer_ver1
             //NativeOverlapped overlappedWrite = new NativeOverlapped();
 
             ftStatus = d3xxDevice.WritePipe(0x02, buffer, (UInt32)buffer.Length, ref transfered);
+            //transfered = 4;
             //d3xxDevice.WritePipeEx(0x02, buffer, (uint)buffer.Length, ref transfered, ref overlappedWrite);
             //d3xxDevice.AbortPipe(0x02);
 

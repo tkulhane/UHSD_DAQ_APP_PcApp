@@ -1,4 +1,4 @@
-communication;usb;FT601_1
+communication;
 data_destination;SaC;
 register;ADC;C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\ConfigFiles\ADC_reg.csv
 register;HMC;C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\ConfigFiles\HMC_reg.csv

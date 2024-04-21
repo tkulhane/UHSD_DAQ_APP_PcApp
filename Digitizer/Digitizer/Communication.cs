@@ -117,15 +117,21 @@ namespace Digitizer_ver1
 
 
 
-
+        bool winErrOpen = false;
 
         private void ErrorHandlerFunction(string message)
         {
             //ToDo: dodelat
             
-            if (message != string.Empty)
+            if (message != string.Empty && !winErrOpen)
             {
-                MessageBox.Show(message, "Communication ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                winErrOpen = true;
+                DialogResult dr = MessageBox.Show(message, "Communication ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+                if(dr == DialogResult.OK) 
+                {
+                    winErrOpen = false;
+                }
             }
 
             CloseAll();

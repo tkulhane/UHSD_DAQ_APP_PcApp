@@ -13,26 +13,30 @@ namespace Digitizer_ver1
         public enum eCommandCode_Trigger : byte
         {
 
-            CMD_TRG_ENABLE = 0x00,
-            CMD_TRG_THRESHOLD = 0x01,
+            CMD_TRG_ENABLE = 0x01,
+            CMD_TRG_MODE = 0x02,
 
-            CMD_TRG_SAMPLE_PER_EVENT_L = 0x02,
-            CMD_TRG_SAMPLE_PER_EVENT_M = 0x03,
+            CMD_TRG_THRESHOLD = 0x11,
 
-            CMD_TRG_SET_NUMBERS_OF_EVENTS_L = 0x04,
-            CMD_TRG_SET_NUMBERS_OF_EVENTS_M = 0x05,
-            CMD_TRG_SET_TIME_FOR_RUN_L = 0x06,
-            CMD_TRG_SET_TIME_FOR_RUN_M = 0x07,
+            CMD_TRG_SAMPLE_PER_EVENT_L = 0x12,
+            CMD_TRG_SAMPLE_PER_EVENT_M = 0x13,
 
-            CMD_TRG_COUNTER_EVENT_INCOMING_L = 0x10,
-            CMD_TRG_COUNTER_EVENT_INCOMING_M = 0x11,
-            CMD_TRG_COUNTER_EVENT_PROCESSED_L = 0x12,
-            CMD_TRG_COUNTER_EVENT_PROCESSED_M = 0x13,
-            CMD_TRG_COUNTER_EVENT_INRUN_L = 0x14,
-            CMD_TRG_COUNTER_EVENT_INRUN_M = 0x15,
+            CMD_TRG_SET_NUMBERS_OF_EVENTS_L = 0x14,
+            CMD_TRG_SET_NUMBERS_OF_EVENTS_M = 0x15,
+            CMD_TRG_SET_TIME_FOR_RUN_L = 0x16,
+            CMD_TRG_SET_TIME_FOR_RUN_M = 0x17,
 
-            CMD_TRG_TEST_GENERATOR_ENABLE = 0x30,
-            CMD_TRG_COUNTERS_RESET = 0x40
+            CMD_TRG_COUNTERS_RESET = 0x20,
+
+            CMD_TRG_COUNTER_EVENT_INCOMING_L = 0x21,
+            CMD_TRG_COUNTER_EVENT_INCOMING_M = 0x22,
+            CMD_TRG_COUNTER_EVENT_PROCESSED_L = 0x23,
+            CMD_TRG_COUNTER_EVENT_PROCESSED_M = 0x24,
+            CMD_TRG_COUNTER_EVENT_INRUN_L = 0x25,
+            CMD_TRG_COUNTER_EVENT_INRUN_M = 0x26,
+
+            CMD_TRG_TEST_GENERATOR_ENABLE = 0x41
+            
 
         }
 
