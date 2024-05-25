@@ -64,14 +64,15 @@ namespace Digitizer_ver1
             InputAdd(7, "HMC-GPIO-0");
 
             InputAdd(8, "HMC-GPIO-1");
-            InputAdd(11, "SMPS-PWR-GOOD");
-            InputAdd(12, "LDO-PWR-GOOD");
-            InputAdd(13, "ADC-PWR-GOOD");
-            InputAdd(14, "SYNC-IN");
-            InputAdd(15, "LANE");
+            InputAdd(9, "SMPS-PWR-GOOD");
+            InputAdd(10, "LDO-PWR-GOOD");
+            InputAdd(11, "ADC-PWR-GOOD");
 
-            InputAdd(9, "EN");
-            InputAdd(10, "BUSY");
+            InputAdd(12, "GPI-0");
+            InputAdd(13, "GPI-1");
+            InputAdd(14, "GPI-2");
+            InputAdd(15, "GPI-3");
+
 
             //Outputs
             OutputAdd(0, "ADC-PWDN");
@@ -83,10 +84,13 @@ namespace Digitizer_ver1
 
             OutputAdd(6, "BOARD-PWR-RUN");
             OutputAdd(7, "ADC-PWR-RUN");
-            OutputAdd(12, "GPIO-0");
-            OutputAdd(13, "GPIO-1");
-            OutputAdd(14, "LED_2");
-            OutputAdd(15, "LED_3");
+            OutputAdd(10, "LED_2");
+            OutputAdd(11, "LED_3");
+
+            OutputAdd(12, "GPO-0");
+            OutputAdd(13, "GPO-0");
+            OutputAdd(14, "GPO-0");
+            OutputAdd(15, "GPO-0");
 
             OutputAdd(2, "LMX-SYNC");
 

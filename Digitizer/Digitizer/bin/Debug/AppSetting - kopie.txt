@@ -1,9 +1,13 @@
-communication;usb;FTDI SuperSpeed-FIFO Bridge
-register;ADC;
-register;HMC;C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\ConfigFiles\HMC_reg.csv
+communication;usb;
+data_destination;SaC;
+register;ADC;C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\ConfigFiles\ADC_reg.csv
+register;HMC;
 register;LMX1;C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\ConfigFiles\LMX1_reg.csv
 register;LMX2;C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\ConfigFiles\LMX2_reg.csv
 register;FpgaTest;C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\ConfigFiles\Test_Reg.csv
+register;Transcievers;C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\ConfigFiles\Transceivers.csv
+register;Clock Switch;C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\ConfigFiles\Clock_Switch.csv
+register;EXT Signals;C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\ConfigFiles\EXT_Signals.csv
 config;_config_HMC;C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\ConfigFiles\_config_HMC.csv
 config;_config_LMX1;C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\ConfigFiles\_config_LMX1.csv
-config;_config_LMX2;C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\ConfigFiles\_config_LMX2.csv
+config;_config_LMX2.csv;C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\ConfigFiles\_config_LMX2.csv

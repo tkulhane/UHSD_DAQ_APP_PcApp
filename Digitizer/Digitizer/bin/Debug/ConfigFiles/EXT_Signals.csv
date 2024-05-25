@@ -1,0 +1,43 @@
+A;Input Bus 0;R/W;0
+B;Input Bus 1;R/W;0
+C;Input Bus 2;R/W;0
+D;Input Bus 3;R/W;0
+E;Input Bus 4;R/W;0
+F;Input Bus 5;R/W;0
+10;Input Bus 6;R/W;0
+11;Input Bus 7;R/W;0
+12;Input Bus 8;R/W;0
+13;Input Bus 9;R/W;0
+14;Input Bus 10;R/W;0
+15;Input Bus 11;R/W;0
+16;Input Bus 12;R/W;0
+17;Input Bus 13;R/W;0
+18;Input Bus 14;R/W;0
+19;Input Bus 15;R/W;0
+1A;Input Bus 16;R/W;0
+1B;Input Bus 17;R/W;0
+1C;Input Bus 18;R/W;0
+1D;Input Bus 19;R/W;0
+1E;Input Bus 20;R/W;0
+1F;Input Bus 21;R/W;0
+20;Input Bus 22;R/W;0
+21;Input Bus 23;R/W;0
+22;Input Bus 24;R/W;0
+23;Input Bus 25;R/W;0
+24;Input Bus 26;R/W;0
+25;Input Bus 27;R/W;0
+26;Input Bus 28;R/W;0
+27;Input Bus 29;R/W;0
+28;Input Bus 30;R/W;0
+29;Input Bus 31;R/W;0
+6D;Enable Output;R/W;0
+6E;Output 0;R/W;0
+6F;Output 1;R/W;0
+70;Output 2;R/W;0
+71;Output 3;R/W;0
+72;Output 4;R/W;0
+73;Output 5;R/W;0
+74;Output 6;R/W;0
+75;Output 7;R/W;0
+76;Output 8;R/W;0
+77;Output 9;R/W;0

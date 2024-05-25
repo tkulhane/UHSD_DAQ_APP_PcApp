@@ -889,8 +889,8 @@ dut.write(0x13E, 0x11)
 # clkgrp7_div1_cfg1_hi_perf[7:7] = 0x0
 dut.write(0x140, 0x31)
 
-# clkgrp7_div1_cfg12_divrat_lsb[7:0] = 0x1E
-dut.write(0x141, 0x1E)
+# clkgrp7_div1_cfg12_divrat_lsb[7:0] = 0x4B
+dut.write(0x141, 0x4B)
 
 # clkgrp7_div1_cfg12_divrat_msb[3:0] = 0x0
 dut.write(0x142, 0x0)

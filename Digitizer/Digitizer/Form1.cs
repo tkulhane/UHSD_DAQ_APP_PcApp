@@ -75,6 +75,9 @@ namespace Digitizer_ver1
             AcqControl.label_AcqState = label_AcqState;
             AcqControl.checkBox_TestGeneratorEnable = checkBox_TestGeneratorEnable;
             AcqControl.button_AcqStartStop = button_AcqStartStop;
+            AcqControl.radioButton_TrgSelf = radioButton_TrgSelf;
+            AcqControl.radioButton_TrgExt = radioButton_TrgExt;
+            AcqControl.radioButton_TrgSw = radioButton_TrgSw;
 
             AcqControl.UpdateAcqState(false);
 
@@ -143,6 +146,8 @@ namespace Digitizer_ver1
             MultiRegistersSetting.CreateRegister("FpgaTest", RegistersSetting.eAddressValueSize.Address8_Value8, Communication.eCommandCode.CMD_CONST_GET_TestRegisters, Communication.eCommandCode.CMD_CONST_SET_TestRegisters);
             MultiRegistersSetting.CreateRegister("Transcievers", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_TransceiversControl, Communication.eCommandCode.CMD_CONST_SET_TransceiversControl);
 
+            MultiRegistersSetting.CreateRegister("Clock_Switch", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Clock_Controler, Communication.eCommandCode.CMD_CONST_SET_Clock_Controler);
+            MultiRegistersSetting.CreateRegister("EXT_Signals", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_ExtSignals, Communication.eCommandCode.CMD_CONST_SET_ExtSignals);
 
             //system setting load
             sysSetting.SettingLoad();
@@ -225,6 +230,7 @@ namespace Digitizer_ver1
             byte[] data = communication.CommandData;
 
             int int_ID = (int)ID;
+
 
             label_Test.Text = int_ID.ToString("X2") + " " + data[0].ToString("X2") + " " + data[1].ToString("X2") + " " + data[2].ToString("X2");
 
@@ -491,6 +497,10 @@ namespace Digitizer_ver1
             AcqControl.TestGeneratorEnable();
         }
 
+        private void radioButton_TriggerSource_CheckedChanged(object sender, EventArgs e)
+        {
+            AcqControl.AcqTriggerSelect();
+        }
 
         //-------------------------------------------------------------------------------------------------------------------
         //Configutation Sequence File

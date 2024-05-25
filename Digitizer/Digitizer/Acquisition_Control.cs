@@ -15,6 +15,8 @@ namespace Digitizer_ver1
 
             CMD_TRG_ENABLE = 0x01,
             CMD_TRG_MODE = 0x02,
+            CMD_TRG_ABORT_MODE = 0x03,
+            CMD_TRG_TRIGGER_SELECT = 0x04,
 
             CMD_TRG_THRESHOLD = 0x11,
 
@@ -47,6 +49,10 @@ namespace Digitizer_ver1
         public RadioButton radioButton_AcqInfinite;
         public RadioButton radioButton_AcqNumEvents;
         public RadioButton radioButton_AcqTime;
+
+        public RadioButton radioButton_TrgSelf;
+        public RadioButton radioButton_TrgExt;
+        public RadioButton radioButton_TrgSw;
 
         public NumericUpDown numericUpDown_NumOfEvents;
         public NumericUpDown numericUpDown_Time;
@@ -155,6 +161,49 @@ namespace Digitizer_ver1
             }
         }
 
+        public void AcqTriggerSelect() 
+        {
+            if (radioButton_TrgSelf.Checked) 
+            {
+                SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_TRIGGER_SELECT, 0x00, 0x00);
+            }
+            else if (radioButton_TrgExt.Checked) 
+            {
+                SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_TRIGGER_SELECT, 0x00, 0x01);
+            }
+            else if (radioButton_TrgSw.Checked) 
+            {
+                SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_TRIGGER_SELECT, 0x00, 0x02);
+            }
+        }
+
+        public void RB_TriggerSelectUpdate(uint value)
+        {
+            radioButton_TrgSelf.Checked = false;
+            radioButton_TrgExt.Checked = false;
+            radioButton_TrgSw.Checked = false;
+
+            switch (value) 
+            {
+                case 0:
+                    radioButton_TrgSelf.Checked = true;
+                    break;
+
+                case 1:
+                    radioButton_TrgExt.Checked = true;
+                    break;
+
+                case 2:
+                    radioButton_TrgSw.Checked = true;
+                    break;
+
+                default:
+                    break;
+            }
+            
+
+        }
+
         public void SetNumberOfEvents() 
         {
             UInt32 val = (UInt32)numericUpDown_NumOfEvents.Value;
@@ -233,6 +282,8 @@ namespace Digitizer_ver1
 
             SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SET_NUMBERS_OF_EVENTS_L, 0, 0);
             SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SET_NUMBERS_OF_EVENTS_M, 0, 0);
+
+            SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_TRIGGER_SELECT, 0, 0);
 
         }
 
@@ -389,6 +440,11 @@ namespace Digitizer_ver1
                     {
                         checkBox_TestGeneratorEnable.Checked = false;
                     }
+                    break;
+
+                //trigger select
+                case (byte)eCommandCode_Trigger.CMD_TRG_TRIGGER_SELECT:
+                    RB_TriggerSelectUpdate(data_2);
                     break;
 
 

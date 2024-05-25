@@ -20,6 +20,9 @@ namespace Digitizer_ver1
             CMD_CONST_SET_Reset_Controler = 0x03,
             CMD_CONST_GET_Reset_Controler = 0x04,
 
+            CMD_CONST_SET_Clock_Controler = 0x05,
+            CMD_CONST_GET_Clock_Controler = 0x06,
+
             CMD_CONST_SET_TestRegisters = 0x11,
             CMD_CONST_GET_TestRegisters = 0x12,
 
@@ -49,6 +52,9 @@ namespace Digitizer_ver1
 
             CMD_CONST_SET_AnalyzInCirc = 0x39,
             CMD_CONST_GET_AnalyzInCirc = 0x40,
+
+            CMD_CONST_SET_ExtSignals = 0x41,
+            CMD_CONST_GET_ExtSignals = 0x42,
 
 
             CMD_CONST_EVENT_HEAD = 0x7A,

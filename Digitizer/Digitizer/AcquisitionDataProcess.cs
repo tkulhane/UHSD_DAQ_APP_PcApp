@@ -22,9 +22,9 @@ namespace Digitizer_ver1
 
         AcquisitionDataProcess_Data ActualEventData;
 
-        UInt64 EventsCount_Started = 0;
-        UInt64 EventsCount_Completed = 0;
-        UInt64 PacketCounter = 0;
+        UInt32 EventsCount_Started = 0;
+        UInt32 EventsCount_Completed = 0;
+        UInt32 PacketCounter = 0;
         int FrameInPacketCounter = 0;
 
         int frameOrder_Last;
@@ -75,7 +75,9 @@ namespace Digitizer_ver1
 
             else if (data[0] == 0xFB) //Event tail - store event
             {
-                if(PacketCounter != data[3]) 
+                int packetTotCount = data[3] + (data[2] << 8) + ((data[1] & 0x0F) << 16);
+
+                if (PacketCounter != packetTotCount) 
                 {
                     //error
                     ErrorCounter++;
@@ -97,7 +99,7 @@ namespace Digitizer_ver1
                 ActualEventData = null;
 
 
-                logStr += "Event Tail; Packet Count = " + data[3].ToString();
+                logStr += "Event Tail; Packet Count = " + packetTotCount.ToString();
                 logStr += Environment.NewLine;
             }
 
@@ -110,7 +112,9 @@ namespace Digitizer_ver1
 
             else if (data[0] == 0xFD) //Packet tail
             {
-                if(FrameInPacketCounter != data[3]) 
+                int packetNum = data[3] + (data[2] << 8) + ((data[1] & 0x0F) << 16);
+
+                if (FrameInPacketCounter != packetNum) 
                 {
                     //error
                     ErrorCounter++;
@@ -153,8 +157,12 @@ namespace Digitizer_ver1
                 int sample1 = data[3] + ((data[2] & 0x0F) << 8);
                 int sample2 = ((data[2] & 0xF0) >> 4) + (data[1] << 4);
 
-                ActualEventData.AddSampleAndSize(sample1);
-                ActualEventData.AddSampleAndSize(sample2);
+                if(ActualEventData != null)
+                {
+                    ActualEventData.AddSampleAndSize(sample1);
+                    ActualEventData.AddSampleAndSize(sample2);
+                }
+
 
                 logStr += "Frame = " + frameOrder.ToString();
                 logStr += "; Sample 1 = " + sample1.ToString();

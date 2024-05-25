@@ -30,9 +30,9 @@ namespace Digitizer_ver1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.checkBox_xListen2 = new System.Windows.Forms.CheckBox();
             this.checkBox_xListen3 = new System.Windows.Forms.CheckBox();
@@ -251,6 +251,10 @@ namespace Digitizer_ver1
             this.label24 = new System.Windows.Forms.Label();
             this.numericUpDown_AnalyzNumOfSamples = new System.Windows.Forms.NumericUpDown();
             this.timerForm = new System.Windows.Forms.Timer(this.components);
+            this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.radioButton_TrgSw = new System.Windows.Forms.RadioButton();
+            this.radioButton_TrgExt = new System.Windows.Forms.RadioButton();
+            this.radioButton_TrgSelf = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             this.tabRegisters.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -308,6 +312,7 @@ namespace Digitizer_ver1
             this.groupBox11.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_AnalyzNumOfSamples)).BeginInit();
+            this.groupBox14.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -982,6 +987,7 @@ namespace Digitizer_ver1
             // 
             // tabMeasurement_Setting
             // 
+            this.tabMeasurement_Setting.Controls.Add(this.groupBox14);
             this.tabMeasurement_Setting.Controls.Add(this.groupBox6);
             this.tabMeasurement_Setting.Controls.Add(this.groupBox5);
             this.tabMeasurement_Setting.Controls.Add(this.groupBox4);
@@ -1475,21 +1481,21 @@ namespace Digitizer_ver1
             // 
             this.chart_data.BorderlineColor = System.Drawing.Color.Black;
             this.chart_data.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea1.Name = "ChartArea1";
-            this.chart_data.ChartAreas.Add(chartArea1);
+            chartArea4.Name = "ChartArea1";
+            this.chart_data.ChartAreas.Add(chartArea4);
             this.chart_data.Dock = System.Windows.Forms.DockStyle.Bottom;
-            legend1.Name = "Legend1";
-            this.chart_data.Legends.Add(legend1);
+            legend4.Name = "Legend1";
+            this.chart_data.Legends.Add(legend4);
             this.chart_data.Location = new System.Drawing.Point(0, 197);
             this.chart_data.Margin = new System.Windows.Forms.Padding(2);
             this.chart_data.Name = "chart_data";
-            series1.BorderWidth = 2;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.IsVisibleInLegend = false;
-            series1.Legend = "Legend1";
-            series1.Name = "Data";
-            this.chart_data.Series.Add(series1);
+            series4.BorderWidth = 2;
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.IsVisibleInLegend = false;
+            series4.Legend = "Legend1";
+            series4.Name = "Data";
+            this.chart_data.Series.Add(series4);
             this.chart_data.Size = new System.Drawing.Size(850, 394);
             this.chart_data.TabIndex = 21;
             this.chart_data.Text = "chart_data";
@@ -2816,6 +2822,54 @@ namespace Digitizer_ver1
             this.timerForm.Interval = 50;
             this.timerForm.Tick += new System.EventHandler(this.timerForm_Tick);
             // 
+            // groupBox14
+            // 
+            this.groupBox14.Controls.Add(this.radioButton_TrgSw);
+            this.groupBox14.Controls.Add(this.radioButton_TrgExt);
+            this.groupBox14.Controls.Add(this.radioButton_TrgSelf);
+            this.groupBox14.Location = new System.Drawing.Point(947, 18);
+            this.groupBox14.Name = "groupBox14";
+            this.groupBox14.Size = new System.Drawing.Size(160, 189);
+            this.groupBox14.TabIndex = 31;
+            this.groupBox14.TabStop = false;
+            this.groupBox14.Text = "Trigger Source";
+            // 
+            // radioButton_TrgSw
+            // 
+            this.radioButton_TrgSw.AutoSize = true;
+            this.radioButton_TrgSw.Location = new System.Drawing.Point(19, 85);
+            this.radioButton_TrgSw.Name = "radioButton_TrgSw";
+            this.radioButton_TrgSw.Size = new System.Drawing.Size(103, 17);
+            this.radioButton_TrgSw.TabIndex = 36;
+            this.radioButton_TrgSw.TabStop = true;
+            this.radioButton_TrgSw.Text = "Software Trigger";
+            this.radioButton_TrgSw.UseVisualStyleBackColor = true;
+            this.radioButton_TrgSw.CheckedChanged += new System.EventHandler(this.radioButton_TriggerSource_CheckedChanged);
+            // 
+            // radioButton_TrgExt
+            // 
+            this.radioButton_TrgExt.AutoSize = true;
+            this.radioButton_TrgExt.Location = new System.Drawing.Point(19, 62);
+            this.radioButton_TrgExt.Name = "radioButton_TrgExt";
+            this.radioButton_TrgExt.Size = new System.Drawing.Size(76, 17);
+            this.radioButton_TrgExt.TabIndex = 35;
+            this.radioButton_TrgExt.TabStop = true;
+            this.radioButton_TrgExt.Text = "Ext Trigger";
+            this.radioButton_TrgExt.UseVisualStyleBackColor = true;
+            this.radioButton_TrgExt.CheckedChanged += new System.EventHandler(this.radioButton_TriggerSource_CheckedChanged);
+            // 
+            // radioButton_TrgSelf
+            // 
+            this.radioButton_TrgSelf.AutoSize = true;
+            this.radioButton_TrgSelf.Location = new System.Drawing.Point(19, 39);
+            this.radioButton_TrgSelf.Name = "radioButton_TrgSelf";
+            this.radioButton_TrgSelf.Size = new System.Drawing.Size(79, 17);
+            this.radioButton_TrgSelf.TabIndex = 34;
+            this.radioButton_TrgSelf.TabStop = true;
+            this.radioButton_TrgSelf.Text = "Self Trigger";
+            this.radioButton_TrgSelf.UseVisualStyleBackColor = true;
+            this.radioButton_TrgSelf.CheckedChanged += new System.EventHandler(this.radioButton_TriggerSource_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2903,6 +2957,8 @@ namespace Digitizer_ver1
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_AnalyzNumOfSamples)).EndInit();
+            this.groupBox14.ResumeLayout(false);
+            this.groupBox14.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -3127,6 +3183,10 @@ namespace Digitizer_ver1
         private System.Windows.Forms.CheckBox checkBox_xListen3;
         private System.Windows.Forms.Button button_ConfigDown;
         private System.Windows.Forms.Button button_ConfigUp;
+        private System.Windows.Forms.GroupBox groupBox14;
+        private System.Windows.Forms.RadioButton radioButton_TrgSw;
+        private System.Windows.Forms.RadioButton radioButton_TrgExt;
+        private System.Windows.Forms.RadioButton radioButton_TrgSelf;
     }
 }
 
