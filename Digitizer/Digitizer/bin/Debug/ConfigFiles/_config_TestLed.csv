@@ -1,0 +1,5 @@
+OUTPUT;LED_2;1;;;;GPIO output set
+WAIT;;1000;;;;Wait
+OUTPUT;LED_2;0;;;;GPIO output set
+WAIT;;1000;;;;Wait
+JUMP;NO;1;;;;

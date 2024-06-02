@@ -37,6 +37,7 @@ namespace Digitizer_ver1
         public string _Patch;
         public ConfigurationFileSequencer _ConfigSequencer;
         public bool _Assigned;
+        private eStates _StateInternal;
 
         public MultipleConfigurationFileSequencer_Data() 
         {
@@ -58,6 +59,8 @@ namespace Digitizer_ver1
 
         public void SetState(eStates state) 
         {
+            _StateInternal = state;
+
             switch (state) 
             {
                 case eStates.NotAssign:
@@ -85,6 +88,11 @@ namespace Digitizer_ver1
                     break;
 
             }
+        }
+
+        public eStates GetState() 
+        {
+            return _StateInternal;
         }
 
     }

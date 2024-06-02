@@ -117,7 +117,7 @@ B6;Reserved ;R/W;0
 B7;Reserved ;R/W;0
 B8;Reserved ;R/W;0
 C8;Channel Output 0 control ;R/W;31
-C9;Channel Output 0 control ;R/W;1E
+C9;Channel Output 0 control ;R/W;4B
 CA;Channel Output 0 control ;R/W;0
 CB;Channel Output 0 control ;R/W;0
 CC;Channel Output 0 control ;R/W;0
@@ -137,7 +137,7 @@ D9;Channel Output 1 control ;R/W;0
 DA;Channel Output 1 control ;R/W;11
 DB;Channel Output 1 control ;R/W;0
 DC;Channel Output 2 control ;R/W;31
-DD;Channel Output 2 control ;R/W;1E
+DD;Channel Output 2 control ;R/W;4B
 DE;Channel Output 2 control ;R/W;0
 DF;Channel Output 2 control ;R/W;0
 E0;Channel Output 2 control ;R/W;0
@@ -217,7 +217,7 @@ FF;Channel Output 5 control ;R/W;0
 12A;Channel Output 9 control ;R/W;13
 12B;Channel Output 9 control ;R/W;0
 12C;Channel Output 10 control ;R/W;31
-12D;Channel Output 10 control ;R/W;5
+12D;Channel Output 10 control ;R/W;4B
 12E;Channel Output 10 control ;R/W;0
 12F;Channel Output 10 control ;R/W;0
 130;Channel Output 10 control ;R/W;0
@@ -237,7 +237,7 @@ FF;Channel Output 5 control ;R/W;0
 13E;Channel Output 11 control ;R/W;11
 13F;Channel Output 11 control ;R/W;0
 140;Channel Output 12 control ;R/W;31
-141;Channel Output 12 control ;R/W;1E
+141;Channel Output 12 control ;R/W;4B
 142;Channel Output 12 control ;R/W;0
 143;Channel Output 12 control ;R/W;0
 144;Channel Output 12 control ;R/W;0

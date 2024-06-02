@@ -30,9 +30,9 @@ namespace Digitizer_ver1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.checkBox_xListen2 = new System.Windows.Forms.CheckBox();
             this.checkBox_xListen3 = new System.Windows.Forms.CheckBox();
@@ -224,7 +224,7 @@ namespace Digitizer_ver1
             this.button_DataReadStop = new System.Windows.Forms.Button();
             this.button_DataReadStart = new System.Windows.Forms.Button();
             this.label_AnalyzEmpty = new System.Windows.Forms.Label();
-            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.groupBox_AnalyzTriggersBox = new System.Windows.Forms.GroupBox();
             this.checkBox_AnalyzTrg_F_8 = new System.Windows.Forms.CheckBox();
             this.checkBox_AnalyzTrg_R_8 = new System.Windows.Forms.CheckBox();
             this.checkBox_AnalyzTrg_F_7 = new System.Windows.Forms.CheckBox();
@@ -309,7 +309,7 @@ namespace Digitizer_ver1
             this.tabAnalyzInCirc.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_AnalyzData)).BeginInit();
             this.groupBox12.SuspendLayout();
-            this.groupBox11.SuspendLayout();
+            this.groupBox_AnalyzTriggersBox.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_AnalyzNumOfSamples)).BeginInit();
             this.groupBox14.SuspendLayout();
@@ -1481,21 +1481,21 @@ namespace Digitizer_ver1
             // 
             this.chart_data.BorderlineColor = System.Drawing.Color.Black;
             this.chart_data.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea4.Name = "ChartArea1";
-            this.chart_data.ChartAreas.Add(chartArea4);
+            chartArea2.Name = "ChartArea1";
+            this.chart_data.ChartAreas.Add(chartArea2);
             this.chart_data.Dock = System.Windows.Forms.DockStyle.Bottom;
-            legend4.Name = "Legend1";
-            this.chart_data.Legends.Add(legend4);
+            legend2.Name = "Legend1";
+            this.chart_data.Legends.Add(legend2);
             this.chart_data.Location = new System.Drawing.Point(0, 197);
             this.chart_data.Margin = new System.Windows.Forms.Padding(2);
             this.chart_data.Name = "chart_data";
-            series4.BorderWidth = 2;
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series4.IsVisibleInLegend = false;
-            series4.Legend = "Legend1";
-            series4.Name = "Data";
-            this.chart_data.Series.Add(series4);
+            series2.BorderWidth = 2;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.IsVisibleInLegend = false;
+            series2.Legend = "Legend1";
+            series2.Name = "Data";
+            this.chart_data.Series.Add(series2);
             this.chart_data.Size = new System.Drawing.Size(850, 394);
             this.chart_data.TabIndex = 21;
             this.chart_data.Text = "chart_data";
@@ -2427,7 +2427,7 @@ namespace Digitizer_ver1
             // 
             this.tabAnalyzInCirc.Controls.Add(this.dataGridView_AnalyzData);
             this.tabAnalyzInCirc.Controls.Add(this.groupBox12);
-            this.tabAnalyzInCirc.Controls.Add(this.groupBox11);
+            this.tabAnalyzInCirc.Controls.Add(this.groupBox_AnalyzTriggersBox);
             this.tabAnalyzInCirc.Controls.Add(this.groupBox2);
             this.tabAnalyzInCirc.Location = new System.Drawing.Point(4, 22);
             this.tabAnalyzInCirc.Name = "tabAnalyzInCirc";
@@ -2525,30 +2525,31 @@ namespace Digitizer_ver1
             this.label_AnalyzEmpty.TabIndex = 21;
             this.label_AnalyzEmpty.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // groupBox11
+            // groupBox_AnalyzTriggersBox
             // 
-            this.groupBox11.Controls.Add(this.checkBox_AnalyzTrg_F_8);
-            this.groupBox11.Controls.Add(this.checkBox_AnalyzTrg_R_8);
-            this.groupBox11.Controls.Add(this.checkBox_AnalyzTrg_F_7);
-            this.groupBox11.Controls.Add(this.checkBox_AnalyzTrg_R_7);
-            this.groupBox11.Controls.Add(this.checkBox_AnalyzTrg_F_6);
-            this.groupBox11.Controls.Add(this.checkBox_AnalyzTrg_R_6);
-            this.groupBox11.Controls.Add(this.checkBox_AnalyzTrg_F_5);
-            this.groupBox11.Controls.Add(this.checkBox_AnalyzTrg_R_5);
-            this.groupBox11.Controls.Add(this.checkBox_AnalyzTrg_F_4);
-            this.groupBox11.Controls.Add(this.checkBox_AnalyzTrg_R_4);
-            this.groupBox11.Controls.Add(this.checkBox_AnalyzTrg_F_3);
-            this.groupBox11.Controls.Add(this.checkBox_AnalyzTrg_R_3);
-            this.groupBox11.Controls.Add(this.checkBox_AnalyzTrg_F_2);
-            this.groupBox11.Controls.Add(this.checkBox_AnalyzTrg_R_2);
-            this.groupBox11.Controls.Add(this.checkBox_AnalyzTrg_F_1);
-            this.groupBox11.Controls.Add(this.checkBox_AnalyzTrg_R_1);
-            this.groupBox11.Location = new System.Drawing.Point(39, 262);
-            this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(252, 239);
-            this.groupBox11.TabIndex = 6;
-            this.groupBox11.TabStop = false;
-            this.groupBox11.Text = "Triggers";
+            this.groupBox_AnalyzTriggersBox.Controls.Add(this.checkBox_AnalyzTrg_F_8);
+            this.groupBox_AnalyzTriggersBox.Controls.Add(this.checkBox_AnalyzTrg_R_8);
+            this.groupBox_AnalyzTriggersBox.Controls.Add(this.checkBox_AnalyzTrg_F_7);
+            this.groupBox_AnalyzTriggersBox.Controls.Add(this.checkBox_AnalyzTrg_R_7);
+            this.groupBox_AnalyzTriggersBox.Controls.Add(this.checkBox_AnalyzTrg_F_6);
+            this.groupBox_AnalyzTriggersBox.Controls.Add(this.checkBox_AnalyzTrg_R_6);
+            this.groupBox_AnalyzTriggersBox.Controls.Add(this.checkBox_AnalyzTrg_F_5);
+            this.groupBox_AnalyzTriggersBox.Controls.Add(this.checkBox_AnalyzTrg_R_5);
+            this.groupBox_AnalyzTriggersBox.Controls.Add(this.checkBox_AnalyzTrg_F_4);
+            this.groupBox_AnalyzTriggersBox.Controls.Add(this.checkBox_AnalyzTrg_R_4);
+            this.groupBox_AnalyzTriggersBox.Controls.Add(this.checkBox_AnalyzTrg_F_3);
+            this.groupBox_AnalyzTriggersBox.Controls.Add(this.checkBox_AnalyzTrg_R_3);
+            this.groupBox_AnalyzTriggersBox.Controls.Add(this.checkBox_AnalyzTrg_F_2);
+            this.groupBox_AnalyzTriggersBox.Controls.Add(this.checkBox_AnalyzTrg_R_2);
+            this.groupBox_AnalyzTriggersBox.Controls.Add(this.checkBox_AnalyzTrg_F_1);
+            this.groupBox_AnalyzTriggersBox.Controls.Add(this.checkBox_AnalyzTrg_R_1);
+            this.groupBox_AnalyzTriggersBox.Location = new System.Drawing.Point(39, 262);
+            this.groupBox_AnalyzTriggersBox.Name = "groupBox_AnalyzTriggersBox";
+            this.groupBox_AnalyzTriggersBox.Size = new System.Drawing.Size(252, 239);
+            this.groupBox_AnalyzTriggersBox.TabIndex = 6;
+            this.groupBox_AnalyzTriggersBox.TabStop = false;
+            this.groupBox_AnalyzTriggersBox.Text = "Triggers";
+            this.groupBox_AnalyzTriggersBox.Enter += new System.EventHandler(this.groupBox_AnalyzTriggersBox_Enter);
             // 
             // checkBox_AnalyzTrg_F_8
             // 
@@ -2559,6 +2560,7 @@ namespace Digitizer_ver1
             this.checkBox_AnalyzTrg_F_8.TabIndex = 16;
             this.checkBox_AnalyzTrg_F_8.Text = "Falling 8";
             this.checkBox_AnalyzTrg_F_8.UseVisualStyleBackColor = true;
+            this.checkBox_AnalyzTrg_F_8.CheckedChanged += new System.EventHandler(this.checkBox_AnalyzTrg_CheckedChanged);
             // 
             // checkBox_AnalyzTrg_R_8
             // 
@@ -2569,6 +2571,7 @@ namespace Digitizer_ver1
             this.checkBox_AnalyzTrg_R_8.TabIndex = 15;
             this.checkBox_AnalyzTrg_R_8.Text = "Rising 8";
             this.checkBox_AnalyzTrg_R_8.UseVisualStyleBackColor = true;
+            this.checkBox_AnalyzTrg_R_8.CheckedChanged += new System.EventHandler(this.checkBox_AnalyzTrg_CheckedChanged);
             // 
             // checkBox_AnalyzTrg_F_7
             // 
@@ -2579,6 +2582,7 @@ namespace Digitizer_ver1
             this.checkBox_AnalyzTrg_F_7.TabIndex = 14;
             this.checkBox_AnalyzTrg_F_7.Text = "Falling 7";
             this.checkBox_AnalyzTrg_F_7.UseVisualStyleBackColor = true;
+            this.checkBox_AnalyzTrg_F_7.CheckedChanged += new System.EventHandler(this.checkBox_AnalyzTrg_CheckedChanged);
             // 
             // checkBox_AnalyzTrg_R_7
             // 
@@ -2589,6 +2593,7 @@ namespace Digitizer_ver1
             this.checkBox_AnalyzTrg_R_7.TabIndex = 13;
             this.checkBox_AnalyzTrg_R_7.Text = "Rising 7";
             this.checkBox_AnalyzTrg_R_7.UseVisualStyleBackColor = true;
+            this.checkBox_AnalyzTrg_R_7.CheckedChanged += new System.EventHandler(this.checkBox_AnalyzTrg_CheckedChanged);
             // 
             // checkBox_AnalyzTrg_F_6
             // 
@@ -2599,6 +2604,7 @@ namespace Digitizer_ver1
             this.checkBox_AnalyzTrg_F_6.TabIndex = 12;
             this.checkBox_AnalyzTrg_F_6.Text = "Falling 6";
             this.checkBox_AnalyzTrg_F_6.UseVisualStyleBackColor = true;
+            this.checkBox_AnalyzTrg_F_6.CheckedChanged += new System.EventHandler(this.checkBox_AnalyzTrg_CheckedChanged);
             // 
             // checkBox_AnalyzTrg_R_6
             // 
@@ -2609,6 +2615,7 @@ namespace Digitizer_ver1
             this.checkBox_AnalyzTrg_R_6.TabIndex = 11;
             this.checkBox_AnalyzTrg_R_6.Text = "Rising 6";
             this.checkBox_AnalyzTrg_R_6.UseVisualStyleBackColor = true;
+            this.checkBox_AnalyzTrg_R_6.CheckedChanged += new System.EventHandler(this.checkBox_AnalyzTrg_CheckedChanged);
             // 
             // checkBox_AnalyzTrg_F_5
             // 
@@ -2619,6 +2626,7 @@ namespace Digitizer_ver1
             this.checkBox_AnalyzTrg_F_5.TabIndex = 10;
             this.checkBox_AnalyzTrg_F_5.Text = "Falling 5";
             this.checkBox_AnalyzTrg_F_5.UseVisualStyleBackColor = true;
+            this.checkBox_AnalyzTrg_F_5.CheckedChanged += new System.EventHandler(this.checkBox_AnalyzTrg_CheckedChanged);
             // 
             // checkBox_AnalyzTrg_R_5
             // 
@@ -2629,6 +2637,7 @@ namespace Digitizer_ver1
             this.checkBox_AnalyzTrg_R_5.TabIndex = 9;
             this.checkBox_AnalyzTrg_R_5.Text = "Rising 5";
             this.checkBox_AnalyzTrg_R_5.UseVisualStyleBackColor = true;
+            this.checkBox_AnalyzTrg_R_5.CheckedChanged += new System.EventHandler(this.checkBox_AnalyzTrg_CheckedChanged);
             // 
             // checkBox_AnalyzTrg_F_4
             // 
@@ -2639,6 +2648,7 @@ namespace Digitizer_ver1
             this.checkBox_AnalyzTrg_F_4.TabIndex = 8;
             this.checkBox_AnalyzTrg_F_4.Text = "Falling 4";
             this.checkBox_AnalyzTrg_F_4.UseVisualStyleBackColor = true;
+            this.checkBox_AnalyzTrg_F_4.CheckedChanged += new System.EventHandler(this.checkBox_AnalyzTrg_CheckedChanged);
             // 
             // checkBox_AnalyzTrg_R_4
             // 
@@ -2649,6 +2659,7 @@ namespace Digitizer_ver1
             this.checkBox_AnalyzTrg_R_4.TabIndex = 7;
             this.checkBox_AnalyzTrg_R_4.Text = "Rising 4";
             this.checkBox_AnalyzTrg_R_4.UseVisualStyleBackColor = true;
+            this.checkBox_AnalyzTrg_R_4.CheckedChanged += new System.EventHandler(this.checkBox_AnalyzTrg_CheckedChanged);
             // 
             // checkBox_AnalyzTrg_F_3
             // 
@@ -2659,6 +2670,7 @@ namespace Digitizer_ver1
             this.checkBox_AnalyzTrg_F_3.TabIndex = 6;
             this.checkBox_AnalyzTrg_F_3.Text = "Falling 3";
             this.checkBox_AnalyzTrg_F_3.UseVisualStyleBackColor = true;
+            this.checkBox_AnalyzTrg_F_3.CheckedChanged += new System.EventHandler(this.checkBox_AnalyzTrg_CheckedChanged);
             // 
             // checkBox_AnalyzTrg_R_3
             // 
@@ -2669,6 +2681,7 @@ namespace Digitizer_ver1
             this.checkBox_AnalyzTrg_R_3.TabIndex = 5;
             this.checkBox_AnalyzTrg_R_3.Text = "Rising 3";
             this.checkBox_AnalyzTrg_R_3.UseVisualStyleBackColor = true;
+            this.checkBox_AnalyzTrg_R_3.CheckedChanged += new System.EventHandler(this.checkBox_AnalyzTrg_CheckedChanged);
             // 
             // checkBox_AnalyzTrg_F_2
             // 
@@ -2679,6 +2692,7 @@ namespace Digitizer_ver1
             this.checkBox_AnalyzTrg_F_2.TabIndex = 4;
             this.checkBox_AnalyzTrg_F_2.Text = "Falling 2";
             this.checkBox_AnalyzTrg_F_2.UseVisualStyleBackColor = true;
+            this.checkBox_AnalyzTrg_F_2.CheckedChanged += new System.EventHandler(this.checkBox_AnalyzTrg_CheckedChanged);
             // 
             // checkBox_AnalyzTrg_R_2
             // 
@@ -2689,6 +2703,7 @@ namespace Digitizer_ver1
             this.checkBox_AnalyzTrg_R_2.TabIndex = 3;
             this.checkBox_AnalyzTrg_R_2.Text = "Rising 2";
             this.checkBox_AnalyzTrg_R_2.UseVisualStyleBackColor = true;
+            this.checkBox_AnalyzTrg_R_2.CheckedChanged += new System.EventHandler(this.checkBox_AnalyzTrg_CheckedChanged);
             // 
             // checkBox_AnalyzTrg_F_1
             // 
@@ -2699,6 +2714,7 @@ namespace Digitizer_ver1
             this.checkBox_AnalyzTrg_F_1.TabIndex = 2;
             this.checkBox_AnalyzTrg_F_1.Text = "Falling 1";
             this.checkBox_AnalyzTrg_F_1.UseVisualStyleBackColor = true;
+            this.checkBox_AnalyzTrg_F_1.CheckedChanged += new System.EventHandler(this.checkBox_AnalyzTrg_CheckedChanged);
             // 
             // checkBox_AnalyzTrg_R_1
             // 
@@ -2952,8 +2968,8 @@ namespace Digitizer_ver1
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_AnalyzData)).EndInit();
             this.groupBox12.ResumeLayout(false);
             this.groupBox12.PerformLayout();
-            this.groupBox11.ResumeLayout(false);
-            this.groupBox11.PerformLayout();
+            this.groupBox_AnalyzTriggersBox.ResumeLayout(false);
+            this.groupBox_AnalyzTriggersBox.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_AnalyzNumOfSamples)).EndInit();
@@ -3120,7 +3136,7 @@ namespace Digitizer_ver1
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Timer timerForm;
         private System.Windows.Forms.TabPage tabAnalyzInCirc;
-        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.GroupBox groupBox_AnalyzTriggersBox;
         private System.Windows.Forms.CheckBox checkBox_AnalyzTrg_F_8;
         private System.Windows.Forms.CheckBox checkBox_AnalyzTrg_R_8;
         private System.Windows.Forms.CheckBox checkBox_AnalyzTrg_F_7;

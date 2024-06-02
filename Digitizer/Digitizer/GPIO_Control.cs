@@ -94,6 +94,8 @@ namespace Digitizer_ver1
 
             OutputAdd(2, "LMX-SYNC");
 
+            OutputAdd(3, "SYNCIB");
+
             //datagrid
             DataGridsLoad();
         }

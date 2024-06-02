@@ -1,4 +1,4 @@
-communication;non;COM7
+communication;usb;FT601_1
 data_destination;SaC;
 register;ADC;C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\ConfigFiles\ADC_reg.csv
 register;HMC;C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\ConfigFiles\HMC_reg.csv
@@ -11,3 +11,6 @@ register;EXT_Signals;C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\
 config;_config_HMC;C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\ConfigFiles\_config_HMC.csv
 config;_config_LMX1;C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\ConfigFiles\_config_LMX1.csv
 config;_config_LMX2.csv;C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\ConfigFiles\_config_LMX2.csv
+config;_config_Test.csv;C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\ConfigFiles\_config_Test.csv
+config;_config_TestLed.csv;C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\ConfigFiles\_config_TestLed.csv
+config;_config_ADC.csv;C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\ConfigFiles\_config_ADC.csv

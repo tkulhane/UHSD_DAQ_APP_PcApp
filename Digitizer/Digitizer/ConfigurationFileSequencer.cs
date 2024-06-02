@@ -28,6 +28,11 @@ namespace Digitizer_ver1
         public delegate void efunction(MultipleConfigurationFileSequencer_Data.eStates state, MultipleConfigurationFileSequencer_Data MultiConfig_data);
         public efunction StateSetFunction;
 
+        public delegate int efunction_AnotherSequenceAction(string action, string Value);
+        public efunction_AnotherSequenceAction AnotherSequenceAction;
+
+        //public BindingList<MultipleConfigurationFileSequencer_Data> List_MultipleConfigFiles;
+
         public DataGridView _dataGridView_ConfigFile;
         public BindingList<SystemSetting_RegistersFileData> List_ReigistersFile;
         
@@ -267,7 +272,7 @@ namespace Digitizer_ver1
 
         public void ConfigSequenceStop()
         {
-            
+            StateSetFunction(MultipleConfigurationFileSequencer_Data.eStates.Idle, _MultiConfig_data);
             SequenceDone = true;
         }
 
@@ -425,10 +430,15 @@ namespace Digitizer_ver1
                         else //cokoliv jineho nez TBL (musi to byt cislo)
                         {
                             int value;
+                            
                             if (!int.TryParse(Value2, NumberStyles.HexNumber, null, out value)) return false; //parsovani hodnoty
+                            //int xx = (value & mask);
+                            //MessageBox.Show(address.ToString("X") + "." + value.ToString("X") + "." + mask.ToString("X") + "." + xx.ToString("X"));
+
                             List_ReigistersFile[i].p_registerSetting.SendMaskRegister_Request(address, value, mask);
                         }
 
+                        Delay_SequenceLine = 1000;
                     }
                 }
             }
@@ -462,6 +472,8 @@ namespace Digitizer_ver1
                             return false;
                         }
 
+
+                        Delay_SequenceLine = 1000;
                     }
                 }
             }
@@ -555,8 +567,26 @@ namespace Digitizer_ver1
                 if (temp < 0) return false;
                 Delay_SequenceLine = temp;
             }
-            
-            
+
+            else if (Action.Equals("FILE"))
+            {
+                _lastReadValue = AnotherSequenceAction(Periphery, Value1);
+            }
+
+            else if (Action.Equals("SHOW_MSG")) 
+            {
+                if (Periphery.Equals("STRING")) 
+                {
+                    MessageBox.Show(Value1, Value2);
+                }
+                else if (Periphery.Equals("LAST_VAL"))
+                {
+                    MessageBox.Show("Last read value = "+ _lastReadValue.ToString("X"), Value2);
+                }
+
+            }
+
+
             else 
             {
                 return false;

@@ -31,12 +31,14 @@ namespace Digitizer_ver1
         public RadioButton radioButton_RegValDEC;
 
 
-        public RegistersSetting CreateRegister(string description, RegistersSetting.eAddressValueSize Sizes, Communication.eCommandCode ID_GET, Communication.eCommandCode ID_SET) 
+        public RegistersSetting CreateRegister(string description, RegistersSetting.eAddressValueSize Sizes, Communication.eCommandCode ID_GET, Communication.eCommandCode ID_SET, RegistersSetting.eExtFileType extFileType) 
         {
             RegistersSetting RS;
 
             RS = new RegistersSetting(description, tabControl_RegistersSetting, Sizes, ID_GET, ID_SET);
             RS.SendFunction = SendFunction;
+
+            RS.ExtFileType = extFileType;
 
             RS.GridCellContentClickFunction = Grids_CellClick;
             RS.GridSelectedChangedFunction = Grids_SelectedChanged;
@@ -220,6 +222,7 @@ namespace Digitizer_ver1
             {
                 if (desc.Equals(RS.p_description))
                 {
+                    RS.UpdateFromExtFile();
                     //TODO
                     //RS.UpdateFromPyFile();
                     //RS.UpdateFromTxtFile();
@@ -239,13 +242,26 @@ namespace Digitizer_ver1
             {
                 int chTag = int.Parse((string)ch.Tag);
 
-                if (ch.Checked && ch.Enabled)
+                //if (ch.Checked && ch.Enabled)
+                if (ch.Checked)
                 {
                     value |= 1 << chTag;
                 }
             }
 
-            textBox_RegValue.Text = value.ToString("X");
+
+            //zobrazeni hodnoty
+            if (radioButton_RegValHEX.Checked) //parsovat jako hex
+            {
+                textBox_RegValue.Text = value.ToString("X");
+            }
+            else if (radioButton_RegValDEC.Checked) //parsovat jako dec
+            {
+               
+                textBox_RegValue.Text = value.ToString();
+            }
+
+            //textBox_RegValue.Text = value.ToString("X");
         }
 
         public void RegAddress_TextChanged(object sender, EventArgs e)
@@ -403,7 +419,7 @@ namespace Digitizer_ver1
 
             label_RegRW.Text = data.p__StrReadWrite;
             label_RegDescription.Text = data.p_description;
-
+            
             if (data._ReadWrite == RegistersSetting_Data.eReadWrite.read_write || data._ReadWrite == RegistersSetting_Data.eReadWrite.write)
             {
                 textBox_RegValue.Enabled = true;
@@ -412,7 +428,7 @@ namespace Digitizer_ver1
             {
                 textBox_RegValue.Enabled = false;
             }
-
+            
             int value = data.ParseValue();
 
             foreach (CheckBox ch in groupBox_RegBits.Controls)

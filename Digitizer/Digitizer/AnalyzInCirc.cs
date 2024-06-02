@@ -48,8 +48,8 @@ namespace Digitizer_ver1
 
         public BindingList<AnalyzInCirc_Data> List_Data = new BindingList<AnalyzInCirc_Data>();
 
-        public bool[] IsDataRead = new bool[2];
-        public bool[] IsFifoEmpty = new bool[2];
+        public bool[] IsDataRead = new bool[4];
+        public bool[] IsFifoEmpty = new bool[4];
         public bool DataReadGo = false;
 
         public void AnalyzInit() 
@@ -141,9 +141,13 @@ namespace Digitizer_ver1
 
             SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_FIFO_DATA_BASE + 0, 0x00, 0x00);
             SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_FIFO_DATA_BASE + 1, 0x00, 0x00);
+            SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_FIFO_DATA_BASE + 2, 0x00, 0x00);
+            SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_FIFO_DATA_BASE + 3, 0x00, 0x00);
 
             IsDataRead[0] = false;
             IsDataRead[1] = false;
+            IsDataRead[2] = false;
+            IsDataRead[3] = false;
         }
 
 
@@ -158,7 +162,7 @@ namespace Digitizer_ver1
             uint part_data = (uint)(data & 0x00FF);
             uint part_K = (uint)((data >> 8) & 0x0001);
 
-
+            
             
             if (part_empty == 1) 
             {
@@ -189,12 +193,13 @@ namespace Digitizer_ver1
             }
 
             string s =  sK + "." + part_data.ToString("X") + "  (" + part_K.ToString() + "."+ part_data.ToString() + ")";
-
+            
             List_Data[count - 1].AddData(index, s);
 
+            
 
             IsDataRead[index] = true;
-
+            
             for (int j = 0; j < _dataGridView_AnalyzData.ColumnCount; j++) 
             {
                 _dataGridView_AnalyzData.UpdateCellValue(j, count - 1);
@@ -249,9 +254,11 @@ namespace Digitizer_ver1
             {
                 if (checkBox_Triggers_Rising[i].Checked) 
                 {
-                    val = (UInt16)(1 << i);
+                    val |= (UInt16)(1 << i);
                 }
             }
+
+            //MessageBox.Show(val.ToString("X"));
 
             b0 = (byte)((val >> 0) & 0xFF);
             b1 = (byte)((val >> 8) & 0xFF);
@@ -267,7 +274,7 @@ namespace Digitizer_ver1
             {
                 if (checkBox_Triggers_Falling[i].Checked)
                 {
-                    val = (UInt16)(1 << i);
+                    val |= (UInt16)(1 << i);
                 }
             }
 
@@ -331,9 +338,18 @@ namespace Digitizer_ver1
         {
             SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_ENABLE, 0, 0);
             SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_NUMBER_OF_SAMPLES, 0, 0);
+            //SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_TRIGGERS_MASK_RISING, 0, 0);
+            //SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_TRIGGERS_MASK_FALLING, 0, 0);
+            SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_EMPTY, 0, 0);
+        }
+
+        public void GetSetting_2()
+        {
+            //SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_ENABLE, 0, 0);
+            //SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_NUMBER_OF_SAMPLES, 0, 0);
             SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_TRIGGERS_MASK_RISING, 0, 0);
             SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_TRIGGERS_MASK_FALLING, 0, 0);
-            SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_EMPTY, 0, 0);
+            //SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_EMPTY, 0, 0);
         }
 
         public void UpdateFromCommunication(byte data_0, byte data_1, byte data_2)
@@ -388,6 +404,14 @@ namespace Digitizer_ver1
 
                 case (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_FIFO_DATA_BASE + 1:
                     UpdateData(1, (UInt16)((data_1 << 8) | data_2));
+                    break;
+
+                case (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_FIFO_DATA_BASE + 2:
+                    UpdateData(2, (UInt16)((data_1 << 8) | data_2));
+                    break;
+
+                case (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_FIFO_DATA_BASE + 3:
+                    UpdateData(3, (UInt16)((data_1 << 8) | data_2));
                     break;
 
 

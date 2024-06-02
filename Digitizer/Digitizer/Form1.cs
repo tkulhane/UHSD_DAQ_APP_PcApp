@@ -139,15 +139,15 @@ namespace Digitizer_ver1
 
 
             //create registers
-            MultiRegistersSetting.CreateRegister("ADC", RegistersSetting.eAddressValueSize.Address16_Value8, Communication.eCommandCode.CMD_CONST_GET_AdcRegisters, Communication.eCommandCode.CMD_CONST_SET_AdcRegisters);
-            MultiRegistersSetting.CreateRegister("HMC", RegistersSetting.eAddressValueSize.Address16_Value8, Communication.eCommandCode.CMD_CONST_GET_HmcRegisters, Communication.eCommandCode.CMD_CONST_SET_HmcRegisters);
-            MultiRegistersSetting.CreateRegister("LMX1", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Lmx1Registers, Communication.eCommandCode.CMD_CONST_SET_Lmx1Registers);
-            MultiRegistersSetting.CreateRegister("LMX2", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Lmx2Registers, Communication.eCommandCode.CMD_CONST_SET_Lmx2Registers);
-            MultiRegistersSetting.CreateRegister("FpgaTest", RegistersSetting.eAddressValueSize.Address8_Value8, Communication.eCommandCode.CMD_CONST_GET_TestRegisters, Communication.eCommandCode.CMD_CONST_SET_TestRegisters);
-            MultiRegistersSetting.CreateRegister("Transcievers", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_TransceiversControl, Communication.eCommandCode.CMD_CONST_SET_TransceiversControl);
+            MultiRegistersSetting.CreateRegister("ADC", RegistersSetting.eAddressValueSize.Address16_Value8, Communication.eCommandCode.CMD_CONST_GET_AdcRegisters, Communication.eCommandCode.CMD_CONST_SET_AdcRegisters,RegistersSetting.eExtFileType.Non);
+            MultiRegistersSetting.CreateRegister("HMC", RegistersSetting.eAddressValueSize.Address16_Value8, Communication.eCommandCode.CMD_CONST_GET_HmcRegisters, Communication.eCommandCode.CMD_CONST_SET_HmcRegisters, RegistersSetting.eExtFileType.Python);
+            MultiRegistersSetting.CreateRegister("LMX1", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Lmx1Registers, Communication.eCommandCode.CMD_CONST_SET_Lmx1Registers, RegistersSetting.eExtFileType.Txt);
+            MultiRegistersSetting.CreateRegister("LMX2", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Lmx2Registers, Communication.eCommandCode.CMD_CONST_SET_Lmx2Registers, RegistersSetting.eExtFileType.Txt);
+            MultiRegistersSetting.CreateRegister("FpgaTest", RegistersSetting.eAddressValueSize.Address8_Value8, Communication.eCommandCode.CMD_CONST_GET_TestRegisters, Communication.eCommandCode.CMD_CONST_SET_TestRegisters, RegistersSetting.eExtFileType.Non);
+            MultiRegistersSetting.CreateRegister("Transcievers", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_TransceiversControl, Communication.eCommandCode.CMD_CONST_SET_TransceiversControl, RegistersSetting.eExtFileType.Non);
 
-            MultiRegistersSetting.CreateRegister("Clock_Switch", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Clock_Controler, Communication.eCommandCode.CMD_CONST_SET_Clock_Controler);
-            MultiRegistersSetting.CreateRegister("EXT_Signals", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_ExtSignals, Communication.eCommandCode.CMD_CONST_SET_ExtSignals);
+            MultiRegistersSetting.CreateRegister("Clock_Switch", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Clock_Controler, Communication.eCommandCode.CMD_CONST_SET_Clock_Controler, RegistersSetting.eExtFileType.Non);
+            MultiRegistersSetting.CreateRegister("EXT_Signals", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_ExtSignals, Communication.eCommandCode.CMD_CONST_SET_ExtSignals, RegistersSetting.eExtFileType.Non);
 
             //system setting load
             sysSetting.SettingLoad();
@@ -217,6 +217,7 @@ namespace Digitizer_ver1
                 gpio.ReadStateCommands();
                 rst.ReadStateCommands();
                 AnalyzInCirc.GetSetting();
+            
             }
 
         }
@@ -292,6 +293,7 @@ namespace Digitizer_ver1
             Update_QS_FcalEn_checkBox();
 
             AnalyzInCirc.GetSetting();
+            AnalyzInCirc.GetSetting_2();
         }
 
 
@@ -875,6 +877,9 @@ namespace Digitizer_ver1
             AnalyzInCirc.ReadData_Stop();
         }
 
-
+        private void groupBox_AnalyzTriggersBox_Enter(object sender, EventArgs e)
+        {
+            AnalyzInCirc.GetSetting_2();
+        }
     }
 }

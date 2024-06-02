@@ -19,7 +19,14 @@ namespace Digitizer_ver1
             Address8_Value16
         }
 
-       
+        public enum eExtFileType : uint
+        {
+            Non,
+            Python,
+            Txt
+        }
+
+
 
         private BindingList<RegistersSetting_Data> List_RegistersSetting = new BindingList<RegistersSetting_Data>();
 
@@ -34,7 +41,7 @@ namespace Digitizer_ver1
         public delegate void efunction_changed(object sender, EventArgs e);
         public efunction_changed GridSelectedChangedFunction;
 
-
+        public eExtFileType ExtFileType = eExtFileType.Non;
 
         private eAddressValueSize Registers_AddressValueSize;
         private Communication.eCommandCode Registers_ID_GET;
@@ -371,6 +378,23 @@ namespace Digitizer_ver1
         //-------------------------------------------------------------------------------------------------------------------
         //update from ext file (txt or py) 
         //-------------------------------------------------------------------------------------------------------------------
+
+        public void UpdateFromExtFile()
+        {
+            switch (ExtFileType) 
+            {
+                case eExtFileType.Python:
+                    UpdateFromPyFile();
+                    break;
+
+                case eExtFileType.Txt:
+                    UpdateFromTxtFile();
+                    break;
+
+                default:
+                    break;
+            }
+        }
 
         public void UpdateFromPyFile() 
         {

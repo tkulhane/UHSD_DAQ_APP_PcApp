@@ -22,6 +22,14 @@ namespace Digitizer_ver1
         [DisplayName("Value 2")]
         public string p_Value2 { get { return _Value2; } }
 
+        string _Value3;
+        [DisplayName("Value 3")]
+        public string p_Value3 { get { return _Value3; } }
+
+        string _Value4;
+        [DisplayName("Value 4")]
+        public string p_Value4 { get { return _Value4; } }
+
 
         public AnalyzInCirc_Data(int number) 
         {
@@ -42,6 +50,14 @@ namespace Digitizer_ver1
 
                 case 1:
                     _Value2 = data;
+                    break;
+
+                case 2:
+                    _Value3 = data;
+                    break;
+
+                case 3:
+                    _Value4 = data;
                     break;
 
                 default:

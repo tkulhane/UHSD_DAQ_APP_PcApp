@@ -90,6 +90,7 @@ namespace Digitizer_ver1
             data._ConfigSequencer._dataGridView_ConfigFile = dataGridView_ConfigFile;
             data._ConfigSequencer._MultiConfig_data = data;
             data._ConfigSequencer.StateSetFunction = StateSet;
+            data._ConfigSequencer.AnotherSequenceAction = AnotherSequenceAction;
 
             List_MultipleConfigFiles.Add(data);
 
@@ -159,6 +160,7 @@ namespace Digitizer_ver1
             data._ConfigSequencer._dataGridView_ConfigFile = dataGridView_ConfigFile;
             data._ConfigSequencer._MultiConfig_data = data;
             data._ConfigSequencer.StateSetFunction = StateSet;
+            data._ConfigSequencer.AnotherSequenceAction = AnotherSequenceAction;
 
             //pokud neni prirazen file, ale vytvori se v tabulce nepreirazeny
             if (file != string.Empty) 
@@ -254,6 +256,53 @@ namespace Digitizer_ver1
             MultipleConfigFiles.Refresh();
         }
 
+        public int AnotherSequenceAction(string action, string Value) 
+        {
+
+
+            if (action.Equals("START"))
+            {
+
+                foreach (MultipleConfigurationFileSequencer_Data x in List_MultipleConfigFiles) 
+                {
+
+                    if (x.p_Name.Equals(Value)) 
+                    {
+                        x._ConfigSequencer.ConfigSequenceStart();
+                    }
+
+                }
+
+                return 0;
+            }
+            else if (action.Equals("STOP"))
+            {
+              
+                foreach (MultipleConfigurationFileSequencer_Data x in List_MultipleConfigFiles)
+                {
+                    if (x.p_Name.Equals(Value))
+                    {
+                        x._ConfigSequencer.ConfigSequenceStop();
+                    }
+                }
+
+                return 0;
+            }
+            else if (action.Equals("STATE")) 
+            {
+                foreach (MultipleConfigurationFileSequencer_Data x in List_MultipleConfigFiles)
+                {
+                    if (x.p_Name.Equals(Value))
+                    {
+                        return (int)x.GetState();
+                    }
+                }
+
+                return -1;
+            }
+
+            return 0;
+        }
 
     }
 }
