@@ -22,13 +22,15 @@ namespace Digitizer_ver1
         };
 
 
+
+
         public BindingList<ConfigurationFileSequencer_Data> List_ConfigSequence = new BindingList<ConfigurationFileSequencer_Data>();
 
         public MultipleConfigurationFileSequencer_Data _MultiConfig_data;
         public delegate void efunction(MultipleConfigurationFileSequencer_Data.eStates state, MultipleConfigurationFileSequencer_Data MultiConfig_data);
         public efunction StateSetFunction;
 
-        public delegate int efunction_AnotherSequenceAction(string action, string Value);
+        public delegate int efunction_AnotherSequenceAction(MultipleConfigurationFileSequencer.eAnotherSequenceActions action, string Value);
         public efunction_AnotherSequenceAction AnotherSequenceAction;
 
         //public BindingList<MultipleConfigurationFileSequencer_Data> List_MultipleConfigFiles;
@@ -557,7 +559,7 @@ namespace Digitizer_ver1
 
             else if (Action.Equals("STOP")) 
             {
-                SequenceDone = false;
+                SequenceDone = true;
             }
 
             else if (Action.Equals("WAIT"))
@@ -568,9 +570,25 @@ namespace Digitizer_ver1
                 Delay_SequenceLine = temp;
             }
 
+
             else if (Action.Equals("FILE"))
             {
-                _lastReadValue = AnotherSequenceAction(Periphery, Value1);
+                //_lastReadValue = AnotherSequenceAction(Periphery, Value1);
+
+                if (Periphery.Equals("START")) 
+                {
+                    _lastReadValue = AnotherSequenceAction(MultipleConfigurationFileSequencer.eAnotherSequenceActions.start, Value1);
+                }
+                else if (Periphery.Equals("STOP")) 
+                {
+                    _lastReadValue = AnotherSequenceAction(MultipleConfigurationFileSequencer.eAnotherSequenceActions.stop, Value1);
+                }
+                else if (Periphery.Equals("STATE")) 
+                {
+                    _lastReadValue = AnotherSequenceAction(MultipleConfigurationFileSequencer.eAnotherSequenceActions.state, Value1);
+                }
+
+
             }
 
             else if (Action.Equals("SHOW_MSG")) 

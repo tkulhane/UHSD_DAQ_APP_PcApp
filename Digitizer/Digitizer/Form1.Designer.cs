@@ -91,6 +91,10 @@ namespace Digitizer_ver1
             this.button_RegLoadFromFile = new System.Windows.Forms.Button();
             this.tabControl_MAIN = new System.Windows.Forms.TabControl();
             this.tabMeasurement_Setting = new System.Windows.Forms.TabPage();
+            this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.radioButton_TrgSw = new System.Windows.Forms.RadioButton();
+            this.radioButton_TrgExt = new System.Windows.Forms.RadioButton();
+            this.radioButton_TrgSelf = new System.Windows.Forms.RadioButton();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.checkBox_TestGeneratorEnable = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -251,10 +255,8 @@ namespace Digitizer_ver1
             this.label24 = new System.Windows.Forms.Label();
             this.numericUpDown_AnalyzNumOfSamples = new System.Windows.Forms.NumericUpDown();
             this.timerForm = new System.Windows.Forms.Timer(this.components);
-            this.groupBox14 = new System.Windows.Forms.GroupBox();
-            this.radioButton_TrgSw = new System.Windows.Forms.RadioButton();
-            this.radioButton_TrgExt = new System.Windows.Forms.RadioButton();
-            this.radioButton_TrgSelf = new System.Windows.Forms.RadioButton();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel7 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.tabRegisters.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -264,6 +266,7 @@ namespace Digitizer_ver1
             this.groupBox_RegBits.SuspendLayout();
             this.tabControl_MAIN.SuspendLayout();
             this.tabMeasurement_Setting.SuspendLayout();
+            this.groupBox14.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -312,7 +315,8 @@ namespace Digitizer_ver1
             this.groupBox_AnalyzTriggersBox.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_AnalyzNumOfSamples)).BeginInit();
-            this.groupBox14.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
+            this.panel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -998,6 +1002,54 @@ namespace Digitizer_ver1
             this.tabMeasurement_Setting.TabIndex = 7;
             this.tabMeasurement_Setting.Text = "Measurement Settings";
             this.tabMeasurement_Setting.UseVisualStyleBackColor = true;
+            // 
+            // groupBox14
+            // 
+            this.groupBox14.Controls.Add(this.radioButton_TrgSw);
+            this.groupBox14.Controls.Add(this.radioButton_TrgExt);
+            this.groupBox14.Controls.Add(this.radioButton_TrgSelf);
+            this.groupBox14.Location = new System.Drawing.Point(947, 18);
+            this.groupBox14.Name = "groupBox14";
+            this.groupBox14.Size = new System.Drawing.Size(160, 189);
+            this.groupBox14.TabIndex = 31;
+            this.groupBox14.TabStop = false;
+            this.groupBox14.Text = "Trigger Source";
+            // 
+            // radioButton_TrgSw
+            // 
+            this.radioButton_TrgSw.AutoSize = true;
+            this.radioButton_TrgSw.Location = new System.Drawing.Point(19, 85);
+            this.radioButton_TrgSw.Name = "radioButton_TrgSw";
+            this.radioButton_TrgSw.Size = new System.Drawing.Size(103, 17);
+            this.radioButton_TrgSw.TabIndex = 36;
+            this.radioButton_TrgSw.TabStop = true;
+            this.radioButton_TrgSw.Text = "Software Trigger";
+            this.radioButton_TrgSw.UseVisualStyleBackColor = true;
+            this.radioButton_TrgSw.CheckedChanged += new System.EventHandler(this.radioButton_TriggerSource_CheckedChanged);
+            // 
+            // radioButton_TrgExt
+            // 
+            this.radioButton_TrgExt.AutoSize = true;
+            this.radioButton_TrgExt.Location = new System.Drawing.Point(19, 62);
+            this.radioButton_TrgExt.Name = "radioButton_TrgExt";
+            this.radioButton_TrgExt.Size = new System.Drawing.Size(76, 17);
+            this.radioButton_TrgExt.TabIndex = 35;
+            this.radioButton_TrgExt.TabStop = true;
+            this.radioButton_TrgExt.Text = "Ext Trigger";
+            this.radioButton_TrgExt.UseVisualStyleBackColor = true;
+            this.radioButton_TrgExt.CheckedChanged += new System.EventHandler(this.radioButton_TriggerSource_CheckedChanged);
+            // 
+            // radioButton_TrgSelf
+            // 
+            this.radioButton_TrgSelf.AutoSize = true;
+            this.radioButton_TrgSelf.Location = new System.Drawing.Point(19, 39);
+            this.radioButton_TrgSelf.Name = "radioButton_TrgSelf";
+            this.radioButton_TrgSelf.Size = new System.Drawing.Size(79, 17);
+            this.radioButton_TrgSelf.TabIndex = 34;
+            this.radioButton_TrgSelf.TabStop = true;
+            this.radioButton_TrgSelf.Text = "Self Trigger";
+            this.radioButton_TrgSelf.UseVisualStyleBackColor = true;
+            this.radioButton_TrgSelf.CheckedChanged += new System.EventHandler(this.radioButton_TriggerSource_CheckedChanged);
             // 
             // groupBox6
             // 
@@ -2425,10 +2477,7 @@ namespace Digitizer_ver1
             // 
             // tabAnalyzInCirc
             // 
-            this.tabAnalyzInCirc.Controls.Add(this.dataGridView_AnalyzData);
-            this.tabAnalyzInCirc.Controls.Add(this.groupBox12);
-            this.tabAnalyzInCirc.Controls.Add(this.groupBox_AnalyzTriggersBox);
-            this.tabAnalyzInCirc.Controls.Add(this.groupBox2);
+            this.tabAnalyzInCirc.Controls.Add(this.tableLayoutPanel4);
             this.tabAnalyzInCirc.Location = new System.Drawing.Point(4, 22);
             this.tabAnalyzInCirc.Name = "tabAnalyzInCirc";
             this.tabAnalyzInCirc.Size = new System.Drawing.Size(1240, 601);
@@ -2439,12 +2488,12 @@ namespace Digitizer_ver1
             // dataGridView_AnalyzData
             // 
             this.dataGridView_AnalyzData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_AnalyzData.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dataGridView_AnalyzData.Location = new System.Drawing.Point(665, 0);
+            this.dataGridView_AnalyzData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView_AnalyzData.Location = new System.Drawing.Point(578, 3);
             this.dataGridView_AnalyzData.Name = "dataGridView_AnalyzData";
             this.dataGridView_AnalyzData.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView_AnalyzData.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dataGridView_AnalyzData.Size = new System.Drawing.Size(575, 601);
+            this.dataGridView_AnalyzData.Size = new System.Drawing.Size(659, 595);
             this.dataGridView_AnalyzData.TabIndex = 27;
             // 
             // groupBox12
@@ -2455,7 +2504,7 @@ namespace Digitizer_ver1
             this.groupBox12.Controls.Add(this.button_DataReadStop);
             this.groupBox12.Controls.Add(this.button_DataReadStart);
             this.groupBox12.Controls.Add(this.label_AnalyzEmpty);
-            this.groupBox12.Location = new System.Drawing.Point(320, 36);
+            this.groupBox12.Location = new System.Drawing.Point(298, 25);
             this.groupBox12.Name = "groupBox12";
             this.groupBox12.Size = new System.Drawing.Size(252, 208);
             this.groupBox12.TabIndex = 26;
@@ -2543,7 +2592,7 @@ namespace Digitizer_ver1
             this.groupBox_AnalyzTriggersBox.Controls.Add(this.checkBox_AnalyzTrg_R_2);
             this.groupBox_AnalyzTriggersBox.Controls.Add(this.checkBox_AnalyzTrg_F_1);
             this.groupBox_AnalyzTriggersBox.Controls.Add(this.checkBox_AnalyzTrg_R_1);
-            this.groupBox_AnalyzTriggersBox.Location = new System.Drawing.Point(39, 262);
+            this.groupBox_AnalyzTriggersBox.Location = new System.Drawing.Point(15, 268);
             this.groupBox_AnalyzTriggersBox.Name = "groupBox_AnalyzTriggersBox";
             this.groupBox_AnalyzTriggersBox.Size = new System.Drawing.Size(252, 239);
             this.groupBox_AnalyzTriggersBox.TabIndex = 6;
@@ -2737,7 +2786,7 @@ namespace Digitizer_ver1
             this.groupBox2.Controls.Add(this.label19);
             this.groupBox2.Controls.Add(this.label24);
             this.groupBox2.Controls.Add(this.numericUpDown_AnalyzNumOfSamples);
-            this.groupBox2.Location = new System.Drawing.Point(39, 36);
+            this.groupBox2.Location = new System.Drawing.Point(15, 25);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(252, 208);
             this.groupBox2.TabIndex = 5;
@@ -2838,53 +2887,31 @@ namespace Digitizer_ver1
             this.timerForm.Interval = 50;
             this.timerForm.Tick += new System.EventHandler(this.timerForm_Tick);
             // 
-            // groupBox14
+            // tableLayoutPanel4
             // 
-            this.groupBox14.Controls.Add(this.radioButton_TrgSw);
-            this.groupBox14.Controls.Add(this.radioButton_TrgExt);
-            this.groupBox14.Controls.Add(this.radioButton_TrgSelf);
-            this.groupBox14.Location = new System.Drawing.Point(947, 18);
-            this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Size = new System.Drawing.Size(160, 189);
-            this.groupBox14.TabIndex = 31;
-            this.groupBox14.TabStop = false;
-            this.groupBox14.Text = "Trigger Source";
+            this.tableLayoutPanel4.ColumnCount = 2;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 575F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Controls.Add(this.dataGridView_AnalyzData, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.panel7, 0, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(1240, 601);
+            this.tableLayoutPanel4.TabIndex = 28;
             // 
-            // radioButton_TrgSw
+            // panel7
             // 
-            this.radioButton_TrgSw.AutoSize = true;
-            this.radioButton_TrgSw.Location = new System.Drawing.Point(19, 85);
-            this.radioButton_TrgSw.Name = "radioButton_TrgSw";
-            this.radioButton_TrgSw.Size = new System.Drawing.Size(103, 17);
-            this.radioButton_TrgSw.TabIndex = 36;
-            this.radioButton_TrgSw.TabStop = true;
-            this.radioButton_TrgSw.Text = "Software Trigger";
-            this.radioButton_TrgSw.UseVisualStyleBackColor = true;
-            this.radioButton_TrgSw.CheckedChanged += new System.EventHandler(this.radioButton_TriggerSource_CheckedChanged);
-            // 
-            // radioButton_TrgExt
-            // 
-            this.radioButton_TrgExt.AutoSize = true;
-            this.radioButton_TrgExt.Location = new System.Drawing.Point(19, 62);
-            this.radioButton_TrgExt.Name = "radioButton_TrgExt";
-            this.radioButton_TrgExt.Size = new System.Drawing.Size(76, 17);
-            this.radioButton_TrgExt.TabIndex = 35;
-            this.radioButton_TrgExt.TabStop = true;
-            this.radioButton_TrgExt.Text = "Ext Trigger";
-            this.radioButton_TrgExt.UseVisualStyleBackColor = true;
-            this.radioButton_TrgExt.CheckedChanged += new System.EventHandler(this.radioButton_TriggerSource_CheckedChanged);
-            // 
-            // radioButton_TrgSelf
-            // 
-            this.radioButton_TrgSelf.AutoSize = true;
-            this.radioButton_TrgSelf.Location = new System.Drawing.Point(19, 39);
-            this.radioButton_TrgSelf.Name = "radioButton_TrgSelf";
-            this.radioButton_TrgSelf.Size = new System.Drawing.Size(79, 17);
-            this.radioButton_TrgSelf.TabIndex = 34;
-            this.radioButton_TrgSelf.TabStop = true;
-            this.radioButton_TrgSelf.Text = "Self Trigger";
-            this.radioButton_TrgSelf.UseVisualStyleBackColor = true;
-            this.radioButton_TrgSelf.CheckedChanged += new System.EventHandler(this.radioButton_TriggerSource_CheckedChanged);
+            this.panel7.Controls.Add(this.groupBox12);
+            this.panel7.Controls.Add(this.groupBox_AnalyzTriggersBox);
+            this.panel7.Controls.Add(this.groupBox2);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel7.Location = new System.Drawing.Point(3, 3);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(569, 595);
+            this.panel7.TabIndex = 28;
             // 
             // Form1
             // 
@@ -2912,6 +2939,8 @@ namespace Digitizer_ver1
             this.groupBox_RegBits.PerformLayout();
             this.tabControl_MAIN.ResumeLayout(false);
             this.tabMeasurement_Setting.ResumeLayout(false);
+            this.groupBox14.ResumeLayout(false);
+            this.groupBox14.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.groupBox5.ResumeLayout(false);
@@ -2973,8 +3002,8 @@ namespace Digitizer_ver1
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_AnalyzNumOfSamples)).EndInit();
-            this.groupBox14.ResumeLayout(false);
-            this.groupBox14.PerformLayout();
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -3203,6 +3232,8 @@ namespace Digitizer_ver1
         private System.Windows.Forms.RadioButton radioButton_TrgSw;
         private System.Windows.Forms.RadioButton radioButton_TrgExt;
         private System.Windows.Forms.RadioButton radioButton_TrgSelf;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.Panel panel7;
     }
 }
 

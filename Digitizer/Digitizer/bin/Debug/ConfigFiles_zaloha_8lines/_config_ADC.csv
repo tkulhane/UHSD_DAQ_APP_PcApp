@@ -6,7 +6,7 @@ REG;ADC;0;24;;;
 WAIT;;100;;;;
 REG;ADC;26;8;;;
 WAIT;;100;;;;
-REG_MASK;ADC;500;0;F;;JESD Low Line Rate Selection
+REG_MASK;ADC;500;1;F;;JESD Low Line Rate Selection
 REG_MASK;ADC;520;7;1F;;JESD number of lanes
 REG_MASK;ADC;520;0;80;;Scrambler disable
 REG;ADC;521;1;;;F

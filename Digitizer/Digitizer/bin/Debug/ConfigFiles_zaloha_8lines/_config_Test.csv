@@ -1,0 +1,16 @@
+FILE;STATE;_config_TestLed.csv;;;;wait
+REG_BIT;FpgaTest;0;1;2;;
+WAIT;;0;;;;
+REG_MASK;FpgaTest;1;FF;FF;;
+WAIT;;0;;;;
+REG_MASK;FpgaTest;2;FF;F1;;
+WAIT;;0;;;;
+FILE;START;_config_TestLed.csv;;;;
+WAIT;;50;;;;
+FILE;STATE;_config_TestLed.csv;;;;
+SHOW_MSG;LAST_VAL;;;;;
+WAIT;;2000;;;;
+FILE;STOP;_config_TestLed.csv;;;;
+WAIT;;200;;;;
+FILE;STATE;_config_TestLed.csv;;;;
+SHOW_MSG;LAST_VAL;;;;;

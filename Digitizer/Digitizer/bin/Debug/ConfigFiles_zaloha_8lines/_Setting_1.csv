@@ -1,0 +1,10 @@
+RESET;ADC;0;;;;Reset
+RESET;HMC;0;;;;Reset
+WAIT;;2000;;;;Wait
+REG;ADC;2;TBL;;;Set register from table
+REG;ADC;3;TBL;;;Set register from table
+REG;ADC;0;33;;;Set register directly
+RESET;ADC;1;;;;Reset
+RESET;HMC;1;;;;Reset
+OUTPUT;BOARD-PWR-RUN;1;;;;GPIO output set
+OUTPUT;I.02;1;;;;GPIO output set

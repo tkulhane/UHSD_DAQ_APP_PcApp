@@ -10,6 +10,15 @@ namespace Digitizer_ver1
 {
     class MultipleConfigurationFileSequencer
     {
+        public enum eAnotherSequenceActions : byte
+        {
+            non,
+            start,
+            stop,
+            state
+        };
+
+
         private BindingList<MultipleConfigurationFileSequencer_Data> List_MultipleConfigFiles = new BindingList<MultipleConfigurationFileSequencer_Data>();
 
         public DataGridView MultipleConfigFiles;
@@ -256,8 +265,10 @@ namespace Digitizer_ver1
             MultipleConfigFiles.Refresh();
         }
 
+        /*
         public int AnotherSequenceAction(string action, string Value) 
         {
+
 
 
             if (action.Equals("START"))
@@ -303,6 +314,67 @@ namespace Digitizer_ver1
 
             return 0;
         }
+        */
+
+
+        public int AnotherSequenceAction(eAnotherSequenceActions action, string Value)
+        {
+
+
+
+            switch (action) 
+            {
+                case eAnotherSequenceActions.start:
+                    foreach (MultipleConfigurationFileSequencer_Data x in List_MultipleConfigFiles)
+                    {
+
+                        if (x.p_Name.Equals(Value))
+                        {
+                            x._ConfigSequencer.ConfigSequenceStart();
+                        }
+
+                    }
+
+                    return 0;
+
+                    break;
+
+                case eAnotherSequenceActions.stop:
+                    foreach (MultipleConfigurationFileSequencer_Data x in List_MultipleConfigFiles)
+                    {
+                        if (x.p_Name.Equals(Value))
+                        {
+                            x._ConfigSequencer.ConfigSequenceStop();
+                        }
+                    }
+
+                    return 0;
+
+                    break;
+
+                case eAnotherSequenceActions.state:
+                    foreach (MultipleConfigurationFileSequencer_Data x in List_MultipleConfigFiles)
+                    {
+                        if (x.p_Name.Equals(Value))
+                        {
+                            return (int)x.GetState();
+                        }
+                    }
+
+                    return -1;
+
+                    break;
+
+                default:
+                    break;
+            }
+
+
+
+            return  -1;
+        }
+
+
 
     }
 }

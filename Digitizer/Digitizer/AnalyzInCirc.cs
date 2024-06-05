@@ -48,8 +48,8 @@ namespace Digitizer_ver1
 
         public BindingList<AnalyzInCirc_Data> List_Data = new BindingList<AnalyzInCirc_Data>();
 
-        public bool[] IsDataRead = new bool[4];
-        public bool[] IsFifoEmpty = new bool[4];
+        public bool[] IsDataRead = new bool[6];
+        public bool[] IsFifoEmpty = new bool[6];
         public bool DataReadGo = false;
 
         public void AnalyzInit() 
@@ -143,11 +143,15 @@ namespace Digitizer_ver1
             SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_FIFO_DATA_BASE + 1, 0x00, 0x00);
             SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_FIFO_DATA_BASE + 2, 0x00, 0x00);
             SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_FIFO_DATA_BASE + 3, 0x00, 0x00);
+            SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_FIFO_DATA_BASE + 4, 0x00, 0x00);
+            SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_FIFO_DATA_BASE + 5, 0x00, 0x00);
 
             IsDataRead[0] = false;
             IsDataRead[1] = false;
             IsDataRead[2] = false;
             IsDataRead[3] = false;
+            IsDataRead[4] = false;
+            IsDataRead[5] = false;
         }
 
 
@@ -412,6 +416,14 @@ namespace Digitizer_ver1
 
                 case (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_FIFO_DATA_BASE + 3:
                     UpdateData(3, (UInt16)((data_1 << 8) | data_2));
+                    break;
+
+                case (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_FIFO_DATA_BASE + 4:
+                    UpdateData(4, (UInt16)((data_1 << 8) | data_2));
+                    break;
+
+                case (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_FIFO_DATA_BASE + 5:
+                    UpdateData(5, (UInt16)((data_1 << 8) | data_2));
                     break;
 
 

@@ -1,0 +1,10 @@
+REG_BIT;FpgaTest;0;1;2;;
+REG_MASK;FpgaTest;1;FF;FF;;
+REG_MASK;FpgaTest;2;FF;F1;;
+Wait;;500;;;;wait
+STOP;;;;;;
+Wait;;500;;;;
+REG_BIT;FpgaTest;0;1;2;;
+REG_MASK;FpgaTest;1;FF;FF;;
+REG_MASK;FpgaTest;2;FF;F1;;
+SHOW_MSG;LAST_VAL;;;;;

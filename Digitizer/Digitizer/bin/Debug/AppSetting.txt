@@ -14,3 +14,5 @@ config;_config_LMX2.csv;C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Deb
 config;_config_Test.csv;C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\ConfigFiles\_config_Test.csv
 config;_config_TestLed.csv;C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\ConfigFiles\_config_TestLed.csv
 config;_config_ADC.csv;C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\ConfigFiles\_config_ADC.csv
+config;_config_TestStop.csv;C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\ConfigFiles\_config_TestStop.csv
+config;_config_ADC_6.csv;C:\CODE_temp\Digitizer_PcApp\Digitizer\Digitizer\bin\Debug\ConfigFiles\_config_ADC_6.csv
