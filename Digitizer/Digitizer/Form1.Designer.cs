@@ -30,9 +30,9 @@ namespace Digitizer_ver1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.checkBox_xListen2 = new System.Windows.Forms.CheckBox();
             this.checkBox_xListen3 = new System.Windows.Forms.CheckBox();
@@ -90,12 +90,72 @@ namespace Digitizer_ver1
             this.button_RegSaveAs = new System.Windows.Forms.Button();
             this.button_RegLoadFromFile = new System.Windows.Forms.Button();
             this.tabControl_MAIN = new System.Windows.Forms.TabControl();
+            this.tabQuickSetup = new System.Windows.Forms.TabPage();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.checkBox_InfoPeriodicRead = new System.Windows.Forms.CheckBox();
+            this.label51 = new System.Windows.Forms.Label();
+            this.label_InfoLmx2Locked = new System.Windows.Forms.Label();
+            this.label49 = new System.Windows.Forms.Label();
+            this.label_InfoLmx1Locked = new System.Windows.Forms.Label();
+            this.label_123 = new System.Windows.Forms.Label();
+            this.label_InfoSyncib = new System.Windows.Forms.Label();
+            this.label_412 = new System.Windows.Forms.Label();
+            this.label_InfoXcvrLanesLocked = new System.Windows.Forms.Label();
+            this.label_788 = new System.Windows.Forms.Label();
+            this.label_InfoLogicRefPllsLocked = new System.Windows.Forms.Label();
+            this.label454 = new System.Windows.Forms.Label();
+            this.label_InfoHmcPllsLocked = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label_InfoAdcClockDetect = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label_InfoAdcJtxPllLocked = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label_InfoOnlineLMX2 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label_InfoOnlineLMX1 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label_InfoOnlineHmc = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label_InfoOnlineAdc = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label_InfoAdcMinTemp = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label_InfoAdcMaxTemp = new System.Windows.Forms.Label();
+            this.listBox_MainLog = new System.Windows.Forms.ListBox();
+            this.groupBox_LMXSync = new System.Windows.Forms.GroupBox();
+            this.checkBox_QS_FcalEn2 = new System.Windows.Forms.CheckBox();
+            this.checkBox_QS_FcalEn1 = new System.Windows.Forms.CheckBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label_QS_CHDIV2 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label_QS_INC_DIV2 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label_QS_PLL_DEN2 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label_QS_CHDIV1 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label_QS_INC_DIV1 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label_QS_PLL_DEN1 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label_QS_Phase2 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label_QS_Phase1 = new System.Windows.Forms.Label();
+            this.button_QS_Sync = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.numericUpDown_QS_Seed2 = new System.Windows.Forms.NumericUpDown();
+            this.label12 = new System.Windows.Forms.Label();
+            this.numericUpDown_QS_Seed1 = new System.Windows.Forms.NumericUpDown();
             this.tabMeasurement_Setting = new System.Windows.Forms.TabPage();
+            this.button_Acq_SwTrigger = new System.Windows.Forms.Button();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.radioButton_TrgAdcFd = new System.Windows.Forms.RadioButton();
+            this.radioButton_TrgExtFalling = new System.Windows.Forms.RadioButton();
             this.radioButton_TrgSw = new System.Windows.Forms.RadioButton();
-            this.radioButton_TrgExt = new System.Windows.Forms.RadioButton();
+            this.radioButton_TrgExtRising = new System.Windows.Forms.RadioButton();
             this.radioButton_TrgSelf = new System.Windows.Forms.RadioButton();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.checkBox_DataTestMux = new System.Windows.Forms.CheckBox();
             this.checkBox_TestGeneratorEnable = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.button_OpenDataFile = new System.Windows.Forms.Button();
@@ -132,12 +192,23 @@ namespace Digitizer_ver1
             this.radioButton_AcqNumEvents = new System.Windows.Forms.RadioButton();
             this.radioButton_AcqInfinite = new System.Windows.Forms.RadioButton();
             this.tabMeasurementData = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel_MeasurementData = new System.Windows.Forms.TableLayoutPanel();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.button_AnotherForm = new System.Windows.Forms.Button();
+            this.numericUpDown_EventsMaxCount = new System.Windows.Forms.NumericUpDown();
+            this.checkBox_EventsMaxCount = new System.Windows.Forms.CheckBox();
             this.dataGridView_events = new System.Windows.Forms.DataGridView();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.button_EventsClear = new System.Windows.Forms.Button();
+            this.checkBox_EventsLastAutoAnalyze = new System.Windows.Forms.CheckBox();
             this.button_EventsListClear = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.chart_data = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.checkBox_EventsLastAutoSelect = new System.Windows.Forms.CheckBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.button_EventsAnalyzeAdc = new System.Windows.Forms.Button();
+            this.button_EventsSaveEvent = new System.Windows.Forms.Button();
+            this.chart_EventTime = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabGpio = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridView_GpioOutputs = new System.Windows.Forms.DataGridView();
@@ -171,7 +242,9 @@ namespace Digitizer_ver1
             this.button_ConfigStop = new System.Windows.Forms.Button();
             this.tabSetting = new System.Windows.Forms.TabPage();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.label36 = new System.Windows.Forms.Label();
             this.radioButton_ddSpecNum = new System.Windows.Forms.RadioButton();
+            this.label_ddSetNum = new System.Windows.Forms.Label();
             this.radioButton_ddSameAsComm = new System.Windows.Forms.RadioButton();
             this.radioButton_ddNotSet = new System.Windows.Forms.RadioButton();
             this.label32 = new System.Windows.Forms.Label();
@@ -194,33 +267,10 @@ namespace Digitizer_ver1
             this.radioButton_PCIe = new System.Windows.Forms.RadioButton();
             this.radioButton_USB = new System.Windows.Forms.RadioButton();
             this.radioButton_UART = new System.Windows.Forms.RadioButton();
-            this.tabQuickSetup = new System.Windows.Forms.TabPage();
-            this.groupBox_LMXSync = new System.Windows.Forms.GroupBox();
-            this.checkBox_QS_FcalEn2 = new System.Windows.Forms.CheckBox();
-            this.checkBox_QS_FcalEn1 = new System.Windows.Forms.CheckBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label_QS_CHDIV2 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label_QS_INC_DIV2 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label_QS_PLL_DEN2 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label_QS_CHDIV1 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label_QS_INC_DIV1 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label_QS_PLL_DEN1 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label_QS_Phase2 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label_QS_Phase1 = new System.Windows.Forms.Label();
-            this.button_QS_Sync = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
-            this.numericUpDown_QS_Seed2 = new System.Windows.Forms.NumericUpDown();
-            this.label12 = new System.Windows.Forms.Label();
-            this.numericUpDown_QS_Seed1 = new System.Windows.Forms.NumericUpDown();
             this.tabAnalyzInCirc = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridView_AnalyzData = new System.Windows.Forms.DataGridView();
+            this.panel7 = new System.Windows.Forms.Panel();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
             this.label28 = new System.Windows.Forms.Label();
             this.label_DataReadState = new System.Windows.Forms.Label();
@@ -255,8 +305,13 @@ namespace Digitizer_ver1
             this.label24 = new System.Windows.Forms.Label();
             this.numericUpDown_AnalyzNumOfSamples = new System.Windows.Forms.NumericUpDown();
             this.timerForm = new System.Windows.Forms.Timer(this.components);
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel7 = new System.Windows.Forms.Panel();
+            this.timerInfo = new System.Windows.Forms.Timer(this.components);
+            this.tabControl_Events = new System.Windows.Forms.TabControl();
+            this.tabPage_TimeChart = new System.Windows.Forms.TabPage();
+            this.tabPage_AnalyzePicture = new System.Windows.Forms.TabPage();
+            this.pictureBox_EventAnalyze = new System.Windows.Forms.PictureBox();
+            this.button_EventsLoadResult = new System.Windows.Forms.Button();
+            this.checkBox_EventsAutoLoad = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.tabRegisters.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -265,6 +320,11 @@ namespace Digitizer_ver1
             this.flowLayoutPanel1.SuspendLayout();
             this.groupBox_RegBits.SuspendLayout();
             this.tabControl_MAIN.SuspendLayout();
+            this.tabQuickSetup.SuspendLayout();
+            this.groupBox11.SuspendLayout();
+            this.groupBox_LMXSync.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_QS_Seed2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_QS_Seed1)).BeginInit();
             this.tabMeasurement_Setting.SuspendLayout();
             this.groupBox14.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -277,10 +337,15 @@ namespace Digitizer_ver1
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_NumOfEvents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Time)).BeginInit();
             this.tabMeasurementData.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel_MeasurementData.SuspendLayout();
+            this.panel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EventsMaxCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_events)).BeginInit();
+            this.panel9.SuspendLayout();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart_data)).BeginInit();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.panel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart_EventTime)).BeginInit();
             this.tabGpio.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_GpioOutputs)).BeginInit();
@@ -305,18 +370,18 @@ namespace Digitizer_ver1
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_RegistersFiles)).BeginInit();
             this.groupBox1.SuspendLayout();
-            this.tabQuickSetup.SuspendLayout();
-            this.groupBox_LMXSync.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_QS_Seed2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_QS_Seed1)).BeginInit();
             this.tabAnalyzInCirc.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_AnalyzData)).BeginInit();
+            this.panel7.SuspendLayout();
             this.groupBox12.SuspendLayout();
             this.groupBox_AnalyzTriggersBox.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_AnalyzNumOfSamples)).BeginInit();
-            this.tableLayoutPanel4.SuspendLayout();
-            this.panel7.SuspendLayout();
+            this.tabControl_Events.SuspendLayout();
+            this.tabPage_TimeChart.SuspendLayout();
+            this.tabPage_AnalyzePicture.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_EventAnalyze)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -335,7 +400,7 @@ namespace Digitizer_ver1
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1248, 39);
+            this.panel1.Size = new System.Drawing.Size(1188, 39);
             this.panel1.TabIndex = 0;
             // 
             // checkBox_xListen2
@@ -442,7 +507,7 @@ namespace Digitizer_ver1
             this.tabRegisters.Margin = new System.Windows.Forms.Padding(2);
             this.tabRegisters.Name = "tabRegisters";
             this.tabRegisters.Padding = new System.Windows.Forms.Padding(2);
-            this.tabRegisters.Size = new System.Drawing.Size(1240, 601);
+            this.tabRegisters.Size = new System.Drawing.Size(1180, 601);
             this.tabRegisters.TabIndex = 4;
             this.tabRegisters.Text = "Registers";
             this.tabRegisters.UseVisualStyleBackColor = true;
@@ -453,7 +518,7 @@ namespace Digitizer_ver1
             this.tabControl_RegistersSetting.Location = new System.Drawing.Point(266, 2);
             this.tabControl_RegistersSetting.Name = "tabControl_RegistersSetting";
             this.tabControl_RegistersSetting.SelectedIndex = 0;
-            this.tabControl_RegistersSetting.Size = new System.Drawing.Size(972, 597);
+            this.tabControl_RegistersSetting.Size = new System.Drawing.Size(912, 597);
             this.tabControl_RegistersSetting.TabIndex = 2;
             // 
             // panel3
@@ -971,6 +1036,7 @@ namespace Digitizer_ver1
             // 
             // tabControl_MAIN
             // 
+            this.tabControl_MAIN.Controls.Add(this.tabQuickSetup);
             this.tabControl_MAIN.Controls.Add(this.tabMeasurement_Setting);
             this.tabControl_MAIN.Controls.Add(this.tabMeasurementData);
             this.tabControl_MAIN.Controls.Add(this.tabRegisters);
@@ -978,19 +1044,608 @@ namespace Digitizer_ver1
             this.tabControl_MAIN.Controls.Add(this.tabReset);
             this.tabControl_MAIN.Controls.Add(this.tabConfiguration);
             this.tabControl_MAIN.Controls.Add(this.tabSetting);
-            this.tabControl_MAIN.Controls.Add(this.tabQuickSetup);
             this.tabControl_MAIN.Controls.Add(this.tabAnalyzInCirc);
             this.tabControl_MAIN.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl_MAIN.Location = new System.Drawing.Point(0, 39);
             this.tabControl_MAIN.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl_MAIN.Name = "tabControl_MAIN";
             this.tabControl_MAIN.SelectedIndex = 0;
-            this.tabControl_MAIN.Size = new System.Drawing.Size(1248, 627);
+            this.tabControl_MAIN.Size = new System.Drawing.Size(1188, 627);
             this.tabControl_MAIN.TabIndex = 1;
             this.tabControl_MAIN.SelectedIndexChanged += new System.EventHandler(this.tabControl_MAIN_SelectedIndexChanged);
             // 
+            // tabQuickSetup
+            // 
+            this.tabQuickSetup.Controls.Add(this.groupBox11);
+            this.tabQuickSetup.Controls.Add(this.listBox_MainLog);
+            this.tabQuickSetup.Controls.Add(this.groupBox_LMXSync);
+            this.tabQuickSetup.Location = new System.Drawing.Point(4, 22);
+            this.tabQuickSetup.Name = "tabQuickSetup";
+            this.tabQuickSetup.Size = new System.Drawing.Size(1180, 601);
+            this.tabQuickSetup.TabIndex = 11;
+            this.tabQuickSetup.Text = "Manage";
+            this.tabQuickSetup.UseVisualStyleBackColor = true;
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.checkBox_InfoPeriodicRead);
+            this.groupBox11.Controls.Add(this.label51);
+            this.groupBox11.Controls.Add(this.label_InfoLmx2Locked);
+            this.groupBox11.Controls.Add(this.label49);
+            this.groupBox11.Controls.Add(this.label_InfoLmx1Locked);
+            this.groupBox11.Controls.Add(this.label_123);
+            this.groupBox11.Controls.Add(this.label_InfoSyncib);
+            this.groupBox11.Controls.Add(this.label_412);
+            this.groupBox11.Controls.Add(this.label_InfoXcvrLanesLocked);
+            this.groupBox11.Controls.Add(this.label_788);
+            this.groupBox11.Controls.Add(this.label_InfoLogicRefPllsLocked);
+            this.groupBox11.Controls.Add(this.label454);
+            this.groupBox11.Controls.Add(this.label_InfoHmcPllsLocked);
+            this.groupBox11.Controls.Add(this.label38);
+            this.groupBox11.Controls.Add(this.label_InfoAdcClockDetect);
+            this.groupBox11.Controls.Add(this.label34);
+            this.groupBox11.Controls.Add(this.label_InfoAdcJtxPllLocked);
+            this.groupBox11.Controls.Add(this.label39);
+            this.groupBox11.Controls.Add(this.label_InfoOnlineLMX2);
+            this.groupBox11.Controls.Add(this.label37);
+            this.groupBox11.Controls.Add(this.label_InfoOnlineLMX1);
+            this.groupBox11.Controls.Add(this.label35);
+            this.groupBox11.Controls.Add(this.label_InfoOnlineHmc);
+            this.groupBox11.Controls.Add(this.label26);
+            this.groupBox11.Controls.Add(this.label_InfoOnlineAdc);
+            this.groupBox11.Controls.Add(this.label33);
+            this.groupBox11.Controls.Add(this.label_InfoAdcMinTemp);
+            this.groupBox11.Controls.Add(this.label30);
+            this.groupBox11.Controls.Add(this.label_InfoAdcMaxTemp);
+            this.groupBox11.Location = new System.Drawing.Point(225, 24);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(242, 415);
+            this.groupBox11.TabIndex = 7;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "System Info";
+            // 
+            // checkBox_InfoPeriodicRead
+            // 
+            this.checkBox_InfoPeriodicRead.AutoSize = true;
+            this.checkBox_InfoPeriodicRead.Location = new System.Drawing.Point(24, 28);
+            this.checkBox_InfoPeriodicRead.Name = "checkBox_InfoPeriodicRead";
+            this.checkBox_InfoPeriodicRead.Size = new System.Drawing.Size(93, 17);
+            this.checkBox_InfoPeriodicRead.TabIndex = 34;
+            this.checkBox_InfoPeriodicRead.Text = "Periodic Read";
+            this.checkBox_InfoPeriodicRead.UseVisualStyleBackColor = true;
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.Location = new System.Drawing.Point(63, 225);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(77, 13);
+            this.label51.TabIndex = 33;
+            this.label51.Text = "LMX2 Locked:";
+            // 
+            // label_InfoLmx2Locked
+            // 
+            this.label_InfoLmx2Locked.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_InfoLmx2Locked.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_InfoLmx2Locked.Location = new System.Drawing.Point(146, 222);
+            this.label_InfoLmx2Locked.Name = "label_InfoLmx2Locked";
+            this.label_InfoLmx2Locked.Size = new System.Drawing.Size(74, 20);
+            this.label_InfoLmx2Locked.TabIndex = 32;
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Location = new System.Drawing.Point(63, 205);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(77, 13);
+            this.label49.TabIndex = 31;
+            this.label49.Text = "LMX1 Locked:";
+            // 
+            // label_InfoLmx1Locked
+            // 
+            this.label_InfoLmx1Locked.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_InfoLmx1Locked.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_InfoLmx1Locked.Location = new System.Drawing.Point(146, 202);
+            this.label_InfoLmx1Locked.Name = "label_InfoLmx1Locked";
+            this.label_InfoLmx1Locked.Size = new System.Drawing.Size(74, 20);
+            this.label_InfoLmx1Locked.TabIndex = 30;
+            // 
+            // label_123
+            // 
+            this.label_123.AutoSize = true;
+            this.label_123.Location = new System.Drawing.Point(91, 305);
+            this.label_123.Name = "label_123";
+            this.label_123.Size = new System.Drawing.Size(49, 13);
+            this.label_123.TabIndex = 29;
+            this.label_123.Text = "SYNCIB:";
+            // 
+            // label_InfoSyncib
+            // 
+            this.label_InfoSyncib.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_InfoSyncib.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_InfoSyncib.Location = new System.Drawing.Point(146, 302);
+            this.label_InfoSyncib.Name = "label_InfoSyncib";
+            this.label_InfoSyncib.Size = new System.Drawing.Size(74, 20);
+            this.label_InfoSyncib.TabIndex = 28;
+            // 
+            // label_412
+            // 
+            this.label_412.AutoSize = true;
+            this.label_412.Location = new System.Drawing.Point(30, 285);
+            this.label_412.Name = "label_412";
+            this.label_412.Size = new System.Drawing.Size(110, 13);
+            this.label_412.TabIndex = 27;
+            this.label_412.Text = "XCVR Lanes Locked:";
+            // 
+            // label_InfoXcvrLanesLocked
+            // 
+            this.label_InfoXcvrLanesLocked.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_InfoXcvrLanesLocked.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_InfoXcvrLanesLocked.Location = new System.Drawing.Point(146, 282);
+            this.label_InfoXcvrLanesLocked.Name = "label_InfoXcvrLanesLocked";
+            this.label_InfoXcvrLanesLocked.Size = new System.Drawing.Size(74, 20);
+            this.label_InfoXcvrLanesLocked.TabIndex = 26;
+            // 
+            // label_788
+            // 
+            this.label_788.AutoSize = true;
+            this.label_788.Location = new System.Drawing.Point(21, 265);
+            this.label_788.Name = "label_788";
+            this.label_788.Size = new System.Drawing.Size(119, 13);
+            this.label_788.TabIndex = 25;
+            this.label_788.Text = "LogicRef PLLs Locked:";
+            // 
+            // label_InfoLogicRefPllsLocked
+            // 
+            this.label_InfoLogicRefPllsLocked.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_InfoLogicRefPllsLocked.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_InfoLogicRefPllsLocked.Location = new System.Drawing.Point(146, 262);
+            this.label_InfoLogicRefPllsLocked.Name = "label_InfoLogicRefPllsLocked";
+            this.label_InfoLogicRefPllsLocked.Size = new System.Drawing.Size(74, 20);
+            this.label_InfoLogicRefPllsLocked.TabIndex = 24;
+            // 
+            // label454
+            // 
+            this.label454.AutoSize = true;
+            this.label454.Location = new System.Drawing.Point(40, 245);
+            this.label454.Name = "label454";
+            this.label454.Size = new System.Drawing.Size(100, 13);
+            this.label454.TabIndex = 23;
+            this.label454.Text = "HMC PLLs Locked:";
+            // 
+            // label_InfoHmcPllsLocked
+            // 
+            this.label_InfoHmcPllsLocked.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_InfoHmcPllsLocked.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_InfoHmcPllsLocked.Location = new System.Drawing.Point(146, 242);
+            this.label_InfoHmcPllsLocked.Name = "label_InfoHmcPllsLocked";
+            this.label_InfoHmcPllsLocked.Size = new System.Drawing.Size(74, 20);
+            this.label_InfoHmcPllsLocked.TabIndex = 22;
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(43, 185);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(97, 13);
+            this.label38.TabIndex = 21;
+            this.label38.Text = "ADC Clock Detect:";
+            // 
+            // label_InfoAdcClockDetect
+            // 
+            this.label_InfoAdcClockDetect.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_InfoAdcClockDetect.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_InfoAdcClockDetect.Location = new System.Drawing.Point(146, 182);
+            this.label_InfoAdcClockDetect.Name = "label_InfoAdcClockDetect";
+            this.label_InfoAdcClockDetect.Size = new System.Drawing.Size(74, 20);
+            this.label_InfoAdcClockDetect.TabIndex = 20;
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(25, 165);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(115, 13);
+            this.label34.TabIndex = 19;
+            this.label34.Text = "ADC JTX PLL Locked:";
+            // 
+            // label_InfoAdcJtxPllLocked
+            // 
+            this.label_InfoAdcJtxPllLocked.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_InfoAdcJtxPllLocked.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_InfoAdcJtxPllLocked.Location = new System.Drawing.Point(146, 162);
+            this.label_InfoAdcJtxPllLocked.Name = "label_InfoAdcJtxPllLocked";
+            this.label_InfoAdcJtxPllLocked.Size = new System.Drawing.Size(74, 20);
+            this.label_InfoAdcJtxPllLocked.TabIndex = 18;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(69, 123);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(71, 13);
+            this.label39.TabIndex = 17;
+            this.label39.Text = "LMX2 Online:";
+            // 
+            // label_InfoOnlineLMX2
+            // 
+            this.label_InfoOnlineLMX2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_InfoOnlineLMX2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_InfoOnlineLMX2.Location = new System.Drawing.Point(146, 120);
+            this.label_InfoOnlineLMX2.Name = "label_InfoOnlineLMX2";
+            this.label_InfoOnlineLMX2.Size = new System.Drawing.Size(74, 20);
+            this.label_InfoOnlineLMX2.TabIndex = 16;
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(69, 103);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(71, 13);
+            this.label37.TabIndex = 15;
+            this.label37.Text = "LMX1 Online:";
+            // 
+            // label_InfoOnlineLMX1
+            // 
+            this.label_InfoOnlineLMX1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_InfoOnlineLMX1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_InfoOnlineLMX1.Location = new System.Drawing.Point(146, 100);
+            this.label_InfoOnlineLMX1.Name = "label_InfoOnlineLMX1";
+            this.label_InfoOnlineLMX1.Size = new System.Drawing.Size(74, 20);
+            this.label_InfoOnlineLMX1.TabIndex = 14;
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(73, 82);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(67, 13);
+            this.label35.TabIndex = 13;
+            this.label35.Text = "HMC Online:";
+            // 
+            // label_InfoOnlineHmc
+            // 
+            this.label_InfoOnlineHmc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_InfoOnlineHmc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_InfoOnlineHmc.Location = new System.Drawing.Point(146, 80);
+            this.label_InfoOnlineHmc.Name = "label_InfoOnlineHmc";
+            this.label_InfoOnlineHmc.Size = new System.Drawing.Size(74, 20);
+            this.label_InfoOnlineHmc.TabIndex = 12;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(75, 62);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(65, 13);
+            this.label26.TabIndex = 11;
+            this.label26.Text = "ADC Online:";
+            // 
+            // label_InfoOnlineAdc
+            // 
+            this.label_InfoOnlineAdc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_InfoOnlineAdc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_InfoOnlineAdc.Location = new System.Drawing.Point(146, 60);
+            this.label_InfoOnlineAdc.Name = "label_InfoOnlineAdc";
+            this.label_InfoOnlineAdc.Size = new System.Drawing.Size(74, 20);
+            this.label_InfoOnlineAdc.TabIndex = 10;
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(38, 365);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(102, 13);
+            this.label33.TabIndex = 9;
+            this.label33.Text = "ADC Min Temp [°C]:";
+            // 
+            // label_InfoAdcMinTemp
+            // 
+            this.label_InfoAdcMinTemp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_InfoAdcMinTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_InfoAdcMinTemp.Location = new System.Drawing.Point(146, 362);
+            this.label_InfoAdcMinTemp.Name = "label_InfoAdcMinTemp";
+            this.label_InfoAdcMinTemp.Size = new System.Drawing.Size(74, 20);
+            this.label_InfoAdcMinTemp.TabIndex = 8;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(35, 345);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(105, 13);
+            this.label30.TabIndex = 7;
+            this.label30.Text = "ADC Max Temp [°C]:";
+            // 
+            // label_InfoAdcMaxTemp
+            // 
+            this.label_InfoAdcMaxTemp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_InfoAdcMaxTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_InfoAdcMaxTemp.Location = new System.Drawing.Point(146, 342);
+            this.label_InfoAdcMaxTemp.Name = "label_InfoAdcMaxTemp";
+            this.label_InfoAdcMaxTemp.Size = new System.Drawing.Size(74, 20);
+            this.label_InfoAdcMaxTemp.TabIndex = 6;
+            // 
+            // listBox_MainLog
+            // 
+            this.listBox_MainLog.Dock = System.Windows.Forms.DockStyle.Right;
+            this.listBox_MainLog.FormattingEnabled = true;
+            this.listBox_MainLog.Location = new System.Drawing.Point(922, 0);
+            this.listBox_MainLog.Name = "listBox_MainLog";
+            this.listBox_MainLog.Size = new System.Drawing.Size(258, 601);
+            this.listBox_MainLog.TabIndex = 1;
+            // 
+            // groupBox_LMXSync
+            // 
+            this.groupBox_LMXSync.Controls.Add(this.checkBox_QS_FcalEn2);
+            this.groupBox_LMXSync.Controls.Add(this.checkBox_QS_FcalEn1);
+            this.groupBox_LMXSync.Controls.Add(this.label27);
+            this.groupBox_LMXSync.Controls.Add(this.label_QS_CHDIV2);
+            this.groupBox_LMXSync.Controls.Add(this.label29);
+            this.groupBox_LMXSync.Controls.Add(this.label_QS_INC_DIV2);
+            this.groupBox_LMXSync.Controls.Add(this.label31);
+            this.groupBox_LMXSync.Controls.Add(this.label_QS_PLL_DEN2);
+            this.groupBox_LMXSync.Controls.Add(this.label25);
+            this.groupBox_LMXSync.Controls.Add(this.label_QS_CHDIV1);
+            this.groupBox_LMXSync.Controls.Add(this.label23);
+            this.groupBox_LMXSync.Controls.Add(this.label_QS_INC_DIV1);
+            this.groupBox_LMXSync.Controls.Add(this.label22);
+            this.groupBox_LMXSync.Controls.Add(this.label_QS_PLL_DEN1);
+            this.groupBox_LMXSync.Controls.Add(this.label21);
+            this.groupBox_LMXSync.Controls.Add(this.label_QS_Phase2);
+            this.groupBox_LMXSync.Controls.Add(this.label20);
+            this.groupBox_LMXSync.Controls.Add(this.label_QS_Phase1);
+            this.groupBox_LMXSync.Controls.Add(this.button_QS_Sync);
+            this.groupBox_LMXSync.Controls.Add(this.label14);
+            this.groupBox_LMXSync.Controls.Add(this.numericUpDown_QS_Seed2);
+            this.groupBox_LMXSync.Controls.Add(this.label12);
+            this.groupBox_LMXSync.Controls.Add(this.numericUpDown_QS_Seed1);
+            this.groupBox_LMXSync.Location = new System.Drawing.Point(499, 24);
+            this.groupBox_LMXSync.Name = "groupBox_LMXSync";
+            this.groupBox_LMXSync.Size = new System.Drawing.Size(383, 320);
+            this.groupBox_LMXSync.TabIndex = 0;
+            this.groupBox_LMXSync.TabStop = false;
+            this.groupBox_LMXSync.Text = "LMX Sync";
+            // 
+            // checkBox_QS_FcalEn2
+            // 
+            this.checkBox_QS_FcalEn2.AutoSize = true;
+            this.checkBox_QS_FcalEn2.Location = new System.Drawing.Point(248, 286);
+            this.checkBox_QS_FcalEn2.Name = "checkBox_QS_FcalEn2";
+            this.checkBox_QS_FcalEn2.Size = new System.Drawing.Size(85, 17);
+            this.checkBox_QS_FcalEn2.TabIndex = 22;
+            this.checkBox_QS_FcalEn2.Text = "FCAL_EN_2";
+            this.checkBox_QS_FcalEn2.UseVisualStyleBackColor = true;
+            this.checkBox_QS_FcalEn2.CheckedChanged += new System.EventHandler(this.checkBox_QS_FcalEn2_CheckedChanged);
+            // 
+            // checkBox_QS_FcalEn1
+            // 
+            this.checkBox_QS_FcalEn1.AutoSize = true;
+            this.checkBox_QS_FcalEn1.Location = new System.Drawing.Point(41, 286);
+            this.checkBox_QS_FcalEn1.Name = "checkBox_QS_FcalEn1";
+            this.checkBox_QS_FcalEn1.Size = new System.Drawing.Size(85, 17);
+            this.checkBox_QS_FcalEn1.TabIndex = 21;
+            this.checkBox_QS_FcalEn1.Text = "FCAL_EN_1";
+            this.checkBox_QS_FcalEn1.UseVisualStyleBackColor = true;
+            this.checkBox_QS_FcalEn1.CheckedChanged += new System.EventHandler(this.checkBox_QS_FcalEn1_CheckedChanged);
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label27.Location = new System.Drawing.Point(256, 123);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(39, 12);
+            this.label27.TabIndex = 20;
+            this.label27.Text = "CHDIV:";
+            // 
+            // label_QS_CHDIV2
+            // 
+            this.label_QS_CHDIV2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_QS_CHDIV2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_QS_CHDIV2.Location = new System.Drawing.Point(296, 121);
+            this.label_QS_CHDIV2.Name = "label_QS_CHDIV2";
+            this.label_QS_CHDIV2.Size = new System.Drawing.Size(50, 18);
+            this.label_QS_CHDIV2.TabIndex = 19;
+            this.label_QS_CHDIV2.Text = "label3";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label29.Location = new System.Drawing.Point(254, 105);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(41, 12);
+            this.label29.TabIndex = 18;
+            this.label29.Text = "Inc_Div:";
+            // 
+            // label_QS_INC_DIV2
+            // 
+            this.label_QS_INC_DIV2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_QS_INC_DIV2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_QS_INC_DIV2.Location = new System.Drawing.Point(296, 103);
+            this.label_QS_INC_DIV2.Name = "label_QS_INC_DIV2";
+            this.label_QS_INC_DIV2.Size = new System.Drawing.Size(50, 18);
+            this.label_QS_INC_DIV2.TabIndex = 17;
+            this.label_QS_INC_DIV2.Text = "label3";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label31.Location = new System.Drawing.Point(246, 87);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(49, 12);
+            this.label31.TabIndex = 16;
+            this.label31.Text = "PLL_DEN:";
+            // 
+            // label_QS_PLL_DEN2
+            // 
+            this.label_QS_PLL_DEN2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_QS_PLL_DEN2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_QS_PLL_DEN2.Location = new System.Drawing.Point(296, 85);
+            this.label_QS_PLL_DEN2.Name = "label_QS_PLL_DEN2";
+            this.label_QS_PLL_DEN2.Size = new System.Drawing.Size(50, 18);
+            this.label_QS_PLL_DEN2.TabIndex = 15;
+            this.label_QS_PLL_DEN2.Text = "label3";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label25.Location = new System.Drawing.Point(49, 123);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(39, 12);
+            this.label25.TabIndex = 14;
+            this.label25.Text = "CHDIV:";
+            // 
+            // label_QS_CHDIV1
+            // 
+            this.label_QS_CHDIV1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_QS_CHDIV1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_QS_CHDIV1.Location = new System.Drawing.Point(89, 121);
+            this.label_QS_CHDIV1.Name = "label_QS_CHDIV1";
+            this.label_QS_CHDIV1.Size = new System.Drawing.Size(50, 18);
+            this.label_QS_CHDIV1.TabIndex = 13;
+            this.label_QS_CHDIV1.Text = "label3";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label23.Location = new System.Drawing.Point(47, 105);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(41, 12);
+            this.label23.TabIndex = 12;
+            this.label23.Text = "Inc_Div:";
+            // 
+            // label_QS_INC_DIV1
+            // 
+            this.label_QS_INC_DIV1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_QS_INC_DIV1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_QS_INC_DIV1.Location = new System.Drawing.Point(89, 103);
+            this.label_QS_INC_DIV1.Name = "label_QS_INC_DIV1";
+            this.label_QS_INC_DIV1.Size = new System.Drawing.Size(50, 18);
+            this.label_QS_INC_DIV1.TabIndex = 11;
+            this.label_QS_INC_DIV1.Text = "label3";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label22.Location = new System.Drawing.Point(39, 87);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(49, 12);
+            this.label22.TabIndex = 10;
+            this.label22.Text = "PLL_DEN:";
+            // 
+            // label_QS_PLL_DEN1
+            // 
+            this.label_QS_PLL_DEN1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_QS_PLL_DEN1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_QS_PLL_DEN1.Location = new System.Drawing.Point(89, 85);
+            this.label_QS_PLL_DEN1.Name = "label_QS_PLL_DEN1";
+            this.label_QS_PLL_DEN1.Size = new System.Drawing.Size(50, 18);
+            this.label_QS_PLL_DEN1.TabIndex = 9;
+            this.label_QS_PLL_DEN1.Text = "label3";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(240, 171);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(55, 13);
+            this.label21.TabIndex = 8;
+            this.label21.Text = "PHASE 2:";
+            // 
+            // label_QS_Phase2
+            // 
+            this.label_QS_Phase2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_QS_Phase2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_QS_Phase2.Location = new System.Drawing.Point(243, 191);
+            this.label_QS_Phase2.Name = "label_QS_Phase2";
+            this.label_QS_Phase2.Size = new System.Drawing.Size(103, 20);
+            this.label_QS_Phase2.TabIndex = 7;
+            this.label_QS_Phase2.Text = "label3";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(33, 171);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(55, 13);
+            this.label20.TabIndex = 6;
+            this.label20.Text = "PHASE 1:";
+            // 
+            // label_QS_Phase1
+            // 
+            this.label_QS_Phase1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_QS_Phase1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_QS_Phase1.Location = new System.Drawing.Point(36, 191);
+            this.label_QS_Phase1.Name = "label_QS_Phase1";
+            this.label_QS_Phase1.Size = new System.Drawing.Size(103, 20);
+            this.label_QS_Phase1.TabIndex = 5;
+            this.label_QS_Phase1.Text = "label3";
+            // 
+            // button_QS_Sync
+            // 
+            this.button_QS_Sync.Location = new System.Drawing.Point(36, 234);
+            this.button_QS_Sync.Name = "button_QS_Sync";
+            this.button_QS_Sync.Size = new System.Drawing.Size(310, 31);
+            this.button_QS_Sync.TabIndex = 4;
+            this.button_QS_Sync.Text = "SYNC Pulse";
+            this.button_QS_Sync.UseVisualStyleBackColor = true;
+            this.button_QS_Sync.Click += new System.EventHandler(this.button_QS_Sync_Click);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(240, 30);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(82, 13);
+            this.label14.TabIndex = 3;
+            this.label14.Text = "MASH SEED 2:";
+            // 
+            // numericUpDown_QS_Seed2
+            // 
+            this.numericUpDown_QS_Seed2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.numericUpDown_QS_Seed2.Location = new System.Drawing.Point(243, 50);
+            this.numericUpDown_QS_Seed2.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.numericUpDown_QS_Seed2.Name = "numericUpDown_QS_Seed2";
+            this.numericUpDown_QS_Seed2.Size = new System.Drawing.Size(103, 26);
+            this.numericUpDown_QS_Seed2.TabIndex = 2;
+            this.numericUpDown_QS_Seed2.ValueChanged += new System.EventHandler(this.numericUpDown_QS_Seed2_ValueChanged);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(33, 30);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(82, 13);
+            this.label12.TabIndex = 1;
+            this.label12.Text = "MASH SEED 1:";
+            // 
+            // numericUpDown_QS_Seed1
+            // 
+            this.numericUpDown_QS_Seed1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.numericUpDown_QS_Seed1.Location = new System.Drawing.Point(36, 50);
+            this.numericUpDown_QS_Seed1.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.numericUpDown_QS_Seed1.Name = "numericUpDown_QS_Seed1";
+            this.numericUpDown_QS_Seed1.Size = new System.Drawing.Size(103, 26);
+            this.numericUpDown_QS_Seed1.TabIndex = 0;
+            this.numericUpDown_QS_Seed1.ValueChanged += new System.EventHandler(this.numericUpDown_QS_Seed1_ValueChanged);
+            // 
             // tabMeasurement_Setting
             // 
+            this.tabMeasurement_Setting.Controls.Add(this.button_Acq_SwTrigger);
             this.tabMeasurement_Setting.Controls.Add(this.groupBox14);
             this.tabMeasurement_Setting.Controls.Add(this.groupBox6);
             this.tabMeasurement_Setting.Controls.Add(this.groupBox5);
@@ -998,15 +1653,28 @@ namespace Digitizer_ver1
             this.tabMeasurement_Setting.Controls.Add(this.groupBox3);
             this.tabMeasurement_Setting.Location = new System.Drawing.Point(4, 22);
             this.tabMeasurement_Setting.Name = "tabMeasurement_Setting";
-            this.tabMeasurement_Setting.Size = new System.Drawing.Size(1240, 601);
+            this.tabMeasurement_Setting.Size = new System.Drawing.Size(1180, 601);
             this.tabMeasurement_Setting.TabIndex = 7;
             this.tabMeasurement_Setting.Text = "Measurement Settings";
             this.tabMeasurement_Setting.UseVisualStyleBackColor = true;
             // 
+            // button_Acq_SwTrigger
+            // 
+            this.button_Acq_SwTrigger.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button_Acq_SwTrigger.Location = new System.Drawing.Point(947, 234);
+            this.button_Acq_SwTrigger.Name = "button_Acq_SwTrigger";
+            this.button_Acq_SwTrigger.Size = new System.Drawing.Size(160, 35);
+            this.button_Acq_SwTrigger.TabIndex = 32;
+            this.button_Acq_SwTrigger.Text = "SW Trigger";
+            this.button_Acq_SwTrigger.UseVisualStyleBackColor = true;
+            this.button_Acq_SwTrigger.Click += new System.EventHandler(this.button_Acq_SwTrigger_Click);
+            // 
             // groupBox14
             // 
+            this.groupBox14.Controls.Add(this.radioButton_TrgAdcFd);
+            this.groupBox14.Controls.Add(this.radioButton_TrgExtFalling);
             this.groupBox14.Controls.Add(this.radioButton_TrgSw);
-            this.groupBox14.Controls.Add(this.radioButton_TrgExt);
+            this.groupBox14.Controls.Add(this.radioButton_TrgExtRising);
             this.groupBox14.Controls.Add(this.radioButton_TrgSelf);
             this.groupBox14.Location = new System.Drawing.Point(947, 18);
             this.groupBox14.Name = "groupBox14";
@@ -1015,10 +1683,34 @@ namespace Digitizer_ver1
             this.groupBox14.TabStop = false;
             this.groupBox14.Text = "Trigger Source";
             // 
+            // radioButton_TrgAdcFd
+            // 
+            this.radioButton_TrgAdcFd.AutoSize = true;
+            this.radioButton_TrgAdcFd.Location = new System.Drawing.Point(19, 105);
+            this.radioButton_TrgAdcFd.Name = "radioButton_TrgAdcFd";
+            this.radioButton_TrgAdcFd.Size = new System.Drawing.Size(64, 17);
+            this.radioButton_TrgAdcFd.TabIndex = 38;
+            this.radioButton_TrgAdcFd.TabStop = true;
+            this.radioButton_TrgAdcFd.Text = "ADC FD";
+            this.radioButton_TrgAdcFd.UseVisualStyleBackColor = true;
+            this.radioButton_TrgAdcFd.CheckedChanged += new System.EventHandler(this.radioButton_TriggerSource_CheckedChanged);
+            // 
+            // radioButton_TrgExtFalling
+            // 
+            this.radioButton_TrgExtFalling.AutoSize = true;
+            this.radioButton_TrgExtFalling.Location = new System.Drawing.Point(19, 82);
+            this.radioButton_TrgExtFalling.Name = "radioButton_TrgExtFalling";
+            this.radioButton_TrgExtFalling.Size = new System.Drawing.Size(109, 17);
+            this.radioButton_TrgExtFalling.TabIndex = 37;
+            this.radioButton_TrgExtFalling.TabStop = true;
+            this.radioButton_TrgExtFalling.Text = "Ext Trigger Falling";
+            this.radioButton_TrgExtFalling.UseVisualStyleBackColor = true;
+            this.radioButton_TrgExtFalling.CheckedChanged += new System.EventHandler(this.radioButton_TriggerSource_CheckedChanged);
+            // 
             // radioButton_TrgSw
             // 
             this.radioButton_TrgSw.AutoSize = true;
-            this.radioButton_TrgSw.Location = new System.Drawing.Point(19, 85);
+            this.radioButton_TrgSw.Location = new System.Drawing.Point(19, 128);
             this.radioButton_TrgSw.Name = "radioButton_TrgSw";
             this.radioButton_TrgSw.Size = new System.Drawing.Size(103, 17);
             this.radioButton_TrgSw.TabIndex = 36;
@@ -1027,22 +1719,22 @@ namespace Digitizer_ver1
             this.radioButton_TrgSw.UseVisualStyleBackColor = true;
             this.radioButton_TrgSw.CheckedChanged += new System.EventHandler(this.radioButton_TriggerSource_CheckedChanged);
             // 
-            // radioButton_TrgExt
+            // radioButton_TrgExtRising
             // 
-            this.radioButton_TrgExt.AutoSize = true;
-            this.radioButton_TrgExt.Location = new System.Drawing.Point(19, 62);
-            this.radioButton_TrgExt.Name = "radioButton_TrgExt";
-            this.radioButton_TrgExt.Size = new System.Drawing.Size(76, 17);
-            this.radioButton_TrgExt.TabIndex = 35;
-            this.radioButton_TrgExt.TabStop = true;
-            this.radioButton_TrgExt.Text = "Ext Trigger";
-            this.radioButton_TrgExt.UseVisualStyleBackColor = true;
-            this.radioButton_TrgExt.CheckedChanged += new System.EventHandler(this.radioButton_TriggerSource_CheckedChanged);
+            this.radioButton_TrgExtRising.AutoSize = true;
+            this.radioButton_TrgExtRising.Location = new System.Drawing.Point(19, 59);
+            this.radioButton_TrgExtRising.Name = "radioButton_TrgExtRising";
+            this.radioButton_TrgExtRising.Size = new System.Drawing.Size(108, 17);
+            this.radioButton_TrgExtRising.TabIndex = 35;
+            this.radioButton_TrgExtRising.TabStop = true;
+            this.radioButton_TrgExtRising.Text = "Ext Trigger Rising";
+            this.radioButton_TrgExtRising.UseVisualStyleBackColor = true;
+            this.radioButton_TrgExtRising.CheckedChanged += new System.EventHandler(this.radioButton_TriggerSource_CheckedChanged);
             // 
             // radioButton_TrgSelf
             // 
             this.radioButton_TrgSelf.AutoSize = true;
-            this.radioButton_TrgSelf.Location = new System.Drawing.Point(19, 39);
+            this.radioButton_TrgSelf.Location = new System.Drawing.Point(19, 36);
             this.radioButton_TrgSelf.Name = "radioButton_TrgSelf";
             this.radioButton_TrgSelf.Size = new System.Drawing.Size(79, 17);
             this.radioButton_TrgSelf.TabIndex = 34;
@@ -1053,6 +1745,7 @@ namespace Digitizer_ver1
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.checkBox_DataTestMux);
             this.groupBox6.Controls.Add(this.checkBox_TestGeneratorEnable);
             this.groupBox6.Location = new System.Drawing.Point(512, 251);
             this.groupBox6.Name = "groupBox6";
@@ -1061,10 +1754,21 @@ namespace Digitizer_ver1
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Others";
             // 
+            // checkBox_DataTestMux
+            // 
+            this.checkBox_DataTestMux.AutoSize = true;
+            this.checkBox_DataTestMux.Location = new System.Drawing.Point(32, 34);
+            this.checkBox_DataTestMux.Name = "checkBox_DataTestMux";
+            this.checkBox_DataTestMux.Size = new System.Drawing.Size(98, 17);
+            this.checkBox_DataTestMux.TabIndex = 1;
+            this.checkBox_DataTestMux.Text = "Data/Test Mux";
+            this.checkBox_DataTestMux.UseVisualStyleBackColor = true;
+            this.checkBox_DataTestMux.CheckedChanged += new System.EventHandler(this.checkBox_DataTestMux_CheckedChanged);
+            // 
             // checkBox_TestGeneratorEnable
             // 
             this.checkBox_TestGeneratorEnable.AutoSize = true;
-            this.checkBox_TestGeneratorEnable.Location = new System.Drawing.Point(35, 32);
+            this.checkBox_TestGeneratorEnable.Location = new System.Drawing.Point(32, 67);
             this.checkBox_TestGeneratorEnable.Name = "checkBox_TestGeneratorEnable";
             this.checkBox_TestGeneratorEnable.Size = new System.Drawing.Size(133, 17);
             this.checkBox_TestGeneratorEnable.TabIndex = 0;
@@ -1124,6 +1828,8 @@ namespace Digitizer_ver1
             // checkBox_SaveToRam
             // 
             this.checkBox_SaveToRam.AutoSize = true;
+            this.checkBox_SaveToRam.Checked = true;
+            this.checkBox_SaveToRam.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox_SaveToRam.Location = new System.Drawing.Point(35, 32);
             this.checkBox_SaveToRam.Name = "checkBox_SaveToRam";
             this.checkBox_SaveToRam.Size = new System.Drawing.Size(90, 17);
@@ -1463,95 +2169,225 @@ namespace Digitizer_ver1
             // 
             // tabMeasurementData
             // 
-            this.tabMeasurementData.Controls.Add(this.tableLayoutPanel2);
+            this.tabMeasurementData.Controls.Add(this.tableLayoutPanel_MeasurementData);
             this.tabMeasurementData.Location = new System.Drawing.Point(4, 22);
             this.tabMeasurementData.Margin = new System.Windows.Forms.Padding(2);
             this.tabMeasurementData.Name = "tabMeasurementData";
             this.tabMeasurementData.Padding = new System.Windows.Forms.Padding(2);
-            this.tabMeasurementData.Size = new System.Drawing.Size(1240, 601);
+            this.tabMeasurementData.Size = new System.Drawing.Size(1180, 601);
             this.tabMeasurementData.TabIndex = 1;
             this.tabMeasurementData.Text = "Measurement Data";
             this.tabMeasurementData.UseVisualStyleBackColor = true;
             // 
-            // tableLayoutPanel2
+            // tableLayoutPanel_MeasurementData
             // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.28328F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.71672F));
-            this.tableLayoutPanel2.Controls.Add(this.dataGridView_events, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.panel4, 0, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 2);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1236, 597);
-            this.tableLayoutPanel2.TabIndex = 20;
+            this.tableLayoutPanel_MeasurementData.ColumnCount = 2;
+            this.tableLayoutPanel_MeasurementData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel_MeasurementData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 234F));
+            this.tableLayoutPanel_MeasurementData.Controls.Add(this.panel10, 1, 1);
+            this.tableLayoutPanel_MeasurementData.Controls.Add(this.dataGridView_events, 1, 0);
+            this.tableLayoutPanel_MeasurementData.Controls.Add(this.panel9, 0, 1);
+            this.tableLayoutPanel_MeasurementData.Controls.Add(this.panel4, 0, 0);
+            this.tableLayoutPanel_MeasurementData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel_MeasurementData.Location = new System.Drawing.Point(2, 2);
+            this.tableLayoutPanel_MeasurementData.Margin = new System.Windows.Forms.Padding(1);
+            this.tableLayoutPanel_MeasurementData.Name = "tableLayoutPanel_MeasurementData";
+            this.tableLayoutPanel_MeasurementData.RowCount = 2;
+            this.tableLayoutPanel_MeasurementData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel_MeasurementData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39F));
+            this.tableLayoutPanel_MeasurementData.Size = new System.Drawing.Size(1176, 597);
+            this.tableLayoutPanel_MeasurementData.TabIndex = 20;
+            // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.button_AnotherForm);
+            this.panel10.Controls.Add(this.numericUpDown_EventsMaxCount);
+            this.panel10.Controls.Add(this.checkBox_EventsMaxCount);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel10.Location = new System.Drawing.Point(942, 558);
+            this.panel10.Margin = new System.Windows.Forms.Padding(0);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(234, 39);
+            this.panel10.TabIndex = 23;
+            // 
+            // button_AnotherForm
+            // 
+            this.button_AnotherForm.Dock = System.Windows.Forms.DockStyle.Right;
+            this.button_AnotherForm.Location = new System.Drawing.Point(195, 0);
+            this.button_AnotherForm.Name = "button_AnotherForm";
+            this.button_AnotherForm.Size = new System.Drawing.Size(39, 39);
+            this.button_AnotherForm.TabIndex = 24;
+            this.button_AnotherForm.Text = ">>";
+            this.button_AnotherForm.UseVisualStyleBackColor = true;
+            this.button_AnotherForm.Click += new System.EventHandler(this.button_AnotherForm_Click);
+            // 
+            // numericUpDown_EventsMaxCount
+            // 
+            this.numericUpDown_EventsMaxCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.numericUpDown_EventsMaxCount.Location = new System.Drawing.Point(104, 8);
+            this.numericUpDown_EventsMaxCount.Name = "numericUpDown_EventsMaxCount";
+            this.numericUpDown_EventsMaxCount.Size = new System.Drawing.Size(55, 22);
+            this.numericUpDown_EventsMaxCount.TabIndex = 14;
+            // 
+            // checkBox_EventsMaxCount
+            // 
+            this.checkBox_EventsMaxCount.AutoSize = true;
+            this.checkBox_EventsMaxCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.checkBox_EventsMaxCount.Location = new System.Drawing.Point(13, 10);
+            this.checkBox_EventsMaxCount.Name = "checkBox_EventsMaxCount";
+            this.checkBox_EventsMaxCount.Size = new System.Drawing.Size(88, 19);
+            this.checkBox_EventsMaxCount.TabIndex = 13;
+            this.checkBox_EventsMaxCount.Text = "Max Count:";
+            this.checkBox_EventsMaxCount.UseVisualStyleBackColor = true;
             // 
             // dataGridView_events
             // 
             this.dataGridView_events.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_events.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView_events.Location = new System.Drawing.Point(859, 3);
+            this.dataGridView_events.Location = new System.Drawing.Point(945, 3);
             this.dataGridView_events.Name = "dataGridView_events";
             this.dataGridView_events.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView_events.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dataGridView_events.Size = new System.Drawing.Size(374, 591);
+            this.dataGridView_events.Size = new System.Drawing.Size(228, 552);
             this.dataGridView_events.TabIndex = 20;
             // 
-            // panel4
+            // panel9
             // 
-            this.panel4.Controls.Add(this.button_EventsListClear);
-            this.panel4.Controls.Add(this.button7);
-            this.panel4.Controls.Add(this.chart_data);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(3, 3);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(850, 591);
-            this.panel4.TabIndex = 21;
+            this.panel9.Controls.Add(this.checkBox_EventsAutoLoad);
+            this.panel9.Controls.Add(this.button_EventsClear);
+            this.panel9.Controls.Add(this.checkBox_EventsLastAutoAnalyze);
+            this.panel9.Controls.Add(this.button_EventsListClear);
+            this.panel9.Controls.Add(this.checkBox_EventsLastAutoSelect);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel9.Location = new System.Drawing.Point(2, 558);
+            this.panel9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(938, 39);
+            this.panel9.TabIndex = 22;
+            // 
+            // button_EventsClear
+            // 
+            this.button_EventsClear.Dock = System.Windows.Forms.DockStyle.Right;
+            this.button_EventsClear.Location = new System.Drawing.Point(762, 0);
+            this.button_EventsClear.Name = "button_EventsClear";
+            this.button_EventsClear.Size = new System.Drawing.Size(88, 39);
+            this.button_EventsClear.TabIndex = 23;
+            this.button_EventsClear.Text = "Clear Event";
+            this.button_EventsClear.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_EventsLastAutoAnalyze
+            // 
+            this.checkBox_EventsLastAutoAnalyze.AutoSize = true;
+            this.checkBox_EventsLastAutoAnalyze.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.checkBox_EventsLastAutoAnalyze.Location = new System.Drawing.Point(155, 10);
+            this.checkBox_EventsLastAutoAnalyze.Name = "checkBox_EventsLastAutoAnalyze";
+            this.checkBox_EventsLastAutoAnalyze.Size = new System.Drawing.Size(121, 19);
+            this.checkBox_EventsLastAutoAnalyze.TabIndex = 16;
+            this.checkBox_EventsLastAutoAnalyze.Text = "Last Auto Analyze";
+            this.checkBox_EventsLastAutoAnalyze.UseVisualStyleBackColor = true;
             // 
             // button_EventsListClear
             // 
-            this.button_EventsListClear.Location = new System.Drawing.Point(652, 55);
+            this.button_EventsListClear.Dock = System.Windows.Forms.DockStyle.Right;
+            this.button_EventsListClear.Location = new System.Drawing.Point(850, 0);
             this.button_EventsListClear.Name = "button_EventsListClear";
-            this.button_EventsListClear.Size = new System.Drawing.Size(135, 30);
+            this.button_EventsListClear.Size = new System.Drawing.Size(88, 39);
             this.button_EventsListClear.TabIndex = 19;
-            this.button_EventsListClear.Text = "Clear";
+            this.button_EventsListClear.Text = "Clear All";
             this.button_EventsListClear.UseVisualStyleBackColor = true;
             this.button_EventsListClear.Click += new System.EventHandler(this.button_EventsListClear_Click);
             // 
-            // button7
+            // checkBox_EventsLastAutoSelect
             // 
-            this.button7.Location = new System.Drawing.Point(174, 36);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(135, 30);
-            this.button7.TabIndex = 17;
-            this.button7.Text = "Open Data File";
-            this.button7.UseVisualStyleBackColor = true;
+            this.checkBox_EventsLastAutoSelect.AutoSize = true;
+            this.checkBox_EventsLastAutoSelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.checkBox_EventsLastAutoSelect.Location = new System.Drawing.Point(28, 10);
+            this.checkBox_EventsLastAutoSelect.Name = "checkBox_EventsLastAutoSelect";
+            this.checkBox_EventsLastAutoSelect.Size = new System.Drawing.Size(113, 19);
+            this.checkBox_EventsLastAutoSelect.TabIndex = 15;
+            this.checkBox_EventsLastAutoSelect.Text = "Last Auto Select";
+            this.checkBox_EventsLastAutoSelect.UseVisualStyleBackColor = true;
             // 
-            // chart_data
+            // panel4
             // 
-            this.chart_data.BorderlineColor = System.Drawing.Color.Black;
-            this.chart_data.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea2.Name = "ChartArea1";
-            this.chart_data.ChartAreas.Add(chartArea2);
-            this.chart_data.Dock = System.Windows.Forms.DockStyle.Bottom;
-            legend2.Name = "Legend1";
-            this.chart_data.Legends.Add(legend2);
-            this.chart_data.Location = new System.Drawing.Point(0, 197);
-            this.chart_data.Margin = new System.Windows.Forms.Padding(2);
-            this.chart_data.Name = "chart_data";
-            series2.BorderWidth = 2;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.IsVisibleInLegend = false;
-            series2.Legend = "Legend1";
-            series2.Name = "Data";
-            this.chart_data.Series.Add(series2);
-            this.chart_data.Size = new System.Drawing.Size(850, 394);
-            this.chart_data.TabIndex = 21;
-            this.chart_data.Text = "chart_data";
-            this.chart_data.Click += new System.EventHandler(this.chart_data_Click);
+            this.panel4.Controls.Add(this.tableLayoutPanel2);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(3, 3);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(936, 552);
+            this.panel4.TabIndex = 21;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Controls.Add(this.panel8, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.tabControl_Events, 0, 1);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(936, 552);
+            this.tableLayoutPanel2.TabIndex = 24;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.button_EventsLoadResult);
+            this.panel8.Controls.Add(this.button_EventsAnalyzeAdc);
+            this.panel8.Controls.Add(this.button_EventsSaveEvent);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel8.Location = new System.Drawing.Point(3, 3);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(930, 37);
+            this.panel8.TabIndex = 22;
+            // 
+            // button_EventsAnalyzeAdc
+            // 
+            this.button_EventsAnalyzeAdc.Location = new System.Drawing.Point(149, 3);
+            this.button_EventsAnalyzeAdc.Name = "button_EventsAnalyzeAdc";
+            this.button_EventsAnalyzeAdc.Size = new System.Drawing.Size(130, 30);
+            this.button_EventsAnalyzeAdc.TabIndex = 23;
+            this.button_EventsAnalyzeAdc.Text = "Analyze ADC";
+            this.button_EventsAnalyzeAdc.UseVisualStyleBackColor = true;
+            this.button_EventsAnalyzeAdc.Click += new System.EventHandler(this.button_EventsAnalyzeAdc_Click);
+            // 
+            // button_EventsSaveEvent
+            // 
+            this.button_EventsSaveEvent.Location = new System.Drawing.Point(13, 3);
+            this.button_EventsSaveEvent.Name = "button_EventsSaveEvent";
+            this.button_EventsSaveEvent.Size = new System.Drawing.Size(130, 30);
+            this.button_EventsSaveEvent.TabIndex = 22;
+            this.button_EventsSaveEvent.Text = "Save Event";
+            this.button_EventsSaveEvent.UseVisualStyleBackColor = true;
+            this.button_EventsSaveEvent.Click += new System.EventHandler(this.button_EventsSaveEvent_Click);
+            // 
+            // chart_EventTime
+            // 
+            this.chart_EventTime.BorderlineColor = System.Drawing.Color.Black;
+            this.chart_EventTime.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
+            chartArea1.Name = "ChartArea1";
+            this.chart_EventTime.ChartAreas.Add(chartArea1);
+            this.chart_EventTime.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.Alignment = System.Drawing.StringAlignment.Far;
+            legend1.DockedToChartArea = "ChartArea1";
+            legend1.Name = "Legend1";
+            this.chart_EventTime.Legends.Add(legend1);
+            this.chart_EventTime.Location = new System.Drawing.Point(0, 0);
+            this.chart_EventTime.Margin = new System.Windows.Forms.Padding(2);
+            this.chart_EventTime.Name = "chart_EventTime";
+            series1.BorderWidth = 2;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.IsVisibleInLegend = false;
+            series1.Legend = "Legend1";
+            series1.Name = "Data";
+            this.chart_EventTime.Series.Add(series1);
+            this.chart_EventTime.Size = new System.Drawing.Size(909, 501);
+            this.chart_EventTime.TabIndex = 21;
+            this.chart_EventTime.Text = "chart_data";
+            this.chart_EventTime.Click += new System.EventHandler(this.chart_EventTime_Click);
             // 
             // tabGpio
             // 
@@ -1559,7 +2395,7 @@ namespace Digitizer_ver1
             this.tabGpio.Controls.Add(this.panel2);
             this.tabGpio.Location = new System.Drawing.Point(4, 22);
             this.tabGpio.Name = "tabGpio";
-            this.tabGpio.Size = new System.Drawing.Size(1240, 601);
+            this.tabGpio.Size = new System.Drawing.Size(1180, 601);
             this.tabGpio.TabIndex = 9;
             this.tabGpio.Text = "GPIOs";
             this.tabGpio.UseVisualStyleBackColor = true;
@@ -1580,17 +2416,17 @@ namespace Digitizer_ver1
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1119, 601);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1059, 601);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // dataGridView_GpioOutputs
             // 
             this.dataGridView_GpioOutputs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_GpioOutputs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView_GpioOutputs.Location = new System.Drawing.Point(562, 23);
+            this.dataGridView_GpioOutputs.Location = new System.Drawing.Point(532, 23);
             this.dataGridView_GpioOutputs.Name = "dataGridView_GpioOutputs";
             this.dataGridView_GpioOutputs.ReadOnly = true;
-            this.dataGridView_GpioOutputs.Size = new System.Drawing.Size(554, 575);
+            this.dataGridView_GpioOutputs.Size = new System.Drawing.Size(524, 575);
             this.dataGridView_GpioOutputs.TabIndex = 5;
             this.dataGridView_GpioOutputs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_GpioOutputs_CellContentClick);
             // 
@@ -1602,7 +2438,7 @@ namespace Digitizer_ver1
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
             this.label1.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.label1.Size = new System.Drawing.Size(553, 20);
+            this.label1.Size = new System.Drawing.Size(523, 20);
             this.label1.TabIndex = 3;
             this.label1.Text = "INPUTs";
             // 
@@ -1611,10 +2447,10 @@ namespace Digitizer_ver1
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Top;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(562, 0);
+            this.label2.Location = new System.Drawing.Point(532, 0);
             this.label2.Name = "label2";
             this.label2.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.label2.Size = new System.Drawing.Size(554, 20);
+            this.label2.Size = new System.Drawing.Size(524, 20);
             this.label2.TabIndex = 1;
             this.label2.Text = "OUTPUTs";
             // 
@@ -1625,7 +2461,7 @@ namespace Digitizer_ver1
             this.dataGridView_GpioInputs.Location = new System.Drawing.Point(3, 23);
             this.dataGridView_GpioInputs.Name = "dataGridView_GpioInputs";
             this.dataGridView_GpioInputs.ReadOnly = true;
-            this.dataGridView_GpioInputs.Size = new System.Drawing.Size(553, 575);
+            this.dataGridView_GpioInputs.Size = new System.Drawing.Size(523, 575);
             this.dataGridView_GpioInputs.TabIndex = 4;
             // 
             // panel2
@@ -1938,14 +2774,16 @@ namespace Digitizer_ver1
             this.tabSetting.Controls.Add(this.groupBox1);
             this.tabSetting.Location = new System.Drawing.Point(4, 22);
             this.tabSetting.Name = "tabSetting";
-            this.tabSetting.Size = new System.Drawing.Size(1240, 601);
+            this.tabSetting.Size = new System.Drawing.Size(1180, 601);
             this.tabSetting.TabIndex = 6;
             this.tabSetting.Text = "System Setting";
             this.tabSetting.UseVisualStyleBackColor = true;
             // 
             // groupBox13
             // 
+            this.groupBox13.Controls.Add(this.label36);
             this.groupBox13.Controls.Add(this.radioButton_ddSpecNum);
+            this.groupBox13.Controls.Add(this.label_ddSetNum);
             this.groupBox13.Controls.Add(this.radioButton_ddSameAsComm);
             this.groupBox13.Controls.Add(this.radioButton_ddNotSet);
             this.groupBox13.Controls.Add(this.label32);
@@ -1960,10 +2798,19 @@ namespace Digitizer_ver1
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "Data Destination";
             // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(47, 116);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(66, 13);
+            this.label36.TabIndex = 35;
+            this.label36.Text = "Set Number:";
+            // 
             // radioButton_ddSpecNum
             // 
             this.radioButton_ddSpecNum.AutoSize = true;
-            this.radioButton_ddSpecNum.Location = new System.Drawing.Point(28, 85);
+            this.radioButton_ddSpecNum.Location = new System.Drawing.Point(28, 76);
             this.radioButton_ddSpecNum.Name = "radioButton_ddSpecNum";
             this.radioButton_ddSpecNum.Size = new System.Drawing.Size(103, 17);
             this.radioButton_ddSpecNum.TabIndex = 36;
@@ -1972,10 +2819,19 @@ namespace Digitizer_ver1
             this.radioButton_ddSpecNum.UseVisualStyleBackColor = true;
             this.radioButton_ddSpecNum.CheckedChanged += new System.EventHandler(this.radioButton_dataDestination_CheckedChanged);
             // 
+            // label_ddSetNum
+            // 
+            this.label_ddSetNum.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_ddSetNum.Location = new System.Drawing.Point(116, 112);
+            this.label_ddSetNum.Name = "label_ddSetNum";
+            this.label_ddSetNum.Size = new System.Drawing.Size(65, 20);
+            this.label_ddSetNum.TabIndex = 34;
+            this.label_ddSetNum.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // radioButton_ddSameAsComm
             // 
             this.radioButton_ddSameAsComm.AutoSize = true;
-            this.radioButton_ddSameAsComm.Location = new System.Drawing.Point(28, 62);
+            this.radioButton_ddSameAsComm.Location = new System.Drawing.Point(28, 53);
             this.radioButton_ddSameAsComm.Name = "radioButton_ddSameAsComm";
             this.radioButton_ddSameAsComm.Size = new System.Drawing.Size(141, 17);
             this.radioButton_ddSameAsComm.TabIndex = 35;
@@ -1987,7 +2843,7 @@ namespace Digitizer_ver1
             // radioButton_ddNotSet
             // 
             this.radioButton_ddNotSet.AutoSize = true;
-            this.radioButton_ddNotSet.Location = new System.Drawing.Point(28, 39);
+            this.radioButton_ddNotSet.Location = new System.Drawing.Point(28, 30);
             this.radioButton_ddNotSet.Name = "radioButton_ddNotSet";
             this.radioButton_ddNotSet.Size = new System.Drawing.Size(61, 17);
             this.radioButton_ddNotSet.TabIndex = 34;
@@ -1999,7 +2855,7 @@ namespace Digitizer_ver1
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(49, 136);
+            this.label32.Location = new System.Drawing.Point(49, 141);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(64, 13);
             this.label32.TabIndex = 33;
@@ -2008,7 +2864,7 @@ namespace Digitizer_ver1
             // label_ddMyNum
             // 
             this.label_ddMyNum.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_ddMyNum.Location = new System.Drawing.Point(116, 132);
+            this.label_ddMyNum.Location = new System.Drawing.Point(116, 137);
             this.label_ddMyNum.Name = "label_ddMyNum";
             this.label_ddMyNum.Size = new System.Drawing.Size(65, 20);
             this.label_ddMyNum.TabIndex = 32;
@@ -2026,7 +2882,7 @@ namespace Digitizer_ver1
             // 
             // textBox_ddSpecNum
             // 
-            this.textBox_ddSpecNum.Location = new System.Drawing.Point(137, 84);
+            this.textBox_ddSpecNum.Location = new System.Drawing.Point(137, 75);
             this.textBox_ddSpecNum.Name = "textBox_ddSpecNum";
             this.textBox_ddSpecNum.Size = new System.Drawing.Size(44, 20);
             this.textBox_ddSpecNum.TabIndex = 28;
@@ -2197,293 +3053,30 @@ namespace Digitizer_ver1
             this.radioButton_UART.UseVisualStyleBackColor = true;
             this.radioButton_UART.CheckedChanged += new System.EventHandler(this.radioButton_Communication_CheckedChanged);
             // 
-            // tabQuickSetup
-            // 
-            this.tabQuickSetup.Controls.Add(this.groupBox_LMXSync);
-            this.tabQuickSetup.Location = new System.Drawing.Point(4, 22);
-            this.tabQuickSetup.Name = "tabQuickSetup";
-            this.tabQuickSetup.Size = new System.Drawing.Size(1240, 601);
-            this.tabQuickSetup.TabIndex = 11;
-            this.tabQuickSetup.Text = "Quick Setup";
-            this.tabQuickSetup.UseVisualStyleBackColor = true;
-            // 
-            // groupBox_LMXSync
-            // 
-            this.groupBox_LMXSync.Controls.Add(this.checkBox_QS_FcalEn2);
-            this.groupBox_LMXSync.Controls.Add(this.checkBox_QS_FcalEn1);
-            this.groupBox_LMXSync.Controls.Add(this.label27);
-            this.groupBox_LMXSync.Controls.Add(this.label_QS_CHDIV2);
-            this.groupBox_LMXSync.Controls.Add(this.label29);
-            this.groupBox_LMXSync.Controls.Add(this.label_QS_INC_DIV2);
-            this.groupBox_LMXSync.Controls.Add(this.label31);
-            this.groupBox_LMXSync.Controls.Add(this.label_QS_PLL_DEN2);
-            this.groupBox_LMXSync.Controls.Add(this.label25);
-            this.groupBox_LMXSync.Controls.Add(this.label_QS_CHDIV1);
-            this.groupBox_LMXSync.Controls.Add(this.label23);
-            this.groupBox_LMXSync.Controls.Add(this.label_QS_INC_DIV1);
-            this.groupBox_LMXSync.Controls.Add(this.label22);
-            this.groupBox_LMXSync.Controls.Add(this.label_QS_PLL_DEN1);
-            this.groupBox_LMXSync.Controls.Add(this.label21);
-            this.groupBox_LMXSync.Controls.Add(this.label_QS_Phase2);
-            this.groupBox_LMXSync.Controls.Add(this.label20);
-            this.groupBox_LMXSync.Controls.Add(this.label_QS_Phase1);
-            this.groupBox_LMXSync.Controls.Add(this.button_QS_Sync);
-            this.groupBox_LMXSync.Controls.Add(this.label14);
-            this.groupBox_LMXSync.Controls.Add(this.numericUpDown_QS_Seed2);
-            this.groupBox_LMXSync.Controls.Add(this.label12);
-            this.groupBox_LMXSync.Controls.Add(this.numericUpDown_QS_Seed1);
-            this.groupBox_LMXSync.Location = new System.Drawing.Point(40, 61);
-            this.groupBox_LMXSync.Name = "groupBox_LMXSync";
-            this.groupBox_LMXSync.Size = new System.Drawing.Size(383, 320);
-            this.groupBox_LMXSync.TabIndex = 0;
-            this.groupBox_LMXSync.TabStop = false;
-            this.groupBox_LMXSync.Text = "LMX Sync";
-            // 
-            // checkBox_QS_FcalEn2
-            // 
-            this.checkBox_QS_FcalEn2.AutoSize = true;
-            this.checkBox_QS_FcalEn2.Location = new System.Drawing.Point(248, 286);
-            this.checkBox_QS_FcalEn2.Name = "checkBox_QS_FcalEn2";
-            this.checkBox_QS_FcalEn2.Size = new System.Drawing.Size(85, 17);
-            this.checkBox_QS_FcalEn2.TabIndex = 22;
-            this.checkBox_QS_FcalEn2.Text = "FCAL_EN_2";
-            this.checkBox_QS_FcalEn2.UseVisualStyleBackColor = true;
-            this.checkBox_QS_FcalEn2.CheckedChanged += new System.EventHandler(this.checkBox_QS_FcalEn2_CheckedChanged);
-            // 
-            // checkBox_QS_FcalEn1
-            // 
-            this.checkBox_QS_FcalEn1.AutoSize = true;
-            this.checkBox_QS_FcalEn1.Location = new System.Drawing.Point(41, 286);
-            this.checkBox_QS_FcalEn1.Name = "checkBox_QS_FcalEn1";
-            this.checkBox_QS_FcalEn1.Size = new System.Drawing.Size(85, 17);
-            this.checkBox_QS_FcalEn1.TabIndex = 21;
-            this.checkBox_QS_FcalEn1.Text = "FCAL_EN_1";
-            this.checkBox_QS_FcalEn1.UseVisualStyleBackColor = true;
-            this.checkBox_QS_FcalEn1.CheckedChanged += new System.EventHandler(this.checkBox_QS_FcalEn1_CheckedChanged);
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label27.Location = new System.Drawing.Point(256, 123);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(39, 12);
-            this.label27.TabIndex = 20;
-            this.label27.Text = "CHDIV:";
-            // 
-            // label_QS_CHDIV2
-            // 
-            this.label_QS_CHDIV2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_QS_CHDIV2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_QS_CHDIV2.Location = new System.Drawing.Point(296, 121);
-            this.label_QS_CHDIV2.Name = "label_QS_CHDIV2";
-            this.label_QS_CHDIV2.Size = new System.Drawing.Size(50, 18);
-            this.label_QS_CHDIV2.TabIndex = 19;
-            this.label_QS_CHDIV2.Text = "label3";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label29.Location = new System.Drawing.Point(254, 105);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(41, 12);
-            this.label29.TabIndex = 18;
-            this.label29.Text = "Inc_Div:";
-            // 
-            // label_QS_INC_DIV2
-            // 
-            this.label_QS_INC_DIV2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_QS_INC_DIV2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_QS_INC_DIV2.Location = new System.Drawing.Point(296, 103);
-            this.label_QS_INC_DIV2.Name = "label_QS_INC_DIV2";
-            this.label_QS_INC_DIV2.Size = new System.Drawing.Size(50, 18);
-            this.label_QS_INC_DIV2.TabIndex = 17;
-            this.label_QS_INC_DIV2.Text = "label3";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label31.Location = new System.Drawing.Point(246, 87);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(49, 12);
-            this.label31.TabIndex = 16;
-            this.label31.Text = "PLL_DEN:";
-            // 
-            // label_QS_PLL_DEN2
-            // 
-            this.label_QS_PLL_DEN2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_QS_PLL_DEN2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_QS_PLL_DEN2.Location = new System.Drawing.Point(296, 85);
-            this.label_QS_PLL_DEN2.Name = "label_QS_PLL_DEN2";
-            this.label_QS_PLL_DEN2.Size = new System.Drawing.Size(50, 18);
-            this.label_QS_PLL_DEN2.TabIndex = 15;
-            this.label_QS_PLL_DEN2.Text = "label3";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label25.Location = new System.Drawing.Point(49, 123);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(39, 12);
-            this.label25.TabIndex = 14;
-            this.label25.Text = "CHDIV:";
-            // 
-            // label_QS_CHDIV1
-            // 
-            this.label_QS_CHDIV1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_QS_CHDIV1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_QS_CHDIV1.Location = new System.Drawing.Point(89, 121);
-            this.label_QS_CHDIV1.Name = "label_QS_CHDIV1";
-            this.label_QS_CHDIV1.Size = new System.Drawing.Size(50, 18);
-            this.label_QS_CHDIV1.TabIndex = 13;
-            this.label_QS_CHDIV1.Text = "label3";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label23.Location = new System.Drawing.Point(47, 105);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(41, 12);
-            this.label23.TabIndex = 12;
-            this.label23.Text = "Inc_Div:";
-            // 
-            // label_QS_INC_DIV1
-            // 
-            this.label_QS_INC_DIV1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_QS_INC_DIV1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_QS_INC_DIV1.Location = new System.Drawing.Point(89, 103);
-            this.label_QS_INC_DIV1.Name = "label_QS_INC_DIV1";
-            this.label_QS_INC_DIV1.Size = new System.Drawing.Size(50, 18);
-            this.label_QS_INC_DIV1.TabIndex = 11;
-            this.label_QS_INC_DIV1.Text = "label3";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label22.Location = new System.Drawing.Point(39, 87);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(49, 12);
-            this.label22.TabIndex = 10;
-            this.label22.Text = "PLL_DEN:";
-            // 
-            // label_QS_PLL_DEN1
-            // 
-            this.label_QS_PLL_DEN1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_QS_PLL_DEN1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_QS_PLL_DEN1.Location = new System.Drawing.Point(89, 85);
-            this.label_QS_PLL_DEN1.Name = "label_QS_PLL_DEN1";
-            this.label_QS_PLL_DEN1.Size = new System.Drawing.Size(50, 18);
-            this.label_QS_PLL_DEN1.TabIndex = 9;
-            this.label_QS_PLL_DEN1.Text = "label3";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(240, 171);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(55, 13);
-            this.label21.TabIndex = 8;
-            this.label21.Text = "PHASE 2:";
-            // 
-            // label_QS_Phase2
-            // 
-            this.label_QS_Phase2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_QS_Phase2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_QS_Phase2.Location = new System.Drawing.Point(243, 191);
-            this.label_QS_Phase2.Name = "label_QS_Phase2";
-            this.label_QS_Phase2.Size = new System.Drawing.Size(103, 20);
-            this.label_QS_Phase2.TabIndex = 7;
-            this.label_QS_Phase2.Text = "label3";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(33, 171);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(55, 13);
-            this.label20.TabIndex = 6;
-            this.label20.Text = "PHASE 1:";
-            // 
-            // label_QS_Phase1
-            // 
-            this.label_QS_Phase1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_QS_Phase1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_QS_Phase1.Location = new System.Drawing.Point(36, 191);
-            this.label_QS_Phase1.Name = "label_QS_Phase1";
-            this.label_QS_Phase1.Size = new System.Drawing.Size(103, 20);
-            this.label_QS_Phase1.TabIndex = 5;
-            this.label_QS_Phase1.Text = "label3";
-            // 
-            // button_QS_Sync
-            // 
-            this.button_QS_Sync.Location = new System.Drawing.Point(36, 234);
-            this.button_QS_Sync.Name = "button_QS_Sync";
-            this.button_QS_Sync.Size = new System.Drawing.Size(310, 31);
-            this.button_QS_Sync.TabIndex = 4;
-            this.button_QS_Sync.Text = "SYNC Pulse";
-            this.button_QS_Sync.UseVisualStyleBackColor = true;
-            this.button_QS_Sync.Click += new System.EventHandler(this.button_QS_Sync_Click);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(240, 30);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(82, 13);
-            this.label14.TabIndex = 3;
-            this.label14.Text = "MASH SEED 2:";
-            // 
-            // numericUpDown_QS_Seed2
-            // 
-            this.numericUpDown_QS_Seed2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.numericUpDown_QS_Seed2.Location = new System.Drawing.Point(243, 50);
-            this.numericUpDown_QS_Seed2.Maximum = new decimal(new int[] {
-            10000000,
-            0,
-            0,
-            0});
-            this.numericUpDown_QS_Seed2.Name = "numericUpDown_QS_Seed2";
-            this.numericUpDown_QS_Seed2.Size = new System.Drawing.Size(103, 26);
-            this.numericUpDown_QS_Seed2.TabIndex = 2;
-            this.numericUpDown_QS_Seed2.ValueChanged += new System.EventHandler(this.numericUpDown_QS_Seed2_ValueChanged);
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(33, 30);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(82, 13);
-            this.label12.TabIndex = 1;
-            this.label12.Text = "MASH SEED 1:";
-            // 
-            // numericUpDown_QS_Seed1
-            // 
-            this.numericUpDown_QS_Seed1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.numericUpDown_QS_Seed1.Location = new System.Drawing.Point(36, 50);
-            this.numericUpDown_QS_Seed1.Maximum = new decimal(new int[] {
-            10000000,
-            0,
-            0,
-            0});
-            this.numericUpDown_QS_Seed1.Name = "numericUpDown_QS_Seed1";
-            this.numericUpDown_QS_Seed1.Size = new System.Drawing.Size(103, 26);
-            this.numericUpDown_QS_Seed1.TabIndex = 0;
-            this.numericUpDown_QS_Seed1.ValueChanged += new System.EventHandler(this.numericUpDown_QS_Seed1_ValueChanged);
-            // 
             // tabAnalyzInCirc
             // 
             this.tabAnalyzInCirc.Controls.Add(this.tableLayoutPanel4);
             this.tabAnalyzInCirc.Location = new System.Drawing.Point(4, 22);
             this.tabAnalyzInCirc.Name = "tabAnalyzInCirc";
-            this.tabAnalyzInCirc.Size = new System.Drawing.Size(1240, 601);
+            this.tabAnalyzInCirc.Size = new System.Drawing.Size(1180, 601);
             this.tabAnalyzInCirc.TabIndex = 12;
             this.tabAnalyzInCirc.Text = "Analyzator";
             this.tabAnalyzInCirc.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 2;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 575F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Controls.Add(this.dataGridView_AnalyzData, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.panel7, 0, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(1180, 601);
+            this.tableLayoutPanel4.TabIndex = 28;
             // 
             // dataGridView_AnalyzData
             // 
@@ -2493,8 +3086,19 @@ namespace Digitizer_ver1
             this.dataGridView_AnalyzData.Name = "dataGridView_AnalyzData";
             this.dataGridView_AnalyzData.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView_AnalyzData.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dataGridView_AnalyzData.Size = new System.Drawing.Size(659, 595);
+            this.dataGridView_AnalyzData.Size = new System.Drawing.Size(599, 595);
             this.dataGridView_AnalyzData.TabIndex = 27;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.groupBox12);
+            this.panel7.Controls.Add(this.groupBox_AnalyzTriggersBox);
+            this.panel7.Controls.Add(this.groupBox2);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel7.Location = new System.Drawing.Point(3, 3);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(569, 595);
+            this.panel7.TabIndex = 28;
             // 
             // groupBox12
             // 
@@ -2887,37 +3491,85 @@ namespace Digitizer_ver1
             this.timerForm.Interval = 50;
             this.timerForm.Tick += new System.EventHandler(this.timerForm_Tick);
             // 
-            // tableLayoutPanel4
+            // timerInfo
             // 
-            this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 575F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Controls.Add(this.dataGridView_AnalyzData, 1, 0);
-            this.tableLayoutPanel4.Controls.Add(this.panel7, 0, 0);
-            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 1;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(1240, 601);
-            this.tableLayoutPanel4.TabIndex = 28;
+            this.timerInfo.Enabled = true;
+            this.timerInfo.Interval = 1000;
+            this.timerInfo.Tick += new System.EventHandler(this.timerInfo_Tick);
             // 
-            // panel7
+            // tabControl_Events
             // 
-            this.panel7.Controls.Add(this.groupBox12);
-            this.panel7.Controls.Add(this.groupBox_AnalyzTriggersBox);
-            this.panel7.Controls.Add(this.groupBox2);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(3, 3);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(569, 595);
-            this.panel7.TabIndex = 28;
+            this.tabControl_Events.Alignment = System.Windows.Forms.TabAlignment.Left;
+            this.tabControl_Events.Controls.Add(this.tabPage_TimeChart);
+            this.tabControl_Events.Controls.Add(this.tabPage_AnalyzePicture);
+            this.tabControl_Events.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl_Events.Location = new System.Drawing.Point(0, 43);
+            this.tabControl_Events.Margin = new System.Windows.Forms.Padding(0);
+            this.tabControl_Events.Multiline = true;
+            this.tabControl_Events.Name = "tabControl_Events";
+            this.tabControl_Events.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tabControl_Events.SelectedIndex = 0;
+            this.tabControl_Events.Size = new System.Drawing.Size(936, 509);
+            this.tabControl_Events.TabIndex = 23;
+            // 
+            // tabPage_TimeChart
+            // 
+            this.tabPage_TimeChart.Controls.Add(this.chart_EventTime);
+            this.tabPage_TimeChart.Location = new System.Drawing.Point(23, 4);
+            this.tabPage_TimeChart.Name = "tabPage_TimeChart";
+            this.tabPage_TimeChart.Size = new System.Drawing.Size(909, 501);
+            this.tabPage_TimeChart.TabIndex = 0;
+            this.tabPage_TimeChart.Text = "Time Chart";
+            this.tabPage_TimeChart.UseVisualStyleBackColor = true;
+            // 
+            // tabPage_AnalyzePicture
+            // 
+            this.tabPage_AnalyzePicture.Controls.Add(this.pictureBox_EventAnalyze);
+            this.tabPage_AnalyzePicture.Location = new System.Drawing.Point(23, 4);
+            this.tabPage_AnalyzePicture.Name = "tabPage_AnalyzePicture";
+            this.tabPage_AnalyzePicture.Size = new System.Drawing.Size(909, 501);
+            this.tabPage_AnalyzePicture.TabIndex = 1;
+            this.tabPage_AnalyzePicture.Text = "Analyze Chart";
+            this.tabPage_AnalyzePicture.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox_EventAnalyze
+            // 
+            this.pictureBox_EventAnalyze.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox_EventAnalyze.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox_EventAnalyze.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox_EventAnalyze.Name = "pictureBox_EventAnalyze";
+            this.pictureBox_EventAnalyze.Size = new System.Drawing.Size(909, 501);
+            this.pictureBox_EventAnalyze.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox_EventAnalyze.TabIndex = 0;
+            this.pictureBox_EventAnalyze.TabStop = false;
+            this.pictureBox_EventAnalyze.Click += new System.EventHandler(this.pictureBox_EventAnalyze_Click);
+            // 
+            // button_EventsLoadResult
+            // 
+            this.button_EventsLoadResult.Location = new System.Drawing.Point(373, 3);
+            this.button_EventsLoadResult.Name = "button_EventsLoadResult";
+            this.button_EventsLoadResult.Size = new System.Drawing.Size(130, 30);
+            this.button_EventsLoadResult.TabIndex = 24;
+            this.button_EventsLoadResult.Text = "Load Result";
+            this.button_EventsLoadResult.UseVisualStyleBackColor = true;
+            this.button_EventsLoadResult.Click += new System.EventHandler(this.button_EventsLoadResult_Click);
+            // 
+            // checkBox_EventsAutoLoad
+            // 
+            this.checkBox_EventsAutoLoad.AutoSize = true;
+            this.checkBox_EventsAutoLoad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.checkBox_EventsAutoLoad.Location = new System.Drawing.Point(314, 10);
+            this.checkBox_EventsAutoLoad.Name = "checkBox_EventsAutoLoad";
+            this.checkBox_EventsAutoLoad.Size = new System.Drawing.Size(81, 19);
+            this.checkBox_EventsAutoLoad.TabIndex = 24;
+            this.checkBox_EventsAutoLoad.Text = "Auto Load";
+            this.checkBox_EventsAutoLoad.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1248, 666);
+            this.ClientSize = new System.Drawing.Size(1188, 666);
             this.Controls.Add(this.tabControl_MAIN);
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -2925,6 +3577,7 @@ namespace Digitizer_ver1
             this.Name = "Form1";
             this.Text = "Ultra High Speed Digitizer DAQ";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tabRegisters.ResumeLayout(false);
@@ -2938,6 +3591,13 @@ namespace Digitizer_ver1
             this.groupBox_RegBits.ResumeLayout(false);
             this.groupBox_RegBits.PerformLayout();
             this.tabControl_MAIN.ResumeLayout(false);
+            this.tabQuickSetup.ResumeLayout(false);
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
+            this.groupBox_LMXSync.ResumeLayout(false);
+            this.groupBox_LMXSync.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_QS_Seed2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_QS_Seed1)).EndInit();
             this.tabMeasurement_Setting.ResumeLayout(false);
             this.groupBox14.ResumeLayout(false);
             this.groupBox14.PerformLayout();
@@ -2955,10 +3615,17 @@ namespace Digitizer_ver1
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_NumOfEvents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Time)).EndInit();
             this.tabMeasurementData.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel_MeasurementData.ResumeLayout(false);
+            this.panel10.ResumeLayout(false);
+            this.panel10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EventsMaxCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_events)).EndInit();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
             this.panel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart_data)).EndInit();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chart_EventTime)).EndInit();
             this.tabGpio.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -2988,13 +3655,10 @@ namespace Digitizer_ver1
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_RegistersFiles)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.tabQuickSetup.ResumeLayout(false);
-            this.groupBox_LMXSync.ResumeLayout(false);
-            this.groupBox_LMXSync.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_QS_Seed2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_QS_Seed1)).EndInit();
             this.tabAnalyzInCirc.ResumeLayout(false);
+            this.tableLayoutPanel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_AnalyzData)).EndInit();
+            this.panel7.ResumeLayout(false);
             this.groupBox12.ResumeLayout(false);
             this.groupBox12.PerformLayout();
             this.groupBox_AnalyzTriggersBox.ResumeLayout(false);
@@ -3002,8 +3666,10 @@ namespace Digitizer_ver1
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_AnalyzNumOfSamples)).EndInit();
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.panel7.ResumeLayout(false);
+            this.tabControl_Events.ResumeLayout(false);
+            this.tabPage_TimeChart.ResumeLayout(false);
+            this.tabPage_AnalyzePicture.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_EventAnalyze)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3099,12 +3765,11 @@ namespace Digitizer_ver1
         private System.Windows.Forms.Button button_Reset;
         private System.Windows.Forms.Button button_ResetClearAll;
         private System.Windows.Forms.TabPage tabMeasurementData;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_MeasurementData;
         private System.Windows.Forms.DataGridView dataGridView_events;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button button_EventsListClear;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart_data;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart_EventTime;
         public System.Windows.Forms.Label label_dataErrors;
         private System.Windows.Forms.Button button_RegUpdateFromExtFile;
         private System.Windows.Forms.DataGridView dataGridView_MultipleConfigFiles;
@@ -3230,10 +3895,66 @@ namespace Digitizer_ver1
         private System.Windows.Forms.Button button_ConfigUp;
         private System.Windows.Forms.GroupBox groupBox14;
         private System.Windows.Forms.RadioButton radioButton_TrgSw;
-        private System.Windows.Forms.RadioButton radioButton_TrgExt;
+        private System.Windows.Forms.RadioButton radioButton_TrgExtRising;
         private System.Windows.Forms.RadioButton radioButton_TrgSelf;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.RadioButton radioButton_TrgAdcFd;
+        private System.Windows.Forms.RadioButton radioButton_TrgExtFalling;
+        private System.Windows.Forms.CheckBox checkBox_DataTestMux;
+        private System.Windows.Forms.Button button_EventsSaveEvent;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.ListBox listBox_MainLog;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label_InfoAdcMaxTemp;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label label_InfoAdcMinTemp;
+        private System.Windows.Forms.Timer timerInfo;
+        private System.Windows.Forms.Button button_Acq_SwTrigger;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Label label_InfoOnlineLMX2;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Label label_InfoOnlineLMX1;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label label_InfoOnlineHmc;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label_InfoOnlineAdc;
+        private System.Windows.Forms.Label label51;
+        private System.Windows.Forms.Label label_InfoLmx2Locked;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.Label label_InfoLmx1Locked;
+        private System.Windows.Forms.Label label_123;
+        private System.Windows.Forms.Label label_InfoSyncib;
+        private System.Windows.Forms.Label label_412;
+        private System.Windows.Forms.Label label_InfoXcvrLanesLocked;
+        private System.Windows.Forms.Label label_788;
+        private System.Windows.Forms.Label label_InfoLogicRefPllsLocked;
+        private System.Windows.Forms.Label label454;
+        private System.Windows.Forms.Label label_InfoHmcPllsLocked;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label label_InfoAdcClockDetect;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label label_InfoAdcJtxPllLocked;
+        private System.Windows.Forms.CheckBox checkBox_InfoPeriodicRead;
+        private System.Windows.Forms.Label label36;
+        public System.Windows.Forms.Label label_ddSetNum;
+        private System.Windows.Forms.Button button_EventsAnalyzeAdc;
+        private System.Windows.Forms.Button button_AnotherForm;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.NumericUpDown numericUpDown_EventsMaxCount;
+        private System.Windows.Forms.CheckBox checkBox_EventsMaxCount;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.CheckBox checkBox_EventsLastAutoSelect;
+        private System.Windows.Forms.Button button_EventsClear;
+        private System.Windows.Forms.CheckBox checkBox_EventsLastAutoAnalyze;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TabControl tabControl_Events;
+        private System.Windows.Forms.TabPage tabPage_TimeChart;
+        private System.Windows.Forms.TabPage tabPage_AnalyzePicture;
+        private System.Windows.Forms.PictureBox pictureBox_EventAnalyze;
+        private System.Windows.Forms.Button button_EventsLoadResult;
+        private System.Windows.Forms.CheckBox checkBox_EventsAutoLoad;
     }
 }
 

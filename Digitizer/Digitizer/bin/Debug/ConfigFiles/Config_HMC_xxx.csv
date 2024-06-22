@@ -1,0 +1,29 @@
+LOG;ADD;HMC Config Start;;;;
+RESET;HMC;1;;;;
+OUTPUT;HMC-GPIO-2;1;;;;
+OUTPUT;HMC-GPIO-3;1;;;;
+WAIT;;100;;;;Wait 
+RESET;HMC;0;;;;Reset (p.2)
+WAIT;;20;;;;Wait 
+REG;HMC;ALL;;;;
+WAIT;;20;;;;Wait 
+REG_READ;HMC;79;;;;
+WAIT;;500;;;;
+JUMP;EQUAL;16;52;;;
+LOG;ADD;HMC Config Fault;;;;
+SHOW_MSG;STRING;HMC_FAULT;;;;
+STOP;ALL;;;;;
+OUTPUT;HMC-GPIO-2;0;;;;
+OUTPUT;HMC-GPIO-3;0;;;;
+WAIT;;200;;;;
+REG_READ;HMC;79;;;;
+WAIT;;200;;;;
+JUMP;EQUAL;25;52;;;
+LOG;ADD;HMC Config Fault;;;;
+SHOW_MSG;STRING;HMC_FAULT;;;;
+STOP;ALL;;;;;
+WAIT;;100;;;;
+REG;HMC;1;2;;;
+WAIT;;20;;;;
+REG;HMC;1;0;;;
+LOG;ADD;HMC Config Done;;;;

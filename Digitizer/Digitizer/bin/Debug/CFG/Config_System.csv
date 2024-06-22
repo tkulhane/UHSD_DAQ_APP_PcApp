@@ -1,0 +1,9 @@
+LOG;ADD;Config System Start;;;;
+OUTPUT;BOARD-PWR-RUN;0;;;;off
+OUTPUT;ADC-PWR-RUN;0;;;;off
+RESET;ADC;1;;;;
+RESET;LMX1;1;;;;
+RESET;LMX2;1;;;;
+RESET;TransceiverBlock;1;;;;
+RESET;DataBlock;1;;;;
+LOG;ADD;Config System Done;;;;

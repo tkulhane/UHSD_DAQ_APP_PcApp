@@ -34,10 +34,11 @@ namespace Digitizer_ver1
         public efunction_AnotherSequenceAction AnotherSequenceAction;
 
         //public BindingList<MultipleConfigurationFileSequencer_Data> List_MultipleConfigFiles;
-
+        public ListBox listBox_MainLog;
         public DataGridView _dataGridView_ConfigFile;
         public BindingList<SystemSetting_RegistersFileData> List_ReigistersFile;
-        
+       
+
         public Reset_Control rst;
         public GPIO_Control gpio;
 
@@ -58,7 +59,7 @@ namespace Digitizer_ver1
         RegistersSetting _ReadRequest_RegisterSetting;
         int _ReadRequest_Input;
 
-
+        bool _AnotherFileSequenceGo  = false;
 
 
         int StepSequence;
@@ -229,7 +230,7 @@ namespace Digitizer_ver1
         {
             if(_ReadRequest_Type == eReadRequestType.register) 
             {
-                if (_ReadRequest_RegisterSetting.StateReadRegister()) 
+                if (_ReadRequest_RegisterSetting.StateReadRegister() && _ReadRequest_RegisterSetting.StateMaskRegister())
                 {
                     _lastReadValue = _ReadRequest_RegisterSetting._LastReadValue;
                     _ReadRequest_Type = eReadRequestType.non;
@@ -252,7 +253,9 @@ namespace Digitizer_ver1
 
         public void ConfigSequenceStart() 
         {
-            if(List_ConfigSequence.Count == 0) 
+         
+
+            if (List_ConfigSequence.Count == 0) 
             {
                 return;
             }
@@ -428,6 +431,10 @@ namespace Digitizer_ver1
                         if (Value2.Equals("TBL")) //pokud je Value2 TBL bere se hodnota z tabulky 
                         {
                             List_ReigistersFile[i].p_registerSetting.SendMaskRegister_Request(address, mask);
+
+
+                            _ReadRequest_Type = eReadRequestType.register;
+                            _ReadRequest_RegisterSetting = List_ReigistersFile[i].p_registerSetting;
                         }
                         else //cokoliv jineho nez TBL (musi to byt cislo)
                         {
@@ -438,9 +445,13 @@ namespace Digitizer_ver1
                             //MessageBox.Show(address.ToString("X") + "." + value.ToString("X") + "." + mask.ToString("X") + "." + xx.ToString("X"));
 
                             List_ReigistersFile[i].p_registerSetting.SendMaskRegister_Request(address, value, mask);
+
+
+                            _ReadRequest_Type = eReadRequestType.register;
+                            _ReadRequest_RegisterSetting = List_ReigistersFile[i].p_registerSetting;
                         }
 
-                        Delay_SequenceLine = 1000;
+                        Delay_SequenceLine = 5;
                     }
                 }
             }
@@ -463,11 +474,19 @@ namespace Digitizer_ver1
                         {
                             value = (1 << bit);
                             List_ReigistersFile[i].p_registerSetting.SendMaskRegister_Request(address, value, mask);
+
+
+                            _ReadRequest_Type = eReadRequestType.register;
+                            _ReadRequest_RegisterSetting = List_ReigistersFile[i].p_registerSetting;
                         }
                         else if (Value2.Equals("0")) 
                         {
                             value = (0 << bit);
                             List_ReigistersFile[i].p_registerSetting.SendMaskRegister_Request(address, value, mask);
+
+
+                            _ReadRequest_Type = eReadRequestType.register;
+                            _ReadRequest_RegisterSetting = List_ReigistersFile[i].p_registerSetting;
                         }
                         else 
                         {
@@ -475,7 +494,7 @@ namespace Digitizer_ver1
                         }
 
 
-                        Delay_SequenceLine = 1000;
+                        Delay_SequenceLine = 5;
                     }
                 }
             }
@@ -521,6 +540,34 @@ namespace Digitizer_ver1
                 }
             }
 
+            else if (Action.Equals("LAST_VAL")) 
+            {
+                if (Periphery.Equals("BIT")) 
+                {
+                    int bit;
+                    if (!int.TryParse(Value1, NumberStyles.Integer, null, out bit)) return false; 
+
+                    _lastReadValue &= 1 << bit;
+                    _lastReadValue = _lastReadValue >> bit;
+                }
+                else if (Periphery.Equals("MASK")) 
+                {
+                    int mask;
+                    if (!int.TryParse(Value1, NumberStyles.HexNumber, null, out mask)) return false; 
+
+                    _lastReadValue &= mask;
+
+                }
+                else if (Periphery.Equals("SHIFT_L"))
+                {
+
+                }
+                else if (Periphery.Equals("SHIFT_R"))
+                {
+
+                }
+            }
+
             else if (Action.Equals("REG_READ"))
             {
                 //_lastReadValue_Valid = false;
@@ -560,6 +607,12 @@ namespace Digitizer_ver1
             else if (Action.Equals("STOP")) 
             {
                 SequenceDone = true;
+
+                if (Value1.Equals("ALL")) 
+                {
+                    _lastReadValue = AnotherSequenceAction(MultipleConfigurationFileSequencer.eAnotherSequenceActions.stop_all, Value1);
+                }
+                
             }
 
             else if (Action.Equals("WAIT"))
@@ -573,9 +626,28 @@ namespace Digitizer_ver1
 
             else if (Action.Equals("FILE"))
             {
-                //_lastReadValue = AnotherSequenceAction(Periphery, Value1);
 
-                if (Periphery.Equals("START")) 
+                if (_AnotherFileSequenceGo)
+                {
+                    
+                    _lastReadValue = AnotherSequenceAction(MultipleConfigurationFileSequencer.eAnotherSequenceActions.state, Value1);
+
+                    if (_lastReadValue == (int)MultipleConfigurationFileSequencer_Data.eStates.Run) 
+                    {
+                        _AnotherFileSequenceGo = true;
+                        _notIncStepSequence = true;
+
+                        Delay_SequenceLine = 20;
+                    }
+                    else 
+                    {
+                        _AnotherFileSequenceGo = false;
+                        _notIncStepSequence = false;
+                    }
+                    
+                }
+
+                else if (Periphery.Equals("START")) 
                 {
                     _lastReadValue = AnotherSequenceAction(MultipleConfigurationFileSequencer.eAnotherSequenceActions.start, Value1);
                 }
@@ -587,7 +659,16 @@ namespace Digitizer_ver1
                 {
                     _lastReadValue = AnotherSequenceAction(MultipleConfigurationFileSequencer.eAnotherSequenceActions.state, Value1);
                 }
-
+                else if (Periphery.Equals("EXECUTE")) 
+                {
+                    _lastReadValue = AnotherSequenceAction(MultipleConfigurationFileSequencer.eAnotherSequenceActions.start, Value1);
+                    if(_lastReadValue == 1) 
+                    {
+                        _AnotherFileSequenceGo = true;
+                        _notIncStepSequence = true;
+                    }
+                    
+                }
 
             }
 
@@ -601,6 +682,28 @@ namespace Digitizer_ver1
                 {
                     MessageBox.Show("Last read value = "+ _lastReadValue.ToString("X"), Value2);
                 }
+
+            }
+
+            else if (Action.Equals("LOG"))
+            {
+                if (Periphery.Equals("ADD"))
+                {
+                    if (Value2.Equals("LAST_VAL")) 
+                    {
+                        listBox_MainLog.Items.Add(Value1 + _lastReadValue.ToString("X"));
+                    }
+                    else 
+                    {
+                        listBox_MainLog.Items.Add(Value1);
+                    }
+                }
+
+                else if (Periphery.Equals("CLEAR"))
+                {
+                    listBox_MainLog.Items.Clear();
+                }
+
 
             }
 

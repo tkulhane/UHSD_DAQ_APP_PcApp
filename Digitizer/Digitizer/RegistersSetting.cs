@@ -746,6 +746,28 @@ namespace Digitizer_ver1
         //-------------------------------------------------------------------------------------------------------------------
         //Read function
         //-------------------------------------------------------------------------------------------------------------------
+
+        public void ReadRegister(int address)
+        {
+            if (_ReadRequestMask == true) return;
+
+            for (int i = 0; i < List_RegistersSetting.Count; i++)
+            {
+                RegistersSetting_Data data = List_RegistersSetting[i];
+
+                if (address == data.p_address)
+                {
+                    RegistersSetting_Data.eReadWrite readWrite = data._ReadWrite;
+
+                    if (readWrite == RegistersSetting_Data.eReadWrite.read_write || readWrite == RegistersSetting_Data.eReadWrite.read)
+                    {
+                        Send(Registers_ID_GET, address, 0x00);
+                    }
+                }
+            }
+        }
+
+
         public void ReadRequestRegister(int address)
         {
             if (_ReadRequestMask == true) return;

@@ -15,7 +15,10 @@ namespace Digitizer_ver1
             non,
             start,
             stop,
-            state
+            state,
+
+
+            stop_all
         };
 
 
@@ -28,6 +31,8 @@ namespace Digitizer_ver1
         public GPIO_Control gpio;
 
         public MultipleConfigurationFileSequencer_Data ActualSelected;
+
+        public ListBox listBox_MainLog;
 
         public void Init() 
         {
@@ -90,9 +95,10 @@ namespace Digitizer_ver1
             MultipleConfigFiles.Rows[selIndex + 1].Selected = true;
         }
 
-        public void AddConfig() 
+        private MultipleConfigurationFileSequencer_Data InitConfig() 
         {
             MultipleConfigurationFileSequencer_Data data = new MultipleConfigurationFileSequencer_Data();
+            data._ConfigSequencer.listBox_MainLog = listBox_MainLog;
             data._ConfigSequencer.List_ReigistersFile = List_ReigistersFile;
             data._ConfigSequencer.rst = rst;
             data._ConfigSequencer.gpio = gpio;
@@ -101,6 +107,12 @@ namespace Digitizer_ver1
             data._ConfigSequencer.StateSetFunction = StateSet;
             data._ConfigSequencer.AnotherSequenceAction = AnotherSequenceAction;
 
+            return data;
+        }
+
+        public void AddConfig() 
+        {
+            MultipleConfigurationFileSequencer_Data data = InitConfig();
             List_MultipleConfigFiles.Add(data);
 
             //MultipleConfigFiles.Update();
@@ -160,16 +172,8 @@ namespace Digitizer_ver1
         public void OpenFromSetting(string name, string file)
         {
             if (name == string.Empty) return;
-            
-            MultipleConfigurationFileSequencer_Data data = new MultipleConfigurationFileSequencer_Data();
 
-            data._ConfigSequencer.List_ReigistersFile = List_ReigistersFile;
-            data._ConfigSequencer.rst = rst;
-            data._ConfigSequencer.gpio = gpio;
-            data._ConfigSequencer._dataGridView_ConfigFile = dataGridView_ConfigFile;
-            data._ConfigSequencer._MultiConfig_data = data;
-            data._ConfigSequencer.StateSetFunction = StateSet;
-            data._ConfigSequencer.AnotherSequenceAction = AnotherSequenceAction;
+            MultipleConfigurationFileSequencer_Data data = InitConfig();
 
             //pokud neni prirazen file, ale vytvori se v tabulce nepreirazeny
             if (file != string.Empty) 
@@ -320,7 +324,7 @@ namespace Digitizer_ver1
         public int AnotherSequenceAction(eAnotherSequenceActions action, string Value)
         {
 
-
+            int return_value = 0;
 
             switch (action) 
             {
@@ -331,11 +335,12 @@ namespace Digitizer_ver1
                         if (x.p_Name.Equals(Value))
                         {
                             x._ConfigSequencer.ConfigSequenceStart();
+                            return_value = 1;
                         }
 
                     }
 
-                    return 0;
+                    return return_value;
 
                     break;
 
@@ -345,10 +350,11 @@ namespace Digitizer_ver1
                         if (x.p_Name.Equals(Value))
                         {
                             x._ConfigSequencer.ConfigSequenceStop();
+                            return_value = 1;
                         }
                     }
 
-                    return 0;
+                    return return_value;
 
                     break;
 
@@ -364,6 +370,15 @@ namespace Digitizer_ver1
                     return -1;
 
                     break;
+
+                case eAnotherSequenceActions.stop_all:
+                    foreach (MultipleConfigurationFileSequencer_Data x in List_MultipleConfigFiles)
+                    {
+                        x._ConfigSequencer.ConfigSequenceStop();
+                    }
+
+                    return 1;
+
 
                 default:
                     break;

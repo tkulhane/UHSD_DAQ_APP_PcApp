@@ -71,6 +71,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_MeasurementData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_MeasurementData.Designer.cs">
+      <DependentUpon>Form_MeasurementData.cs</DependentUpon>
+    </Compile>
     <Compile Include="GpioInput_Data.cs" />
     <Compile Include="MultipleConfigurationFileSequencer.cs" />
     <Compile Include="MultipleConfigurationFileSequencer_Data.cs" />
@@ -90,6 +96,9 @@
     <Compile Include="usb_3_0.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_MeasurementData.resx">
+      <DependentUpon>Form_MeasurementData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

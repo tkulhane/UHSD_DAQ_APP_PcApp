@@ -1,0 +1,4 @@
+FILE;EXECUTE;_Setting_LED4.csv;;;;file
+WAIT;;200;;;;Wait
+FILE;EXECUTE;_Setting_LED4.csv;;;;file
+WAIT;;200;;;;Wait

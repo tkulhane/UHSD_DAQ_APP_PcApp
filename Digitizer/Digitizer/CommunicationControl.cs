@@ -30,6 +30,7 @@ namespace Digitizer_ver1
 
         public TextBox textBox_ddSpecNum;
         public Label label_ddMyNum;
+        //public Label label_ddSetNum;
         public RadioButton radioButton_ddNotSet;
         public RadioButton radioButton_ddSameAsComm;
         public RadioButton radioButton_ddSpecNum;
@@ -58,6 +59,7 @@ namespace Digitizer_ver1
 
         public void CommunicationOpen()
         {
+            WriteSetting();
             WriteSetting();
             ReadSetting();
         }

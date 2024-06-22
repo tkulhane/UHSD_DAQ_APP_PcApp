@@ -18,6 +18,8 @@ namespace Digitizer_ver1
             CMD_TRG_ABORT_MODE = 0x03,
             CMD_TRG_TRIGGER_SELECT = 0x04,
 
+            CMD_TRG_SW_TRIGGER = 0x10,
+
             CMD_TRG_THRESHOLD = 0x11,
 
             CMD_TRG_SAMPLE_PER_EVENT_L = 0x12,
@@ -37,8 +39,9 @@ namespace Digitizer_ver1
             CMD_TRG_COUNTER_EVENT_INRUN_L = 0x25,
             CMD_TRG_COUNTER_EVENT_INRUN_M = 0x26,
 
-            CMD_TRG_TEST_GENERATOR_ENABLE = 0x41
-            
+            CMD_TRG_TEST_GENERATOR_ENABLE = 0x41,
+            CMD_TRG_DATA_TEST_MUX = 0x42
+
 
         }
 
@@ -51,7 +54,9 @@ namespace Digitizer_ver1
         public RadioButton radioButton_AcqTime;
 
         public RadioButton radioButton_TrgSelf;
-        public RadioButton radioButton_TrgExt;
+        public RadioButton radioButton_TrgExtRising;
+        public RadioButton radioButton_TrgExtFalling;
+        public RadioButton radioButton_TrgAdcFd;
         public RadioButton radioButton_TrgSw;
 
         public NumericUpDown numericUpDown_NumOfEvents;
@@ -66,6 +71,7 @@ namespace Digitizer_ver1
 
         public Label label_AcqState;
         public CheckBox checkBox_TestGeneratorEnable;
+        public CheckBox checkBox_DataTestMux;
         public Button button_AcqStartStop;
 
         public bool AcqState = false;
@@ -167,20 +173,30 @@ namespace Digitizer_ver1
             {
                 SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_TRIGGER_SELECT, 0x00, 0x00);
             }
-            else if (radioButton_TrgExt.Checked) 
+            else if (radioButton_TrgExtRising.Checked) 
             {
                 SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_TRIGGER_SELECT, 0x00, 0x01);
             }
-            else if (radioButton_TrgSw.Checked) 
+            else if (radioButton_TrgExtFalling.Checked)
             {
                 SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_TRIGGER_SELECT, 0x00, 0x02);
+            }
+            else if (radioButton_TrgAdcFd.Checked)
+            {
+                SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_TRIGGER_SELECT, 0x00, 0x03);
+            }
+            else if (radioButton_TrgSw.Checked) 
+            {
+                SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_TRIGGER_SELECT, 0x00, 0x08);
             }
         }
 
         public void RB_TriggerSelectUpdate(uint value)
         {
             radioButton_TrgSelf.Checked = false;
-            radioButton_TrgExt.Checked = false;
+            radioButton_TrgExtRising.Checked = false;
+            radioButton_TrgExtRising.Checked = false;
+            radioButton_TrgAdcFd.Checked = false;
             radioButton_TrgSw.Checked = false;
 
             switch (value) 
@@ -190,10 +206,18 @@ namespace Digitizer_ver1
                     break;
 
                 case 1:
-                    radioButton_TrgExt.Checked = true;
+                    radioButton_TrgExtRising.Checked = true;
                     break;
 
                 case 2:
+                    radioButton_TrgExtFalling.Checked = true;
+                    break;
+
+                case 3:
+                    radioButton_TrgAdcFd.Checked = true;
+                    break;
+
+                case 8:
                     radioButton_TrgSw.Checked = true;
                     break;
 
@@ -202,6 +226,11 @@ namespace Digitizer_ver1
             }
             
 
+        }
+
+        public void SwTrigger() 
+        {
+            SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SW_TRIGGER, 0x00, 0x01);
         }
 
         public void SetNumberOfEvents() 
@@ -259,6 +288,18 @@ namespace Digitizer_ver1
                 {
                     SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_TEST_GENERATOR_ENABLE, 0x00, 0x00);
                 }
+        }
+
+        public void DataTestMuxSel()
+        {
+            if (checkBox_DataTestMux.Checked)
+            {
+                SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_DATA_TEST_MUX, 0x00, 0x01);
+            }
+            else
+            {
+                SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_DATA_TEST_MUX, 0x00, 0x00);
+            }
         }
 
         int Read_Setting_step = 0;

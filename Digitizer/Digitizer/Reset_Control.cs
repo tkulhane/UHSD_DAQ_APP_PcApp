@@ -50,7 +50,8 @@ namespace Digitizer_ver1
             //Reset Internal
             ResetIntAdd(0, "DataFifo");
             ResetIntAdd(1, "FTDI");
-
+            ResetIntAdd(2, "TransceiverBlock");
+            ResetIntAdd(3, "DataBlock");
 
 
 

@@ -88,9 +88,11 @@ namespace Digitizer_ver1
             OutputAdd(11, "LED_3");
 
             OutputAdd(12, "GPO-0");
-            OutputAdd(13, "GPO-0");
-            OutputAdd(14, "GPO-0");
-            OutputAdd(15, "GPO-0");
+            OutputAdd(13, "GPO-1");
+            OutputAdd(14, "GPO-2");
+            OutputAdd(15, "GPO-3");
+
+            OutputAdd(8, "SPI-OUT_Disable");
 
             OutputAdd(2, "LMX-SYNC");
 

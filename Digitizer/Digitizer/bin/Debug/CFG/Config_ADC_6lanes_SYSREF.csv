@@ -1,0 +1,48 @@
+LOG;ADD;ADC Config Start;;;;
+RESET;ADC;1;;;;reset
+WAIT;;200;;;;
+RESET;ADC;0;;;;
+WAIT;;200;;;;
+REG;ADC;0;24;;;
+WAIT;;100;;;;
+REG;ADC;26;8;;;
+WAIT;;100;;;;
+REG_MASK;ADC;500;0;F;;JESD Low Line Rate Selection
+REG_MASK;ADC;520;5;1F;;JESD number of lanes
+REG_MASK;ADC;520;0;80;;Scrambler disable
+REG;ADC;521;0;;;F
+REG;ADC;523;0;;;1 converter
+REG;ADC;525;20;;;subclass 1 ----------------
+REG_MASK;ADC;525;B;1F;;Total num of bits per sample
+REG_MASK;ADC;524;B;1F;;12 bit resolution
+REG_MASK;ADC;524;0;C0;;Control bits (3)
+REG_MASK;ADC;503;2;2;;Disable frame alignment chars
+REG_MASK;ADC;622;1;3;;Offset binary data format
+WAIT;;100;;;;
+REG;ADC;681;10;;;Enable jtx clock
+WAIT;;5;;;;
+REG_BIT;ADC;150A;1;0;;LVDS sysref
+REG;ADC;1627;10;;;KNOWN_SYSREF_PERIOD
+REG;ADC;1628;0;;;KNOWN_SYSREF_PERIOD
+REG;ADC;1629;0;;;KNOWN_SYSREF_PERIOD
+REG;ADC;162D;0;;;SAMPLE_CLOCK_PERIOD
+REG;ADC;162E;80;;;SAMPLE_CLOCK_PERIOD
+REG;ADC;162F;38;;;SAMPLE_CLOCK_PERIOD
+REG;ADC;1630;1;;;SAMPLE_CLOCK_PERIOD
+REG;ADC;1521;64;;;SYSREF_x Pulses to Ignore
+REG;ADC;162A;E8;;;SYSREF_x Pulses to Average
+REG;ADC;162B;3;;;SYSREF_x Pulses to Average
+REG_MASK;ADC;1621;9;F;;MCS Mode
+REG_BIT;ADC;1636;1;0;;MCS Phase Slip Mode
+REG_BIT;ADC;1622;1;1;;Enable MCS to Lock to Internal SYSREF_x
+REG_BIT;ADC;693;1;0;;SYSREF_x Resynchronization Mode Enable
+REG_BIT;ADC;1600;1;0;;USER_CTRL_TRANSFER
+REG_BIT;ADC;570;0;0;;power down jest pll
+WAIT;;100;;;;
+REG_BIT;ADC;570;1;0;;power up jest pll
+WAIT;;200;;;;
+REG_READ;ADC;501;;;;
+LOG;ADD;Read req 501 = ;LAST_VAL;;;
+LAST_VAL;BIT;7;;;;
+LOG;ADD;Lanes Lock = ;LAST_VAL;;;
+LOG;ADD;ADC Config Done;;;;

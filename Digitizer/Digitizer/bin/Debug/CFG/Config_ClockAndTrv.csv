@@ -1,0 +1,12 @@
+LOG;ADD;Clock and Trv Config Start;;;;log
+WAIT;;200;;;;
+REG;Clock_Switch;11;1;;;HMC clock
+REG;Clock_Switch;12;1;;;HMC clock
+RESET;TransceiverBlock;0;;;;
+RESET;DataBlock;0;;;;
+WAIT;;100;;;;
+REG_READ;Clock_Switch;5;;;;
+WAIT;;8000;;;;
+LOG;ADD;PLL Locked = ;LAST_VAL;;;
+REG;Transcievers;1;0;;;
+LOG;ADD;Clock and Trv Config Done;;;;s

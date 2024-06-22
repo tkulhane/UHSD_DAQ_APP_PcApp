@@ -18,24 +18,19 @@ namespace Digitizer_ver1
         {
             InitializeComponent();
 
-            //dataGridView_data.DataSource = list_data;
-            //dataGridView_events.DataSource = list_events;
-
-
-            //dataGridView_data.Columns[0].Width = 80;
-            //dataGridView_data.Columns[1].Width = 80;
-
-            //dataGridView_events.Columns[0].Width = 50;
-            //dataGridView_events.Columns[1].Width = 50;
-            //dataGridView_events.Columns[2].Width = 50;
-
-            //chart_data.DataSource = list_data;
 
             //acq data
-            AcqData.dataGridView_Events = dataGridView_events;
-            AcqData.chart_data = chart_data;
             AcqData.checkBox_SaveToRam = checkBox_SaveToRam;
             AcqData.checkBox_SaveToFile = checkBox_SaveToFile;
+            AcqData.dataGridView_Events = dataGridView_events;
+            AcqData.chart_data = chart_EventTime;
+            AcqData.checkBox_EventsLastAutoSelect = checkBox_EventsLastAutoSelect;
+            AcqData.checkBox_EventsLastAutoAnalyze = checkBox_EventsLastAutoAnalyze;
+            AcqData.checkBox_EventsMaxCount = checkBox_EventsMaxCount;
+            AcqData.numericUpDown_EventsMaxCount = numericUpDown_EventsMaxCount;
+            AcqData.checkBox_EventsAutoLoad = checkBox_EventsAutoLoad;
+            AcqData.pictureBox_EventAnalyze = pictureBox_EventAnalyze;
+
             AcqData.SetAcquisitionDataProcess();
 
             //setting form elements for communication class
@@ -45,9 +40,6 @@ namespace Digitizer_ver1
             communication.radioButton_PCIe = radioButton_PCIe;
             communication.button_Scan = button_ScanCommunication;
             communication.button_OpenClose = button_OpenCloseCommunication;
-            //communication.textBox_ddSpecNum = textBox_ddSpecNum;
-            //communication.checkBox_ddSameAsComm = checkBox_ddSameAsComm;
-            //communication.label_ddMyNum = label_ddMyNum;
 
             communication.communicationControl.radioButton_ddNotSet = radioButton_ddNotSet;
             communication.communicationControl.radioButton_ddSameAsComm = radioButton_ddSameAsComm;
@@ -56,8 +48,6 @@ namespace Digitizer_ver1
             communication.communicationControl.label_ddMyNum = label_ddMyNum;
             communication.ExecuteCommand = ExecuteCommand;
             communication.ExecuteData = ExecuteData;
-
-
 
             //Acquisition_Control
             AcqControl.SendCommand = communication.SendCommand;
@@ -74,13 +64,16 @@ namespace Digitizer_ver1
             AcqControl.label_CounterInRunEvents = label_CounterInRunEvents;
             AcqControl.label_AcqState = label_AcqState;
             AcqControl.checkBox_TestGeneratorEnable = checkBox_TestGeneratorEnable;
+            AcqControl.checkBox_DataTestMux = checkBox_DataTestMux;
             AcqControl.button_AcqStartStop = button_AcqStartStop;
+            
             AcqControl.radioButton_TrgSelf = radioButton_TrgSelf;
-            AcqControl.radioButton_TrgExt = radioButton_TrgExt;
+            AcqControl.radioButton_TrgExtRising = radioButton_TrgExtRising;
+            AcqControl.radioButton_TrgExtFalling = radioButton_TrgExtFalling;
+            AcqControl.radioButton_TrgAdcFd = radioButton_TrgAdcFd;
             AcqControl.radioButton_TrgSw = radioButton_TrgSw;
 
             AcqControl.UpdateAcqState(false);
-
 
             //gpio
             gpio.SendCommand = communication.SendCommand;
@@ -93,15 +86,14 @@ namespace Digitizer_ver1
             rst.DataGrid_Reset = dataGridView_Resets;
             rst.LoadRst();
 
-
             //configuration file sequence
             MultiConfigSequence.dataGridView_ConfigFile = dataGridView_ConfigFile;
             MultiConfigSequence.MultipleConfigFiles = dataGridView_MultipleConfigFiles;
             MultiConfigSequence.List_ReigistersFile = sysSetting.List_ReigistersFile;
             MultiConfigSequence.rst = rst;
             MultiConfigSequence.gpio = gpio;
+            MultiConfigSequence.listBox_MainLog = listBox_MainLog;
             MultiConfigSequence.Init();
-
 
             //Analyz In Circ
             AnalyzInCirc.label_Enable = label_AnalyzEnable;
@@ -115,7 +107,6 @@ namespace Digitizer_ver1
             AnalyzInCirc.checkBox_Triggers_Falling = checkBoxes_Falling;
             AnalyzInCirc.SendCommand = communication.SendCommand;
             AnalyzInCirc.AnalyzInit();
-
 
             //multi registers setting
             MultiRegistersSetting.SendFunction = communication.SendCommand;
@@ -131,12 +122,10 @@ namespace Digitizer_ver1
             MultiRegistersSetting.radioButton_RegValHEX = radioButton_RegValHEX;
             MultiRegistersSetting.radioButton_RegValDEC = radioButton_RegValDEC;
 
-
             //System Setting
             sysSetting.communication = communication;
             sysSetting.dataGridView_RegistersFiles = dataGridView_RegistersFiles;
             sysSetting.configurationFiles = MultiConfigSequence;
-
 
             //create registers
             MultiRegistersSetting.CreateRegister("ADC", RegistersSetting.eAddressValueSize.Address16_Value8, Communication.eCommandCode.CMD_CONST_GET_AdcRegisters, Communication.eCommandCode.CMD_CONST_SET_AdcRegisters,RegistersSetting.eExtFileType.Non);
@@ -155,10 +144,13 @@ namespace Digitizer_ver1
 
             AcqControl.ReadSettingAndValues();
 
+           
+        }
 
 
-
-            //tabControl_RegistersSetting.Controls.Add(dgv);
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            communication.communicationControl.CommunicationOpen();
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -205,8 +197,12 @@ namespace Digitizer_ver1
 
             label_RecvBytes.Text = communication.USB_RecvBytes().ToString();
             label_InQ.Text = communication.USB_InQ().ToString();
-
             label_dataErrors.Text = AcqData.ErrorCounter.ToString();
+
+
+
+
+
         }
 
         private void timerRequest_Tick(object sender, EventArgs e)
@@ -417,14 +413,51 @@ namespace Digitizer_ver1
         //-------------------------------------------------------------------------------------------------------------------
         //Measurement Data
         //-------------------------------------------------------------------------------------------------------------------
-        private void chart_data_Click(object sender, EventArgs e)
+        private void chart_EventTime_Click(object sender, EventArgs e)
         {
-            AcqData.chart_data_Click(sender, e);
+            AcqData.chart_EventTime_Click(sender, e);
+        }
+
+        private void pictureBox_EventAnalyze_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void button_EventsListClear_Click(object sender, EventArgs e)
         {
             AcqData.ClearEventsList();
+        }
+
+        private void button_EventsSaveEvent_Click(object sender, EventArgs e)
+        {
+            AcqData.SaveEvent();
+        }
+
+        private void button_EventsAnalyzeAdc_Click(object sender, EventArgs e)
+        {
+            AcqData.AnalyzeAdcStart();
+        }
+
+        private void button_AnotherForm_Click(object sender, EventArgs e)
+        {
+
+            Form_MeasurementData form = new Form_MeasurementData();
+            form.ReturnParent = tableLayoutPanel_MeasurementData.Parent;
+            form.TableControl = tableLayoutPanel_MeasurementData;
+            form.button_AnotherForm = button_AnotherForm;
+            button_AnotherForm.Enabled = false;
+
+            tableLayoutPanel_MeasurementData.Parent = form;
+            form.Show();
+
+            //DialogResult fdr = form.DialogResult;
+
+
+        }
+
+        private void button_EventsLoadResult_Click(object sender, EventArgs e)
+        {
+            AcqData.LoadEventResults();
         }
 
         //-------------------------------------------------------------------------------------------------------------------
@@ -494,6 +527,11 @@ namespace Digitizer_ver1
             AcqControl.AcqRunSetting();
         }
 
+        private void checkBox_DataTestMux_CheckedChanged(object sender, EventArgs e)
+        {
+            AcqControl.DataTestMuxSel();
+        }
+
         private void checkBox_TestGeneratorEnable_CheckedChanged(object sender, EventArgs e)
         {
             AcqControl.TestGeneratorEnable();
@@ -503,6 +541,13 @@ namespace Digitizer_ver1
         {
             AcqControl.AcqTriggerSelect();
         }
+
+        private void button_Acq_SwTrigger_Click(object sender, EventArgs e)
+        {
+            AcqControl.SwTrigger();
+        }
+
+
 
         //-------------------------------------------------------------------------------------------------------------------
         //Configutation Sequence File
@@ -881,5 +926,144 @@ namespace Digitizer_ver1
         {
             AnalyzInCirc.GetSetting_2();
         }
+
+
+
+
+        //-------------------------------------------------------------------------------------------------------------------
+        //System Info
+        //-------------------------------------------------------------------------------------------------------------------
+        private void timerInfo_Tick(object sender, EventArgs e)
+        {
+            if (checkBox_InfoPeriodicRead.Checked) 
+            {
+                SystemInfo_States();
+            }
+            else 
+            {
+                _validCounter = 0;
+            }
+        }
+
+
+        private void SystemInfo_AdcTemp(bool valid) 
+        {
+            RegistersSetting RS = MultiRegistersSetting.GetRegister("ADC");
+
+            RS.ReadRegister(0x1609);
+            RS.ReadRegister(0x160A);
+            RS.ReadRegister(0x160D);
+            RS.ReadRegister(0x160E);
+
+            float tempMax = ((Int16)RS.GetRegisterValue(0x160A) << 8 | RS.GetRegisterValue(0x1609)) * (float)Math.Pow(2, -7);
+            float tempMin = ((Int16)RS.GetRegisterValue(0x160E) << 8 | RS.GetRegisterValue(0x160D)) * (float)Math.Pow(2, -7);
+
+            if (!valid)
+            {
+                label_InfoAdcMaxTemp.Text = String.Empty;
+                label_InfoAdcMinTemp.Text = String.Empty;
+                return;
+            }
+
+            label_InfoAdcMaxTemp.Text = tempMax.ToString();
+            label_InfoAdcMinTemp.Text = tempMin.ToString();
+
+
+        }
+
+        private void SystemInfo_UpdateStateLabel(Label label, bool state, bool valid) 
+        {
+            string[] stateText = { "FALSE", "TRUE" };
+            System.Drawing.Color[] stateColor = { Color.Red, Color.Green };
+
+            if (!valid) 
+            {
+                label.Text = String.Empty;
+                label.BackColor = Color.White;
+                return;
+            }
+
+            if (state)
+            {
+                label.Text = stateText[1];
+                label.BackColor = stateColor[1];
+            }
+            else
+            {
+                label.Text = stateText[0];
+                label.BackColor = stateColor[0];
+            }
+        }
+
+        private int SystemInfo_ReadGetVal(string regDesc, int addr) 
+        {
+            MultiRegistersSetting.GetRegister(regDesc).ReadRegister(addr);
+            return MultiRegistersSetting.GetRegister(regDesc).GetRegisterValue(addr);
+        }
+
+
+        int _validCounter = 0;
+        private void SystemInfo_States() 
+        {
+            bool allValidMask = true;
+            
+            MultiRegistersSetting.GetRegister("LMX1").SendRegister(0x18, 0x71A);
+            MultiRegistersSetting.GetRegister("LMX2").SendRegister(0x18, 0x71A);
+
+            bool Online_ADC = false;
+            bool Online_HMC = false;
+            bool Online_LMX1 = false;
+            bool Online_LMX2 = false;
+
+            bool AdcJtxPllLocked = false;
+            bool InfoAdcClockDetect = false;
+            bool InfoLmx1Locked = false;
+            bool InfoLmx2Locked = false;
+            bool HmcPllsLocked = false;
+            bool LogicRefPllsLocked = false;
+            bool XcvrLanesLocked = false;
+            bool Syncib = false;
+
+            if (SystemInfo_ReadGetVal("ADC", 0x4) == 0xE5) Online_ADC = true;
+            if (SystemInfo_ReadGetVal("HMC", 0x79) == 0x52) Online_HMC = true;
+            if (SystemInfo_ReadGetVal("LMX1", 0x18) == 0x71A) Online_LMX1 = true;
+            if (SystemInfo_ReadGetVal("LMX2", 0x18) == 0x71A) Online_LMX2 = true;
+
+            if ((SystemInfo_ReadGetVal("ADC", 0x501) & 0x80) >= 1) AdcJtxPllLocked = true;
+            if ((SystemInfo_ReadGetVal("ADC", 0x151D) & 0x01) >= 1) InfoAdcClockDetect = true;
+
+            if (((SystemInfo_ReadGetVal("LMX1", 0x6E) >> 9 ) & 0x3) == 2) InfoLmx1Locked = true;
+            if (((SystemInfo_ReadGetVal("LMX2", 0x6E) >> 9) & 0x3) == 2) InfoLmx2Locked = true;
+            if (((SystemInfo_ReadGetVal("HMC", 0x7D) >> 3) & 0x1) == 1) HmcPllsLocked = true;
+            if (SystemInfo_ReadGetVal("Clock_Switch", 0x5) == 3) LogicRefPllsLocked = true;
+
+
+            if (_validCounter < 2) 
+            {
+                _validCounter++;
+                allValidMask = false;
+            }
+
+            SystemInfo_UpdateStateLabel(label_InfoOnlineAdc, Online_ADC, allValidMask);
+            SystemInfo_UpdateStateLabel(label_InfoOnlineHmc, Online_HMC, allValidMask);
+            SystemInfo_UpdateStateLabel(label_InfoOnlineLMX1, Online_LMX1, allValidMask);
+            SystemInfo_UpdateStateLabel(label_InfoOnlineLMX2, Online_LMX2, allValidMask);
+
+            SystemInfo_UpdateStateLabel(label_InfoAdcJtxPllLocked, AdcJtxPllLocked, Online_ADC & allValidMask);
+            SystemInfo_UpdateStateLabel(label_InfoAdcClockDetect, InfoAdcClockDetect, Online_ADC & allValidMask);
+            SystemInfo_UpdateStateLabel(label_InfoLmx1Locked, InfoLmx1Locked, Online_LMX1 & allValidMask);
+            SystemInfo_UpdateStateLabel(label_InfoLmx2Locked, InfoLmx2Locked, Online_LMX1 & allValidMask);
+            SystemInfo_UpdateStateLabel(label_InfoHmcPllsLocked, HmcPllsLocked, Online_HMC & allValidMask);
+            SystemInfo_UpdateStateLabel(label_InfoLogicRefPllsLocked, LogicRefPllsLocked, true & allValidMask);
+            SystemInfo_UpdateStateLabel(label_InfoXcvrLanesLocked, XcvrLanesLocked, true & allValidMask);
+            SystemInfo_UpdateStateLabel(label_InfoSyncib, Syncib, true & allValidMask);
+
+            SystemInfo_AdcTemp(Online_ADC & allValidMask);
+
+
+
+        }
+
+
     }
 }

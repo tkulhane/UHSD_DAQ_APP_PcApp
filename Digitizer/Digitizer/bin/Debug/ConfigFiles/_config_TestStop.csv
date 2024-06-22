@@ -1,7 +1,8 @@
 REG_BIT;FpgaTest;0;1;2;;
 REG_MASK;FpgaTest;1;FF;FF;;
 REG_MASK;FpgaTest;2;FF;F1;;
-Wait;;500;;;;wait
+WAIT;;500;;;;wait
+LOG;ADD;Ahoj;;;;
 STOP;;;;;;
 Wait;;500;;;;
 REG_BIT;FpgaTest;0;1;2;;

@@ -1,0 +1,70 @@
+0;General Status;R/W;0
+1;Lanes Restart;R/W;0
+2;…;R/W;0
+3;…;R/W;0
+4;…;R/W;0
+5;…;R/W;0
+6;…;R/W;0
+7;…;R/W;0
+8;…;R/W;0
+9;…;R/W;0
+A;L0: Lane Number;R/W;0
+B;L0: Alligment Fifo Count;R/W;0
+C;L0: XCVR status;R/W;0
+D;L0: FIFO status;R/W;0
+E;L0: XCVR status Rising;R/W;0
+F;L0: FIFO status Rising;R/W;0
+10;L0: XCVR status Falling;R/W;0
+11;L0: FIFO status Falling;R/W;0
+12;L0: Reserved;R/W;0
+13;L0: Reserved;R/W;0
+14;L1: Lane Number;R/W;0
+15;L1: Alligment Fifo Count;R/W;0
+16;L1: XCVR status;R/W;0
+17;L1: FIFO status;R/W;0
+18;L1: XCVR status Rising;R/W;0
+19;L1: FIFO status Rising;R/W;0
+1A;L1: XCVR status Falling;R/W;0
+1B;L1: FIFO status Falling;R/W;0
+1C;L1: Reserved;R/W;0
+1D;L1: Reserved;R/W;0
+1E;L2: Lane Number;R/W;0
+1F;L2: Alligment Fifo Count;R/W;0
+20;L2: XCVR status;R/W;0
+21;L2: FIFO status;R/W;0
+22;L2: XCVR status Rising;R/W;0
+23;L2: FIFO status Rising;R/W;0
+24;L2: XCVR status Falling;R/W;0
+25;L2: FIFO status Falling;R/W;0
+26;L2: Reserved;R/W;0
+27;L2: Reserved;R/W;0
+28;L3: Lane Number;R/W;0
+29;L3: Alligment Fifo Count;R/W;0
+2A;L3: XCVR status;R/W;0
+2B;L3: FIFO status;R/W;0
+2C;L3: XCVR status Rising;R/W;0
+2D;L3: FIFO status Rising;R/W;0
+2E;L3: XCVR status Falling;R/W;0
+2F;L3: FIFO status Falling;R/W;0
+30;L3: Reserved;R/W;0
+31;L3: Reserved;R/W;0
+32;L4: Lane Number;R/W;0
+33;L4: Alligment Fifo Count;R/W;0
+34;L4: XCVR status;R/W;0
+35;L4: FIFO status;R/W;0
+36;L4: XCVR status Rising;R/W;0
+37;L4: FIFO status Rising;R/W;0
+38;L4: XCVR status Falling;R/W;0
+39;L4: FIFO status Falling;R/W;0
+3A;L4: Reserved;R/W;0
+3B;L4: Reserved;R/W;0
+3C;L5: Lane Number;R/W;0
+3D;L5: Alligment Fifo Count;R/W;0
+3E;L5: XCVR status;R/W;0
+3F;L5: FIFO status;R/W;0
+40;L5: XCVR status Rising;R/W;0
+41;L5: FIFO status Rising;R/W;0
+42;L5: XCVR status Falling;R/W;0
+43;L5: FIFO status Falling;R/W;0
+44;L5: Reserved;R/W;0
+45;L5: Reserved;R/W;0

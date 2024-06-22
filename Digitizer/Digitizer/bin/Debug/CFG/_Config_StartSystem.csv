@@ -1,0 +1,9 @@
+LOG;ADD;SYSTEM START;;;;
+FILE;EXECUTE;Config_System.csv;;;;file
+FILE;EXECUTE;Config_ExtSignals.csv;;;;file
+FILE;EXECUTE;Config_HMC.csv;;;;file
+FILE;EXECUTE;Config_LMX1.csv;;;;file
+FILE;EXECUTE;Config_LMX2.csv;;;;file
+FILE;EXECUTE;Config_ADC_6lanes_SYSREF.csv;;;;file
+FILE;EXECUTE;Config_ClockAndTrv.csv;;;;file
+LOG;ADD;SYSTEM CONFIGURED SUCCESS;;;;
