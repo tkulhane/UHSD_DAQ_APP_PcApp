@@ -1,4 +1,4 @@
 LOG;ADD;Config Ext Signals;;;;
 REG;EXT_Signals;77;1C;;;GPIO 0 to output 9
-REG_BIT;EXT_Signals;6D;1;9;;Enable Output 9
+REG_BIT;EXT_Signals;D2;1;9;;Enable Output 9
 LOG;ADD;Config Ext Done;;;;

@@ -30,7 +30,6 @@ F;Input Bus 5;R/W;0
 27;Input Bus 29;R/W;0
 28;Input Bus 30;R/W;0
 29;Input Bus 31;R/W;0
-6D;Enable Output;R/W;0
 6E;Output 0;R/W;0
 6F;Output 1;R/W;0
 70;Output 2;R/W;0
@@ -41,3 +40,6 @@ F;Input Bus 5;R/W;0
 75;Output 7;R/W;0
 76;Output 8;R/W;0
 77;Output 9;R/W;0
+D2;Enable Output;R/W;0
+DC;Enable Output Set;R/W;0
+E6;Enable Output Reset;R/W;0

@@ -54,8 +54,11 @@ namespace Digitizer_ver1
             AcqControl.radioButton_AcqInfinite = radioButton_AcqInfinite;
             AcqControl.radioButton_AcqNumEvents = radioButton_AcqNumEvents;
             AcqControl.radioButton_AcqTime = radioButton_AcqTime;
+            AcqControl.radioButton_AcqEventsPerTime = radioButton_AcqEventsPerTime;
             AcqControl.numericUpDown_NumOfEvents = numericUpDown_NumOfEvents;
-            AcqControl.numericUpDown_Time = numericUpDown_Time;
+            AcqControl.numericUpDown_Time_sec = numericUpDown_Time_sec;
+            AcqControl.numericUpDown_Time_msec = numericUpDown_Time_msec;
+            AcqControl.numericUpDown_Time_usec = numericUpDown_Time_usec;
             AcqControl.numericUpDown_NumOfSamples = numericUpDown_NumOfSamples;
             AcqControl.numericUpDown_AcqThreshold = numericUpDown_AcqThreshold;
             AcqControl.numericUpDown_AcqRepeats = numericUpDown_AcqRepeats;
@@ -127,6 +130,12 @@ namespace Digitizer_ver1
             sysSetting.dataGridView_RegistersFiles = dataGridView_RegistersFiles;
             sysSetting.configurationFiles = MultiConfigSequence;
 
+            //Ext Signals
+            extSignals.SendCommand = communication.SendCommand;
+            extSignals.DataGrid_Inputs = dataGridView_ExtSignalsInputs;
+            extSignals.DataGrid_Outputs = dataGridView_ExtSignalsOutputs;
+            extSignals.DataGridsLoad();
+
             //create registers
             MultiRegistersSetting.CreateRegister("ADC", RegistersSetting.eAddressValueSize.Address16_Value8, Communication.eCommandCode.CMD_CONST_GET_AdcRegisters, Communication.eCommandCode.CMD_CONST_SET_AdcRegisters,RegistersSetting.eExtFileType.Non);
             MultiRegistersSetting.CreateRegister("HMC", RegistersSetting.eAddressValueSize.Address16_Value8, Communication.eCommandCode.CMD_CONST_GET_HmcRegisters, Communication.eCommandCode.CMD_CONST_SET_HmcRegisters, RegistersSetting.eExtFileType.Python);
@@ -170,6 +179,7 @@ namespace Digitizer_ver1
         GPIO_Control gpio = new GPIO_Control();
         Reset_Control rst = new Reset_Control();
         AnalyzInCirc AnalyzInCirc = new AnalyzInCirc();
+        ExtSignals extSignals = new ExtSignals();
 
         MultipleRegistersSetting MultiRegistersSetting = new MultipleRegistersSetting();
 
@@ -266,6 +276,10 @@ namespace Digitizer_ver1
                     AnalyzInCirc.UpdateFromCommunication(data[0], data[1], data[2]);
                     break;
 
+                case Communication.eCommandCode.CMD_CONST_GET_ExtSignals:
+                    extSignals.UpdateFromCommunication(data[0], data[1], data[2]);
+                    break;
+
 
             }
         }
@@ -282,14 +296,60 @@ namespace Digitizer_ver1
         //-------------------------------------------------------------------------------------------------------------------
         private void tabControl_MAIN_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AcqControl.ReadSettingAndValues();
 
-            Update_label_QS_Phase1();
-            Update_label_QS_Phase2();
-            Update_QS_FcalEn_checkBox();
+            int sel = tabControl_MAIN.SelectedIndex;
 
-            AnalyzInCirc.GetSetting();
-            AnalyzInCirc.GetSetting_2();
+
+            if (sel == tabControl_MAIN.TabPages.IndexOf(tabManage)) 
+            {
+                Update_label_QS_Phase1();
+                Update_label_QS_Phase2();
+                Update_QS_FcalEn_checkBox();
+            }
+            else if (sel == tabControl_MAIN.TabPages.IndexOf(tabMeasurement_Setting))
+            {
+                AcqControl.ReadSettingAndValues();
+            }
+            else if (sel == tabControl_MAIN.TabPages.IndexOf(tabMeasurementData))
+            {
+
+            }
+            else if (sel == tabControl_MAIN.TabPages.IndexOf(tabRegisters))
+            {
+
+            }
+            else if (sel == tabControl_MAIN.TabPages.IndexOf(tabGpio))
+            {
+
+            }
+            else if (sel == tabControl_MAIN.TabPages.IndexOf(tabReset))
+            {
+
+            }
+            else if (sel == tabControl_MAIN.TabPages.IndexOf(tabConfiguration))
+            {
+
+            }
+            else if (sel == tabControl_MAIN.TabPages.IndexOf(tabSetting))
+            {
+
+            }
+            else if (sel == tabControl_MAIN.TabPages.IndexOf(tabAnalyzInCirc))
+            {
+                AnalyzInCirc.GetSetting();
+                AnalyzInCirc.GetSetting_2();
+            }
+            else if (sel == tabControl_MAIN.TabPages.IndexOf(tabExtSignals))
+            {
+                extSignals.ReadSetting();
+            }
+
+
+            
+
+
+
+
         }
 
 
@@ -323,6 +383,14 @@ namespace Digitizer_ver1
 
             MultiRegistersSetting.LoadFromFile(description);
 
+        }
+
+        private void button_RegReLoadFile_Click(object sender, EventArgs e)
+        {
+            int selected = tabControl_RegistersSetting.SelectedIndex;
+            string description = tabControl_RegistersSetting.TabPages[selected].Text;
+
+            MultiRegistersSetting.ReLoadFile(description);
         }
 
         private void button_SaveToFile_Click(object sender, EventArgs e)
@@ -547,6 +615,10 @@ namespace Digitizer_ver1
             AcqControl.SwTrigger();
         }
 
+        private void button_CountersClearAll_Click(object sender, EventArgs e)
+        {
+            AcqControl.ClearCounters();
+        }
 
 
         //-------------------------------------------------------------------------------------------------------------------
@@ -1064,6 +1136,15 @@ namespace Digitizer_ver1
 
         }
 
+        private void button_ExtSignalsWriteSetting_Click(object sender, EventArgs e)
+        {
+            extSignals.UpdateInputComboBox(2, 5);
+            extSignals.UpdateOutputComboBox(4, 10);
+        }
 
+        private void button_ExtSignalsReadSetting_Click(object sender, EventArgs e)
+        {
+            extSignals.ReadSetting();
+        }
     }
 }

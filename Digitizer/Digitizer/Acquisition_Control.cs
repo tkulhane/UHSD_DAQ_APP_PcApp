@@ -10,6 +10,8 @@ namespace Digitizer_ver1
     class Acquisition_Control
     {
 
+        const float fpgaLogicClock = (float)100000000;
+
         public enum eCommandCode_Trigger : byte
         {
 
@@ -45,6 +47,14 @@ namespace Digitizer_ver1
 
         }
 
+        public enum eCommandCode_AcqMode : byte
+        {
+            ACQ_MODE_INFINITE = 0,
+            ACQ_MODE_EVENTS = 1,
+            ACQ_MODE_TIME = 2,
+            ACQ_MODE_EVENTS_PER_TIME = 3
+        }
+
 
         public delegate void efunction(Communication.eCommandCode CMD, byte d1, byte d2, byte d3);
         public efunction SendCommand;
@@ -52,6 +62,7 @@ namespace Digitizer_ver1
         public RadioButton radioButton_AcqInfinite;
         public RadioButton radioButton_AcqNumEvents;
         public RadioButton radioButton_AcqTime;
+        public RadioButton radioButton_AcqEventsPerTime;
 
         public RadioButton radioButton_TrgSelf;
         public RadioButton radioButton_TrgExtRising;
@@ -60,7 +71,10 @@ namespace Digitizer_ver1
         public RadioButton radioButton_TrgSw;
 
         public NumericUpDown numericUpDown_NumOfEvents;
-        public NumericUpDown numericUpDown_Time;
+        public NumericUpDown numericUpDown_Time_sec;
+        public NumericUpDown numericUpDown_Time_msec;
+        public NumericUpDown numericUpDown_Time_usec;
+
         public NumericUpDown numericUpDown_NumOfSamples;
         public NumericUpDown numericUpDown_AcqThreshold;
         public NumericUpDown numericUpDown_AcqRepeats;
@@ -125,46 +139,70 @@ namespace Digitizer_ver1
 
         public void AcqRunSetting() 
         {
+            eCommandCode_AcqMode AcqMode = eCommandCode_AcqMode.ACQ_MODE_INFINITE;
+
             if (radioButton_AcqInfinite.Checked) 
             {
                 numericUpDown_NumOfEvents.Enabled = false;
-                numericUpDown_Time.Enabled = false;
-
-                numericUpDown_NumOfEvents.Value = 0;
-                numericUpDown_Time.Value = 0;
+                numericUpDown_Time_sec.Enabled = false;
+                numericUpDown_Time_msec.Enabled = false;
+                numericUpDown_Time_usec.Enabled = false;
 
                 numericUpDown_AcqRepeats.Enabled = false;
-                numericUpDown_AcqRepeats.Value = 0;
-                
 
-                SetNumberOfEvents();
-                //SetRunTime();
+                AcqMode = eCommandCode_AcqMode.ACQ_MODE_INFINITE;
             }
             else if(radioButton_AcqNumEvents.Checked)
             {
 
                 numericUpDown_NumOfEvents.Enabled = true;
-                numericUpDown_Time.Enabled = false;
-
-                numericUpDown_Time.Value = 0;
+                numericUpDown_Time_sec.Enabled = false;
+                numericUpDown_Time_msec.Enabled = false;
+                numericUpDown_Time_usec.Enabled = false;
 
                 numericUpDown_AcqRepeats.Enabled = true;
 
-                SetNumberOfEvents();
-                //SetRunTime();
+                AcqMode = eCommandCode_AcqMode.ACQ_MODE_EVENTS;
             }
             else if (radioButton_AcqTime.Checked) 
             {
                 numericUpDown_NumOfEvents.Enabled = false;
-                numericUpDown_Time.Enabled = true;
+                numericUpDown_Time_sec.Enabled = true;
+                numericUpDown_Time_msec.Enabled = true;
+                numericUpDown_Time_usec.Enabled = true;
 
-                numericUpDown_Time.Value = 0;
+                numericUpDown_AcqRepeats.Enabled = false;
+
+                AcqMode = eCommandCode_AcqMode.ACQ_MODE_TIME;
+
+            }
+            else if(radioButton_AcqEventsPerTime.Checked)
+            {
+                numericUpDown_NumOfEvents.Enabled = true;
+                numericUpDown_Time_sec.Enabled = true;
+                numericUpDown_Time_msec.Enabled = true;
+                numericUpDown_Time_usec.Enabled = true;
 
                 numericUpDown_AcqRepeats.Enabled = true;
 
-                SetNumberOfEvents();
-                //SetRunTime();
+                AcqMode = eCommandCode_AcqMode.ACQ_MODE_EVENTS_PER_TIME;
+
             }
+
+            else 
+            {
+                numericUpDown_NumOfEvents.Enabled = false;
+                numericUpDown_Time_sec.Enabled = false;
+                numericUpDown_Time_msec.Enabled = false;
+                numericUpDown_Time_usec.Enabled = false;
+
+                numericUpDown_AcqRepeats.Enabled = false;
+                return;
+            }
+
+            SetNumberOfEvents();
+            SetRunTime();
+            SetAcqMode(AcqMode);
         }
 
         public void AcqTriggerSelect() 
@@ -247,7 +285,12 @@ namespace Digitizer_ver1
 
         public void SetRunTime()
         {
-            UInt32 val = (UInt32)numericUpDown_Time.Value;
+            int val_sec = (int)numericUpDown_Time_sec.Value;
+            int val_msec = (int)numericUpDown_Time_msec.Value;
+            int val_usec = (int)numericUpDown_Time_usec.Value;
+
+            UInt32 val = (UInt32)(((float)val_sec * (fpgaLogicClock)) + ((float)val_msec * (1E-3) * (fpgaLogicClock)) + ((float)val_usec * (1E-6) * (fpgaLogicClock)));
+
             byte b0 = (byte)((val >> 0) & 0xFF);
             byte b1 = (byte)((val >> 8) & 0xFF);
             byte b2 = (byte)((val >> 16) & 0xFF);
@@ -255,6 +298,11 @@ namespace Digitizer_ver1
 
             SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SET_TIME_FOR_RUN_L, b1, b0);
             SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SET_TIME_FOR_RUN_M, b3, b2);
+        }
+
+        public void SetAcqMode(eCommandCode_AcqMode AcqMode) 
+        {
+            SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_MODE, 0, (byte)AcqMode);
         }
 
         public void SetNumberOfSamples()
@@ -324,7 +372,11 @@ namespace Digitizer_ver1
             SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SET_NUMBERS_OF_EVENTS_L, 0, 0);
             SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SET_NUMBERS_OF_EVENTS_M, 0, 0);
 
+            SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SET_TIME_FOR_RUN_L, 0, 0);
+            SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_SET_TIME_FOR_RUN_M, 0, 0);
+
             SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_TRIGGER_SELECT, 0, 0);
+            SendCommand(Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_MODE, 0, 0);
 
         }
 
@@ -343,6 +395,67 @@ namespace Digitizer_ver1
 
         }
 
+        public void ClearCounters() 
+        {
+            SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_COUNTERS_RESET, 0, 0);
+        }
+
+
+        UInt32 _AcqTimeInTicks;
+        public void UpdateTimeLabels(UInt16 ticks, int shift)
+        {
+
+            UInt32 mask = (UInt32)(0x0000FFFF << shift);
+            mask = ~mask;
+
+            //uprava LSB
+            //_AcqTimeInTicks = (_AcqTimeInTicks & 0xFFFF0000) | ((UInt32)ticks << 0);
+            //uprava MSB
+            //_AcqTimeInTicks = (_AcqTimeInTicks & 0x0000FFFF) | ((UInt32)ticks << 16);
+
+            _AcqTimeInTicks = (_AcqTimeInTicks & mask) | ((UInt32)ticks << shift);
+
+
+            int sec = (int)(_AcqTimeInTicks * (1.0 / fpgaLogicClock));
+            int msec = (int)(_AcqTimeInTicks * ((1.0 / fpgaLogicClock) * 1E3) - (sec * 1E3));
+            int usec = (int)(_AcqTimeInTicks * ((1.0 / fpgaLogicClock) * 1E6) - (sec * 1E6) - (msec * 1E3));
+
+            numericUpDown_Time_sec.Value = sec;
+            numericUpDown_Time_msec.Value = msec;
+            numericUpDown_Time_usec.Value = usec;
+
+        }
+
+        public void UpdateModeRadioButtons(int val) 
+        {
+            radioButton_AcqInfinite.Checked = false;
+            radioButton_AcqNumEvents.Checked = false;
+            radioButton_AcqTime.Checked = false;
+            radioButton_AcqEventsPerTime.Checked = false;
+
+            switch (val) 
+            {
+                case ((int)eCommandCode_AcqMode.ACQ_MODE_INFINITE):
+                    radioButton_AcqInfinite.Checked = true;
+                    break;
+
+                case ((int)eCommandCode_AcqMode.ACQ_MODE_EVENTS):
+                    radioButton_AcqNumEvents.Checked = true;
+                    break;
+
+                case ((int)eCommandCode_AcqMode.ACQ_MODE_TIME):
+                    radioButton_AcqTime.Checked = true;
+                    break;
+
+                case ((int)eCommandCode_AcqMode.ACQ_MODE_EVENTS_PER_TIME):
+                    radioButton_AcqEventsPerTime.Checked = true;
+                    break;
+
+                default:
+                    break;
+            }
+
+        }
 
 
         public void UpdateFromCommunication(byte data_0, byte data_1, byte data_2)
@@ -363,6 +476,11 @@ namespace Digitizer_ver1
                     {
                         UpdateAcqState(false);
                     }
+                    break;
+
+                //mode
+                case (byte)eCommandCode_Trigger.CMD_TRG_MODE:
+                    UpdateModeRadioButtons(data_2);
                     break;
 
                 //threshold
@@ -404,18 +522,12 @@ namespace Digitizer_ver1
 
                 //set time run L
                 case (byte)eCommandCode_Trigger.CMD_TRG_SET_TIME_FOR_RUN_L:
-                    temp = (UInt32)numericUpDown_Time.Value;
-                    val = (UInt16)((data_1 << 8) | data_2);
-                    temp = (temp & 0xFFFF0000) | ((UInt32)val << 0);
-                    numericUpDown_Time.Value = temp;
+                    UpdateTimeLabels((UInt16)((data_1 << 8) | data_2), 0);
                     break;
 
                 //set time M
                 case (byte)eCommandCode_Trigger.CMD_TRG_SET_TIME_FOR_RUN_M:
-                    temp = (UInt32)numericUpDown_Time.Value;
-                    val = (UInt16)((data_1 << 8) | data_2);
-                    temp = (temp & 0x0000FFFF) | ((UInt32)val << 16);
-                    numericUpDown_Time.Value = temp;
+                    UpdateTimeLabels((UInt16)((data_1 << 8) | data_2), 16);
                     break;
 
 

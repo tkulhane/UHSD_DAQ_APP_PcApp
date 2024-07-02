@@ -363,27 +363,27 @@ namespace Digitizer_ver1
 
 
 
-            if (Action.Equals("RESET")) 
+            if (Action.Equals("RESET"))
             {
                 int val;
                 if (!int.TryParse(Value1, NumberStyles.HexNumber, null, out val)) return false; //parsovani hodnoty resetu
                 rst.SetByName(Periphery, val);
             }
-            
+
             else if (Action.Equals("OUTPUT"))
             {
                 int val;
                 if (!int.TryParse(Value1, NumberStyles.HexNumber, null, out val)) return false; //parsovani hodnoty outputu
                 gpio.SetByName(Periphery, val);
             }
-            
+
             else if (Action.Equals("REG"))
             {
-                for(int i = 0; i < List_ReigistersFile.Count; i++) //prohledavam seznam a porovnavam description
+                for (int i = 0; i < List_ReigistersFile.Count; i++) //prohledavam seznam a porovnavam description
                 {
                     if (Periphery.Equals(List_ReigistersFile[i].p_registerSettingDescription)) //najdu description pro periferii
                     {
-                       
+
                         if (Value1.Equals("ALL")) //pokud je value1 ALL odesílám celou tabulku
                         {
                             List_ReigistersFile[i].p_registerSetting.WriteAll();
@@ -394,7 +394,7 @@ namespace Digitizer_ver1
                             List_ReigistersFile[i].p_registerSetting.WriteAllReverse();
                         }
 
-                        else 
+                        else
                         {
                             int address;
                             if (!int.TryParse(Value1, NumberStyles.HexNumber, null, out address)) return false; //parsovani adresy registru
@@ -416,7 +416,7 @@ namespace Digitizer_ver1
                 }
             }
 
-            else if (Action.Equals("REG_MASK")) 
+            else if (Action.Equals("REG_MASK"))
             {
                 for (int i = 0; i < List_ReigistersFile.Count; i++) //prohledavam seznam a porovnavam description
                 {
@@ -439,7 +439,7 @@ namespace Digitizer_ver1
                         else //cokoliv jineho nez TBL (musi to byt cislo)
                         {
                             int value;
-                            
+
                             if (!int.TryParse(Value2, NumberStyles.HexNumber, null, out value)) return false; //parsovani hodnoty
                             //int xx = (value & mask);
                             //MessageBox.Show(address.ToString("X") + "." + value.ToString("X") + "." + mask.ToString("X") + "." + xx.ToString("X"));
@@ -479,7 +479,7 @@ namespace Digitizer_ver1
                             _ReadRequest_Type = eReadRequestType.register;
                             _ReadRequest_RegisterSetting = List_ReigistersFile[i].p_registerSetting;
                         }
-                        else if (Value2.Equals("0")) 
+                        else if (Value2.Equals("0"))
                         {
                             value = (0 << bit);
                             List_ReigistersFile[i].p_registerSetting.SendMaskRegister_Request(address, value, mask);
@@ -488,7 +488,7 @@ namespace Digitizer_ver1
                             _ReadRequest_Type = eReadRequestType.register;
                             _ReadRequest_RegisterSetting = List_ReigistersFile[i].p_registerSetting;
                         }
-                        else 
+                        else
                         {
                             return false;
                         }
@@ -516,7 +516,7 @@ namespace Digitizer_ver1
                     int conditionValue;
                     if (!int.TryParse(Value2, NumberStyles.HexNumber, null, out conditionValue)) return false;
 
-                    if(conditionValue == _lastReadValue) 
+                    if (conditionValue == _lastReadValue)
                     {
                         StepSequence = line;
                         _notIncStepSequence = true;
@@ -540,20 +540,20 @@ namespace Digitizer_ver1
                 }
             }
 
-            else if (Action.Equals("LAST_VAL")) 
+            else if (Action.Equals("LAST_VAL"))
             {
-                if (Periphery.Equals("BIT")) 
+                if (Periphery.Equals("BIT"))
                 {
                     int bit;
-                    if (!int.TryParse(Value1, NumberStyles.Integer, null, out bit)) return false; 
+                    if (!int.TryParse(Value1, NumberStyles.Integer, null, out bit)) return false;
 
                     _lastReadValue &= 1 << bit;
                     _lastReadValue = _lastReadValue >> bit;
                 }
-                else if (Periphery.Equals("MASK")) 
+                else if (Periphery.Equals("MASK"))
                 {
                     int mask;
-                    if (!int.TryParse(Value1, NumberStyles.HexNumber, null, out mask)) return false; 
+                    if (!int.TryParse(Value1, NumberStyles.HexNumber, null, out mask)) return false;
 
                     _lastReadValue &= mask;
 
@@ -594,6 +594,28 @@ namespace Digitizer_ver1
 
             }
 
+            else if (Action.Equals("REG_RELOAD"))
+            {
+                for (int i = 0; i < List_ReigistersFile.Count; i++) //prohledavam seznam a porovnavam description
+                {
+                    if (Periphery.Equals(List_ReigistersFile[i].p_registerSettingDescription)) //najdu description pro periferii
+                    {
+                        //List_ReigistersFile[i].p_registerSetting.ReloadFile();
+
+                        RegistersSetting RS = List_ReigistersFile[i].p_registerSetting;
+
+                        string FileName = List_ReigistersFile[i].p_registerSettingFile;
+                        if(FileName != String.Empty) 
+                        {
+                            RS.OpenRegistersFileAsString(FileName);
+                        }
+                        
+                    }
+                
+                
+                }
+            }
+
             else if (Action.Equals("INPUT"))
             {
 
@@ -604,15 +626,15 @@ namespace Digitizer_ver1
 
             }
 
-            else if (Action.Equals("STOP")) 
+            else if (Action.Equals("STOP"))
             {
                 SequenceDone = true;
 
-                if (Value1.Equals("ALL")) 
+                if (Value1.Equals("ALL"))
                 {
                     _lastReadValue = AnotherSequenceAction(MultipleConfigurationFileSequencer.eAnotherSequenceActions.stop_all, Value1);
                 }
-                
+
             }
 
             else if (Action.Equals("WAIT"))
@@ -629,58 +651,58 @@ namespace Digitizer_ver1
 
                 if (_AnotherFileSequenceGo)
                 {
-                    
+
                     _lastReadValue = AnotherSequenceAction(MultipleConfigurationFileSequencer.eAnotherSequenceActions.state, Value1);
 
-                    if (_lastReadValue == (int)MultipleConfigurationFileSequencer_Data.eStates.Run) 
+                    if (_lastReadValue == (int)MultipleConfigurationFileSequencer_Data.eStates.Run)
                     {
                         _AnotherFileSequenceGo = true;
                         _notIncStepSequence = true;
 
                         Delay_SequenceLine = 20;
                     }
-                    else 
+                    else
                     {
                         _AnotherFileSequenceGo = false;
                         _notIncStepSequence = false;
                     }
-                    
+
                 }
 
-                else if (Periphery.Equals("START")) 
+                else if (Periphery.Equals("START"))
                 {
                     _lastReadValue = AnotherSequenceAction(MultipleConfigurationFileSequencer.eAnotherSequenceActions.start, Value1);
                 }
-                else if (Periphery.Equals("STOP")) 
+                else if (Periphery.Equals("STOP"))
                 {
                     _lastReadValue = AnotherSequenceAction(MultipleConfigurationFileSequencer.eAnotherSequenceActions.stop, Value1);
                 }
-                else if (Periphery.Equals("STATE")) 
+                else if (Periphery.Equals("STATE"))
                 {
                     _lastReadValue = AnotherSequenceAction(MultipleConfigurationFileSequencer.eAnotherSequenceActions.state, Value1);
                 }
-                else if (Periphery.Equals("EXECUTE")) 
+                else if (Periphery.Equals("EXECUTE"))
                 {
                     _lastReadValue = AnotherSequenceAction(MultipleConfigurationFileSequencer.eAnotherSequenceActions.start, Value1);
-                    if(_lastReadValue == 1) 
+                    if (_lastReadValue == 1)
                     {
                         _AnotherFileSequenceGo = true;
                         _notIncStepSequence = true;
                     }
-                    
+
                 }
 
             }
 
-            else if (Action.Equals("SHOW_MSG")) 
+            else if (Action.Equals("SHOW_MSG"))
             {
-                if (Periphery.Equals("STRING")) 
+                if (Periphery.Equals("STRING"))
                 {
                     MessageBox.Show(Value1, Value2);
                 }
                 else if (Periphery.Equals("LAST_VAL"))
                 {
-                    MessageBox.Show("Last read value = "+ _lastReadValue.ToString("X"), Value2);
+                    MessageBox.Show("Last read value = " + _lastReadValue.ToString("X"), Value2);
                 }
 
             }
@@ -689,11 +711,11 @@ namespace Digitizer_ver1
             {
                 if (Periphery.Equals("ADD"))
                 {
-                    if (Value2.Equals("LAST_VAL")) 
+                    if (Value2.Equals("LAST_VAL"))
                     {
                         listBox_MainLog.Items.Add(Value1 + _lastReadValue.ToString("X"));
                     }
-                    else 
+                    else
                     {
                         listBox_MainLog.Items.Add(Value1);
                     }
@@ -708,7 +730,7 @@ namespace Digitizer_ver1
             }
 
 
-            else 
+            else
             {
                 return false;
             }

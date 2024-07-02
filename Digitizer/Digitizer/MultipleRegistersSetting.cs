@@ -98,6 +98,23 @@ namespace Digitizer_ver1
             }
         }
 
+        public void ReLoadFile(string desc) 
+        {
+            foreach (RegistersSetting RS in List_RegistersSetting)
+            {
+                if (desc.Equals(RS.p_description))
+                {
+                    string FileName = sysSetting.GetFileStringForRegisters(RS);
+                    if (FileName != String.Empty)
+                    {
+                        RS.OpenRegistersFileAsString(FileName);
+                    }
+
+                }
+
+            }
+        }
+
 
         public void SaveToFile(string desc) 
         {

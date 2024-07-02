@@ -56,6 +56,10 @@ namespace Digitizer_ver1
                 dataGridView_Events.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
 
+            chart_data.ChartAreas[0].AxisY.Minimum = 0;
+            chart_data.ChartAreas[0].AxisY.Maximum = 4095;
+            
+
             dataGridView_Events.SelectionChanged += new System.EventHandler(GridSelectedChange);
 
         }
@@ -65,7 +69,14 @@ namespace Digitizer_ver1
             if (checkBox_EventsAutoLoad.Checked) 
             {
                 LoadEventResults();
+
+
             }
+            int selectedRows = dataGridView_Events.SelectedRows.Count;
+            if (selectedRows == 0) return;
+            int selectedIndex = dataGridView_Events.SelectedRows[selectedRows - 1].Index;
+            dataGridView_Events.FirstDisplayedScrollingRowIndex = selectedIndex;
+
         }
 
         public void ExecuteData(byte[] data)
@@ -203,6 +214,17 @@ namespace Digitizer_ver1
                 }
             }
 
+            /*
+            if(logErr != String.Empty) 
+            {
+                using (StreamWriter writer = File.AppendText("log_errs.txt"))
+                {
+                    logStr += Environment.NewLine;
+                    writer.Write(logErr + " ============= " + logStr);
+                }
+            }
+            */
+
 
         }
 
@@ -312,10 +334,20 @@ namespace Digitizer_ver1
                 chart_data.Series[r.ToString()].LegendText = ActualEventData.p_eventNum.ToString();
                 chart_data.Series[r.ToString()].BorderWidth = 3;
 
+                
                 for (int i = 0; i < ActualEventData.List_SampleData.Count; i++)
                 {
                     chart_data.Series[r.ToString()].Points.AddY(ActualEventData.List_SampleData[i]);
                 }
+                
+
+                /*
+                Parallel.For(0, ActualEventData.List_SampleData.Count, i =>
+                {
+                    chart_data.Series[r.ToString()].Points.AddY(ActualEventData.List_SampleData[i]);
+                });
+                */
+
             }
 
             chart_data.DataBind();
@@ -466,6 +498,9 @@ namespace Digitizer_ver1
                 }
 
             }
+
+
+            LoadEventResults();
 
         }
 

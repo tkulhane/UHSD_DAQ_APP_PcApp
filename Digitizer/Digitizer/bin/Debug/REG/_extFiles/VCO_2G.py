@@ -148,8 +148,8 @@ dut.write(0x33, 0x1)
 # pll2_rdiv_cfg12_divratio_msb[3:0] = 0x0
 dut.write(0x34, 0x0)
 
-# pll2_vdiv_cfg16_divratio_lsb[7:0] = 0xA
-dut.write(0x35, 0xA)
+# pll2_vdiv_cfg16_divratio_lsb[7:0] = 0x14
+dut.write(0x35, 0x14)
 
 # pll2_vdiv_cfg16_divratio_msb[7:0] = 0x0
 dut.write(0x36, 0x0)

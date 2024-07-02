@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import sys
 import spectrum
 
-Fs = 3.243E9
+Fs = 3.2E9
 window='hanning'
 
 file = sys.argv[1]

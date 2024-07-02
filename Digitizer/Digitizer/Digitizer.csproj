@@ -65,6 +65,8 @@
     <Compile Include="Data_Registers.cs" />
     <Compile Include="EventData.cs" />
     <Compile Include="EventInfo.cs" />
+    <Compile Include="ExtSignals.cs" />
+    <Compile Include="ExtSignals_Data.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
