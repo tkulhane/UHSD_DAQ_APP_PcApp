@@ -522,6 +522,7 @@ namespace Digitizer_ver1
         private void button_EventsAnalyzeSIN_Click(object sender, EventArgs e)
         {
             AcqData.AnalyzeSinStart();
+
         }
 
         private void button_AnotherForm_Click(object sender, EventArgs e)

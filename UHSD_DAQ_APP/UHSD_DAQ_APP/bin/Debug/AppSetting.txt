@@ -1,0 +1,10 @@
+communication;non;
+data_destination;
+register;ADC;
+register;HMC;
+register;LMX1;
+register;LMX2;
+register;FpgaTest;
+register;Transcievers;
+register;Clock_Switch;
+register;EXT_Signals;

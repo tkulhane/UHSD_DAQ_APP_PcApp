@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32413.511
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digitizer", "Digitizer\Digitizer.csproj", "{5CDAF957-8242-4C9E-88D1-F8BD4EBEFA41}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UHSD_DAQ_APP", "UHSD_DAQ_APP\UHSD_DAQ_APP.csproj", "{5CDAF957-8242-4C9E-88D1-F8BD4EBEFA41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
