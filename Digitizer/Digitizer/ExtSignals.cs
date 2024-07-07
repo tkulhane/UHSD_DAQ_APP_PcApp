@@ -42,6 +42,12 @@ namespace Digitizer_ver1
                 new ExtSignals_Data() {NUM = 4, SIG = "CLK_SRC_Ref"},
                 new ExtSignals_Data() {NUM = 5, SIG = "CLK_HMC"},
 
+                new ExtSignals_Data() {NUM = 6, SIG = "FTDI_nTXE"},
+                new ExtSignals_Data() {NUM = 7, SIG = "FTDI_nWR"},
+
+                new ExtSignals_Data() {NUM = 8, SIG = "Diag_0"},
+                new ExtSignals_Data() {NUM = 9, SIG = "Diag_1"},
+
                 new ExtSignals_Data() {NUM = 10, SIG = "ACQ_Enable_Out"},
                 new ExtSignals_Data() {NUM = 11, SIG = "ACQ_Trigger_Out"},
                 new ExtSignals_Data() {NUM = 12, SIG = "ACQ_Run_Out"},

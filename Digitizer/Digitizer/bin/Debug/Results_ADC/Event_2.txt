@@ -1,0 +1,31 @@
+
+========= FFT ==========
+Points           : 8223
+Freq. resolution : 3.892e+05 Hz
+Window           : hanning
+
+======= Harmonics ======
+1st @ 19997.663 kHz : -1.67 dBFS
+2nd @ 39995.326 kHz : -58.09 dBc
+3rd @ 59992.989 kHz : -56.11 dBc
+4th @ 79990.652 kHz : -63.03 dBc
+5th @ 99988.315 kHz : -63.38 dBc
+
+===== Input signal =====
+Frequency        : 2e+07 Hz
+Amplitude (Vpeak): 0.4123 V
+DC offset        : 0.4991 V
+
+========= ADC ==========
+Sampling freq.   : 3.2e+09 Hz
+Sampling period  : 3.125e-10 s
+Reference volt.  : 1.0 V
+Bits             : 12 bits
+Quants           : 4096
+Quant            : 0.2441 mV
+SNR              : 50.64 dB
+SINAD            : 49.8 dB
+THD              : 53.04 dB
+ENOB             : 8.257 bits
+SFDR             : -58.4 dBc
+Noise floor      : -86.78 dBFS

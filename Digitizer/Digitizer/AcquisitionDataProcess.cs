@@ -16,6 +16,8 @@ namespace Digitizer_ver1
     class AcquisitionDataProcess
     {
 
+        string pyhonExecute = @"C:\Users\Tomáš\AppData\Local\Programs\Python\Python310\python.exe";
+
         public DataGridView dataGridView_Events;
         public Chart chart_data;
         public CheckBox checkBox_SaveToRam;
@@ -27,7 +29,10 @@ namespace Digitizer_ver1
         public CheckBox checkBox_EventsAutoLoad;
         public NumericUpDown numericUpDown_EventsMaxCount;
 
-        public PictureBox pictureBox_EventAnalyze;
+        public PictureBox pictureBox_EventAdcAnalyze;
+        public PictureBox pictureBox_EventSinAnalyze;
+
+        public TextBox textBox_DataFilePath;
 
 
         BindingList<AcquisitionDataProcess_Data> List_EventsData = new BindingList<AcquisitionDataProcess_Data>();
@@ -47,6 +52,10 @@ namespace Digitizer_ver1
 
         public int ErrorCounter = 0;
 
+        string DataFilePath = string.Empty;
+
+
+
         public void SetAcquisitionDataProcess() 
         {
             dataGridView_Events.DataSource = List_EventsData;
@@ -63,6 +72,39 @@ namespace Digitizer_ver1
             dataGridView_Events.SelectionChanged += new System.EventHandler(GridSelectedChange);
 
         }
+
+        public void AssignDataFile() 
+        {
+            String fname = String.Empty;
+            using (SaveFileDialog ofd = new SaveFileDialog())
+            {
+                ofd.Filter = "Soubory dat (*.txt)|*.txt|Vsechny|*.*";
+                if (DialogResult.OK == ofd.ShowDialog())
+                {
+                    fname = ofd.FileName;
+                }
+                else
+                {
+                    return;
+                }
+                if (String.IsNullOrEmpty(fname))
+                {
+                    return;
+                }
+            }
+            if (String.IsNullOrEmpty(fname))
+            {
+                return;
+            }
+
+            DataFilePath = fname;
+
+            textBox_DataFilePath.Text = fname;
+        }
+
+
+        //int _sample1;
+        //int _sample2;
 
         private void GridSelectedChange(object sender, EventArgs e)
         {
@@ -84,6 +126,8 @@ namespace Digitizer_ver1
 
             string logStr = string.Empty;
             string logErr = string.Empty;
+
+            bool BlockSaving = false;
 
             if (data[0] == 0xFA) //Event head - actualing Number Of Event
             {
@@ -183,13 +227,20 @@ namespace Digitizer_ver1
                     logErr += " L=" + frameOrder_Last.ToString();
                 }
 
+                if (frameOrder == frameOrder_Last)
+                {
+                    //frame ma stejne poradi jako minuly - chyby ToDo: vyresit proc se to deje....
+                    BlockSaving = true;
+                }
+
+
                 FrameInPacketCounter++;
 
-                
+
                 int sample1 = data[3] + ((data[2] & 0x0F) << 8);
                 int sample2 = ((data[2] & 0xF0) >> 4) + (data[1] << 4);
 
-                if(ActualEventData != null)
+                if(ActualEventData != null && !BlockSaving)
                 {
                     ActualEventData.AddSampleAndSize(sample1);
                     ActualEventData.AddSampleAndSize(sample2);
@@ -205,7 +256,7 @@ namespace Digitizer_ver1
             
             logStr += Environment.NewLine;
 
-
+            /*
             if (checkBox_SaveToFile.Checked) 
             {
                 using (StreamWriter writer = File.AppendText("log_Communication_data.txt"))
@@ -213,6 +264,7 @@ namespace Digitizer_ver1
                     writer.Write(logStr);
                 }
             }
+            */
 
             /*
             if(logErr != String.Empty) 
@@ -231,7 +283,8 @@ namespace Digitizer_ver1
         public void LoadEventResults() 
         {
             chart_EventTime_Click(null, null);
-            pictureBox_EventAnalyze_Click(null, null);
+            pictureBox_EventAdcAnalyze_Click(null, null);
+            pictureBox_EventSinAnalyze_Click(null, null);
         }
 
 
@@ -247,7 +300,19 @@ namespace Digitizer_ver1
             }
             if (SavingInFile) 
             {
-                
+                string file = textBox_DataFilePath.Text;
+                if (file == string.Empty) return;
+
+                //file = file + ActualEventData.p_eventNum.ToString();
+
+
+                string[] file_parts = file.Split('.');
+                if (file_parts.Length != 2)
+                {
+                    return;
+                }
+                string fname_new = file_parts[0] + ActualEventData.p_eventNum.ToString() + "." + file_parts[1];
+                SaveEventData(ActualEventData, fname_new);
 
             }
         }
@@ -265,7 +330,12 @@ namespace Digitizer_ver1
                 dataGridView_Events.Rows[count - 1].Selected = true;
 
                 if(checkBox_EventsLastAutoSelect.Checked) chart_EventTime_Click(null, null);
-                if (checkBox_EventsLastAutoAnalyze.Checked) AnalyzeAdcStart();
+                if (checkBox_EventsLastAutoAnalyze.Checked) 
+                {
+                    //AnalyzeAdcStart();
+                    AnalyzeSinStart();
+                }
+                    
 
             }
         }
@@ -279,26 +349,59 @@ namespace Digitizer_ver1
 
         public void chart_EventTime_Click(object sender, EventArgs e)
         {
-            Thread thread_paint = new Thread(this.ChartPaintTask);
-            thread_paint.Start();
+            Task task_analyze = new Task(this.ChartPaintTask);
+            task_analyze.Start();
         }
 
-        public void pictureBox_EventAnalyze_Click(object sender, EventArgs e) 
+        public void pictureBox_EventAdcAnalyze_Click(object sender, EventArgs e) 
         {
+            
+
+
             int selectedRows = dataGridView_Events.SelectedRows.Count;
 
             int selectedIndex = dataGridView_Events.SelectedRows[selectedRows-1].Index;
             AcquisitionDataProcess_Data ActualEventData = List_EventsData[selectedIndex];
             int eventNum = ActualEventData.p_eventNum;
 
-            string fname = Environment.CurrentDirectory + @"\Results\Event_" + eventNum.ToString() + ".png";
+            string fname = Environment.CurrentDirectory + @"\Results_ADC\Event_" + eventNum.ToString() + ".png";
 
-            using(FileStream fs = new System.IO.FileStream(fname, FileMode.Open, FileAccess.Read)) 
+            if (!File.Exists(fname))
             {
-                pictureBox_EventAnalyze.Image = Image.FromStream(fs);
+                pictureBox_EventAdcAnalyze.Image = null;
+                return;
+            }
+
+            using (FileStream fs = new System.IO.FileStream(fname, FileMode.Open, FileAccess.Read)) 
+            {
+                pictureBox_EventAdcAnalyze.Image = Image.FromStream(fs);
+                fs.Close();
+            }  
+        }
+
+        public void pictureBox_EventSinAnalyze_Click(object sender, EventArgs e)
+        {
+            
+
+            int selectedRows = dataGridView_Events.SelectedRows.Count;
+
+            int selectedIndex = dataGridView_Events.SelectedRows[selectedRows - 1].Index;
+            AcquisitionDataProcess_Data ActualEventData = List_EventsData[selectedIndex];
+            int eventNum = ActualEventData.p_eventNum;
+
+            string fname = Environment.CurrentDirectory + @"\Results_SIN\Event_" + eventNum.ToString() + ".png";
+
+            if (!File.Exists(fname))
+            {
+                pictureBox_EventSinAnalyze.Image = null;
+                return;
+            }
+
+            using (FileStream fs = new System.IO.FileStream(fname, FileMode.Open, FileAccess.Read))
+            {
+                pictureBox_EventSinAnalyze.Image = Image.FromStream(fs);
                 fs.Close();
             }
-            
         }
 
         private void ChartPaintTask()
@@ -334,18 +437,15 @@ namespace Digitizer_ver1
                 chart_data.Series[r.ToString()].LegendText = ActualEventData.p_eventNum.ToString();
                 chart_data.Series[r.ToString()].BorderWidth = 3;
 
-                
+
+                chart_data.Series[r.ToString()].Points.DataBindY(ActualEventData.List_SampleData);
+
+                /*
                 for (int i = 0; i < ActualEventData.List_SampleData.Count; i++)
                 {
                     chart_data.Series[r.ToString()].Points.AddY(ActualEventData.List_SampleData[i]);
+                    
                 }
-                
-
-                /*
-                Parallel.For(0, ActualEventData.List_SampleData.Count, i =>
-                {
-                    chart_data.Series[r.ToString()].Points.AddY(ActualEventData.List_SampleData[i]);
-                });
                 */
 
             }
@@ -411,6 +511,22 @@ namespace Digitizer_ver1
 
         }
 
+        public void DeleteResultsFiles() 
+        {
+            DeleteFileInFolder(@"DataForAnalysis");
+            DeleteFileInFolder(@"Results_ADC");
+            DeleteFileInFolder(@"Results_SIN");
+        }
+
+        private void DeleteFileInFolder(string folder) 
+        {
+            System.IO.DirectoryInfo di = new DirectoryInfo(folder);
+            foreach (FileInfo file in di.GetFiles())
+            {
+                file.Delete();
+            }
+        }
+
 
         private void SaveEventData(AcquisitionDataProcess_Data EventData, string file) 
         {
@@ -443,8 +559,8 @@ namespace Digitizer_ver1
 
         public void AnalyzeAdcStart() 
         {
-            Thread thread_analyze = new Thread(this.AnalyzeAdc);
-            thread_analyze.Start();
+            Task task_analyze = new Task(this.AnalyzeAdc);
+            task_analyze.Start();
         }
 
 
@@ -468,13 +584,12 @@ namespace Digitizer_ver1
 
             SaveEventData(ActualEventData, fname);
 
-            string cmd = @"C:\Users\Tomáš\AppData\Local\Programs\Python\Python310\python.exe";
 
             string script = Environment.CurrentDirectory + @"\Scripts\ADC.py" ;
             string file = Environment.CurrentDirectory + @"\" + fname;
 
             ProcessStartInfo start = new ProcessStartInfo();
-            start.FileName = cmd;
+            start.FileName = pyhonExecute;
             start.Arguments = script +" "+file+" "+ resultName;
             start.CreateNoWindow = true;
             start.UseShellExecute = false;
@@ -495,6 +610,73 @@ namespace Digitizer_ver1
                 else if (result != string.Empty)
                 {
                     //MessageBox.Show(result);
+                }
+
+            }
+
+
+            LoadEventResults();
+
+        }
+
+
+
+        public void AnalyzeSinStart()
+        {
+            Task task_analyze = new Task(this.AnalyzeSin);
+            task_analyze.Start();
+        }
+
+        private void AnalyzeSin()
+        {
+
+            int selectedRows = dataGridView_Events.SelectedRows.Count;
+
+            if (selectedRows != 1)
+            {
+                //MessageBox.Show("Select only one event!!!");
+                //return;
+            }
+
+            for (int r = 0; r < selectedRows; r++)
+            {
+
+                int selectedIndex = dataGridView_Events.SelectedRows[r].Index;
+                AcquisitionDataProcess_Data ActualEventData = List_EventsData[selectedIndex];
+
+                string resultName = "Event_" + ActualEventData.p_eventNum.ToString();
+                string fname = @"DataForAnalysis\Event_" + ActualEventData.p_eventNum.ToString() + ".txt";
+
+                SaveEventData(ActualEventData, fname);
+
+
+                string script = Environment.CurrentDirectory + @"\Scripts\sin_fit.py";
+                string file = Environment.CurrentDirectory + @"\" + fname;
+
+                ProcessStartInfo start = new ProcessStartInfo();
+                start.FileName = pyhonExecute;
+                start.Arguments = script + " " + file + " " + resultName;
+                start.CreateNoWindow = true;
+                start.UseShellExecute = false;
+                start.RedirectStandardOutput = true;
+                start.RedirectStandardError = true;
+
+                using (Process process = Process.Start(start))
+                {
+                    string errors = process.StandardError.ReadToEnd();
+                    string result = process.StandardOutput.ReadToEnd();
+
+                    //MessageBox.Show(errors);
+                    if (errors != string.Empty)
+                    {
+                        MessageBox.Show(errors, "Error");
+                    }
+
+                    else if (result != string.Empty)
+                    {
+                        MessageBox.Show(result);
+                    }
+
                 }
 
             }

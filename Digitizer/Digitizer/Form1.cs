@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 
 namespace Digitizer_ver1
@@ -29,7 +30,9 @@ namespace Digitizer_ver1
             AcqData.checkBox_EventsMaxCount = checkBox_EventsMaxCount;
             AcqData.numericUpDown_EventsMaxCount = numericUpDown_EventsMaxCount;
             AcqData.checkBox_EventsAutoLoad = checkBox_EventsAutoLoad;
-            AcqData.pictureBox_EventAnalyze = pictureBox_EventAnalyze;
+            AcqData.pictureBox_EventAdcAnalyze = pictureBox_EventAdcAnalyze;
+            AcqData.pictureBox_EventSinAnalyze = pictureBox_EventSinAnalyze;
+            AcqData.textBox_DataFilePath = textBox_DataFilePath;
 
             AcqData.SetAcquisitionDataProcess();
 
@@ -147,13 +150,22 @@ namespace Digitizer_ver1
             MultiRegistersSetting.CreateRegister("Clock_Switch", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Clock_Controler, Communication.eCommandCode.CMD_CONST_SET_Clock_Controler, RegistersSetting.eExtFileType.Non);
             MultiRegistersSetting.CreateRegister("EXT_Signals", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_ExtSignals, Communication.eCommandCode.CMD_CONST_SET_ExtSignals, RegistersSetting.eExtFileType.Non);
 
+
+            //Manage System
+            systemManage.groupBox_ManageActions = groupBox_ManageActions;
+            systemManage.SequenceStart = MultiConfigSequence.SequenceStart;
+            systemManage.InitActions();
+
+
             //system setting load
             sysSetting.SettingLoad();
 
 
             AcqControl.ReadSettingAndValues();
 
-           
+
+
+
         }
 
 
@@ -180,6 +192,7 @@ namespace Digitizer_ver1
         Reset_Control rst = new Reset_Control();
         AnalyzInCirc AnalyzInCirc = new AnalyzInCirc();
         ExtSignals extSignals = new ExtSignals();
+        SystemManage systemManage = new SystemManage();
 
         MultipleRegistersSetting MultiRegistersSetting = new MultipleRegistersSetting();
 
@@ -231,15 +244,15 @@ namespace Digitizer_ver1
 
 
 
-        private void ExecuteCommand()
+        private void ExecuteCommand(byte[] data)
         {
-            Communication.eCommandCode ID = communication.CommandID;
-            byte[] data = communication.CommandData;
+            Communication.eCommandCode ID = (Communication.eCommandCode)(data[0] & 0x7F);
+            //byte[] data = communication.CommandData;
 
             int int_ID = (int)ID;
 
 
-            label_Test.Text = int_ID.ToString("X2") + " " + data[0].ToString("X2") + " " + data[1].ToString("X2") + " " + data[2].ToString("X2");
+            label_Test.Text = int_ID.ToString("X2") + " " + data[1].ToString("X2") + " " + data[2].ToString("X2") + " " + data[3].ToString("X2");
 
             Updade_label_xRead((byte)ID, data[0], data[1], data[2]);
 
@@ -248,7 +261,7 @@ namespace Digitizer_ver1
             RegistersSetting RS = MultiRegistersSetting.GetRegister(ID);
             if(RS != null)
             {
-                RS.UpdateRegisters(data[0], data[1], data[2]);
+                RS.UpdateRegisters(data[1], data[2], data[3]);
             }
             
 
@@ -257,36 +270,36 @@ namespace Digitizer_ver1
 
 
                 case Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters:
-                    AcqControl.UpdateFromCommunication(data[0], data[1], data[2]);
+                    AcqControl.UpdateFromCommunication(data[1], data[2], data[3]);
                     break;
 
                 case Communication.eCommandCode.CMD_CONST_GET_GPIO:
-                    gpio.UpdateFromCommunication(data[0], data[1], data[2]);
+                    gpio.UpdateFromCommunication(data[1], data[2], data[3]);
                     break;
 
                 case Communication.eCommandCode.CMD_CONST_GET_Reset_Controler:
-                    rst.UpdateFromCommunication(data[0], data[1], data[2]);
+                    rst.UpdateFromCommunication(data[1], data[2], data[3]);
                     break;
 
                 case Communication.eCommandCode.CMD_CONST_GET_CommunicationControl:
-                    communication.communicationControl.UpdateFromCommunication(data[0], data[1], data[2]);
+                    communication.communicationControl.UpdateFromCommunication(data[1], data[2], data[3]);
                     break;
 
                 case Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc:
-                    AnalyzInCirc.UpdateFromCommunication(data[0], data[1], data[2]);
+                    AnalyzInCirc.UpdateFromCommunication(data[1], data[2], data[3]);
                     break;
 
                 case Communication.eCommandCode.CMD_CONST_GET_ExtSignals:
-                    extSignals.UpdateFromCommunication(data[0], data[1], data[2]);
+                    extSignals.UpdateFromCommunication(data[1], data[2], data[3]);
                     break;
 
 
             }
         }
 
-        private void ExecuteData()
+        private void ExecuteData(byte[] data)
         {
-            byte[] data = communication.ReceivedData;
+            //byte[] data = communication.ReceivedData;
 
             AcqData.ExecuteData(data);
         }
@@ -506,6 +519,11 @@ namespace Digitizer_ver1
             AcqData.AnalyzeAdcStart();
         }
 
+        private void button_EventsAnalyzeSIN_Click(object sender, EventArgs e)
+        {
+            AcqData.AnalyzeSinStart();
+        }
+
         private void button_AnotherForm_Click(object sender, EventArgs e)
         {
 
@@ -526,6 +544,21 @@ namespace Digitizer_ver1
         private void button_EventsLoadResult_Click(object sender, EventArgs e)
         {
             AcqData.LoadEventResults();
+        }
+
+        private void button_EventsClear_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_EventsDeleteResults_Click(object sender, EventArgs e)
+        {
+            AcqData.DeleteResultsFiles();
+        }
+
+        private void button_OpenDataFile_Click(object sender, EventArgs e)
+        {
+            AcqData.AssignDataFile();
         }
 
         //-------------------------------------------------------------------------------------------------------------------
@@ -743,7 +776,7 @@ namespace Digitizer_ver1
 
         
         //-------------------------------------------------------------------------------------------------------------------
-        //quick setup
+        //System Manage
         //-------------------------------------------------------------------------------------------------------------------
 
         private void numericUpDown_QS_Seed1_ValueChanged(object sender, EventArgs e)
@@ -1110,7 +1143,7 @@ namespace Digitizer_ver1
             if (SystemInfo_ReadGetVal("Clock_Switch", 0x5) == 3) LogicRefPllsLocked = true;
 
 
-            if (_validCounter < 2) 
+            if (_validCounter < 1) 
             {
                 _validCounter++;
                 allValidMask = false;
@@ -1136,15 +1169,19 @@ namespace Digitizer_ver1
 
         }
 
+
+
         private void button_ExtSignalsWriteSetting_Click(object sender, EventArgs e)
         {
-            extSignals.UpdateInputComboBox(2, 5);
-            extSignals.UpdateOutputComboBox(4, 10);
+            //extSignals.UpdateInputComboBox(2, 5);
+            //extSignals.UpdateOutputComboBox(4, 10);
         }
 
         private void button_ExtSignalsReadSetting_Click(object sender, EventArgs e)
         {
             extSignals.ReadSetting();
         }
+
+
     }
 }

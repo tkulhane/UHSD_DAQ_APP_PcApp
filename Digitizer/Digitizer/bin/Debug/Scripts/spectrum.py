@@ -261,7 +261,7 @@ Noise floor      : {adc_nfloor:.4} dBFS
     plt.title(name)
 
 
-    path = "Results\\"
+    path = "Results_ADC\\"
 
     plt.savefig(path + name)
     # Show the result

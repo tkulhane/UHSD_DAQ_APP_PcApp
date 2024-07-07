@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -73,7 +74,7 @@ namespace Digitizer_ver1
             pcie
         };
 
-        public delegate void efunction();
+        public delegate void efunction(byte[] data);
         public efunction ExecuteData;
         public efunction ExecuteCommand;
         
@@ -104,10 +105,14 @@ namespace Digitizer_ver1
 
         public byte[] ReceivedData = new byte[4];
 
-        Thread ThreadOfDataRead;
+        Task TaskOfDataRead;
         bool ThreadOfDataRead_stop = false;
 
-        
+        Task TaskOfReadExecute_CMD;
+        Task TaskOfReadExecute_Data;
+
+        ConcurrentQueue<byte[]> Queue_CMD = new ConcurrentQueue<byte[]>();
+        ConcurrentQueue<byte[]> Queue_Data = new ConcurrentQueue<byte[]>();
 
 
         public Communication()
@@ -397,7 +402,8 @@ namespace Digitizer_ver1
 
             if ((data[0] & 0x80) >> 7 == 0) 
             {
-                ExecuteData();
+                ExecuteData(data);
+                
             }
             else 
             {
@@ -410,11 +416,11 @@ namespace Digitizer_ver1
                 if(CommandID == eCommandCode.CMD_CONST_EVENT_HEAD || CommandID == eCommandCode.CMD_CONST_EVENT_TAIL || 
                     CommandID == eCommandCode.CMD_CONST_PACKET_HEAD || CommandID == eCommandCode.CMD_CONST_PACKET_TAIL) 
                 {
-                    ExecuteData();
+                    ExecuteData(data);
                     return;
                 }
 
-                ExecuteCommand();
+                ExecuteCommand(data);
             }
 
         }
@@ -444,7 +450,8 @@ namespace Digitizer_ver1
 
                 if ((data[0] & 0x80) >> 7 == 0)
                 {
-                    ExecuteData();
+                    //ExecuteData();
+                    Queue_Data.Enqueue(data);
                 }
                 else
                 {
@@ -457,12 +464,13 @@ namespace Digitizer_ver1
                     if (CommandID == eCommandCode.CMD_CONST_EVENT_HEAD || CommandID == eCommandCode.CMD_CONST_EVENT_TAIL ||
                         CommandID == eCommandCode.CMD_CONST_PACKET_HEAD || CommandID == eCommandCode.CMD_CONST_PACKET_TAIL)
                     {
-                        ExecuteData();
-                        
+                        //ExecuteData();
+                        Queue_Data.Enqueue(data);
                     }
                     else 
                     {
-                        ExecuteCommand();
+                        //ExecuteCommand();
+                        Queue_CMD.Enqueue(data);
                     }
 
                     
@@ -472,21 +480,69 @@ namespace Digitizer_ver1
 
         }
 
+        
+        private void ReadExecute_CMD() 
+        {
+            byte[] data = new byte[4];
+
+            while (!ThreadOfDataRead_stop)
+            {
+                bool isSuccessful = Queue_CMD.TryDequeue(out data);
+                if (isSuccessful)
+                {
+                    ExecuteCommand(data);
+                }
+            }
+        }
+
+        private void ReadExecute_Data()
+        {
+            byte[] data = new byte[4];
+
+            while (!ThreadOfDataRead_stop)
+            {
+                bool isSuccessful = Queue_Data.TryDequeue(out data);
+                if (isSuccessful)
+                {
+                    ExecuteData(data);
+                }
+            }
+        }
+
+
         private void StartDataRead() 
         {
             if (SelectedType == eCommunicationType.non) return;
-            
-            ThreadOfDataRead = new Thread(this.ReadData_USB);
+
+            TaskOfDataRead = new Task(this.ReadData_USB);
             ThreadOfDataRead_stop = false;
-            ThreadOfDataRead.Start();
+            TaskOfDataRead.Start();
+
+            TaskOfReadExecute_CMD = new Task(this.ReadExecute_CMD);
+            TaskOfReadExecute_Data = new Task(this.ReadExecute_Data);
+            TaskOfReadExecute_CMD.Start();
+            TaskOfReadExecute_Data.Start();
         }
 
         private void StopDataRead() 
         {
-            if (ThreadOfDataRead == null) return;
-
             ThreadOfDataRead_stop = true;
-            ThreadOfDataRead = null;
+
+            if (TaskOfDataRead != null) 
+            {
+                TaskOfDataRead = null;
+            }
+
+            if (TaskOfReadExecute_CMD != null)
+            {
+                TaskOfReadExecute_CMD = null;
+            }
+
+            if (TaskOfReadExecute_Data != null)
+            {
+                TaskOfReadExecute_Data = null;
+            }
+
         }
 
         private void EnableDisableControls(bool state) 

@@ -39,6 +39,7 @@
     <Reference Include="FTD3XX_NET">
       <HintPath>..\lib\FTD3XX_NET.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
@@ -92,6 +93,8 @@
     <Compile Include="RegistersSetting.cs" />
     <Compile Include="RegistersSetting_Data.cs" />
     <Compile Include="Reset_Control.cs" />
+    <Compile Include="SystemManage.cs" />
+    <Compile Include="SystemManage_ActionsData.cs" />
     <Compile Include="SystemSetting.cs" />
     <Compile Include="SystemSetting_RegistersFileData.cs" />
     <Compile Include="UART_Communication.cs" />

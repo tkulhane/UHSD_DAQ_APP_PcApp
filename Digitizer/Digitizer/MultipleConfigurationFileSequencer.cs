@@ -321,6 +321,19 @@ namespace Digitizer_ver1
         */
 
 
+        public void SequenceStart(string name) 
+        {
+            foreach (MultipleConfigurationFileSequencer_Data x in List_MultipleConfigFiles)
+            {
+
+                if (x.p_Name.Equals(name))
+                {
+                    x._ConfigSequencer.ConfigSequenceStart();
+                }
+
+            }
+        }
+
         public int AnotherSequenceAction(eAnotherSequenceActions action, string Value)
         {
 
