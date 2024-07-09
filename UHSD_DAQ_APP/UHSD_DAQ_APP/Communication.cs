@@ -435,6 +435,7 @@ namespace Digitizer_ver1
 
                 if (usb.BytesInqueue() < data.Length)
                 {
+                    TaskOfDataRead.Wait(1);
                     continue;
                 }
                 
@@ -487,12 +488,19 @@ namespace Digitizer_ver1
 
             while (!ThreadOfDataRead_stop)
             {
+                if (!(Queue_CMD.Count > 0))
+                {
+                    TaskOfReadExecute_Data.Wait(10);
+                    continue;
+                }
+
                 bool isSuccessful = Queue_CMD.TryDequeue(out data);
                 if (isSuccessful)
                 {
                     ExecuteCommand(data);
                 }
             }
+
         }
 
         private void ReadExecute_Data()
@@ -501,6 +509,12 @@ namespace Digitizer_ver1
 
             while (!ThreadOfDataRead_stop)
             {
+                if (!(Queue_Data.Count > 0))
+                {
+                    TaskOfReadExecute_Data.Wait(1);
+                    continue;
+                }
+
                 bool isSuccessful = Queue_Data.TryDequeue(out data);
                 if (isSuccessful)
                 {

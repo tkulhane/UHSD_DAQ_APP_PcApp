@@ -5,16 +5,16 @@ Freq. resolution : 1.563e+06 Hz
 Window           : hanning
 
 ======= Harmonics ======
-1st @ 19990.033 kHz : -1.69 dBFS
-2nd @ 39980.066 kHz : -34.23 dBc
-3rd @ 59970.099 kHz : -54.02 dBc
-4th @ 79960.132 kHz : -54.55 dBc
-5th @ 99950.165 kHz : -57.61 dBc
+1st @ 19990.097 kHz : -1.69 dBFS
+2nd @ 39980.194 kHz : -34.25 dBc
+3rd @ 59970.291 kHz : -53.32 dBc
+4th @ 79960.389 kHz : -55.94 dBc
+5th @ 99950.486 kHz : -55.40 dBc
 
 ===== Input signal =====
 Frequency        : 1.999e+07 Hz
 Amplitude (Vpeak): 0.4118 V
-DC offset        : 0.5028 V
+DC offset        : 0.5026 V
 
 ========= ADC ==========
 Sampling freq.   : 3.2e+09 Hz
@@ -23,9 +23,9 @@ Reference volt.  : 1.0 V
 Bits             : 12 bits
 Quants           : 4096
 Quant            : 0.2441 mV
-SNR              : 47.98 dB
-SINAD            : 47.24 dB
+SNR              : 48.42 dB
+SINAD            : 47.32 dB
 THD              : 34.13 dB
-ENOB             : 7.835 bits
-SFDR             : -49.59 dBc
-Noise floor      : -78.08 dBFS
+ENOB             : 7.849 bits
+SFDR             : -50.08 dBc
+Noise floor      : -78.52 dBFS

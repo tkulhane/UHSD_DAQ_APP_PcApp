@@ -433,7 +433,7 @@ namespace Digitizer_ver1
                 AcquisitionDataProcess_Data ActualEventData = List_EventsData[selectedIndex];
 
                 chart_data.Series.Add(r.ToString());
-                chart_data.Series[r.ToString()].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+                chart_data.Series[r.ToString()].ChartType = SeriesChartType.Line;
                 chart_data.Series[r.ToString()].LegendText = ActualEventData.p_eventNum.ToString();
                 chart_data.Series[r.ToString()].BorderWidth = 3;
 

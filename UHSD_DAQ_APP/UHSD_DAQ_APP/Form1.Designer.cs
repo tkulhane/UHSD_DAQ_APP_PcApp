@@ -30,9 +30,9 @@ namespace Digitizer_ver1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.checkBox_xListen2 = new System.Windows.Forms.CheckBox();
             this.checkBox_xListen3 = new System.Windows.Forms.CheckBox();
@@ -222,6 +222,8 @@ namespace Digitizer_ver1
             this.chart_EventTime = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabPage_AnalyzeAdcPicture = new System.Windows.Forms.TabPage();
             this.pictureBox_EventAdcAnalyze = new System.Windows.Forms.PictureBox();
+            this.tabPage_AnalyzeSinPicture = new System.Windows.Forms.TabPage();
+            this.pictureBox_EventSinAnalyze = new System.Windows.Forms.PictureBox();
             this.tabGpio = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridView_GpioOutputs = new System.Windows.Forms.DataGridView();
@@ -328,8 +330,6 @@ namespace Digitizer_ver1
             this.button_ExtSignalsReadSetting = new System.Windows.Forms.Button();
             this.timerForm = new System.Windows.Forms.Timer(this.components);
             this.timerInfo = new System.Windows.Forms.Timer(this.components);
-            this.tabPage_AnalyzeSinPicture = new System.Windows.Forms.TabPage();
-            this.pictureBox_EventSinAnalyze = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.tabRegisters.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -370,6 +370,8 @@ namespace Digitizer_ver1
             ((System.ComponentModel.ISupportInitialize)(this.chart_EventTime)).BeginInit();
             this.tabPage_AnalyzeAdcPicture.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_EventAdcAnalyze)).BeginInit();
+            this.tabPage_AnalyzeSinPicture.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_EventSinAnalyze)).BeginInit();
             this.tabGpio.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_GpioOutputs)).BeginInit();
@@ -407,8 +409,6 @@ namespace Digitizer_ver1
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ExtSignalsOutputs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ExtSignalsInputs)).BeginInit();
             this.panel11.SuspendLayout();
-            this.tabPage_AnalyzeSinPicture.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_EventSinAnalyze)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -427,13 +427,13 @@ namespace Digitizer_ver1
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1188, 39);
+            this.panel1.Size = new System.Drawing.Size(1184, 39);
             this.panel1.TabIndex = 0;
             // 
             // checkBox_xListen2
             // 
             this.checkBox_xListen2.AutoSize = true;
-            this.checkBox_xListen2.Location = new System.Drawing.Point(1146, 12);
+            this.checkBox_xListen2.Location = new System.Drawing.Point(1136, 12);
             this.checkBox_xListen2.Name = "checkBox_xListen2";
             this.checkBox_xListen2.Size = new System.Drawing.Size(38, 17);
             this.checkBox_xListen2.TabIndex = 32;
@@ -443,7 +443,7 @@ namespace Digitizer_ver1
             // checkBox_xListen3
             // 
             this.checkBox_xListen3.AutoSize = true;
-            this.checkBox_xListen3.Location = new System.Drawing.Point(1107, 12);
+            this.checkBox_xListen3.Location = new System.Drawing.Point(1098, 12);
             this.checkBox_xListen3.Name = "checkBox_xListen3";
             this.checkBox_xListen3.Size = new System.Drawing.Size(38, 17);
             this.checkBox_xListen3.TabIndex = 31;
@@ -534,7 +534,7 @@ namespace Digitizer_ver1
             this.tabRegisters.Margin = new System.Windows.Forms.Padding(2);
             this.tabRegisters.Name = "tabRegisters";
             this.tabRegisters.Padding = new System.Windows.Forms.Padding(2);
-            this.tabRegisters.Size = new System.Drawing.Size(1180, 546);
+            this.tabRegisters.Size = new System.Drawing.Size(1176, 546);
             this.tabRegisters.TabIndex = 4;
             this.tabRegisters.Text = "Registers";
             this.tabRegisters.UseVisualStyleBackColor = true;
@@ -545,7 +545,7 @@ namespace Digitizer_ver1
             this.tabControl_RegistersSetting.Location = new System.Drawing.Point(266, 2);
             this.tabControl_RegistersSetting.Name = "tabControl_RegistersSetting";
             this.tabControl_RegistersSetting.SelectedIndex = 0;
-            this.tabControl_RegistersSetting.Size = new System.Drawing.Size(912, 542);
+            this.tabControl_RegistersSetting.Size = new System.Drawing.Size(908, 542);
             this.tabControl_RegistersSetting.TabIndex = 2;
             // 
             // panel3
@@ -1090,7 +1090,7 @@ namespace Digitizer_ver1
             this.tabControl_MAIN.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl_MAIN.Name = "tabControl_MAIN";
             this.tabControl_MAIN.SelectedIndex = 0;
-            this.tabControl_MAIN.Size = new System.Drawing.Size(1188, 572);
+            this.tabControl_MAIN.Size = new System.Drawing.Size(1184, 572);
             this.tabControl_MAIN.TabIndex = 1;
             this.tabControl_MAIN.SelectedIndexChanged += new System.EventHandler(this.tabControl_MAIN_SelectedIndexChanged);
             // 
@@ -1102,7 +1102,7 @@ namespace Digitizer_ver1
             this.tabManage.Controls.Add(this.groupBox_LMXSync);
             this.tabManage.Location = new System.Drawing.Point(4, 22);
             this.tabManage.Name = "tabManage";
-            this.tabManage.Size = new System.Drawing.Size(1180, 546);
+            this.tabManage.Size = new System.Drawing.Size(1176, 546);
             this.tabManage.TabIndex = 11;
             this.tabManage.Text = "Manage";
             this.tabManage.UseVisualStyleBackColor = true;
@@ -1421,7 +1421,7 @@ namespace Digitizer_ver1
             // 
             this.listBox_MainLog.Dock = System.Windows.Forms.DockStyle.Right;
             this.listBox_MainLog.FormattingEnabled = true;
-            this.listBox_MainLog.Location = new System.Drawing.Point(922, 0);
+            this.listBox_MainLog.Location = new System.Drawing.Point(918, 0);
             this.listBox_MainLog.Name = "listBox_MainLog";
             this.listBox_MainLog.Size = new System.Drawing.Size(258, 546);
             this.listBox_MainLog.TabIndex = 1;
@@ -1704,7 +1704,7 @@ namespace Digitizer_ver1
             this.tabMeasurement_Setting.Controls.Add(this.groupBox3);
             this.tabMeasurement_Setting.Location = new System.Drawing.Point(4, 22);
             this.tabMeasurement_Setting.Name = "tabMeasurement_Setting";
-            this.tabMeasurement_Setting.Size = new System.Drawing.Size(1180, 546);
+            this.tabMeasurement_Setting.Size = new System.Drawing.Size(1176, 546);
             this.tabMeasurement_Setting.TabIndex = 7;
             this.tabMeasurement_Setting.Text = "Measurement Settings";
             this.tabMeasurement_Setting.UseVisualStyleBackColor = true;
@@ -2273,7 +2273,7 @@ namespace Digitizer_ver1
             this.tabMeasurementData.Margin = new System.Windows.Forms.Padding(2);
             this.tabMeasurementData.Name = "tabMeasurementData";
             this.tabMeasurementData.Padding = new System.Windows.Forms.Padding(2);
-            this.tabMeasurementData.Size = new System.Drawing.Size(1180, 546);
+            this.tabMeasurementData.Size = new System.Drawing.Size(1176, 546);
             this.tabMeasurementData.TabIndex = 1;
             this.tabMeasurementData.Text = "Measurement Data";
             this.tabMeasurementData.UseVisualStyleBackColor = true;
@@ -2294,7 +2294,7 @@ namespace Digitizer_ver1
             this.tableLayoutPanel_MeasurementData.RowCount = 2;
             this.tableLayoutPanel_MeasurementData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel_MeasurementData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39F));
-            this.tableLayoutPanel_MeasurementData.Size = new System.Drawing.Size(1176, 542);
+            this.tableLayoutPanel_MeasurementData.Size = new System.Drawing.Size(1172, 542);
             this.tableLayoutPanel_MeasurementData.TabIndex = 20;
             // 
             // panel10
@@ -2303,7 +2303,7 @@ namespace Digitizer_ver1
             this.panel10.Controls.Add(this.numericUpDown_EventsMaxCount);
             this.panel10.Controls.Add(this.checkBox_EventsMaxCount);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel10.Location = new System.Drawing.Point(942, 503);
+            this.panel10.Location = new System.Drawing.Point(938, 503);
             this.panel10.Margin = new System.Windows.Forms.Padding(0);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(234, 39);
@@ -2343,7 +2343,7 @@ namespace Digitizer_ver1
             // 
             this.dataGridView_events.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_events.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView_events.Location = new System.Drawing.Point(945, 3);
+            this.dataGridView_events.Location = new System.Drawing.Point(941, 3);
             this.dataGridView_events.Name = "dataGridView_events";
             this.dataGridView_events.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView_events.ScrollBars = System.Windows.Forms.ScrollBars.None;
@@ -2362,13 +2362,13 @@ namespace Digitizer_ver1
             this.panel9.Location = new System.Drawing.Point(2, 503);
             this.panel9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(938, 39);
+            this.panel9.Size = new System.Drawing.Size(934, 39);
             this.panel9.TabIndex = 22;
             // 
             // button_EventsDeleteResults
             // 
             this.button_EventsDeleteResults.Dock = System.Windows.Forms.DockStyle.Right;
-            this.button_EventsDeleteResults.Location = new System.Drawing.Point(674, 0);
+            this.button_EventsDeleteResults.Location = new System.Drawing.Point(670, 0);
             this.button_EventsDeleteResults.Name = "button_EventsDeleteResults";
             this.button_EventsDeleteResults.Size = new System.Drawing.Size(88, 39);
             this.button_EventsDeleteResults.TabIndex = 25;
@@ -2390,7 +2390,7 @@ namespace Digitizer_ver1
             // button_EventsClear
             // 
             this.button_EventsClear.Dock = System.Windows.Forms.DockStyle.Right;
-            this.button_EventsClear.Location = new System.Drawing.Point(762, 0);
+            this.button_EventsClear.Location = new System.Drawing.Point(758, 0);
             this.button_EventsClear.Name = "button_EventsClear";
             this.button_EventsClear.Size = new System.Drawing.Size(88, 39);
             this.button_EventsClear.TabIndex = 23;
@@ -2412,7 +2412,7 @@ namespace Digitizer_ver1
             // button_EventsListClear
             // 
             this.button_EventsListClear.Dock = System.Windows.Forms.DockStyle.Right;
-            this.button_EventsListClear.Location = new System.Drawing.Point(850, 0);
+            this.button_EventsListClear.Location = new System.Drawing.Point(846, 0);
             this.button_EventsListClear.Name = "button_EventsListClear";
             this.button_EventsListClear.Size = new System.Drawing.Size(88, 39);
             this.button_EventsListClear.TabIndex = 19;
@@ -2437,7 +2437,7 @@ namespace Digitizer_ver1
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(3, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(936, 497);
+            this.panel4.Size = new System.Drawing.Size(932, 497);
             this.panel4.TabIndex = 21;
             // 
             // tableLayoutPanel2
@@ -2452,7 +2452,7 @@ namespace Digitizer_ver1
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(936, 497);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(932, 497);
             this.tableLayoutPanel2.TabIndex = 24;
             // 
             // panel8
@@ -2464,7 +2464,7 @@ namespace Digitizer_ver1
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel8.Location = new System.Drawing.Point(3, 3);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(930, 37);
+            this.panel8.Size = new System.Drawing.Size(926, 37);
             this.panel8.TabIndex = 22;
             // 
             // button_EventsAnalyzeSIN
@@ -2520,7 +2520,7 @@ namespace Digitizer_ver1
             this.tabControl_Events.Name = "tabControl_Events";
             this.tabControl_Events.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tabControl_Events.SelectedIndex = 0;
-            this.tabControl_Events.Size = new System.Drawing.Size(936, 454);
+            this.tabControl_Events.Size = new System.Drawing.Size(932, 454);
             this.tabControl_Events.TabIndex = 23;
             // 
             // tabPage_TimeChart
@@ -2528,7 +2528,7 @@ namespace Digitizer_ver1
             this.tabPage_TimeChart.Controls.Add(this.chart_EventTime);
             this.tabPage_TimeChart.Location = new System.Drawing.Point(23, 4);
             this.tabPage_TimeChart.Name = "tabPage_TimeChart";
-            this.tabPage_TimeChart.Size = new System.Drawing.Size(909, 446);
+            this.tabPage_TimeChart.Size = new System.Drawing.Size(905, 446);
             this.tabPage_TimeChart.TabIndex = 0;
             this.tabPage_TimeChart.Text = "Time Chart";
             this.tabPage_TimeChart.UseVisualStyleBackColor = true;
@@ -2537,25 +2537,25 @@ namespace Digitizer_ver1
             // 
             this.chart_EventTime.BorderlineColor = System.Drawing.Color.Black;
             this.chart_EventTime.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea1.Name = "ChartArea1";
-            this.chart_EventTime.ChartAreas.Add(chartArea1);
+            chartArea2.Name = "ChartArea1";
+            this.chart_EventTime.ChartAreas.Add(chartArea2);
             this.chart_EventTime.Cursor = System.Windows.Forms.Cursors.Default;
             this.chart_EventTime.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Alignment = System.Drawing.StringAlignment.Far;
-            legend1.DockedToChartArea = "ChartArea1";
-            legend1.Name = "Legend1";
-            this.chart_EventTime.Legends.Add(legend1);
+            legend2.Alignment = System.Drawing.StringAlignment.Far;
+            legend2.DockedToChartArea = "ChartArea1";
+            legend2.Name = "Legend1";
+            this.chart_EventTime.Legends.Add(legend2);
             this.chart_EventTime.Location = new System.Drawing.Point(0, 0);
             this.chart_EventTime.Margin = new System.Windows.Forms.Padding(2);
             this.chart_EventTime.Name = "chart_EventTime";
-            series1.BorderWidth = 2;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.IsVisibleInLegend = false;
-            series1.Legend = "Legend1";
-            series1.Name = "Data";
-            this.chart_EventTime.Series.Add(series1);
-            this.chart_EventTime.Size = new System.Drawing.Size(909, 446);
+            series2.BorderWidth = 2;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.IsVisibleInLegend = false;
+            series2.Legend = "Legend1";
+            series2.Name = "Data";
+            this.chart_EventTime.Series.Add(series2);
+            this.chart_EventTime.Size = new System.Drawing.Size(905, 446);
             this.chart_EventTime.TabIndex = 21;
             this.chart_EventTime.Text = "chart_data";
             this.chart_EventTime.Click += new System.EventHandler(this.chart_EventTime_Click);
@@ -2581,6 +2581,27 @@ namespace Digitizer_ver1
             this.pictureBox_EventAdcAnalyze.TabIndex = 0;
             this.pictureBox_EventAdcAnalyze.TabStop = false;
             this.pictureBox_EventAdcAnalyze.Click += new System.EventHandler(this.pictureBox_EventAnalyze_Click);
+            // 
+            // tabPage_AnalyzeSinPicture
+            // 
+            this.tabPage_AnalyzeSinPicture.Controls.Add(this.pictureBox_EventSinAnalyze);
+            this.tabPage_AnalyzeSinPicture.Location = new System.Drawing.Point(23, 4);
+            this.tabPage_AnalyzeSinPicture.Name = "tabPage_AnalyzeSinPicture";
+            this.tabPage_AnalyzeSinPicture.Size = new System.Drawing.Size(909, 446);
+            this.tabPage_AnalyzeSinPicture.TabIndex = 2;
+            this.tabPage_AnalyzeSinPicture.Text = "Analyze SIN Chart";
+            this.tabPage_AnalyzeSinPicture.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox_EventSinAnalyze
+            // 
+            this.pictureBox_EventSinAnalyze.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox_EventSinAnalyze.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox_EventSinAnalyze.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox_EventSinAnalyze.Name = "pictureBox_EventSinAnalyze";
+            this.pictureBox_EventSinAnalyze.Size = new System.Drawing.Size(909, 446);
+            this.pictureBox_EventSinAnalyze.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox_EventSinAnalyze.TabIndex = 1;
+            this.pictureBox_EventSinAnalyze.TabStop = false;
             // 
             // tabGpio
             // 
@@ -2685,7 +2706,7 @@ namespace Digitizer_ver1
             this.tabReset.Controls.Add(this.panel6);
             this.tabReset.Location = new System.Drawing.Point(4, 22);
             this.tabReset.Name = "tabReset";
-            this.tabReset.Size = new System.Drawing.Size(1180, 546);
+            this.tabReset.Size = new System.Drawing.Size(1176, 546);
             this.tabReset.TabIndex = 10;
             this.tabReset.Text = "RESETs";
             this.tabReset.UseVisualStyleBackColor = true;
@@ -2697,7 +2718,7 @@ namespace Digitizer_ver1
             this.dataGridView_Resets.Location = new System.Drawing.Point(446, 21);
             this.dataGridView_Resets.Name = "dataGridView_Resets";
             this.dataGridView_Resets.ReadOnly = true;
-            this.dataGridView_Resets.Size = new System.Drawing.Size(734, 525);
+            this.dataGridView_Resets.Size = new System.Drawing.Size(730, 525);
             this.dataGridView_Resets.TabIndex = 8;
             this.dataGridView_Resets.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Resets_CellContentClick);
             // 
@@ -3795,32 +3816,11 @@ namespace Digitizer_ver1
             this.timerInfo.Interval = 500;
             this.timerInfo.Tick += new System.EventHandler(this.timerInfo_Tick);
             // 
-            // tabPage_AnalyzeSinPicture
-            // 
-            this.tabPage_AnalyzeSinPicture.Controls.Add(this.pictureBox_EventSinAnalyze);
-            this.tabPage_AnalyzeSinPicture.Location = new System.Drawing.Point(23, 4);
-            this.tabPage_AnalyzeSinPicture.Name = "tabPage_AnalyzeSinPicture";
-            this.tabPage_AnalyzeSinPicture.Size = new System.Drawing.Size(909, 446);
-            this.tabPage_AnalyzeSinPicture.TabIndex = 2;
-            this.tabPage_AnalyzeSinPicture.Text = "Analyze SIN Chart";
-            this.tabPage_AnalyzeSinPicture.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox_EventSinAnalyze
-            // 
-            this.pictureBox_EventSinAnalyze.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox_EventSinAnalyze.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox_EventSinAnalyze.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox_EventSinAnalyze.Name = "pictureBox_EventSinAnalyze";
-            this.pictureBox_EventSinAnalyze.Size = new System.Drawing.Size(909, 446);
-            this.pictureBox_EventSinAnalyze.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox_EventSinAnalyze.TabIndex = 1;
-            this.pictureBox_EventSinAnalyze.TabStop = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1188, 611);
+            this.ClientSize = new System.Drawing.Size(1184, 611);
             this.Controls.Add(this.tabControl_MAIN);
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -3883,6 +3883,8 @@ namespace Digitizer_ver1
             ((System.ComponentModel.ISupportInitialize)(this.chart_EventTime)).EndInit();
             this.tabPage_AnalyzeAdcPicture.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_EventAdcAnalyze)).EndInit();
+            this.tabPage_AnalyzeSinPicture.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_EventSinAnalyze)).EndInit();
             this.tabGpio.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -3929,8 +3931,6 @@ namespace Digitizer_ver1
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ExtSignalsOutputs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ExtSignalsInputs)).EndInit();
             this.panel11.ResumeLayout(false);
-            this.tabPage_AnalyzeSinPicture.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_EventSinAnalyze)).EndInit();
             this.ResumeLayout(false);
 
         }
