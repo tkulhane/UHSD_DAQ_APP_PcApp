@@ -62,6 +62,9 @@ namespace Digitizer_ver1
             WriteSetting();
             WriteSetting();
             ReadSetting();
+
+            ActivityErrorDelayed_Counter = 0;
+            ActivityError = false;
         }
 
         public void WriteSetting() 
@@ -198,7 +201,7 @@ namespace Digitizer_ver1
             if(!(Last_ActivityMessage_Receive[0] == Last_ActivityMessage_Send[0] && Last_ActivityMessage_Receive[1] == Last_ActivityMessage_Send[1])) //nejsou stejne 
             {
                 ActivityError = true;
-                ActivityErrorDelayed_Counter += 50;
+                ActivityErrorDelayed_Counter += 10;
 
                 /*
                 if(Last_ActivityMessage_Receive[0] != Last_ActivityMessage_Receive[1]) 

@@ -227,7 +227,7 @@ namespace Digitizer_ver1
                     logErr += " L=" + frameOrder_Last.ToString();
                 }
 
-                if (frameOrder == frameOrder_Last)
+                if (frameOrder == frameOrder_Last && FrameInPacketCounter != 0)
                 {
                     //frame ma stejne poradi jako minuly - chyby ToDo: vyresit proc se to deje....
                     BlockSaving = true;

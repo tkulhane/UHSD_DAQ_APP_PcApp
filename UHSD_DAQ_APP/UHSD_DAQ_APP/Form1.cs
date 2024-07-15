@@ -217,13 +217,12 @@ namespace Digitizer_ver1
             else
                 label_comState.Text = "OK";
 
+            label_errorCount.Text = communication.communicationControl.ActivityErrorDelayed_Counter.ToString();
 
             label_RecvBytes.Text = communication.USB_RecvBytes().ToString();
             label_InQ.Text = communication.USB_InQ().ToString();
+            
             label_dataErrors.Text = AcqData.ErrorCounter.ToString();
-
-
-
 
 
         }
@@ -1174,8 +1173,7 @@ namespace Digitizer_ver1
 
         private void button_ExtSignalsWriteSetting_Click(object sender, EventArgs e)
         {
-            //extSignals.UpdateInputComboBox(2, 5);
-            //extSignals.UpdateOutputComboBox(4, 10);
+            extSignals.WriteAllSetting();
         }
 
         private void button_ExtSignalsReadSetting_Click(object sender, EventArgs e)

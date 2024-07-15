@@ -11,7 +11,7 @@ namespace Digitizer_ver1
     class ExtSignals
     {
 
-        const int NumOfPorts = 10;
+        const int NumOfPorts = 14;
         const int NumOfInputsSignals = 32;
 
 
@@ -42,12 +42,6 @@ namespace Digitizer_ver1
                 new ExtSignals_Data() {NUM = 4, SIG = "CLK_SRC_Ref"},
                 new ExtSignals_Data() {NUM = 5, SIG = "CLK_HMC"},
 
-                new ExtSignals_Data() {NUM = 6, SIG = "FTDI_nTXE"},
-                new ExtSignals_Data() {NUM = 7, SIG = "FTDI_nWR"},
-
-                new ExtSignals_Data() {NUM = 8, SIG = "Diag_0"},
-                new ExtSignals_Data() {NUM = 9, SIG = "Diag_1"},
-
                 new ExtSignals_Data() {NUM = 10, SIG = "ACQ_Enable_Out"},
                 new ExtSignals_Data() {NUM = 11, SIG = "ACQ_Trigger_Out"},
                 new ExtSignals_Data() {NUM = 12, SIG = "ACQ_Run_Out"},
@@ -65,7 +59,17 @@ namespace Digitizer_ver1
                 new ExtSignals_Data() {NUM = 28, SIG = "GPO-0"},
                 new ExtSignals_Data() {NUM = 29, SIG = "GPO-1"},
                 new ExtSignals_Data() {NUM = 30, SIG = "GPO-2"},
-                new ExtSignals_Data() {NUM = 31, SIG = "GPO-3"}
+                new ExtSignals_Data() {NUM = 31, SIG = "GPO-3"},
+
+
+                new ExtSignals_Data() {NUM = 6, SIG = "_Diag_0"},
+                new ExtSignals_Data() {NUM = 7, SIG = "_Diag_1"},
+                new ExtSignals_Data() {NUM = 8, SIG = "_Diag_2"},
+                new ExtSignals_Data() {NUM = 9, SIG = "_Diag_3"},
+
+                new ExtSignals_Data() {NUM = 17, SIG = "_Diag-Builder_Enable"},
+                new ExtSignals_Data() {NUM = 18, SIG = "_Diag-Data_Fifo_Empty"},
+                new ExtSignals_Data() {NUM = 19, SIG = "_Diag-Data_Fifo_Read"}
 
 
             };
@@ -139,16 +143,26 @@ namespace Digitizer_ver1
 
         private void DataGrid_Inputs_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
+            WriteInputsSetting(e.RowIndex, e.ColumnIndex);
+        }
+
+        private void DataGrid_Outputs_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            WriteOutputsSetting(e.RowIndex, e.ColumnIndex);
+        }
+
+        public void WriteInputsSetting(int row, int cIndex) 
+        {
             int index_comboBox = DataGrid_Inputs.Columns["comboBox_ExtSignalsPort"].Index;
 
-            int row = e.RowIndex;
+            //int row = e.RowIndex;
 
-            if (e.ColumnIndex == index_comboBox)
+            if (cIndex == index_comboBox)
             {
                 int selectedNum;
-                int.TryParse(DataGrid_Inputs.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString(),out selectedNum);
+                int.TryParse(DataGrid_Inputs.Rows[row].Cells[cIndex].Value.ToString(), out selectedNum);
 
-                for(int i = 0;i< List_ExtSignals_Inputs.Count; i++) 
+                for (int i = 0; i < List_ExtSignals_Inputs.Count; i++)
                 {
                     if (i.Equals(row))
                     {
@@ -159,31 +173,53 @@ namespace Digitizer_ver1
             }
         }
 
-        private void DataGrid_Outputs_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        public void WriteOutputsSetting(int row, int cIndex) 
         {
             int index_comboBox = DataGrid_Outputs.Columns["comboBox_ExtSignalsOutputs"].Index;
             int index_checkBox = DataGrid_Outputs.Columns["checkBox_ExtSignalsOutputEnable"].Index;
 
-            int row = e.RowIndex;
+            //int row = e.RowIndex;
 
-            if (e.ColumnIndex == index_comboBox) 
+            if (cIndex == index_comboBox)
             {
-                string selectedString = DataGrid_Outputs.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-  
-                foreach(ExtSignals_Data data in List_ExtSignals_Outputs) 
+                string selectedString = DataGrid_Outputs.Rows[row].Cells[cIndex].Value.ToString();
+
+                foreach (ExtSignals_Data data in List_ExtSignals_Outputs)
                 {
-                    if (data.SIG.Equals(selectedString)) 
+                    if (data.SIG.Equals(selectedString))
                     {
                         SendSetting_Output(row, data.NUM);
                     }
                 }
 
             }
-            else if(e.ColumnIndex == index_checkBox) 
+            else if (cIndex == index_checkBox)
             {
+                //int num = List_ExtSignals_Outputs[row].NUM;
 
+                //foreach (ExtSignals_Data data in List_ExtSignals_Outputs)
+                //{
+                    //if (data.NUM.Equals(num))
+                    //{
+                        bool b = Convert.ToBoolean(DataGrid_Outputs.Rows[row].Cells[cIndex].Value);
+
+                        UInt16 mask = (UInt16)(1 << row);
+                        byte b0 = (byte)((mask >> 0) & 0xFF);
+                        byte b1 = (byte)((mask >> 8) & 0xFF);
+
+                        //MessageBox.Show(b.ToString() + "    " + mask.ToString());
+
+                        if (b)
+                        {
+                            SendCommand(Communication.eCommandCode.CMD_CONST_SET_ExtSignals, (byte)((byte)eCommandCode_ExtSignals.CMD_EXT_SIGNALS_ADDR_BASE_OUTPUTS_ENABLE_SET), b1, b0);
+                        }
+                        else
+                        {
+                            SendCommand(Communication.eCommandCode.CMD_CONST_SET_ExtSignals, (byte)((byte)eCommandCode_ExtSignals.CMD_EXT_SIGNALS_ADDR_BASE_OUTPUTS_ENABLE_CLEAR), b1, b0);
+                        }
+                    //}
+                //}
             }
-            
         }
 
         public void SendSetting_Input(int signal, int port) 
@@ -218,10 +254,6 @@ namespace Digitizer_ver1
             SendCommand(Communication.eCommandCode.CMD_CONST_GET_ExtSignals, (byte)eCommandCode_ExtSignals.CMD_EXT_SIGNALS_ADDR_BASE_OUTPUTS_ENABLE, 0, 0);
         }
 
-        public void WriteSetting() 
-        {
-
-        }
 
         public void UpdateInputComboBox(int signal, int port) 
         {
@@ -244,18 +276,36 @@ namespace Digitizer_ver1
         {
             int index_comboBox = DataGrid_Outputs.Columns["comboBox_ExtSignalsOutputs"].Index;
             //MessageBox.Show(port.ToString() + "   " + signal.ToString());
-
+            //MessageBox.Show(index_comboBox.ToString());
             foreach (ExtSignals_Data x in List_ExtSignals_Outputs) 
             {
                 if (x.NUM.Equals(signal)) 
                 {
                     DataGrid_Outputs.Rows[port].Cells[index_comboBox].Value = x.SIG;
-                    DataGrid_Inputs.UpdateCellValue(index_comboBox, port);
+                    //DataGrid_Inputs.UpdateCellValue(index_comboBox, port);
+                    DataGrid_Outputs.UpdateCellValue(index_comboBox, port);
 
                     //MessageBox.Show(port.ToString() + "   " + x.SIG);
                 }
             }
 
+        }
+
+        public void UpdateOutputEnableCheckBox(int value) 
+        {
+            
+            int index_checkBox = DataGrid_Outputs.Columns["checkBox_ExtSignalsOutputEnable"].Index;
+
+            //MessageBox.Show(index_checkBox.ToString() + "    " + value.ToString());
+            for (int i = 0; i < NumOfPorts; i++)
+            {
+                //int num = List_ExtSignals_Outputs[i].NUM;
+                //if (num < 0) return;
+
+                DataGrid_Outputs.Rows[i].Cells[index_checkBox].Value =(value >> i) & 0x1;
+
+
+            }
         }
 
         public void UpdateFromCommunication(byte data_0, byte data_1, byte data_2)
@@ -277,12 +327,31 @@ namespace Digitizer_ver1
             {
                 if(data_0 == (byte)eCommandCode_ExtSignals.CMD_EXT_SIGNALS_ADDR_BASE_OUTPUTS_ENABLE) 
                 {
-
+                    UpdateOutputEnableCheckBox((data_1 << 8) | data_2);
                 }
             }
 
+        }
 
 
+
+        public void WriteAllSetting() 
+        {
+            int index_comboBox_Inputs = DataGrid_Inputs.Columns["comboBox_ExtSignalsPort"].Index;
+            int index_comboBox_Outputs = DataGrid_Outputs.Columns["comboBox_ExtSignalsOutputs"].Index;
+            int index_checkBox_Enable = DataGrid_Outputs.Columns["checkBox_ExtSignalsOutputEnable"].Index;
+
+
+            for(int i = 0; i< List_ExtSignals_Inputs.Count;i++)
+            {
+                WriteInputsSetting(i, index_comboBox_Inputs);
+            }
+
+            for (int i = 0; i < NumOfPorts; i++)
+            {
+                WriteOutputsSetting(i, index_comboBox_Outputs);
+                WriteOutputsSetting(i, index_checkBox_Enable);
+            }
 
         }
 
