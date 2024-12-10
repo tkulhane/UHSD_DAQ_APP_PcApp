@@ -98,7 +98,7 @@ namespace Digitizer_ver1
         
 
         public eCommunicationType SelectedType;
-        eCommunicationType OpenedType;
+        public eCommunicationType OpenedType;
 
         public eCommandCode CommandID;
         public byte[] CommandData = new byte[3];
@@ -122,7 +122,9 @@ namespace Digitizer_ver1
             communicationControl.SendCommand = SendCommand;
             communicationControl.ErrorHandlerFunction = ErrorHandlerFunction;
 
-
+            TaskOfDataRead = new Task(this.ReadData_USB);
+            TaskOfReadExecute_CMD = new Task(this.ReadExecute_CMD);
+            TaskOfReadExecute_Data = new Task(this.ReadExecute_Data);
         }
 
 
@@ -148,6 +150,7 @@ namespace Digitizer_ver1
             CloseAll();
 
         }
+
 
 
         public void Scan()
@@ -202,7 +205,7 @@ namespace Digitizer_ver1
 
 
 
-
+            
 
         }
 
@@ -544,17 +547,17 @@ namespace Digitizer_ver1
 
             if (TaskOfDataRead != null) 
             {
-                TaskOfDataRead = null;
+                //TaskOfDataRead = null;
             }
 
             if (TaskOfReadExecute_CMD != null)
             {
-                TaskOfReadExecute_CMD = null;
+                //TaskOfReadExecute_CMD = null;
             }
 
             if (TaskOfReadExecute_Data != null)
             {
-                TaskOfReadExecute_Data = null;
+                //TaskOfReadExecute_Data = null;
             }
 
         }
@@ -754,6 +757,24 @@ namespace Digitizer_ver1
         {
             usb.PortCycle();
         }
+
+
+        public TaskStatus GetStatus_TaskDataRead() 
+        {
+            return TaskOfDataRead.Status;
+        }
+
+        public TaskStatus GetStatus_TaskOfReadExecute_CMD()
+        {
+            return TaskOfReadExecute_CMD.Status;
+        }
+
+        public TaskStatus GetStatus_TaskOfReadExecute_Data()
+        {
+            return TaskOfReadExecute_Data.Status;
+        }
+
+
 
     }
 }

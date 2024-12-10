@@ -10,7 +10,7 @@ namespace Digitizer_ver1
     class Acquisition_Control
     {
 
-        const float fpgaLogicClock = (float)100000000;
+        const float fpgaLogicClock = (float)125000000;
 
         public enum eCommandCode_Trigger : byte
         {
@@ -65,8 +65,10 @@ namespace Digitizer_ver1
         public RadioButton radioButton_AcqEventsPerTime;
 
         public RadioButton radioButton_TrgSelf;
-        public RadioButton radioButton_TrgExtRising;
-        public RadioButton radioButton_TrgExtFalling;
+        public RadioButton radioButton_TrgExtRisingNorm;
+        public RadioButton radioButton_TrgExtFallingNorm;
+        public RadioButton radioButton_TrgExtRisingOver;
+        public RadioButton radioButton_TrgExtFallingOver;
         public RadioButton radioButton_TrgAdcFd;
         public RadioButton radioButton_TrgSw;
 
@@ -211,17 +213,25 @@ namespace Digitizer_ver1
             {
                 SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_TRIGGER_SELECT, 0x00, 0x00);
             }
-            else if (radioButton_TrgExtRising.Checked) 
+            else if (radioButton_TrgExtRisingNorm.Checked) 
             {
                 SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_TRIGGER_SELECT, 0x00, 0x01);
             }
-            else if (radioButton_TrgExtFalling.Checked)
+            else if (radioButton_TrgExtFallingNorm.Checked)
             {
                 SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_TRIGGER_SELECT, 0x00, 0x02);
             }
-            else if (radioButton_TrgAdcFd.Checked)
+            else if (radioButton_TrgExtRisingOver.Checked)
             {
                 SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_TRIGGER_SELECT, 0x00, 0x03);
+            }
+            else if (radioButton_TrgExtFallingOver.Checked)
+            {
+                SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_TRIGGER_SELECT, 0x00, 0x04);
+            }
+            else if (radioButton_TrgAdcFd.Checked)
+            {
+                SendCommand(Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, (byte)eCommandCode_Trigger.CMD_TRG_TRIGGER_SELECT, 0x00, 0x05);
             }
             else if (radioButton_TrgSw.Checked) 
             {
@@ -232,8 +242,10 @@ namespace Digitizer_ver1
         public void RB_TriggerSelectUpdate(uint value)
         {
             radioButton_TrgSelf.Checked = false;
-            radioButton_TrgExtRising.Checked = false;
-            radioButton_TrgExtRising.Checked = false;
+            radioButton_TrgExtRisingNorm.Checked = false;
+            radioButton_TrgExtRisingNorm.Checked = false;
+            radioButton_TrgExtRisingOver.Checked = false;
+            radioButton_TrgExtRisingOver.Checked = false;
             radioButton_TrgAdcFd.Checked = false;
             radioButton_TrgSw.Checked = false;
 
@@ -244,14 +256,22 @@ namespace Digitizer_ver1
                     break;
 
                 case 1:
-                    radioButton_TrgExtRising.Checked = true;
+                    radioButton_TrgExtRisingNorm.Checked = true;
                     break;
 
                 case 2:
-                    radioButton_TrgExtFalling.Checked = true;
+                    radioButton_TrgExtFallingNorm.Checked = true;
                     break;
 
                 case 3:
+                    radioButton_TrgExtRisingOver.Checked = true;
+                    break;
+
+                case 4:
+                    radioButton_TrgExtFallingOver.Checked = true;
+                    break;
+
+                case 5:
                     radioButton_TrgAdcFd.Checked = true;
                     break;
 

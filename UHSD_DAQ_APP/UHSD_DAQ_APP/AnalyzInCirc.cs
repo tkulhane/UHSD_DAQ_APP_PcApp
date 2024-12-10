@@ -21,6 +21,8 @@ namespace Digitizer_ver1
             CMD_ANALYZINCIRC_TRIGGERS_MASK_RISING = 0x04,
             CMD_ANALYZINCIRC_TRIGGERS_MASK_FALLING = 0x05,
             CMD_ANALYZINCIRC_TRG_START = 0x06,
+            CMD_ANALYZINCIRC_INPUT_SELECT = 0x07,
+            CMD_ANALYZINCIRC_TRG_DELAY = 0x08,
 
             CMD_ANALYZINCIRC_STATE = 0x11,
             CMD_ANALYZINCIRC_EMPTY = 0x12,
@@ -30,11 +32,22 @@ namespace Digitizer_ver1
         }
 
 
+        public enum eAnalyzInputsSel
+        {
+
+            Input_Lanes_Rx_Data,
+            Input_Alligment_Fifo_Data_Out
+
+        }
+
+
         public delegate void efunction(Communication.eCommandCode CMD, byte d1, byte d2, byte d3);
         public efunction SendCommand;
 
         public Label label_Enable;
         public NumericUpDown numericUpDown_NumOfSamples;
+        public NumericUpDown numericUpDown_TrgDelay;
+        public ComboBox comboBox_AnalyzInputsSel;
         public Label label_Empty;
         public Label label_DataReadState;
 
@@ -62,6 +75,8 @@ namespace Digitizer_ver1
                 IsDataRead[i] = true;
             }
             */
+
+            comboBox_AnalyzInputsSel.DataSource = Enum.GetValues(typeof(eAnalyzInputsSel));
 
         }
 
@@ -139,6 +154,7 @@ namespace Digitizer_ver1
             AnalyzInCirc_Data data = new AnalyzInCirc_Data(count);
             List_Data.Add(data);
 
+            /*
             SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_FIFO_DATA_BASE + 0, 0x00, 0x00);
             SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_FIFO_DATA_BASE + 1, 0x00, 0x00);
             SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_FIFO_DATA_BASE + 2, 0x00, 0x00);
@@ -152,6 +168,15 @@ namespace Digitizer_ver1
             IsDataRead[3] = false;
             IsDataRead[4] = false;
             IsDataRead[5] = false;
+            */
+
+            for (int i = 0; i < IsDataRead.Length; i++)
+            {
+                SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)((byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_FIFO_DATA_BASE + (byte)i), 0x00, 0x00);
+                IsDataRead[i] = false;
+            }
+
+
         }
 
 
@@ -166,8 +191,9 @@ namespace Digitizer_ver1
             uint part_data = (uint)(data & 0x00FF);
             uint part_K = (uint)((data >> 8) & 0x0001);
 
-            
-            
+            uint part_num = (uint)((data >> 9) & 0x0007);
+
+
             if (part_empty == 1) 
             {
                 //fifo he prazdne - neukladam data
@@ -196,8 +222,9 @@ namespace Digitizer_ver1
                 sK = "D";
             }
 
-            string s =  sK + "." + part_data.ToString("X") + "  (" + part_K.ToString() + "."+ part_data.ToString() + ")";
-            
+            //string s = part_num +"--" + sK + "." + part_data.ToString("X") + "  (" + part_K.ToString() + "."+ part_data.ToString() + ")";
+            string s = sK + "." + part_data.ToString("X") + "  (" + part_K.ToString() + "." + part_data.ToString() + ")";
+
             List_Data[count - 1].AddData(index, s);
 
             
@@ -218,6 +245,20 @@ namespace Digitizer_ver1
         {
             if (state) 
             {
+                if(comboBox_AnalyzInputsSel.SelectedIndex >= 0) 
+                {
+                    int selected = comboBox_AnalyzInputsSel.SelectedIndex;
+
+                    eAnalyzInputsSel eInputsel;
+                    if(Enum.TryParse(selected.ToString(), out eInputsel)) 
+                    {
+                        byte val = (byte)eInputsel;
+                        //MessageBox.Show(val.ToString());
+                        SendCommand(Communication.eCommandCode.CMD_CONST_SET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_INPUT_SELECT, 0x00, val);
+                    }
+                }
+
+                //MessageBox.Show(comboBox_AnalyzInputsSel.SelectedIndex.ToString());
                 SendCommand(Communication.eCommandCode.CMD_CONST_SET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_ENABLE, 0x00, 0x01);
             }
             else 
@@ -236,6 +277,17 @@ namespace Digitizer_ver1
 
         }
 
+        public void SetTriggerDelay()
+        {
+            UInt32 val = (UInt32)numericUpDown_TrgDelay.Value;
+            byte b0 = (byte)((val >> 0) & 0xFF);
+            byte b1 = (byte)((val >> 8) & 0xFF);
+
+            SendCommand(Communication.eCommandCode.CMD_CONST_SET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_TRG_DELAY, b1, b0);
+
+        }
+
+        
         public void SwStart() 
         {
             SendCommand(Communication.eCommandCode.CMD_CONST_SET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_TRG_START, 0x00, 0x01);
@@ -336,12 +388,24 @@ namespace Digitizer_ver1
 
             }
         }
- 
+
+        private void SetComboBoxSelectInputs(byte data)
+        {
+
+            eAnalyzInputsSel eInputsel;
+            if (Enum.TryParse(data.ToString(), out eInputsel))
+            {
+                comboBox_AnalyzInputsSel.SelectedItem = eInputsel;
+
+            }
+        }
+
 
         public void GetSetting() 
         {
             SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_ENABLE, 0, 0);
             SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_NUMBER_OF_SAMPLES, 0, 0);
+            SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_TRG_DELAY, 0, 0);
             //SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_TRIGGERS_MASK_RISING, 0, 0);
             //SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_TRIGGERS_MASK_FALLING, 0, 0);
             SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_EMPTY, 0, 0);
@@ -353,6 +417,8 @@ namespace Digitizer_ver1
             //SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_NUMBER_OF_SAMPLES, 0, 0);
             SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_TRIGGERS_MASK_RISING, 0, 0);
             SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_TRIGGERS_MASK_FALLING, 0, 0);
+            SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_INPUT_SELECT, 0, 0);
+            
             //SendCommand(Communication.eCommandCode.CMD_CONST_GET_AnalyzInCirc, (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_EMPTY, 0, 0);
         }
 
@@ -379,6 +445,14 @@ namespace Digitizer_ver1
 
                 case (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_NUMBER_OF_SAMPLES:
                     numericUpDown_NumOfSamples.Value = (data_1 << 8) | data_2;
+                    break;
+
+                case (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_INPUT_SELECT:
+                    SetComboBoxSelectInputs(data_2);
+                    break;
+
+                case (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_TRG_DELAY:
+                    numericUpDown_TrgDelay.Value = (data_1 << 8) | data_2;
                     break;
 
                 case (byte)eCommandCode_AnylyzInCirc.CMD_ANALYZINCIRC_TRIGGERS_MASK_RISING:
@@ -431,7 +505,6 @@ namespace Digitizer_ver1
             }
 
         }
-
 
 
     }

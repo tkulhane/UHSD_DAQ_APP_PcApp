@@ -1,3 +1,4 @@
 System Start;_Config_StartSystem.csv
 System Stop;_Config_StopSystem.csv
-
+SYNC;_Config_SYNC.csv
+SYSREF;_Config_SYSREF.csv

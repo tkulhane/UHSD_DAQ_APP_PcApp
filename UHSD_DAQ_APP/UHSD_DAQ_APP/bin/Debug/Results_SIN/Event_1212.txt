@@ -1,0 +1,10 @@
+Amplitude = 1687.31 
+Offset = 2048.41 
+Frequency = 20000708.08 Hz
+Phase = -106.009 deg
+Phase = -1.8502 rad
+
+Error_Abs_Max = 16.8053 
+Error_Mean = -4.96088e-13 
+Error_Var = 36.4831 
+Error_Std = 6.040127902

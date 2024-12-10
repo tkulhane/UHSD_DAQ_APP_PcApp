@@ -16,13 +16,15 @@ namespace Digitizer_ver1
 
         public MultipleConfigurationFileSequencer configurationFiles;
 
+        public TextBox textBox_DataFilePath;
+
         static string SettingFileName = "AppSetting.txt";
 
         public BindingList<SystemSetting_RegistersFileData> List_ReigistersFile = new BindingList<SystemSetting_RegistersFileData>();
 
         static char[] caSplit = new char[] { ';' };
 
-
+        /*
         public void SettingLoadOld()
         {
             dataGridView_RegistersFiles.DataSource = List_ReigistersFile;
@@ -51,6 +53,7 @@ namespace Digitizer_ver1
 
             OpenRegistersFiles();
         }
+        */
 
         public void SettingLoad()
         {
@@ -99,14 +102,21 @@ namespace Digitizer_ver1
             {
                 configurationFiles.OpenFromSetting(lineParts[1], lineParts[2]);
             }
-            
+            else if (lineParts[0].Equals("save_data_file"))
+            {
+                if (lineParts[1].Equals("true")) 
+                {
+                    textBox_DataFilePath.Text = lineParts[2];
+                }
+                
+            }
 
 
         }
 
 
 
-
+        /*
 
         public void SettingSaveOld()
         {
@@ -127,6 +137,7 @@ namespace Digitizer_ver1
             }
 
         }
+        */
 
         public void SettingSave() 
         {
@@ -139,6 +150,8 @@ namespace Digitizer_ver1
                 writer.WriteLine("communication;" + communication.GetSettingString());
 
                 writer.WriteLine("data_destination;"+communication.communicationControl.GetSettingString());
+
+                writer.WriteLine("save_data_file;" + "true;" +  textBox_DataFilePath.Text);
 
                 //ulozeni registru
                 foreach (SystemSetting_RegistersFileData data in List_ReigistersFile) 

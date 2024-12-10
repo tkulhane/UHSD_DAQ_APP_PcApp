@@ -23,7 +23,10 @@ namespace Digitizer_ver1
                 new ExtSignals_Data() {NUM = 3, SIG = "ClockInput_EXT2"},
                 
                 new ExtSignals_Data() {NUM = 10, SIG = "ACQ_EXT_TriggerInput"},
-                
+
+                new ExtSignals_Data() {NUM = 25, SIG = "XXX_1"},
+                new ExtSignals_Data() {NUM = 26, SIG = "XXX_2"},
+
                 new ExtSignals_Data() {NUM = 27, SIG = "Analyz_Trigger_7"},
                 new ExtSignals_Data() {NUM = 28, SIG = "GPI_0"},
                 new ExtSignals_Data() {NUM = 29, SIG = "GPI_1"},
@@ -35,8 +38,10 @@ namespace Digitizer_ver1
 
         List<ExtSignals_Data> List_ExtSignals_Outputs = new List<ExtSignals_Data>
             {
+                new ExtSignals_Data() {NUM = 255, SIG = "Default_LogicLow"},
+
                 new ExtSignals_Data() {NUM = 0, SIG = "Logic_Low"},
-                new ExtSignals_Data() {NUM = 1, SIG = "Logic_High"},
+                new ExtSignals_Data() {NUM = 1, SIG = "Logic_Clock"},
                 new ExtSignals_Data() {NUM = 2, SIG = "CLK_SRC_40MHz"},
                 new ExtSignals_Data() {NUM = 3, SIG = "CLK_SRC_Logic"},
                 new ExtSignals_Data() {NUM = 4, SIG = "CLK_SRC_Ref"},
@@ -49,18 +54,20 @@ namespace Digitizer_ver1
                 new ExtSignals_Data() {NUM = 14, SIG = "ACQ_SelfTrigger_Out"},
                 new ExtSignals_Data() {NUM = 15, SIG = "ACQ_Fifo_NotFree"},
                 new ExtSignals_Data() {NUM = 16, SIG = "ACQ_Abort_Out"},
+                new ExtSignals_Data() {NUM = 20, SIG = "ACQ_Self_RunOut"},
 
-                new ExtSignals_Data() {NUM = 20, SIG = "SYNCIB_Out"},
                 new ExtSignals_Data() {NUM = 21, SIG = "SYSREF"},
                 new ExtSignals_Data() {NUM = 22, SIG = "LMX_SYNC"},
                 new ExtSignals_Data() {NUM = 23, SIG = "LMX_SYNC_Sychronized"},
                 new ExtSignals_Data() {NUM = 24, SIG = "ADC_FD"},
 
+                new ExtSignals_Data() {NUM = 25, SIG = "XXX_1"},
+                new ExtSignals_Data() {NUM = 26, SIG = "XXX_2"},
+
                 new ExtSignals_Data() {NUM = 28, SIG = "GPO-0"},
                 new ExtSignals_Data() {NUM = 29, SIG = "GPO-1"},
                 new ExtSignals_Data() {NUM = 30, SIG = "GPO-2"},
                 new ExtSignals_Data() {NUM = 31, SIG = "GPO-3"},
-
 
                 new ExtSignals_Data() {NUM = 6, SIG = "_Diag_0"},
                 new ExtSignals_Data() {NUM = 7, SIG = "_Diag_1"},
@@ -69,7 +76,20 @@ namespace Digitizer_ver1
 
                 new ExtSignals_Data() {NUM = 17, SIG = "_Diag-Builder_Enable"},
                 new ExtSignals_Data() {NUM = 18, SIG = "_Diag-Data_Fifo_Empty"},
-                new ExtSignals_Data() {NUM = 19, SIG = "_Diag-Data_Fifo_Read"}
+                new ExtSignals_Data() {NUM = 19, SIG = "_Diag-Data_Fifo_Read"},
+
+
+                new ExtSignals_Data() {NUM = 0 + 32, SIG = "SYNCIB"},
+                new ExtSignals_Data() {NUM = 1 + 32, SIG = "AlignmentFifo_Read"},
+                new ExtSignals_Data() {NUM = 2 + 32, SIG = "Data_Valid"},
+                new ExtSignals_Data() {NUM = 3 + 32, SIG = "LMFC"},
+                new ExtSignals_Data() {NUM = 4 + 32, SIG = "LMFC_aligned"},
+                new ExtSignals_Data() {NUM = 5 + 32, SIG = "sync_enable"},
+                new ExtSignals_Data() {NUM = 6 + 32, SIG = "ilas_start"},
+                new ExtSignals_Data() {NUM = 7 + 32, SIG = "Lanes_OR_A"},
+                new ExtSignals_Data() {NUM = 8 + 32, SIG = "Lanes_OR_R"}
+
+
 
 
             };

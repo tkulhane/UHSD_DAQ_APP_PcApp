@@ -277,7 +277,7 @@ namespace Digitizer_ver1
         public void StopReceiving()
         {
             if (ThreadOfReceiving == null) return;
-
+            
             ThreadOfReceiving_stop = true;
             ThreadOfReceiving = null;
         }

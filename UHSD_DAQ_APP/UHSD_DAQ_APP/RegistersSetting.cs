@@ -342,7 +342,14 @@ namespace Digitizer_ver1
                 return;
             }
 
+
+            if (File.Exists(fname)) 
+            {
+                File.WriteAllText(fname, string.Empty);
+            }
+
             FileStream fs = File.OpenWrite(fname);
+            
 
             foreach (RegistersSetting_Data data in List_RegistersSetting)
             {
@@ -361,6 +368,11 @@ namespace Digitizer_ver1
             if (String.IsNullOrEmpty(fname))
             {
                 return;
+            }
+
+            if (File.Exists(fname))
+            {
+                File.WriteAllText(fname, string.Empty);
             }
 
             FileStream fs = File.OpenWrite(fname);

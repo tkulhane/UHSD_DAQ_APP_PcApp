@@ -33,6 +33,7 @@ namespace Digitizer_ver1
             AcqData.pictureBox_EventAdcAnalyze = pictureBox_EventAdcAnalyze;
             AcqData.pictureBox_EventSinAnalyze = pictureBox_EventSinAnalyze;
             AcqData.textBox_DataFilePath = textBox_DataFilePath;
+            AcqData.checkBox_logComm = checkBox_logComm;
 
             AcqData.SetAcquisitionDataProcess();
 
@@ -74,8 +75,10 @@ namespace Digitizer_ver1
             AcqControl.button_AcqStartStop = button_AcqStartStop;
             
             AcqControl.radioButton_TrgSelf = radioButton_TrgSelf;
-            AcqControl.radioButton_TrgExtRising = radioButton_TrgExtRising;
-            AcqControl.radioButton_TrgExtFalling = radioButton_TrgExtFalling;
+            AcqControl.radioButton_TrgExtRisingNorm = radioButton_TrgExtRisingNorm;
+            AcqControl.radioButton_TrgExtFallingNorm = radioButton_TrgExtFallingNorm;
+            AcqControl.radioButton_TrgExtRisingOver = radioButton_TrgExtRisingOver;
+            AcqControl.radioButton_TrgExtFallingOver = radioButton_TrgExtFallingOver;
             AcqControl.radioButton_TrgAdcFd = radioButton_TrgAdcFd;
             AcqControl.radioButton_TrgSw = radioButton_TrgSw;
 
@@ -104,6 +107,8 @@ namespace Digitizer_ver1
             //Analyz In Circ
             AnalyzInCirc.label_Enable = label_AnalyzEnable;
             AnalyzInCirc.numericUpDown_NumOfSamples = numericUpDown_AnalyzNumOfSamples;
+            AnalyzInCirc.numericUpDown_TrgDelay = numericUpDown_AnalyzTrgDelay;
+            AnalyzInCirc.comboBox_AnalyzInputsSel = comboBox_AnalyzInputsSel;
             AnalyzInCirc.label_Empty = label_AnalyzEmpty;
             AnalyzInCirc.label_DataReadState = label_DataReadState;
             AnalyzInCirc._dataGridView_AnalyzData = dataGridView_AnalyzData;
@@ -132,6 +137,7 @@ namespace Digitizer_ver1
             sysSetting.communication = communication;
             sysSetting.dataGridView_RegistersFiles = dataGridView_RegistersFiles;
             sysSetting.configurationFiles = MultiConfigSequence;
+            sysSetting.textBox_DataFilePath = textBox_DataFilePath;
 
             //Ext Signals
             extSignals.SendCommand = communication.SendCommand;
@@ -145,6 +151,7 @@ namespace Digitizer_ver1
             MultiRegistersSetting.CreateRegister("LMX1", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Lmx1Registers, Communication.eCommandCode.CMD_CONST_SET_Lmx1Registers, RegistersSetting.eExtFileType.Txt);
             MultiRegistersSetting.CreateRegister("LMX2", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Lmx2Registers, Communication.eCommandCode.CMD_CONST_SET_Lmx2Registers, RegistersSetting.eExtFileType.Txt);
             MultiRegistersSetting.CreateRegister("FpgaTest", RegistersSetting.eAddressValueSize.Address8_Value8, Communication.eCommandCode.CMD_CONST_GET_TestRegisters, Communication.eCommandCode.CMD_CONST_SET_TestRegisters, RegistersSetting.eExtFileType.Non);
+            MultiRegistersSetting.CreateRegister("Acq", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, RegistersSetting.eExtFileType.Non);
             MultiRegistersSetting.CreateRegister("Transcievers", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_TransceiversControl, Communication.eCommandCode.CMD_CONST_SET_TransceiversControl, RegistersSetting.eExtFileType.Non);
 
             MultiRegistersSetting.CreateRegister("Clock_Switch", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Clock_Controler, Communication.eCommandCode.CMD_CONST_SET_Clock_Controler, RegistersSetting.eExtFileType.Non);
@@ -158,10 +165,9 @@ namespace Digitizer_ver1
 
 
             //system setting load
-            sysSetting.SettingLoad();
+            //sysSetting.SettingLoad();
 
-
-            AcqControl.ReadSettingAndValues();
+            //AcqControl.ReadSettingAndValues();
 
 
 
@@ -171,6 +177,9 @@ namespace Digitizer_ver1
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            sysSetting.SettingLoad();
+            AcqControl.ReadSettingAndValues();
+
             communication.communicationControl.CommunicationOpen();
         }
 
@@ -217,6 +226,8 @@ namespace Digitizer_ver1
             else
                 label_comState.Text = "OK";
 
+            ConnectState();
+
             label_errorCount.Text = communication.communicationControl.ActivityErrorDelayed_Counter.ToString();
 
             label_RecvBytes.Text = communication.USB_RecvBytes().ToString();
@@ -224,8 +235,11 @@ namespace Digitizer_ver1
             
             label_dataErrors.Text = AcqData.ErrorCounter.ToString();
 
-
+            label_StatusDataReadTask.Text = communication.GetStatus_TaskDataRead().ToString();
+            label_StatusTaskOfReadExecute_CMD.Text = communication.GetStatus_TaskOfReadExecute_CMD().ToString();
+            label_StatusTaskOfReadExecute_Data.Text = communication.GetStatus_TaskOfReadExecute_Data().ToString();
         }
+
 
         private void timerRequest_Tick(object sender, EventArgs e)
         {
@@ -240,6 +254,29 @@ namespace Digitizer_ver1
 
         }
 
+
+        private void ConnectState() 
+        {
+            string state = String.Empty;
+            
+            if(communication.OpenedType > 0) 
+            {
+                if (!communication.communicationControl.ActivityErrorDelayed) 
+                {
+                    state = "Connected";
+                }
+                else 
+                {
+                    state = "Fault";
+                }
+            }
+            else 
+            {
+                state = "Disconnected";
+            }
+
+            label_ConnectState.Text = state;
+        }
 
 
 
@@ -536,9 +573,6 @@ namespace Digitizer_ver1
             tableLayoutPanel_MeasurementData.Parent = form;
             form.Show();
 
-            //DialogResult fdr = form.DialogResult;
-
-
         }
 
         private void button_EventsLoadResult_Click(object sender, EventArgs e)
@@ -665,6 +699,11 @@ namespace Digitizer_ver1
         private void button_ConfigFileLoadFromFile_Click(object sender, EventArgs e)
         {
             MultiConfigSequence.AssignFile();
+        }
+
+        private void button_ConfigFileReloadFile_Click(object sender, EventArgs e)
+        {
+            MultiConfigSequence.ReloadFile();
         }
 
         private void button_RemoveConfig_Click(object sender, EventArgs e)
@@ -987,6 +1026,11 @@ namespace Digitizer_ver1
             AnalyzInCirc.SetNumberOfSamples();
         }
 
+        private void numericUpDown_AnalyzTrgDelay_ValueChanged(object sender, EventArgs e)
+        {
+            AnalyzInCirc.SetTriggerDelay();
+        }
+
         private void button_AnalyzSwStart_Click(object sender, EventArgs e)
         {
             AnalyzInCirc.SwStart();
@@ -1142,6 +1186,8 @@ namespace Digitizer_ver1
             if (((SystemInfo_ReadGetVal("HMC", 0x7D) >> 3) & 0x1) == 1) HmcPllsLocked = true;
             if (SystemInfo_ReadGetVal("Clock_Switch", 0x5) == 3) LogicRefPllsLocked = true;
 
+            if (((SystemInfo_ReadGetVal("Transcievers", 0x02) >> 0) & 0x1) == 1) Syncib = true;
+            if (((SystemInfo_ReadGetVal("Transcievers", 0x02) >> 1) & 0x1) == 1) XcvrLanesLocked = true;
 
             if (_validCounter < 1) 
             {

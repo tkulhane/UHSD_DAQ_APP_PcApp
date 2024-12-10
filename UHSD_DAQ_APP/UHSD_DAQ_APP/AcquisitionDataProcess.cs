@@ -23,6 +23,8 @@ namespace Digitizer_ver1
         public CheckBox checkBox_SaveToRam;
         public CheckBox checkBox_SaveToFile;
 
+        public CheckBox checkBox_logComm;
+
         public CheckBox checkBox_EventsLastAutoSelect;
         public CheckBox checkBox_EventsLastAutoAnalyze;
         public CheckBox checkBox_EventsMaxCount;
@@ -256,15 +258,25 @@ namespace Digitizer_ver1
             
             logStr += Environment.NewLine;
 
-            /*
-            if (checkBox_SaveToFile.Checked) 
+            
+            if (checkBox_logComm.Checked) 
             {
                 using (StreamWriter writer = File.AppendText("log_Communication_data.txt"))
                 {
                     writer.Write(logStr);
                 }
+
+                if (logErr != String.Empty)
+                {
+                    using (StreamWriter writer = File.AppendText("log_errs.txt"))
+                    {
+                        logStr += Environment.NewLine;
+                        writer.Write(logErr + " ============= " + logStr);
+                    }
+                }
+
             }
-            */
+            
 
             /*
             if(logErr != String.Empty) 

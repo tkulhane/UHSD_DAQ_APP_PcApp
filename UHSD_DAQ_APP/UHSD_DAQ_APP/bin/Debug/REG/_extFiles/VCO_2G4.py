@@ -28,8 +28,8 @@ dut.write(0x4, 0x6F)
 # glbl_cfg4_ena_rpath[3:0] = 0x8
 # dist_cfg1_refbuf0_as_rfsync[4:4] = 0x0
 # dist_cfg1_refbuf1_as_extvco[5:5] = 0x0
-# pll2_cfg2_syncpin_modesel[7:6] = 0x3
-dut.write(0x5, 0xC8)
+# pll2_cfg2_syncpin_modesel[7:6] = 0x2
+dut.write(0x5, 0x88)
 
 # glbl_cfg1_clear_alarms[0:0] = 0x0
 dut.write(0x6, 0x0)
@@ -218,8 +218,8 @@ dut.write(0x53, 0x0)
 # glbl_cfg2_sdio_mode[1:1] = 0x1
 dut.write(0x54, 0x3)
 
-# sysr_cfg3_pulsor_mode[2:0] = 0x1
-dut.write(0x5A, 0x1)
+# sysr_cfg3_pulsor_mode[2:0] = 0x0
+dut.write(0x5A, 0x0)
 
 # sysr_cfg1_synci_invpol[0:0] = 0x0
 # sysr_cfg1_pll2_carryup_sel[1:1] = 0x1
@@ -496,9 +496,9 @@ dut.write(0xD9, 0x0)
 # clkgrp1_div2_cfg5_drvr_res[1:0] = 0x1
 # clkgrp1_div2_cfg5_drvr_spare[2:2] = 0x0
 # clkgrp1_div2_cfg5_drvr_mode[4:3] = 0x2
-# clkgrp1_div2_cfg_outbuf_dyn[5:5] = 0x0
+# clkgrp1_div2_cfg_outbuf_dyn[5:5] = 0x1
 # clkgrp1_div2_cfg2_mutesel[7:6] = 0x0
-dut.write(0xDA, 0x11)
+dut.write(0xDA, 0x31)
 
 # clkgrp2_div1_cfg1_en[0:0] = 0x1
 # clkgrp2_div1_cfg1_phdelta_mslip[1:1] = 0x0
@@ -572,9 +572,9 @@ dut.write(0xED, 0x0)
 # clkgrp2_div2_cfg5_drvr_res[1:0] = 0x1
 # clkgrp2_div2_cfg5_drvr_spare[2:2] = 0x0
 # clkgrp2_div2_cfg5_drvr_mode[4:3] = 0x2
-# clkgrp2_div2_cfg_outbuf_dyn[5:5] = 0x0
+# clkgrp2_div2_cfg_outbuf_dyn[5:5] = 0x1
 # clkgrp2_div2_cfg2_mutesel[7:6] = 0x0
-dut.write(0xEE, 0x11)
+dut.write(0xEE, 0x31)
 
 # clkgrp3_div1_cfg1_en[0:0] = 0x0
 # clkgrp3_div1_cfg1_phdelta_mslip[1:1] = 0x0
@@ -648,9 +648,9 @@ dut.write(0x101, 0x0)
 # clkgrp3_div2_cfg5_drvr_res[1:0] = 0x3
 # clkgrp3_div2_cfg5_drvr_spare[2:2] = 0x0
 # clkgrp3_div2_cfg5_drvr_mode[4:3] = 0x2
-# clkgrp3_div2_cfg_outbuf_dyn[5:5] = 0x0
+# clkgrp3_div2_cfg_outbuf_dyn[5:5] = 0x1
 # clkgrp3_div2_cfg2_mutesel[7:6] = 0x0
-dut.write(0x102, 0x13)
+dut.write(0x102, 0x33)
 
 # clkgrp4_div1_cfg1_en[0:0] = 0x0
 # clkgrp4_div1_cfg1_phdelta_mslip[1:1] = 0x0
@@ -724,9 +724,9 @@ dut.write(0x115, 0x0)
 # clkgrp4_div2_cfg5_drvr_res[1:0] = 0x3
 # clkgrp4_div2_cfg5_drvr_spare[2:2] = 0x0
 # clkgrp4_div2_cfg5_drvr_mode[4:3] = 0x2
-# clkgrp4_div2_cfg_outbuf_dyn[5:5] = 0x0
+# clkgrp4_div2_cfg_outbuf_dyn[5:5] = 0x1
 # clkgrp4_div2_cfg2_mutesel[7:6] = 0x0
-dut.write(0x116, 0x13)
+dut.write(0x116, 0x33)
 
 # clkgrp5_div1_cfg1_en[0:0] = 0x0
 # clkgrp5_div1_cfg1_phdelta_mslip[1:1] = 0x0
@@ -800,9 +800,9 @@ dut.write(0x129, 0x0)
 # clkgrp5_div2_cfg5_drvr_res[1:0] = 0x3
 # clkgrp5_div2_cfg5_drvr_spare[2:2] = 0x0
 # clkgrp5_div2_cfg5_drvr_mode[4:3] = 0x2
-# clkgrp5_div2_cfg_outbuf_dyn[5:5] = 0x0
+# clkgrp5_div2_cfg_outbuf_dyn[5:5] = 0x1
 # clkgrp5_div2_cfg2_mutesel[7:6] = 0x0
-dut.write(0x12A, 0x13)
+dut.write(0x12A, 0x33)
 
 # clkgrp6_div1_cfg1_en[0:0] = 0x1
 # clkgrp6_div1_cfg1_phdelta_mslip[1:1] = 0x0
@@ -876,9 +876,9 @@ dut.write(0x13D, 0x0)
 # clkgrp6_div2_cfg5_drvr_res[1:0] = 0x1
 # clkgrp6_div2_cfg5_drvr_spare[2:2] = 0x0
 # clkgrp6_div2_cfg5_drvr_mode[4:3] = 0x2
-# clkgrp6_div2_cfg_outbuf_dyn[5:5] = 0x0
+# clkgrp6_div2_cfg_outbuf_dyn[5:5] = 0x1
 # clkgrp6_div2_cfg2_mutesel[7:6] = 0x0
-dut.write(0x13E, 0x11)
+dut.write(0x13E, 0x31)
 
 # clkgrp7_div1_cfg1_en[0:0] = 0x1
 # clkgrp7_div1_cfg1_phdelta_mslip[1:1] = 0x0
@@ -918,14 +918,14 @@ dut.write(0x147, 0x0)
 # clkgrp7_div1_cfg2_mutesel[7:6] = 0x0
 dut.write(0x148, 0x10)
 
-# clkgrp7_div2_cfg1_en[0:0] = 0x0
+# clkgrp7_div2_cfg1_en[0:0] = 0x1
 # clkgrp7_div2_cfg1_phdelta_mslip[1:1] = 0x0
 # clkgrp7_div2_cfg2_startmode[3:2] = 0x0
 # clkgrp7_div2_cfg1_rev[4:4] = 0x1
 # clkgrp7_div2_cfg1_slipmask[5:5] = 0x1
 # clkgrp7_div2_cfg1_reseedmask[6:6] = 0x0
 # clkgrp7_div2_cfg1_hi_perf[7:7] = 0x0
-dut.write(0x14A, 0x30)
+dut.write(0x14A, 0x31)
 
 # clkgrp7_div2_cfg12_divrat_lsb[7:0] = 0x80
 dut.write(0x14B, 0x80)
@@ -952,7 +952,7 @@ dut.write(0x151, 0x0)
 # clkgrp7_div2_cfg5_drvr_res[1:0] = 0x3
 # clkgrp7_div2_cfg5_drvr_spare[2:2] = 0x0
 # clkgrp7_div2_cfg5_drvr_mode[4:3] = 0x2
-# clkgrp7_div2_cfg_outbuf_dyn[5:5] = 0x0
+# clkgrp7_div2_cfg_outbuf_dyn[5:5] = 0x1
 # clkgrp7_div2_cfg2_mutesel[7:6] = 0x0
-dut.write(0x152, 0x13)
+dut.write(0x152, 0x33)
 

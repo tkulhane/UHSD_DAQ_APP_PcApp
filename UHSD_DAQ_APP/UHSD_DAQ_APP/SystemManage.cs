@@ -30,16 +30,18 @@ namespace Digitizer_ver1
 
             OpenActionsFile("Actions.txt");
 
-            for(int i = 0; i< List_Actions.Count - 1; i++) 
+
+            for (int i = 0; i< List_Actions.Count; i++) 
             {
                 List_Actions[i]._actionNumber = i;
             }
 
 
-            for (int i = 0; i < List_Actions.Count - 1; i++)
+            for (int i = 0; i < List_Actions.Count; i++)
             {
-                int x = (List_Actions.Count - 2) - i;
+                int x = (List_Actions.Count - 1) - i;
                 AddInitButton(List_Actions[x]._userText, List_Actions[x]._actionNumber);
+                
             }
 
 
@@ -102,6 +104,7 @@ namespace Digitizer_ver1
                 return fname;
             }
 
+
             foreach (String s in lines)
             {
                 SystemManage_ActionsData data = new SystemManage_ActionsData(s, 0);
@@ -112,9 +115,8 @@ namespace Digitizer_ver1
                     break;
                 }
                 */
-                List_Actions.Add(data);
+                List_Actions.Add(data); 
             }
-
 
 
             //DataGrid_RegistersSetting.DataSource = List_RegistersSetting;

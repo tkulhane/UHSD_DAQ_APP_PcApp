@@ -190,6 +190,27 @@ namespace Digitizer_ver1
 
         }
 
+        public void ReloadFile() 
+        {
+            int selCount = MultipleConfigFiles.SelectedRows.Count;
+            if (selCount == 0) return;
+
+            int selIndex = MultipleConfigFiles.SelectedRows[0].Index;
+            if (selIndex < 0) return;
+
+            String fname = String.Empty;
+            //String OnlyName = String.Empty;
+
+            fname = List_MultipleConfigFiles[selIndex]._Patch;
+            //List_MultipleConfigFiles[selIndex].p_Name = OnlyName;
+            if (fname == String.Empty) return;
+
+            List_MultipleConfigFiles[selIndex]._ConfigSequencer.OpenRegistersFileAsString(fname);
+            List_MultipleConfigFiles[selIndex].SetState(MultipleConfigurationFileSequencer_Data.eStates.Idle);
+            MultipleConfigFiles.Refresh();
+
+        }
+
         public int GetCountOfConfigFiles() 
         {
             return List_MultipleConfigFiles.Count;
