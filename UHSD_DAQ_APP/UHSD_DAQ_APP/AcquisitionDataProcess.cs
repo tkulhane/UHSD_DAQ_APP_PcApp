@@ -131,6 +131,30 @@ namespace Digitizer_ver1
 
             bool BlockSaving = false;
 
+
+
+            bool TestGen_Debug = false;
+
+            if (TestGen_Debug == true) 
+            {
+                //if ((data[0] & 0x80) >> 7 == 0)
+                if (data[0] == 0)
+                    {
+                    using (StreamWriter writer = File.AppendText("log_comm_debug_data.txt"))
+                    {
+
+                        int value = data[3] + (data[2] << 8) + ((data[1] & 0x0F) << 16);
+                        string s = value.ToString() + "\n";
+                        writer.Write(s);
+
+                    }
+                }
+
+                return;
+            }
+
+
+
             if (data[0] == 0xFA) //Event head - actualing Number Of Event
             {
                 if (EventsCount_Completed != EventsCount_Started)

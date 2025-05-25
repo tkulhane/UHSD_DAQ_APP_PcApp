@@ -22,3 +22,15 @@ C:\CODE_temp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\bin\Debug\UHSD_DAQ.pdb
 C:\CODE_temp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\obj\Debug\UHSD_DAQ.Properties.Resources.resources
 C:\CODE_temp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\obj\Debug\UHSD_DAQ.exe
 C:\CODE_temp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\obj\Debug\UHSD_DAQ.pdb
+C:\Develop_Git\PcApp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\bin\Debug\UHSD_DAQ.exe.config
+C:\Develop_Git\PcApp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\bin\Debug\UHSD_DAQ.exe
+C:\Develop_Git\PcApp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\bin\Debug\UHSD_DAQ.pdb
+C:\Develop_Git\PcApp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\bin\Debug\FTD3XX_NET.dll
+C:\Develop_Git\PcApp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\obj\Debug\UHSD_DAQ_APP.csproj.AssemblyReference.cache
+C:\Develop_Git\PcApp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\obj\Debug\Digitizer_ver1.Form1.resources
+C:\Develop_Git\PcApp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\obj\Debug\Digitizer_ver1.Form_MeasurementData.resources
+C:\Develop_Git\PcApp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\obj\Debug\UHSD_DAQ.Properties.Resources.resources
+C:\Develop_Git\PcApp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\obj\Debug\UHSD_DAQ_APP.csproj.GenerateResource.cache
+C:\Develop_Git\PcApp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\obj\Debug\UHSD_DAQ_APP.csproj.CoreCompileInputs.cache
+C:\Develop_Git\PcApp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\obj\Debug\UHSD_DAQ.exe
+C:\Develop_Git\PcApp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\obj\Debug\UHSD_DAQ.pdb

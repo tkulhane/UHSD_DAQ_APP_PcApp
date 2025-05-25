@@ -1,4 +1,4 @@
-communication;non;
+communication;non;COM6
 data_destination;
 save_data_file;true;
 register;ADC;
