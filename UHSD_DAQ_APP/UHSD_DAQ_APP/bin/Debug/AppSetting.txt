@@ -1,13 +1,13 @@
-communication;non;COM6
+communication;non;FT601_1
 data_destination;
 save_data_file;true;
 register;ADC;
-register;HMC;
+register;HMC;C:\Develop_Git\PcApp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\bin\Debug\REG\HMC_reg.csv
 register;LMX1;
 register;LMX2;
 register;FpgaTest;
 register;Acq;
 register;Transcievers;
 register;Clock_Switch;
-register;EXT_Signals;
-config;_Config_StartSystem.csv;C:\CODE_temp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\bin\Debug\CFG\_Config_StartSystem.csv
+register;EXT_Signals;C:\Develop_Git\PcApp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\bin\Debug\REG\EXT_Signals.csv
+config;Config_HMC.csv;C:\Develop_Git\PcApp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\bin\Debug\CFG\Config_HMC.csv

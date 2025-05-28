@@ -11,27 +11,15 @@ namespace Digitizer_ver1
     class ExtSignals
     {
 
-        const int NumOfPorts = 14;
+        const int NumOfPorts = 22;
         const int NumOfInputsSignals = 32;
 
 
         List<ExtSignals_Data> List_ExtSignals_Inputs = new List<ExtSignals_Data>
             {
                 new ExtSignals_Data() {NUM = 0, SIG = "Res"},
-                new ExtSignals_Data() {NUM = 1, SIG = "Res"},
-                new ExtSignals_Data() {NUM = 2, SIG = "ClockInput_EXT1"},
-                new ExtSignals_Data() {NUM = 3, SIG = "ClockInput_EXT2"},
-                
-                new ExtSignals_Data() {NUM = 10, SIG = "ACQ_EXT_TriggerInput"},
+                new ExtSignals_Data() {NUM = 1, SIG = "Res"}
 
-                new ExtSignals_Data() {NUM = 25, SIG = "XXX_1"},
-                new ExtSignals_Data() {NUM = 26, SIG = "XXX_2"},
-
-                new ExtSignals_Data() {NUM = 27, SIG = "Analyz_Trigger_7"},
-                new ExtSignals_Data() {NUM = 28, SIG = "GPI_0"},
-                new ExtSignals_Data() {NUM = 29, SIG = "GPI_1"},
-                new ExtSignals_Data() {NUM = 30, SIG = "GPI_2"},
-                new ExtSignals_Data() {NUM = 31, SIG = "GPI_3"}
 
 
             };
@@ -39,56 +27,22 @@ namespace Digitizer_ver1
         List<ExtSignals_Data> List_ExtSignals_Outputs = new List<ExtSignals_Data>
             {
                 new ExtSignals_Data() {NUM = 255, SIG = "Default_LogicLow"},
+                new ExtSignals_Data() {NUM = 254, SIG = "LogicHigh"},
 
-                new ExtSignals_Data() {NUM = 0, SIG = "Logic_Low"},
-                new ExtSignals_Data() {NUM = 1, SIG = "Logic_Clock"},
-                new ExtSignals_Data() {NUM = 2, SIG = "CLK_SRC_40MHz"},
-                new ExtSignals_Data() {NUM = 3, SIG = "CLK_SRC_Logic"},
-                new ExtSignals_Data() {NUM = 4, SIG = "CLK_SRC_Ref"},
-                new ExtSignals_Data() {NUM = 5, SIG = "CLK_HMC"},
+                new ExtSignals_Data() {NUM = 0, SIG = "CLK_IN"},
+                new ExtSignals_Data() {NUM = 1, SIG = "SYSREF_IN"},
+                new ExtSignals_Data() {NUM = 2, SIG = "Logic_Clk"},
+                new ExtSignals_Data() {NUM = 3, SIG = "Ref_Clk"},
+                new ExtSignals_Data() {NUM = 4, SIG = "CTRL_Clk"},
+                new ExtSignals_Data() {NUM = 5, SIG = "Clk_40M"},
 
-                new ExtSignals_Data() {NUM = 10, SIG = "ACQ_Enable_Out"},
-                new ExtSignals_Data() {NUM = 11, SIG = "ACQ_Trigger_Out"},
-                new ExtSignals_Data() {NUM = 12, SIG = "ACQ_Run_Out"},
-                new ExtSignals_Data() {NUM = 13, SIG = "ACQ_Busy_Out"},
-                new ExtSignals_Data() {NUM = 14, SIG = "ACQ_SelfTrigger_Out"},
-                new ExtSignals_Data() {NUM = 15, SIG = "ACQ_Fifo_NotFree"},
-                new ExtSignals_Data() {NUM = 16, SIG = "ACQ_Abort_Out"},
-                new ExtSignals_Data() {NUM = 20, SIG = "ACQ_Self_RunOut"},
+                new ExtSignals_Data() {NUM = 26, SIG = "GPO_0"},
+                new ExtSignals_Data() {NUM = 27, SIG = "GPO_1"},
 
-                new ExtSignals_Data() {NUM = 21, SIG = "SYSREF"},
-                new ExtSignals_Data() {NUM = 22, SIG = "LMX_SYNC"},
-                new ExtSignals_Data() {NUM = 23, SIG = "LMX_SYNC_Sychronized"},
-                new ExtSignals_Data() {NUM = 24, SIG = "ADC_FD"},
-
-                new ExtSignals_Data() {NUM = 25, SIG = "XXX_1"},
-                new ExtSignals_Data() {NUM = 26, SIG = "XXX_2"},
-
-                new ExtSignals_Data() {NUM = 28, SIG = "GPO-0"},
-                new ExtSignals_Data() {NUM = 29, SIG = "GPO-1"},
-                new ExtSignals_Data() {NUM = 30, SIG = "GPO-2"},
-                new ExtSignals_Data() {NUM = 31, SIG = "GPO-3"},
-
-                new ExtSignals_Data() {NUM = 6, SIG = "_Diag_0"},
-                new ExtSignals_Data() {NUM = 7, SIG = "_Diag_1"},
-                new ExtSignals_Data() {NUM = 8, SIG = "_Diag_2"},
-                new ExtSignals_Data() {NUM = 9, SIG = "_Diag_3"},
-
-                new ExtSignals_Data() {NUM = 17, SIG = "_Diag-Builder_Enable"},
-                new ExtSignals_Data() {NUM = 18, SIG = "_Diag-Data_Fifo_Empty"},
-                new ExtSignals_Data() {NUM = 19, SIG = "_Diag-Data_Fifo_Read"},
-
-
-                new ExtSignals_Data() {NUM = 0 + 32, SIG = "SYNCIB"},
-                new ExtSignals_Data() {NUM = 1 + 32, SIG = "AlignmentFifo_Read"},
-                new ExtSignals_Data() {NUM = 2 + 32, SIG = "Data_Valid"},
-                new ExtSignals_Data() {NUM = 3 + 32, SIG = "LMFC"},
-                new ExtSignals_Data() {NUM = 4 + 32, SIG = "LMFC_aligned"},
-                new ExtSignals_Data() {NUM = 5 + 32, SIG = "sync_enable"},
-                new ExtSignals_Data() {NUM = 6 + 32, SIG = "ilas_start"},
-                new ExtSignals_Data() {NUM = 7 + 32, SIG = "Lanes_OR_A"},
-                new ExtSignals_Data() {NUM = 8 + 32, SIG = "Lanes_OR_R"}
-
+                new ExtSignals_Data() {NUM = 28, SIG = "Second_0"},
+                new ExtSignals_Data() {NUM = 29, SIG = "Second_1"},
+                new ExtSignals_Data() {NUM = 30, SIG = "Second_2"},
+                new ExtSignals_Data() {NUM = 31, SIG = "Second_3"}
 
 
 
@@ -97,11 +51,11 @@ namespace Digitizer_ver1
 
         public enum eCommandCode_ExtSignals: byte
         {
-             CMD_EXT_SIGNALS_ADDR_BASE_INPUTS_SEL = 10,
-             CMD_EXT_SIGNALS_ADDR_BASE_OUTPUTS_SEL = 110,
-             CMD_EXT_SIGNALS_ADDR_BASE_OUTPUTS_ENABLE = 0xD2,
-             CMD_EXT_SIGNALS_ADDR_BASE_OUTPUTS_ENABLE_SET = 0xDC,
-             CMD_EXT_SIGNALS_ADDR_BASE_OUTPUTS_ENABLE_CLEAR = 0xE6
+             CMD_EXT_SIGNALS_ADDR_BASE_INPUTS_SEL = 0,
+             CMD_EXT_SIGNALS_ADDR_BASE_OUTPUTS_SEL = 100,
+             CMD_EXT_SIGNALS_ADDR_BASE_OUTPUTS_ENABLE = 0xC8,
+             CMD_EXT_SIGNALS_ADDR_BASE_OUTPUTS_ENABLE_SET = 0xCA,
+             CMD_EXT_SIGNALS_ADDR_BASE_OUTPUTS_ENABLE_CLEAR = 0xCC
         }
 
 
@@ -223,6 +177,16 @@ namespace Digitizer_ver1
                     //{
                         bool b = Convert.ToBoolean(DataGrid_Outputs.Rows[row].Cells[cIndex].Value);
 
+                        byte x = 0; 
+
+                        if(row >= 16) 
+                        {
+                            row = row - 16;
+                            x = 1;
+                        }
+
+                //MessageBox.Show(row.ToString());
+
                         UInt16 mask = (UInt16)(1 << row);
                         byte b0 = (byte)((mask >> 0) & 0xFF);
                         byte b1 = (byte)((mask >> 8) & 0xFF);
@@ -231,11 +195,11 @@ namespace Digitizer_ver1
 
                         if (b)
                         {
-                            SendCommand(Communication.eCommandCode.CMD_CONST_SET_ExtSignals, (byte)((byte)eCommandCode_ExtSignals.CMD_EXT_SIGNALS_ADDR_BASE_OUTPUTS_ENABLE_SET), b1, b0);
+                            SendCommand(Communication.eCommandCode.CMD_CONST_SET_ExtSignals, (byte)((byte)eCommandCode_ExtSignals.CMD_EXT_SIGNALS_ADDR_BASE_OUTPUTS_ENABLE_SET + x), b1, b0);
                         }
                         else
                         {
-                            SendCommand(Communication.eCommandCode.CMD_CONST_SET_ExtSignals, (byte)((byte)eCommandCode_ExtSignals.CMD_EXT_SIGNALS_ADDR_BASE_OUTPUTS_ENABLE_CLEAR), b1, b0);
+                            SendCommand(Communication.eCommandCode.CMD_CONST_SET_ExtSignals, (byte)((byte)eCommandCode_ExtSignals.CMD_EXT_SIGNALS_ADDR_BASE_OUTPUTS_ENABLE_CLEAR + x), b1, b0);
                         }
                     //}
                 //}
@@ -272,6 +236,7 @@ namespace Digitizer_ver1
             }
 
             SendCommand(Communication.eCommandCode.CMD_CONST_GET_ExtSignals, (byte)eCommandCode_ExtSignals.CMD_EXT_SIGNALS_ADDR_BASE_OUTPUTS_ENABLE, 0, 0);
+            SendCommand(Communication.eCommandCode.CMD_CONST_GET_ExtSignals, (byte)eCommandCode_ExtSignals.CMD_EXT_SIGNALS_ADDR_BASE_OUTPUTS_ENABLE + 1, 0, 0);
         }
 
 
@@ -311,7 +276,7 @@ namespace Digitizer_ver1
 
         }
 
-        public void UpdateOutputEnableCheckBox(int value) 
+        public void UpdateOutputEnableCheckBox(int value, byte b) 
         {
             
             int index_checkBox = DataGrid_Outputs.Columns["checkBox_ExtSignalsOutputEnable"].Index;
@@ -319,10 +284,20 @@ namespace Digitizer_ver1
             //MessageBox.Show(index_checkBox.ToString() + "    " + value.ToString());
             for (int i = 0; i < NumOfPorts; i++)
             {
-                //int num = List_ExtSignals_Outputs[i].NUM;
-                //if (num < 0) return;
+                int value_new;
 
-                DataGrid_Outputs.Rows[i].Cells[index_checkBox].Value =(value >> i) & 0x1;
+                if (b == 0) 
+                {
+                    if (i > 15) continue;
+                    value_new = value;
+                }
+                else 
+                {
+                    if (i <= 15) continue;
+                    value_new = value << 16;
+                }
+
+                DataGrid_Outputs.Rows[i].Cells[index_checkBox].Value =(value_new >> i) & 0x1;
 
 
             }
@@ -330,7 +305,7 @@ namespace Digitizer_ver1
 
         public void UpdateFromCommunication(byte data_0, byte data_1, byte data_2)
         {
-            
+            //MessageBox.Show(data_0.ToString("2X") + " " + data_1.ToString("2X") + " " + data_2.ToString("2X"));
             if ((data_0 >= (byte)eCommandCode_ExtSignals.CMD_EXT_SIGNALS_ADDR_BASE_INPUTS_SEL) && (data_0 <= (byte)eCommandCode_ExtSignals.CMD_EXT_SIGNALS_ADDR_BASE_INPUTS_SEL + NumOfInputsSignals)) 
             {
                 byte signal = (byte)(data_0 - (byte)eCommandCode_ExtSignals.CMD_EXT_SIGNALS_ADDR_BASE_INPUTS_SEL);
@@ -347,7 +322,11 @@ namespace Digitizer_ver1
             {
                 if(data_0 == (byte)eCommandCode_ExtSignals.CMD_EXT_SIGNALS_ADDR_BASE_OUTPUTS_ENABLE) 
                 {
-                    UpdateOutputEnableCheckBox((data_1 << 8) | data_2);
+                    UpdateOutputEnableCheckBox((data_1 << 8) | data_2,0);
+                }
+                else if (data_0 == (byte)eCommandCode_ExtSignals.CMD_EXT_SIGNALS_ADDR_BASE_OUTPUTS_ENABLE+1)
+                {
+                    UpdateOutputEnableCheckBox(((data_1 << 8) | data_2),1);
                 }
             }
 

@@ -77,7 +77,9 @@ namespace Digitizer_ver1
             //Outputs
             OutputAdd(0, "ADC-PWDN");
             OutputAdd(1, "HMC-SYNC");
-            
+
+            OutputAdd(2, "HMC-RESET");
+
 
             OutputAdd(4, "HMC-GPIO-2");
             OutputAdd(5, "HMC-GPIO-3");
@@ -94,7 +96,7 @@ namespace Digitizer_ver1
 
             OutputAdd(8, "SPI-OUT_Disable");
 
-            OutputAdd(2, "LMX-SYNC");
+            
 
             OutputAdd(3, "SYNCIB");
 

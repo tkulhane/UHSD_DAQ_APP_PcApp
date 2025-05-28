@@ -1,12 +1,12 @@
 LOG;ADD;Config HMC Start;;;;
-OUTPUT;HMC-RESET;1;;;;
+RESET;HMC;1;;;;
 OUTPUT;HMC-GPIO-2;1;;;;
 OUTPUT;HMC-GPIO-3;1;;;;
 WAIT;;100;;;;Wait 
 OUTPUT;BOARD-PWR-RUN;1;;;;
 OUTPUT;ADC-PWR-RUN;1;;;;
 WAIT;;200;;;;
-OUTPUT;HMC-RESET;0;;;;Reset (p.2)
+RESET;HMC;0;;;;Reset (p.2)
 WAIT;;20;;;;Wait 
 REG;HMC;ALL;;;;
 WAIT;;20;;;;Wait 
