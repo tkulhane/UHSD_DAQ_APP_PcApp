@@ -1,11 +1,11 @@
-communication;non;FT601_1
+communication;usb;FTDI_UHSD
 data_destination;
 save_data_file;true;
 register;ADC;
 register;HMC;C:\Develop_Git\PcApp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\bin\Debug\REG\HMC_reg.csv
-register;LMX1;
-register;LMX2;
-register;FpgaTest;
+register;LMX1;C:\Develop_Git\PcApp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\bin\Debug\REG\LMX1_reg.csv
+register;LMX2;C:\Develop_Git\PcApp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\bin\Debug\REG\LMX2_reg.csv
+register;FpgaTest;C:\Develop_Git\PcApp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\bin\Debug\REG\Test_Reg.csv
 register;Acq;
 register;Transcievers;
 register;Clock_Switch;

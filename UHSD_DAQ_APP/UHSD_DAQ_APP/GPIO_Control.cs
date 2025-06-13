@@ -53,52 +53,26 @@ namespace Digitizer_ver1
 
         public void LoadGpio()
         {
-            //Inputs
-            InputAdd(0, "BTN");
-            InputAdd(1, "ADC-GPIO-0");
-            InputAdd(2, "ADC-GPIO-1");
-            InputAdd(3, "ADC-GPIO-2");
-            InputAdd(4, "ADC-GPIO-3");
-            InputAdd(5, "ADC-GPIO-4");
-            InputAdd(6, "ADC-FD");
-            InputAdd(7, "HMC-GPIO-0");
+            InputAdd(0, "HMC-GPIO-0");
+            InputAdd(1, "HMC-GPIO-1");
 
-            InputAdd(8, "HMC-GPIO-1");
-            InputAdd(9, "SMPS-PWR-GOOD");
-            InputAdd(10, "LDO-PWR-GOOD");
-            InputAdd(11, "ADC-PWR-GOOD");
-
-            InputAdd(12, "GPI-0");
-            InputAdd(13, "GPI-1");
-            InputAdd(14, "GPI-2");
-            InputAdd(15, "GPI-3");
+            InputAdd(7, "Second A Clock Lock");
+            InputAdd(8, "Second B Clock Lock");
 
 
-            //Outputs
-            OutputAdd(0, "ADC-PWDN");
+
+            OutputAdd(0, "HMC-RESET");
             OutputAdd(1, "HMC-SYNC");
+            OutputAdd(2, "HMC-GPIO-2");
+            OutputAdd(3, "HMC-GPIO-3");
+            OutputAdd(4, "HMC-SPI-Enable");
 
-            OutputAdd(2, "HMC-RESET");
+            OutputAdd(5, "LMX-1-RESET");
+            OutputAdd(6, "LMX-2-RESET");
 
+            OutputAdd(7, "Logic-Reset-1");
+            OutputAdd(8, "Logic-Reset-2");
 
-            OutputAdd(4, "HMC-GPIO-2");
-            OutputAdd(5, "HMC-GPIO-3");
-
-            OutputAdd(6, "BOARD-PWR-RUN");
-            OutputAdd(7, "ADC-PWR-RUN");
-            OutputAdd(10, "LED_2");
-            OutputAdd(11, "LED_3");
-
-            OutputAdd(12, "GPO-0");
-            OutputAdd(13, "GPO-1");
-            OutputAdd(14, "GPO-2");
-            OutputAdd(15, "GPO-3");
-
-            OutputAdd(8, "SPI-OUT_Disable");
-
-            
-
-            OutputAdd(3, "SYNCIB");
 
             //datagrid
             DataGridsLoad();

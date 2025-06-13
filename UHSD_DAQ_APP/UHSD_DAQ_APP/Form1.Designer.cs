@@ -30,9 +30,9 @@ namespace Digitizer_ver1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label_ConnectState = new System.Windows.Forms.Label();
             this.label_AcqState = new System.Windows.Forms.Label();
@@ -261,6 +261,7 @@ namespace Digitizer_ver1
             this.button_ConfigStop = new System.Windows.Forms.Button();
             this.tabSetting = new System.Windows.Forms.TabPage();
             this.groupBox18 = new System.Windows.Forms.GroupBox();
+            this.checkBox_logComm = new System.Windows.Forms.CheckBox();
             this.groupBox17 = new System.Windows.Forms.GroupBox();
             this.groupBox15 = new System.Windows.Forms.GroupBox();
             this.label55 = new System.Windows.Forms.Label();
@@ -352,7 +353,6 @@ namespace Digitizer_ver1
             this.button_ExtSignalsReadSetting = new System.Windows.Forms.Button();
             this.timerForm = new System.Windows.Forms.Timer(this.components);
             this.timerInfo = new System.Windows.Forms.Timer(this.components);
-            this.checkBox_logComm = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.tabRegisters.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -2596,24 +2596,24 @@ namespace Digitizer_ver1
             // 
             this.chart_EventTime.BorderlineColor = System.Drawing.Color.Black;
             this.chart_EventTime.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea2.Name = "ChartArea1";
-            this.chart_EventTime.ChartAreas.Add(chartArea2);
+            chartArea1.Name = "ChartArea1";
+            this.chart_EventTime.ChartAreas.Add(chartArea1);
             this.chart_EventTime.Cursor = System.Windows.Forms.Cursors.Default;
             this.chart_EventTime.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Alignment = System.Drawing.StringAlignment.Far;
-            legend2.DockedToChartArea = "ChartArea1";
-            legend2.Name = "Legend1";
-            this.chart_EventTime.Legends.Add(legend2);
+            legend1.Alignment = System.Drawing.StringAlignment.Far;
+            legend1.DockedToChartArea = "ChartArea1";
+            legend1.Name = "Legend1";
+            this.chart_EventTime.Legends.Add(legend1);
             this.chart_EventTime.Location = new System.Drawing.Point(0, 0);
             this.chart_EventTime.Margin = new System.Windows.Forms.Padding(2);
             this.chart_EventTime.Name = "chart_EventTime";
-            series2.BorderWidth = 2;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.IsVisibleInLegend = false;
-            series2.Legend = "Legend1";
-            series2.Name = "Data";
-            this.chart_EventTime.Series.Add(series2);
+            series1.BorderWidth = 2;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.IsVisibleInLegend = false;
+            series1.Legend = "Legend1";
+            series1.Name = "Data";
+            this.chart_EventTime.Series.Add(series1);
             this.chart_EventTime.Size = new System.Drawing.Size(905, 450);
             this.chart_EventTime.TabIndex = 21;
             this.chart_EventTime.Text = "chart_data";
@@ -3077,6 +3077,16 @@ namespace Digitizer_ver1
             this.groupBox18.TabIndex = 33;
             this.groupBox18.TabStop = false;
             this.groupBox18.Text = "XXX";
+            // 
+            // checkBox_logComm
+            // 
+            this.checkBox_logComm.AutoSize = true;
+            this.checkBox_logComm.Location = new System.Drawing.Point(17, 28);
+            this.checkBox_logComm.Name = "checkBox_logComm";
+            this.checkBox_logComm.Size = new System.Drawing.Size(119, 17);
+            this.checkBox_logComm.TabIndex = 34;
+            this.checkBox_logComm.Text = "Log Communication";
+            this.checkBox_logComm.UseVisualStyleBackColor = true;
             // 
             // groupBox17
             // 
@@ -4099,18 +4109,8 @@ namespace Digitizer_ver1
             // timerInfo
             // 
             this.timerInfo.Enabled = true;
-            this.timerInfo.Interval = 500;
+            this.timerInfo.Interval = 2000;
             this.timerInfo.Tick += new System.EventHandler(this.timerInfo_Tick);
-            // 
-            // checkBox_logComm
-            // 
-            this.checkBox_logComm.AutoSize = true;
-            this.checkBox_logComm.Location = new System.Drawing.Point(17, 28);
-            this.checkBox_logComm.Name = "checkBox_logComm";
-            this.checkBox_logComm.Size = new System.Drawing.Size(119, 17);
-            this.checkBox_logComm.TabIndex = 34;
-            this.checkBox_logComm.Text = "Log Communication";
-            this.checkBox_logComm.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
