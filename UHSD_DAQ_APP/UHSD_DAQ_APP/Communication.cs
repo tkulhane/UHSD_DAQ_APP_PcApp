@@ -58,6 +58,20 @@ namespace Digitizer_ver1
             CMD_CONST_GET_ExtSignals = 0x42,
 
 
+
+            CMD_CONST_SET_Transceivers_Main_A = 0x51,
+            CMD_CONST_GET_Transceivers_Main_A = 0x52,
+
+            CMD_CONST_SET_Transceivers_Main_B = 0x53,
+            CMD_CONST_GET_Transceivers_Main_B = 0x54,
+
+            CMD_CONST_SET_Transceivers_Sec_A = 0x55,
+            CMD_CONST_GET_Transceivers_Sec_A = 0x56,
+
+            CMD_CONST_SET_Transceivers_Sec_B = 0x57,
+            CMD_CONST_GET_Transceivers_Sec_B = 0x58,
+
+
             CMD_CONST_EVENT_HEAD = 0x7A,
             CMD_CONST_EVENT_TAIL = 0x7B,
             CMD_CONST_PACKET_HEAD = 0x7C,

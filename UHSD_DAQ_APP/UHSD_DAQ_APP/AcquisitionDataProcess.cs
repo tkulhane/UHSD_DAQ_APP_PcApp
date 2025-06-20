@@ -56,7 +56,7 @@ namespace Digitizer_ver1
 
         string DataFilePath = string.Empty;
 
-
+        public UInt32 CountOfDataFrames = 0;
 
         public void SetAcquisitionDataProcess() 
         {
@@ -131,6 +131,8 @@ namespace Digitizer_ver1
 
             bool BlockSaving = false;
 
+
+            CountOfDataFrames++;
 
 
             bool TestGen_Debug = false;

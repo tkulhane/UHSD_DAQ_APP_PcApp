@@ -158,6 +158,11 @@ namespace Digitizer_ver1
             MultiRegistersSetting.CreateRegister("EXT_Signals", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_ExtSignals, Communication.eCommandCode.CMD_CONST_SET_ExtSignals, RegistersSetting.eExtFileType.Non);
 
 
+            MultiRegistersSetting.CreateRegister("TRNV_Main_A", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Transceivers_Main_A, Communication.eCommandCode.CMD_CONST_SET_Transceivers_Main_A, RegistersSetting.eExtFileType.Non);
+            MultiRegistersSetting.CreateRegister("TRNV_Main_B", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Transceivers_Main_B, Communication.eCommandCode.CMD_CONST_SET_Transceivers_Main_B, RegistersSetting.eExtFileType.Non);
+            MultiRegistersSetting.CreateRegister("TRNV_Sec_A", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Transceivers_Sec_A, Communication.eCommandCode.CMD_CONST_SET_Transceivers_Sec_A, RegistersSetting.eExtFileType.Non);
+            MultiRegistersSetting.CreateRegister("TRNV_Sec_B", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Transceivers_Sec_B, Communication.eCommandCode.CMD_CONST_SET_Transceivers_Sec_B, RegistersSetting.eExtFileType.Non);
+
             //Manage System
             systemManage.groupBox_ManageActions = groupBox_ManageActions;
             systemManage.SequenceStart = MultiConfigSequence.SequenceStart;
@@ -238,6 +243,8 @@ namespace Digitizer_ver1
             label_StatusDataReadTask.Text = communication.GetStatus_TaskDataRead().ToString();
             label_StatusTaskOfReadExecute_CMD.Text = communication.GetStatus_TaskOfReadExecute_CMD().ToString();
             label_StatusTaskOfReadExecute_Data.Text = communication.GetStatus_TaskOfReadExecute_Data().ToString();
+
+            label_CountDataFrame.Text = AcqData.CountOfDataFrames.ToString();
         }
 
 
@@ -245,10 +252,10 @@ namespace Digitizer_ver1
         {
             if (checkBox_cmdQuestions.Checked)
             {
-                AcqControl.ReadValues();
+                //AcqControl.ReadValues();
                 gpio.ReadStateCommands();
-                rst.ReadStateCommands();
-                AnalyzInCirc.GetSetting();
+                //rst.ReadStateCommands();
+                //AnalyzInCirc.GetSetting();
             
             }
 
@@ -357,7 +364,7 @@ namespace Digitizer_ver1
             }
             else if (sel == tabControl_MAIN.TabPages.IndexOf(tabMeasurement_Setting))
             {
-                AcqControl.ReadSettingAndValues();
+                //AcqControl.ReadSettingAndValues();
             }
             else if (sel == tabControl_MAIN.TabPages.IndexOf(tabMeasurementData))
             {
@@ -385,8 +392,8 @@ namespace Digitizer_ver1
             }
             else if (sel == tabControl_MAIN.TabPages.IndexOf(tabAnalyzInCirc))
             {
-                AnalyzInCirc.GetSetting();
-                AnalyzInCirc.GetSetting_2();
+                //AnalyzInCirc.GetSetting();
+                //AnalyzInCirc.GetSetting_2();
             }
             else if (sel == tabControl_MAIN.TabPages.IndexOf(tabExtSignals))
             {

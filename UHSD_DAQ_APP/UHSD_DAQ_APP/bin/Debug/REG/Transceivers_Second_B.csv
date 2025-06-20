@@ -1,0 +1,36 @@
+0;CTRL Register;R/W;0
+2;CTRL Register SET;R/W;0
+4;CTRL Register RST;R/W;0
+6;General Status;R/W;0
+10;Lane Status 0;R/W;0
+12;Lane Fifo Count 0;R/W;0
+14;Lane Status 1;R/W;0
+16;Lane Fifo Count 1;R/W;0
+18;Lane Status 2;R/W;0
+1A;Lane Fifo Count 2;R/W;0
+1C;Lane Status 3;R/W;0
+1E;Lane Fifo Count 3;R/W;0
+20;Lane Status 4;R/W;0
+22;Lane Fifo Count 4;R/W;0
+24;Lane Status 5;R/W;0
+26;Lane Fifo Count 5;R/W;0
+28;Lane Status 6;R/W;0
+2A;Lane Fifo Count 6;R/W;0
+2C;Lane Status 7;R/W;0
+2E;Lane Fifo Count 7;R/W;0
+30;Lane Status 8;R/W;0
+32;Lane Fifo Count 8;R/W;0
+34;Lane Status 9;R/W;0
+36;Lane Fifo Count  9;R/W;0
+38;Lane Status 10;R/W;0
+3A;Lane Fifo Count  10;R/W;0
+3C;Lane Status 11;R/W;0
+3E;Lane Fifo Count  11;R/W;0
+40;Lane Status 12;R/W;0
+42;Lane Fifo Count 12;R/W;0
+44;Lane Status 13;R/W;0
+46;Lane Fifo Count  13;R/W;0
+48;Lane Status 14;R/W;0
+4A;Lane Fifo Count  14;R/W;0
+4C;Lane Status 15;R/W;0
+4E;Lane Fifo Count  15;R/W;0

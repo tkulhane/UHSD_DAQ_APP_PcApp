@@ -6,8 +6,12 @@ register;HMC;C:\Develop_Git\PcApp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\b
 register;LMX1;C:\Develop_Git\PcApp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\bin\Debug\REG\LMX1_reg.csv
 register;LMX2;C:\Develop_Git\PcApp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\bin\Debug\REG\LMX2_reg.csv
 register;FpgaTest;C:\Develop_Git\PcApp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\bin\Debug\REG\Test_Reg.csv
-register;Acq;
-register;Transcievers;
+register;Acq;C:\Develop_Git\PcApp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\bin\Debug\REG\ACQ_Sec_Ctrl.csv
+register;Transcievers;C:\Develop_Git\PcApp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\bin\Debug\REG\Transceivers_Main.csv
 register;Clock_Switch;
 register;EXT_Signals;C:\Develop_Git\PcApp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\bin\Debug\REG\EXT_Signals.csv
+register;TRNV_Main_A;C:\Develop_Git\PcApp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\bin\Debug\REG\Transceivers_Main_A.csv
+register;TRNV_Main_B;C:\Develop_Git\PcApp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\bin\Debug\REG\Transceivers_Main_B.csv
+register;TRNV_Sec_A;C:\Develop_Git\PcApp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\bin\Debug\REG\Transceivers_Second_A.csv
+register;TRNV_Sec_B;C:\Develop_Git\PcApp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\bin\Debug\REG\Transceivers_Second_B.csv
 config;Config_HMC.csv;C:\Develop_Git\PcApp\UHSD_DAQ_APP_PcApp\UHSD_DAQ_APP\UHSD_DAQ_APP\bin\Debug\CFG\Config_HMC.csv

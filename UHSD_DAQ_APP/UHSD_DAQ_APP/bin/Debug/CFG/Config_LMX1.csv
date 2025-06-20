@@ -1,7 +1,7 @@
 LOG;ADD;Config LMX1 Start;;;;
-RESET;LMX1;1;;;;
+OUTPUT;LMX-1-RESET;1;;;;
 WAIT;;100;;;;
-RESET;LMX1;0;;;;
+OUTPUT;LMX-1-RESET;0;;;;
 WAIT;;100;;;;
 REG;LMX1;0;2;;;
 WAIT;;100;;;;

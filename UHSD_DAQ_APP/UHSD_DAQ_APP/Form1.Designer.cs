@@ -353,6 +353,7 @@ namespace Digitizer_ver1
             this.button_ExtSignalsReadSetting = new System.Windows.Forms.Button();
             this.timerForm = new System.Windows.Forms.Timer(this.components);
             this.timerInfo = new System.Windows.Forms.Timer(this.components);
+            this.label_CountDataFrame = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tabRegisters.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -441,6 +442,7 @@ namespace Digitizer_ver1
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label_CountDataFrame);
             this.panel1.Controls.Add(this.label_ConnectState);
             this.panel1.Controls.Add(this.label_AcqState);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -4109,8 +4111,18 @@ namespace Digitizer_ver1
             // timerInfo
             // 
             this.timerInfo.Enabled = true;
-            this.timerInfo.Interval = 2000;
+            this.timerInfo.Interval = 500;
             this.timerInfo.Tick += new System.EventHandler(this.timerInfo_Tick);
+            // 
+            // label_CountDataFrame
+            // 
+            this.label_CountDataFrame.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_CountDataFrame.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_CountDataFrame.Location = new System.Drawing.Point(922, 7);
+            this.label_CountDataFrame.Name = "label_CountDataFrame";
+            this.label_CountDataFrame.Size = new System.Drawing.Size(94, 20);
+            this.label_CountDataFrame.TabIndex = 14;
+            this.label_CountDataFrame.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form1
             // 
@@ -4560,6 +4572,7 @@ namespace Digitizer_ver1
         private System.Windows.Forms.RadioButton radioButton_TrgExtRisingOver;
         private System.Windows.Forms.Label label_ConnectState;
         private System.Windows.Forms.CheckBox checkBox_logComm;
+        private System.Windows.Forms.Label label_CountDataFrame;
     }
 }
 

@@ -68,7 +68,7 @@ E;OSCIN/OSCIN input buffer control;R/W;7
 7A;Product ID MSB;R;30
 7B;Readback register ;R;1
 7C;PLL1 alarm readback ;R;1F
-7D;Alarm readback ;R;2
+7D;Alarm readback ;R;1B
 7E;Latched alarm readback ;R;7F
 7F;Alarm readback miscellaneous ;R;0
 82;PLL1 status registers ;R;4
@@ -134,7 +134,7 @@ D6;Channel Output 1 control ;R/W;0
 D7;Channel Output 1 control ;R/W;0
 D8;Channel Output 1 control ;R/W;0
 D9;Channel Output 1 control ;R/W;0
-DA;Channel Output 1 control ;R/W;11
+DA;Channel Output 1 control ;R/W;91
 DB;Channel Output 1 control ;R/W;0
 DC;Channel Output 2 control ;R/W;71
 DD;Channel Output 2 control ;R/W;48
@@ -154,7 +154,7 @@ EA;Channel Output 3 control ;R/W;3
 EB;Channel Output 3 control ;R/W;0
 EC;Channel Output 3 control ;R/W;0
 ED;Channel Output 3 control ;R/W;0
-EE;Channel Output 3 control ;R/W;11
+EE;Channel Output 3 control ;R/W;91
 EF;Channel Output 3 control ;R/W;0
 F0;Channel Output 4 control ;R/W;71
 F1;Channel Output 4 control ;R/W;48
@@ -174,7 +174,7 @@ FE;Channel Output 5 control ;R/W;0
 FF;Channel Output 5 control ;R/W;0
 100;Channel Output 5 control ;R/W;0
 101;Channel Output 5 control ;R/W;0
-102;Channel Output 5 control ;R/W;13
+102;Channel Output 5 control ;R/W;93
 103;Channel Output 5 control ;R/W;0
 104;Channel Output 6 control ;R/W;71
 105;Channel Output 6 control ;R/W;48
@@ -194,7 +194,7 @@ FF;Channel Output 5 control ;R/W;0
 113;Channel Output 7 control ;R/W;0
 114;Channel Output 7 control ;R/W;0
 115;Channel Output 7 control ;R/W;0
-116;Channel Output 7 control ;R/W;13
+116;Channel Output 7 control ;R/W;93
 117;Channel Output 7 control ;R/W;0
 118;Channel Output 8 control ;R/W;71
 119;Channel Output 8 control ;R/W;48
@@ -214,7 +214,7 @@ FF;Channel Output 5 control ;R/W;0
 127;Channel Output 9 control ;R/W;0
 128;Channel Output 9 control ;R/W;0
 129;Channel Output 9 control ;R/W;0
-12A;Channel Output 9 control ;R/W;13
+12A;Channel Output 9 control ;R/W;93
 12B;Channel Output 9 control ;R/W;0
 12C;Channel Output 10 control ;R/W;71
 12D;Channel Output 10 control ;R/W;48
@@ -234,7 +234,7 @@ FF;Channel Output 5 control ;R/W;0
 13B;Channel Output 11 control ;R/W;0
 13C;Channel Output 11 control ;R/W;0
 13D;Channel Output 11 control ;R/W;0
-13E;Channel Output 11 control ;R/W;11
+13E;Channel Output 11 control ;R/W;91
 13F;Channel Output 11 control ;R/W;0
 140;Channel Output 12 control ;R/W;71
 141;Channel Output 12 control ;R/W;48
@@ -254,7 +254,7 @@ FF;Channel Output 5 control ;R/W;0
 14F;Channel Output 13 control ;R/W;1
 150;Channel Output 13 control ;R/W;0
 151;Channel Output 13 control ;R/W;0
-152;Channel Output 13 control ;R/W;13
+152;Channel Output 13 control ;R/W;93
 153;Channel Output 13 control ;R/W;0
 C;Channel Output 13 control ;R/W;0
 14D;Channel Output 13 control ;R/W;0
@@ -262,19 +262,19 @@ C;Channel Output 13 control ;R/W;0
 14F;Channel Output 13 control ;R/W;1
 150;Channel Output 13 control ;R/W;0
 151;Channel Output 13 control ;R/W;0
-152;Channel Output 13 control ;R/W;13
+152;Channel Output 13 control ;R/W;93
 153;Channel Output 13 control ;R/W;0
 4D;Channel Output 13 control ;R/W;0
 14E;Channel Output 13 control ;R/W;0
 14F;Channel Output 13 control ;R/W;1
 150;Channel Output 13 control ;R/W;0
 151;Channel Output 13 control ;R/W;0
-152;Channel Output 13 control ;R/W;13
+152;Channel Output 13 control ;R/W;93
 153;Channel Output 13 control ;R/W;0
 4D;Channel Output 13 control ;R/W;0
 14E;Channel Output 13 control ;R/W;0
 14F;Channel Output 13 control ;R/W;1
 150;Channel Output 13 control ;R/W;0
 151;Channel Output 13 control ;R/W;0
-152;Channel Output 13 control ;R/W;13
+152;Channel Output 13 control ;R/W;93
 153;Channel Output 13 control ;R/W;0
