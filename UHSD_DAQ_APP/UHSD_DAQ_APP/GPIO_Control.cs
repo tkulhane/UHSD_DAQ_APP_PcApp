@@ -72,6 +72,13 @@ namespace Digitizer_ver1
 
             OutputAdd(7, "Logic-Reset-1");
             OutputAdd(8, "Logic-Reset-2");
+            OutputAdd(9, "XCVR-PHY-RESET");
+            OutputAdd(10, "OSC-ENABLE");
+
+            OutputAdd(12, "ADC-PWDN-1");
+            OutputAdd(13, "ADC-PWDN-2");
+            OutputAdd(14, "ADC-RST-1");
+            OutputAdd(15, "ADC-RST-2");
 
 
             //datagrid

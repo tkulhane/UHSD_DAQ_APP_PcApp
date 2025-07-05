@@ -1,7 +1,7 @@
 LOG;ADD;Config LMX2 Start;;;;
-RESET;LMX2;1;;;;
+OUTPUT;LMX-2-RESET;0;;;;
 WAIT;;100;;;;
-RESET;LMX2;0;;;;
+OUTPUT;LMX-2-RESET;1;;;;
 WAIT;;100;;;;
 REG;LMX2;0;2;;;
 WAIT;;100;;;;

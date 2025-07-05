@@ -1,0 +1,24 @@
+LOG;ADD;Transcievers Calibration Start;;;;log
+OUTPUT;Logic-Reset-1;1;;;;
+OUTPUT;Logic-Reset-2;1;;;;
+WAIT;;10;;;;
+OUTPUT;XCVR-PHY-RESET;0;;;;
+WAIT;;20;;;;
+OUTPUT;XCVR-PHY-RESET;1;;;;
+WAIT;;50;;;;
+REG;TRNV_Main_A;4;3;;;
+REG;TRNV_Main_B;4;3;;;
+WAIT;;10;;;;
+REG;TRNV_Main_A;8;3;;;
+REG;TRNV_Main_B;8;3;;;
+WAIT;;50;;;;
+REG;TRNV_Main_A;4;C;;;
+REG;TRNV_Main_B;4;C;;;
+WAIT;;10;;;;
+REG;TRNV_Main_A;8;C;;;
+REG;TRNV_Main_B;8;C;;;
+WAIT;;100;;;;
+OUTPUT;HMC-SYNC;1;;;;sysref 1
+WAIT;;500;;;;
+OUTPUT;HMC-SYNC;0;;;;sysref 0
+LOG;ADD;Transcievers Calibration Done;;;;

@@ -145,23 +145,32 @@ namespace Digitizer_ver1
             extSignals.DataGrid_Outputs = dataGridView_ExtSignalsOutputs;
             extSignals.DataGridsLoad();
 
+
             //create registers
-            MultiRegistersSetting.CreateRegister("ADC", RegistersSetting.eAddressValueSize.Address16_Value8, Communication.eCommandCode.CMD_CONST_GET_AdcRegisters, Communication.eCommandCode.CMD_CONST_SET_AdcRegisters,RegistersSetting.eExtFileType.Non);
             MultiRegistersSetting.CreateRegister("HMC", RegistersSetting.eAddressValueSize.Address16_Value8, Communication.eCommandCode.CMD_CONST_GET_HmcRegisters, Communication.eCommandCode.CMD_CONST_SET_HmcRegisters, RegistersSetting.eExtFileType.Python);
+            MultiRegistersSetting.CreateRegister("ADC1", RegistersSetting.eAddressValueSize.Address16_Value8, Communication.eCommandCode.CMD_CONST_GET_Adc1Registers, Communication.eCommandCode.CMD_CONST_SET_Adc1Registers, RegistersSetting.eExtFileType.Non);
+            MultiRegistersSetting.CreateRegister("ADC2", RegistersSetting.eAddressValueSize.Address16_Value8, Communication.eCommandCode.CMD_CONST_GET_Adc2Registers, Communication.eCommandCode.CMD_CONST_SET_Adc2Registers,RegistersSetting.eExtFileType.Non);
             MultiRegistersSetting.CreateRegister("LMX1", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Lmx1Registers, Communication.eCommandCode.CMD_CONST_SET_Lmx1Registers, RegistersSetting.eExtFileType.Txt);
             MultiRegistersSetting.CreateRegister("LMX2", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Lmx2Registers, Communication.eCommandCode.CMD_CONST_SET_Lmx2Registers, RegistersSetting.eExtFileType.Txt);
-            MultiRegistersSetting.CreateRegister("FpgaTest", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_TestRegisters, Communication.eCommandCode.CMD_CONST_SET_TestRegisters, RegistersSetting.eExtFileType.Non);
-            MultiRegistersSetting.CreateRegister("Acq", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_TriggerRegisters, Communication.eCommandCode.CMD_CONST_SET_TriggerRegisters, RegistersSetting.eExtFileType.Non);
-            MultiRegistersSetting.CreateRegister("Transcievers", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_TransceiversControl, Communication.eCommandCode.CMD_CONST_SET_TransceiversControl, RegistersSetting.eExtFileType.Non);
 
-            MultiRegistersSetting.CreateRegister("Clock_Switch", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Clock_Controler, Communication.eCommandCode.CMD_CONST_SET_Clock_Controler, RegistersSetting.eExtFileType.Non);
-            MultiRegistersSetting.CreateRegister("EXT_Signals", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_ExtSignals, Communication.eCommandCode.CMD_CONST_SET_ExtSignals, RegistersSetting.eExtFileType.Non);
+            MultiRegistersSetting.CreateRegister("TriggerMain", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_TriggerMain, Communication.eCommandCode.CMD_CONST_SET_TriggerMain, RegistersSetting.eExtFileType.Non);
+            MultiRegistersSetting.CreateRegister("Acq1", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_ACQ1, Communication.eCommandCode.CMD_CONST_SET_ACQ1, RegistersSetting.eExtFileType.Non);
+            MultiRegistersSetting.CreateRegister("Acq2", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_ACQ2, Communication.eCommandCode.CMD_CONST_SET_ACQ2, RegistersSetting.eExtFileType.Non);
+           
+            
+            MultiRegistersSetting.CreateRegister("EXT_Signals_M", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_ExtSignalsMain, Communication.eCommandCode.CMD_CONST_SET_ExtSignalsMain, RegistersSetting.eExtFileType.Non);
+            MultiRegistersSetting.CreateRegister("EXT_Signals_1", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_ExtSignals1, Communication.eCommandCode.CMD_CONST_SET_ExtSignals1, RegistersSetting.eExtFileType.Non);
+            MultiRegistersSetting.CreateRegister("EXT_Signals_2", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_ExtSignals2, Communication.eCommandCode.CMD_CONST_SET_ExtSignals2, RegistersSetting.eExtFileType.Non);
 
 
             MultiRegistersSetting.CreateRegister("TRNV_Main_A", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Transceivers_Main_A, Communication.eCommandCode.CMD_CONST_SET_Transceivers_Main_A, RegistersSetting.eExtFileType.Non);
             MultiRegistersSetting.CreateRegister("TRNV_Main_B", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Transceivers_Main_B, Communication.eCommandCode.CMD_CONST_SET_Transceivers_Main_B, RegistersSetting.eExtFileType.Non);
             MultiRegistersSetting.CreateRegister("TRNV_Sec_A", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Transceivers_Sec_A, Communication.eCommandCode.CMD_CONST_SET_Transceivers_Sec_A, RegistersSetting.eExtFileType.Non);
             MultiRegistersSetting.CreateRegister("TRNV_Sec_B", RegistersSetting.eAddressValueSize.Address8_Value16, Communication.eCommandCode.CMD_CONST_GET_Transceivers_Sec_B, Communication.eCommandCode.CMD_CONST_SET_Transceivers_Sec_B, RegistersSetting.eExtFileType.Non);
+
+
+
+
 
             //Manage System
             systemManage.groupBox_ManageActions = groupBox_ManageActions;
@@ -332,7 +341,7 @@ namespace Digitizer_ver1
                     AnalyzInCirc.UpdateFromCommunication(data[1], data[2], data[3]);
                     break;
 
-                case Communication.eCommandCode.CMD_CONST_GET_ExtSignals:
+                case Communication.eCommandCode.CMD_CONST_GET_ExtSignalsMain:
                     extSignals.UpdateFromCommunication(data[1], data[2], data[3]);
                     break;
 
@@ -1104,7 +1113,7 @@ namespace Digitizer_ver1
 
         private void SystemInfo_AdcTemp(bool valid) 
         {
-            RegistersSetting RS = MultiRegistersSetting.GetRegister("ADC");
+            RegistersSetting RS = MultiRegistersSetting.GetRegister("ADC1");
 
             RS.ReadRegister(0x1609);
             RS.ReadRegister(0x160A);
@@ -1180,21 +1189,21 @@ namespace Digitizer_ver1
             bool XcvrLanesLocked = false;
             bool Syncib = false;
 
-            if (SystemInfo_ReadGetVal("ADC", 0x4) == 0xE5) Online_ADC = true;
+            if (SystemInfo_ReadGetVal("ADC1", 0x4) == 0xE5) Online_ADC = true;
             if (SystemInfo_ReadGetVal("HMC", 0x79) == 0x52) Online_HMC = true;
             if (SystemInfo_ReadGetVal("LMX1", 0x18) == 0x71A) Online_LMX1 = true;
             if (SystemInfo_ReadGetVal("LMX2", 0x18) == 0x71A) Online_LMX2 = true;
 
-            if ((SystemInfo_ReadGetVal("ADC", 0x501) & 0x80) >= 1) AdcJtxPllLocked = true;
-            if ((SystemInfo_ReadGetVal("ADC", 0x151D) & 0x01) >= 1) InfoAdcClockDetect = true;
+            if ((SystemInfo_ReadGetVal("ADC1", 0x501) & 0x80) >= 1) AdcJtxPllLocked = true;
+            if ((SystemInfo_ReadGetVal("ADC1", 0x151D) & 0x01) >= 1) InfoAdcClockDetect = true;
 
             if (((SystemInfo_ReadGetVal("LMX1", 0x6E) >> 9 ) & 0x3) == 2) InfoLmx1Locked = true;
             if (((SystemInfo_ReadGetVal("LMX2", 0x6E) >> 9) & 0x3) == 2) InfoLmx2Locked = true;
             if (((SystemInfo_ReadGetVal("HMC", 0x7D) >> 3) & 0x1) == 1) HmcPllsLocked = true;
-            if (SystemInfo_ReadGetVal("Clock_Switch", 0x5) == 3) LogicRefPllsLocked = true;
+            //if (SystemInfo_ReadGetVal("Clock_Switch", 0x5) == 3) LogicRefPllsLocked = true;
 
-            if (((SystemInfo_ReadGetVal("Transcievers", 0x02) >> 0) & 0x1) == 1) Syncib = true;
-            if (((SystemInfo_ReadGetVal("Transcievers", 0x02) >> 1) & 0x1) == 1) XcvrLanesLocked = true;
+            //if (((SystemInfo_ReadGetVal("Transcievers", 0x02) >> 0) & 0x1) == 1) Syncib = true;
+            //if (((SystemInfo_ReadGetVal("Transcievers", 0x02) >> 1) & 0x1) == 1) XcvrLanesLocked = true;
 
             if (_validCounter < 1) 
             {

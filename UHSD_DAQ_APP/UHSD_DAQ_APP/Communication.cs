@@ -13,7 +13,90 @@ namespace Digitizer_ver1
 {
     class Communication
     {
+
         public enum eCommandCode : byte
+        {
+            CMD_CONST_Loopback0 = 0x00,
+            CMD_CONST_Loopback = 0x01,
+
+            CMD_CONST_SET_TriggerRegisters = 0x02,
+            CMD_CONST_GET_TriggerRegisters = 0x03,
+
+            CMD_CONST_SET_AnalyzInCirc = 0x04,
+            CMD_CONST_GET_AnalyzInCirc = 0x05,
+
+            CMD_CONST_SET_Reset_Controler = 0x06,
+            CMD_CONST_GET_Reset_Controler = 0x07,
+
+
+            CMD_CONST_SET_Adc1Registers = 0x20,
+            CMD_CONST_GET_Adc1Registers = 0x21,
+
+            CMD_CONST_SET_Adc2Registers = 0x22,
+            CMD_CONST_GET_Adc2Registers = 0x23,
+
+            CMD_CONST_SET_HmcRegisters = 0x24,
+            CMD_CONST_GET_HmcRegisters = 0x25,
+
+            CMD_CONST_SET_Lmx1Registers = 0x26,
+            CMD_CONST_GET_Lmx1Registers = 0x27,
+
+            CMD_CONST_SET_Lmx2Registers = 0x28,
+            CMD_CONST_GET_Lmx2Registers = 0x29,
+
+
+            CMD_CONST_SET_TriggerMain = 0x2A,
+            CMD_CONST_GET_TriggerMain = 0x2B,
+
+            CMD_CONST_SET_ACQ1 = 0x2C,
+            CMD_CONST_GET_ACQ1 = 0x2D,
+
+            CMD_CONST_SET_ACQ2 = 0x2E,
+            CMD_CONST_GET_ACQ2 = 0x2F,
+
+
+            CMD_CONST_SET_CommunicationControl = 0x30,
+            CMD_CONST_GET_CommunicationControl = 0x31,
+
+            CMD_CONST_SET_GPIO = 0x32,
+            CMD_CONST_GET_GPIO = 0x33,
+
+            CMD_CONST_SET_ExtSignalsMain = 0x34,
+            CMD_CONST_GET_ExtSignalsMain = 0x35,
+
+            CMD_CONST_SET_ExtSignals1 = 0x36,
+            CMD_CONST_GET_ExtSignals1 = 0x37,
+
+            CMD_CONST_SET_ExtSignals2 = 0x38,
+            CMD_CONST_GET_ExtSignals2 = 0x39,
+
+
+
+
+            CMD_CONST_SET_Transceivers_Main_A = 0x50,
+            CMD_CONST_GET_Transceivers_Main_A = 0x51,
+
+            CMD_CONST_SET_Transceivers_Main_B = 0x52,
+            CMD_CONST_GET_Transceivers_Main_B = 0x53,
+
+            CMD_CONST_SET_Transceivers_Sec_A = 0x54,
+            CMD_CONST_GET_Transceivers_Sec_A = 0x55,
+
+            CMD_CONST_SET_Transceivers_Sec_B = 0x56,
+            CMD_CONST_GET_Transceivers_Sec_B = 0x57,
+
+
+
+
+            CMD_CONST_EVENT_HEAD = 0x7A,
+            CMD_CONST_EVENT_TAIL = 0x7B,
+            CMD_CONST_PACKET_HEAD = 0x7C,
+            CMD_CONST_PACKET_TAIL = 0x7D
+
+        }
+
+
+        public enum eCommandCode_old : byte
         {
 
             CMD_CONST_Loopback = 0x01,

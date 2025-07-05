@@ -1,0 +1,14 @@
+LOG;ADD;Config Acq Start;;;;
+REG;Acq1;ALL;;;;
+REG;Acq1;2;10;;;
+WAIT;;20;;;;
+REG;Acq1;2;C;;;
+REG;Acq2;ALL;;;;
+REG;Acq2;2;10;;;
+WAIT;;20;;;;
+REG;Acq2;2;C;;;
+WAIT;;100;;;;
+OUTPUT;HMC-SYNC;1;;;;sysref 1
+WAIT;;500;;;;
+OUTPUT;HMC-SYNC;0;;;;sysref 0
+LOG;ADD;Config Acq Done;;;;

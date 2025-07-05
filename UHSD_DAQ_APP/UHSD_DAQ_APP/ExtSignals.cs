@@ -195,11 +195,11 @@ namespace Digitizer_ver1
 
                         if (b)
                         {
-                            SendCommand(Communication.eCommandCode.CMD_CONST_SET_ExtSignals, (byte)((byte)eCommandCode_ExtSignals.CMD_EXT_SIGNALS_ADDR_BASE_OUTPUTS_ENABLE_SET + x), b1, b0);
+                            SendCommand(Communication.eCommandCode.CMD_CONST_SET_ExtSignalsMain, (byte)((byte)eCommandCode_ExtSignals.CMD_EXT_SIGNALS_ADDR_BASE_OUTPUTS_ENABLE_SET + x), b1, b0);
                         }
                         else
                         {
-                            SendCommand(Communication.eCommandCode.CMD_CONST_SET_ExtSignals, (byte)((byte)eCommandCode_ExtSignals.CMD_EXT_SIGNALS_ADDR_BASE_OUTPUTS_ENABLE_CLEAR + x), b1, b0);
+                            SendCommand(Communication.eCommandCode.CMD_CONST_SET_ExtSignalsMain, (byte)((byte)eCommandCode_ExtSignals.CMD_EXT_SIGNALS_ADDR_BASE_OUTPUTS_ENABLE_CLEAR + x), b1, b0);
                         }
                     //}
                 //}
@@ -212,7 +212,7 @@ namespace Digitizer_ver1
 
             UInt16 val = (UInt16)port;
 
-            SendCommand(Communication.eCommandCode.CMD_CONST_SET_ExtSignals, (byte)((byte)eCommandCode_ExtSignals.CMD_EXT_SIGNALS_ADDR_BASE_INPUTS_SEL + signal), (byte)((val >> 8) & 0xFF), (byte)((val >> 0) & 0xFF));
+            SendCommand(Communication.eCommandCode.CMD_CONST_SET_ExtSignalsMain, (byte)((byte)eCommandCode_ExtSignals.CMD_EXT_SIGNALS_ADDR_BASE_INPUTS_SEL + signal), (byte)((val >> 8) & 0xFF), (byte)((val >> 0) & 0xFF));
         }
 
         public void SendSetting_Output(int port, int signal) 
@@ -221,22 +221,22 @@ namespace Digitizer_ver1
 
             UInt16 val = (UInt16)signal;
 
-            SendCommand(Communication.eCommandCode.CMD_CONST_SET_ExtSignals, (byte)((byte)eCommandCode_ExtSignals.CMD_EXT_SIGNALS_ADDR_BASE_OUTPUTS_SEL + port), (byte)((val >> 8) & 0xFF), (byte)((val >> 0) & 0xFF));
+            SendCommand(Communication.eCommandCode.CMD_CONST_SET_ExtSignalsMain, (byte)((byte)eCommandCode_ExtSignals.CMD_EXT_SIGNALS_ADDR_BASE_OUTPUTS_SEL + port), (byte)((val >> 8) & 0xFF), (byte)((val >> 0) & 0xFF));
         }
 
         public void ReadSetting() 
         {
             for(int i = 0; i < NumOfInputsSignals; i++) 
             {
-                SendCommand(Communication.eCommandCode.CMD_CONST_GET_ExtSignals, (byte)((byte)eCommandCode_ExtSignals.CMD_EXT_SIGNALS_ADDR_BASE_INPUTS_SEL + i), 0, 0);
+                SendCommand(Communication.eCommandCode.CMD_CONST_GET_ExtSignalsMain, (byte)((byte)eCommandCode_ExtSignals.CMD_EXT_SIGNALS_ADDR_BASE_INPUTS_SEL + i), 0, 0);
             }
             for (int i = 0; i < NumOfPorts; i++)
             {
-                SendCommand(Communication.eCommandCode.CMD_CONST_GET_ExtSignals, (byte)((byte)eCommandCode_ExtSignals.CMD_EXT_SIGNALS_ADDR_BASE_OUTPUTS_SEL + i), 0, 0);
+                SendCommand(Communication.eCommandCode.CMD_CONST_GET_ExtSignalsMain, (byte)((byte)eCommandCode_ExtSignals.CMD_EXT_SIGNALS_ADDR_BASE_OUTPUTS_SEL + i), 0, 0);
             }
 
-            SendCommand(Communication.eCommandCode.CMD_CONST_GET_ExtSignals, (byte)eCommandCode_ExtSignals.CMD_EXT_SIGNALS_ADDR_BASE_OUTPUTS_ENABLE, 0, 0);
-            SendCommand(Communication.eCommandCode.CMD_CONST_GET_ExtSignals, (byte)eCommandCode_ExtSignals.CMD_EXT_SIGNALS_ADDR_BASE_OUTPUTS_ENABLE + 1, 0, 0);
+            SendCommand(Communication.eCommandCode.CMD_CONST_GET_ExtSignalsMain, (byte)eCommandCode_ExtSignals.CMD_EXT_SIGNALS_ADDR_BASE_OUTPUTS_ENABLE, 0, 0);
+            SendCommand(Communication.eCommandCode.CMD_CONST_GET_ExtSignalsMain, (byte)eCommandCode_ExtSignals.CMD_EXT_SIGNALS_ADDR_BASE_OUTPUTS_ENABLE + 1, 0, 0);
         }
 
 
